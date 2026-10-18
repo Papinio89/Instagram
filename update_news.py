@@ -195,6 +195,16 @@ def short_id(link: str) -> str:
     return hashlib.sha1(link.encode("utf-8")).hexdigest()[:10]
 
 
+def normalize_post(post: str) -> str:
+    """Stały układ: post 1 / pusta linia / ---ODPOWIEDŹ--- / pusta linia / post 2, pytanie w osobnym akapicie."""
+    parts = re.split(r"\s*---ODPOWIEDŹ---\s*", str(post).strip(), maxsplit=1)
+    if len(parts) != 2:
+        return str(post).strip()
+    a, b = parts[0].strip(), parts[1].strip()
+    b = re.sub(r"\s*([^.!?\n]*\?\s*👇💬)\s*$", r"\n\n\1", b)
+    return f"{a}\n\n---ODPOWIEDŹ---\n\n{b}"
+
+
 def numbers_in(text: str) -> set:
     """Liczby z normalizacją separatorów tysięcy: '1,800' / '1 800' / '1.800' → '1800'."""
     out = set()
@@ -287,13 +297,13 @@ def _clean(t: str) -> str:
 def fetch_article(url: str):
     """(tekst artykułu do ~1800 znaków, og:image lub None). Źródła: JSON-LD articleBody, akapity <p>, meta description."""
     if not url or "news.google.com" in url:
-        return "", None
+        return "", None, ""
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=8) as r:
             raw = r.read(800_000).decode("utf-8", errors="ignore")
     except Exception:
-        return "", None
+        return "", None, ""
     img = None
     for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
                 r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']'):
@@ -316,18 +326,18 @@ def fetch_article(url: str):
             body = ""
     paras = [t for t in (_clean(p) for p in re.findall(r"<p[^>]*>(.*?)</p>", raw, re.S | re.I)) if len(t) >= 40]
     text = max([body, " ".join(paras)], key=len)
-    if len(text) < GROUNDED_MIN_CHARS and desc and desc not in text:
-        text = (desc + " " + text).strip()
-    return text[:1800], img
+    return text[:1800], img, desc
 
 
 def build_candidates(clustered: list) -> list:
     pool = interleave(clustered, MAX_PER_SOURCE, MAX_POOL)
     with ThreadPoolExecutor(max_workers=8) as ex:
         results = list(ex.map(lambda a: fetch_article(a["link"]), pool))
-    for a, (text, og) in zip(pool, results):
+    for a, (text, og, desc) in zip(pool, results):
         a["text"], a["og_image"] = text, og
-        a["grounded"] = len(text) >= GROUNDED_MIN_CHARS
+        a["grounded"] = len(text) >= GROUNDED_MIN_CHARS   # tylko pełna treść; sam lead/opis to za mało
+        if len(desc) > len(a["snippet"]):
+            a["snippet"] = desc[:400]
     stat = defaultdict(lambda: [0, 0])
     for a in pool:
         stat[a["source_name"]][0] += int(a["grounded"])
@@ -493,7 +503,7 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
         category = normalize_category(it["category"])
         title = format_title(it["title"], category)
         summary, comment = str(it["summary"]).strip(), str(it["comment"]).strip()
-        post = str(it["threads_post"]).strip()
+        post = normalize_post(it["threads_post"])
         min_post = 400 if cand["grounded"] else 250
         if (len(title) < 10 or len(summary) < 25 or len(comment) < 10 or len(post) < min_post
                 or "---ODPOWIEDŹ---" not in post):
@@ -502,7 +512,8 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
         if any(are_topics_duplicate(title, p, 0.35) for p in seen_titles + known_titles):
             rej["powtórka tematu"] += 1
             continue
-        blob = normtxt(cand["title"] + " " + (cand.get("text") or "") + " " + cand["snippet"])
+        body = normtxt(cand.get("text") or "")
+        blob = body if cand["grounded"] else normtxt(cand["title"] + " " + (cand.get("text") or "") + " " + cand["snippet"])
         ev = [e for e in (it.get("evidence") or []) if isinstance(e, str) and len(normtxt(e)) >= 12]
         ok_ev = [e.strip() for e in ev if normtxt(e) in blob]
         if not ok_ev:
@@ -551,6 +562,7 @@ def review_items(client, items: list) -> list:
                 or len(new["threads_post"]) < (400 if it["grounded"] else 250) or "---ODPOWIEDŹ---" not in new["threads_post"]):
             continue
         new["title"] = format_title(new["title"], it["category"])
+        new["threads_post"] = normalize_post(new["threads_post"])
         if any(new[k] != it[k] for k in new):
             changed += 1
         it.update(new)
@@ -667,7 +679,7 @@ def main():
     print("3. Kandydaci + pełny tekst")
     candidates = build_candidates(clustered)
     ai_input = [{"id": i, "title": c["title"], "source": c["source_name"], "lang": c["lang"], "grounded": c["grounded"],
-                 "text": (c.get("text") or c["snippet"])[:1500]} for i, c in enumerate(candidates)]
+                 "text": (c["text"] if c["grounded"] else (c["snippet"] + " " + c.get("text", "")).strip())[:1500]} for i, c in enumerate(candidates)]
 
     print("4. Gemini: wybór i pisanie")
     client = genai.Client(api_key=GEMINI_API_KEY)
@@ -733,7 +745,7 @@ def main():
         sens = it.pop("sensitive", False)
         ph = fetch_pexels(it["image_query"], used_imgs, sens, 1)
         if not ph and not sens:  # tematy wrażliwe: lepiej bez zdjęcia niż z nietrafionym
-            ph = fetch_pexels(GENERIC_QUERY.get(it["category"], "news"), used_imgs, sens, 0)
+            ph = fetch_pexels(GENERIC_QUERY.get(it["category"], "news"), used_imgs, sens, 1)
         it["image_url"] = ph["url"] if ph else ""
         it["image_illustrative"] = bool(ph)
         it["image_credit"] = ph["credit"] if ph else ""
@@ -757,7 +769,9 @@ def main():
     out = {"date": f"{now.day} {POLISH_MONTHS[now.month]} {now.year}", "time": now.strftime("%H:%M"),
            "timestamp": now.strftime("%Y-%m-%d_%H:%M"), "items": items}
     write_json("news.json", out)
-    archive[session_key] = out
+    archive[session_key] = {**out, "items": [{k: v for k, v in i.items()
+                                              if k not in ("threads_post", "evidence", "question", "image_query")}
+                                             for i in items]}
     for old in sorted(archive.keys())[:-ARCHIVE_MAX_SESSIONS]:
         del archive[old]
     write_json("archive.json", archive)
