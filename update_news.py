@@ -285,7 +285,7 @@ def fetch_feeds() -> list:
                 if src and title.endswith(f" - {src}"):
                     title = title[: -len(src) - 3].strip()
                 snippet = re.sub(r"<[^>]+>", "", getattr(e, "summary", "")).strip()
-                snippet = html_lib.unescape(re.sub(r"\s+", " ", snippet))[:280]
+                snippet = html_lib.unescape(re.sub(r"\s+", " ", snippet))[:500]
                 articles.append({"title": title, "snippet": snippet, "link": link, "source_name": src,
                                  "lang": lang, "feed_category": cat})
                 n += 1
@@ -342,9 +342,11 @@ def build_candidates(clustered: list) -> list:
         results = list(ex.map(lambda a: fetch_article(a["link"]), pool))
     for a, (text, og, desc) in zip(pool, results):
         a["text"], a["og_image"] = text, og
-        a["grounded"] = len(text) >= GROUNDED_MIN_CHARS   # tylko pełna treść; sam lead/opis to za mało
         if len(desc) > len(a["snippet"]):
-            a["snippet"] = desc[:400]
+            a["snippet"] = desc[:500]
+        # "grounded" = pełna treść ALBO treściwy lead z RSS (min. 150 znaków i wyraźnie więcej niż sam tytuł)
+        lead_ok = len(a["snippet"]) >= 150 and novelty(a["snippet"], a["title"]) >= 0.5
+        a["grounded"] = len(text) >= GROUNDED_MIN_CHARS or lead_ok
     stat = defaultdict(lambda: [0, 0])
     for a in pool:
         stat[a["source_name"]][0] += int(a["grounded"])
@@ -421,7 +423,9 @@ FAKTY (ważniejsze niż styl):
 OSTRY STYL (w granicach faktów):
 - "title": mocny czasownik lub konkretna liczba/fakt ze źródła, do 60 znaków, bez pytajników, bez przesady ponad treść.
 - "comment": 1 zdanie (14-22 słów), CIĘTE, zbudowane na kontraście lub skali dwóch faktów/liczb ze źródła albo na
-  nieoczywistym skutku. Wolno ironizować ze zjawisk, liczb i decyzji — nie z osób i grup ludzi.
+  nieoczywistym skutku. Wolno ironizować z deklaracji, decyzji i polityk
+  publicznych oraz zestawiać je z faktami ze źródła (wzór: "Gdy [deklaracja lub fakt A ze źródła], [fakt B ze źródła]."). Bez wyzwisk
+  i bez przypisywania nazwanym osobom intencji, których źródło nie podaje.
   ZAKAZANE sformułowania: "pokazuje", "dowodzi", "ujawnia", "świadczy", "podkreśla", "dobitnie", "po raz kolejny",
   "kluczowy", "w sam punkt". Komentarz NIE może powtarzać summary innymi słowami.
   Zły: "To pokazuje, jak trudne jest życie w kryzysie."
@@ -523,8 +527,8 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
         if novelty(summary, title + " " + cand["title"]) < (0.4 if cand["grounded"] else 0.6):
             rej["streszczenie bez nowych informacji"] += 1
             continue
-        body = normtxt(cand.get("text") or "")
-        blob = body if cand["grounded"] else normtxt(cand["title"] + " " + (cand.get("text") or "") + " " + cand["snippet"])
+        body = normtxt((cand.get("text") or "") + " " + cand["snippet"])   # treść + lead z RSS, bez samego tytułu
+        blob = body if cand["grounded"] else normtxt(cand["title"] + " " + body)
         ev = [e for e in (it.get("evidence") or []) if isinstance(e, str) and len(normtxt(e)) >= 12]
         ok_ev = [e.strip() for e in ev if normtxt(e) in blob]
         if not ok_ev:
@@ -690,7 +694,7 @@ def main():
     print("3. Kandydaci + pełny tekst")
     candidates = build_candidates(clustered)
     ai_input = [{"id": i, "title": c["title"], "source": c["source_name"], "lang": c["lang"], "grounded": c["grounded"],
-                 "text": (c["text"] if c["grounded"] else (c["snippet"] + " " + c.get("text", "")).strip())[:1500]} for i, c in enumerate(candidates)]
+                 "text": (c["snippet"] + " " + c.get("text", "")).strip()[:1700]} for i, c in enumerate(candidates)]
 
     print("4. Gemini: wybór i pisanie")
     client = genai.Client(api_key=GEMINI_API_KEY)
