@@ -93,14 +93,35 @@ h2{font-size:19px;font-weight:800}
 .ph[data-c=geopolityka],.ph[data-c=swiat]{background:linear-gradient(135deg,#1d4ed8,#172554)}
 .ph[data-c=obronnosc]{background:linear-gradient(135deg,#475569,#0f172a)}
 .ph[data-c=technologie]{background:linear-gradient(135deg,#6d28d9,#2e1065)}
-.chip{position:absolute;left:10px;top:10px;background:var(--card);color:var(--text);font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+[data-c]{--cc:#475569;--cb:#e2e8f0}
+[data-c=polska]{--cc:#be123c;--cb:#ffe4e6}
+[data-c=gospodarka],[data-c=biznes]{--cc:#047857;--cb:#d1fae5}
+[data-c=geopolityka],[data-c=swiat]{--cc:#1d4ed8;--cb:#dbeafe}
+[data-c=obronnosc]{--cc:#334155;--cb:#e2e8f0}
+[data-c=technologie]{--cc:#6d28d9;--cb:#ede9fe}
+[data-theme=dark] [data-c]{--cc:#cbd5e1;--cb:#1e293b}
+[data-theme=dark] [data-c=polska]{--cc:#fda4af;--cb:#4c0519}
+[data-theme=dark] [data-c=gospodarka],[data-theme=dark] [data-c=biznes]{--cc:#6ee7b7;--cb:#022c22}
+[data-theme=dark] [data-c=geopolityka],[data-theme=dark] [data-c=swiat]{--cc:#93c5fd;--cb:#172554}
+[data-theme=dark] [data-c=technologie]{--cc:#c4b5fd;--cb:#2e1065}
+.chip{position:absolute;left:10px;top:10px;background:var(--cb);color:var(--cc);font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+.card[data-c]{border-top:3px solid var(--cc)}
+.row[data-c] .s{color:var(--cc);font-weight:600}
+#bnav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.btab{flex:1;min-height:58px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:600;color:var(--mute)}
+.btab span{font-size:20px;line-height:1}
+.btab[aria-current=page]{color:var(--accent)}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:90}
+.ig{display:inline-flex;align-items:center;text-decoration:none;background:linear-gradient(135deg,#c026d3,#ea580c);color:#fff}
+@media(min-width:640px){#bnav{display:none}}
+@media(max-width:639px){#top{bottom:76px}#toast{bottom:76px}.ig{display:none}main{padding-bottom:110px}}
 .body{padding:14px;display:flex;flex-direction:column;flex:1;gap:8px}
 .body h3{font-size:16px;font-weight:800}
 .body p{margin:0;font-size:14px;color:var(--sec)}
 .credit{font-size:12px;color:var(--mute);padding:6px 14px 0}
 .credit a{color:var(--mute)}
-.cm{border-radius:12px;background:var(--accent-bg);padding:10px 12px;font-size:14px}
-.cm small{display:block;font-size:12px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.cm{border-radius:12px;background:var(--cb,var(--accent-bg));border-left:4px solid var(--cc,var(--accent));padding:10px 12px;font-size:14px}
+.cm small{display:block;font-size:12px;font-weight:700;color:var(--cc,var(--accent));margin-bottom:2px}
 .foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--mute)}
 .foot .src{min-width:0}
 .foot .src b{color:var(--text);font-weight:700}
@@ -112,7 +133,7 @@ h2{font-size:19px;font-weight:800}
 .err{border:1px solid #fca5a5;background:#fef2f2;color:#991b1b;border-radius:16px;padding:16px;margin-bottom:16px}
 [data-theme=dark] .err{background:#450a0a;border-color:#7f1d1d;color:#fecaca}
 .days{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
-.tag{border-radius:99px;background:var(--muted);padding:4px 12px;font-size:13px;font-weight:600}
+.tag{border-radius:99px;background:var(--cb,var(--muted));color:var(--cc,var(--text));padding:4px 12px;font-size:13px;font-weight:700}
 .hide{display:none!important}
 .sec-h{margin:28px 0 10px}
 #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);opacity:0;background:var(--btn);color:var(--btn-text);padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:.25s;z-index:60;pointer-events:none}
@@ -129,11 +150,13 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;text-align:center;fo
 </style>
 </head>
 <body>
+<div id="prog"></div>
 <header>
   <div class="wrap">
     <div class="head">
       <a class="brand" href="./" aria-label="Świat w Minutę — strona główna"><div class="logo" aria-hidden="true">🌍</div><div><b>Świat w Minutę</b><span>Najważniejsze wiadomości bez zbędnego szumu</span></div></a>
       <div class="tools">
+        <a class="pill ig" href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener">Instagram</a>
         <button id="install" class="pill hide" data-act="install">Zainstaluj</button>
         <button class="ibtn" data-act="theme" aria-label="Przełącz tryb jasny / ciemny">☾</button>
       </div>
@@ -192,6 +215,13 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;text-align:center;fo
   </details>
 </main>
 <footer><div class="wrap">Świat w Minutę © <span id="year"></span></div></footer>
+<nav id="bnav" aria-label="Szybka nawigacja">
+  <button class="btab" data-act="tab" data-tab="today"><span aria-hidden="true">⏱</span>60 sek</button>
+  <button class="btab" data-act="tab" data-tab="all"><span aria-hidden="true">📰</span>Wszystkie</button>
+  <button class="btab" data-act="tab" data-tab="fast"><span aria-hidden="true">🚨</span>Pilne</button>
+  <button class="btab" data-act="tab" data-tab="fun"><span aria-hidden="true">✨</span>Ciekawostki</button>
+  <button class="btab" data-act="tab" data-tab="week"><span aria-hidden="true">📅</span>Tydzień</button>
+</nav>
 <button id="top" class="hide" data-act="top" aria-label="Wróć na górę">↑</button>
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -270,7 +300,7 @@ function pickEmoji(title, cat) {
 function rowHtml(x, title, emoji) {
   const k = keyOf(x); reg.set(k, x);
   const link = safeUrl(linkOf(x)), isRead = read.has(k), src = sourceOf(x);
-  return `<div class="row${isRead ? ' read' : ''}">
+  return `<div class="row${isRead ? ' read' : ''}" data-c="${esc(catSlug(catOf(x)))}">
     <button class="chk" data-act="read" data-key="${esc(k)}" aria-pressed="${isRead}" aria-label="Oznacz jako przeczytane"><i>${isRead ? '✓' : ''}</i></button>
     <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''}><span class="em" aria-hidden="true">${esc(emoji || '📰')}</span><span><span class="t">${esc(title)}</span>${src ? `<span class="s">${esc(src)}</span>` : ''}</span></a>
     <button class="sh" data-act="share" data-key="${esc(k)}" aria-label="Udostępnij: ${esc(title)}">↗</button></div>`;
@@ -282,7 +312,7 @@ function card(x) {
   const media = img ? `<img class="card-img" src="${esc(safeUrl(img))}" data-cat="${esc(cat)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : ph(cat);
   const credit = img && x.image_credit
     ? `<div class="credit">${x.image_illustrative ? 'Zdjęcie ilustracyjne. ' : ''}Foto: <a href="${esc(safeUrl(x.image_credit_url))}" target="_blank" rel="noopener">${esc(x.image_credit)}</a> / Pexels</div>` : '';
-  return `<article class="box card${isRead ? ' read' : ''}" id="n-${esc(k)}">
+  return `<article class="box card${isRead ? ' read' : ''}" id="n-${esc(k)}" data-c="${esc(catSlug(cat))}">
     <div class="media">${media}<span class="chip">${esc(cat)}</span></div>${credit}
     <div class="body">
       <h3>${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3>
@@ -353,7 +383,7 @@ function renderWeek() {
   const cats = {}; pool.forEach(x => { const c = catOf(x); cats[c] = (cats[c] || 0) + 1; });
   const top = Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 6);
   $('week-body').innerHTML = `<p class="small">Ostatnie 7 dni · ${pool.length} materiałów z ${days.length} dni</p>
-    <div class="days">${top.map(([c, n]) => `<span class="tag">${esc(c)} · ${n}</span>`).join('')}</div>
+    <div class="days">${top.map(([c, n]) => `<span class="tag" data-c="${esc(catSlug(c))}">${esc(c)} · ${n}</span>`).join('')}</div>
     <div class="grid">${cards(picked, 'Brak danych z ostatnich 7 dni.')}</div>`;
 }
 function normalizeArchive(data) {
@@ -372,7 +402,7 @@ function renderArchive() {
 }
 function renderCurrent() {
   ({ today: renderToday, all: renderAll, fast: renderFast, fun: renderFun, week: renderWeek, archive: renderArchive })[tab]();
-  document.querySelectorAll('.tab').forEach(b => { if (b.dataset.tab === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  document.querySelectorAll('.tab,.btab').forEach(b => { if (b.dataset.tab === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
 }
 function switchTab(t) {
   tab = t; shown = { all: 6, fun: 9, arch: 2 };
@@ -437,7 +467,11 @@ document.addEventListener('error', e => {
 }, true);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { clearSearch(); document.querySelectorAll('.modal').forEach(m => m.remove()); } });
 $('q').addEventListener('input', search);
-addEventListener('scroll', () => $('top').classList.toggle('hide', scrollY < 500), { passive: true });
+addEventListener('scroll', () => {
+  $('top').classList.toggle('hide', scrollY < 500);
+  const h = document.documentElement.scrollHeight - innerHeight;
+  $('prog').style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
+}, { passive: true });
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ev => { if (!store.get('swm-theme', '')) { document.documentElement.setAttribute('data-theme', ev.matches ? 'dark' : 'light'); themeColor(); } });
 
 /* ---------- PWA ---------- */
@@ -476,7 +510,9 @@ async function init() {
   loadFailed = !n.ok && !r.ok;
   news = stamp(n.data, n.data); raw = stamp(r.data, r.data); fast = stamp(f.data, f.data); fun = stamp(u.data, u.data);
   archiveFun = stamp(af.data && !Array.isArray(af.data) && !af.data.items ? Object.values(af.data).flatMap(listOf) : af.data, {});
-  groups = normalizeArchive(a.data);
+  // Archiwum = wszystko POPRZEDNIE; bieżące wydanie (news/fast) jest w zakładkach głównych
+  const current = new Set(news.concat(fast).map(keyOf));
+  groups = normalizeArchive(a.data).map(g => ({ ...g, items: g.items.filter(x => !current.has(keyOf(x))) })).filter(g => g.items.length);
   const ts = String(n.data && n.data.timestamp || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2})/);
   $('updated').textContent = ts ? `Wydanie: ${ts[3]}.${ts[2]}, ${ts[4]}:${ts[5]}` : '';
   $('err').classList.toggle('hide', !(loadFailed && !news.length && !raw.length));
