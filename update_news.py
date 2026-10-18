@@ -39,7 +39,7 @@ MAX_POOL = 50               # tyle artykułów próbujemy pobrać w całości
 MAX_CANDIDATES = 40
 MAX_PER_SOURCE = 4
 MAX_UNGROUNDED_CAND = 8     # kandydaci bez pełnego tekstu (Google News, paywalle)
-MAX_UNGROUNDED_ITEMS = 3    # tyle takich pozycji może trafić do wydania
+MAX_UNGROUNDED_ITEMS = 2    # tyle takich pozycji może trafić do wydania
 GROUNDED_MIN_CHARS = 400
 ARCHIVE_MAX_SESSIONS = 60
 DEDUPE_TITLE_SESSIONS = 8   # ~4 dni wstecz
@@ -71,6 +71,10 @@ GENERIC_QUERY = {"POLSKA": "Poland city street", "GOSPODARKA": "economy finance 
 DEFAULT_EMOJI = {"POLSKA": "🇵🇱", "GOSPODARKA": "📊", "BIZNES": "💼", "GEOPOLITYKA": "🌍",
                  "OBRONNOŚĆ": "🛡️", "TECHNOLOGIE": "💻", "ŚWIAT": "🌍"}
 ALLOWED_EMOJI = set("🚨📉📈💥🔥⚠⚖🏛🛡🪖💰🛢⚡🤖💻🏥🌍🚀🏗📊⏰🏢🌉🏭💵🏦🛒🚗✈🚢🌾⚓🧬🔋📡🗳📰💼🔒🧊🌡⛽")
+GENERIC_WORDS = {"view", "sign", "signs", "street", "night", "scene", "modern", "aerial", "system", "line",
+                 "tracks", "landscape", "area", "concept", "background", "city"}
+# zdjęcia sugerujące INNE wydarzenie (np. huragan przy zamieszkach) — zawsze odrzucane
+BAD_ALT_RE = re.compile(r"hurricane|tornado|flood|earthquake|tsunami|cemetery|grave|funeral|coffin|abandoned|ruins|corpse", re.I)
 PEOPLE_RE = re.compile(r"\b(man|men|woman|women|people|person|child|children|kid|boy|girl|patient|soldier|"
                        r"soldiers|crowd|couple|family|doctor|nurse|police|policeman|policemen|prosthetic)\b", re.I)
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -177,7 +181,13 @@ def short_id(link: str) -> str:
 
 
 def numbers_in(text: str) -> set:
-    return {n for n in re.findall(r"\d+", text or "") if len(n) > 1}
+    """Liczby z normalizacją separatorów tysięcy: '1,800' / '1 800' / '1.800' → '1800'."""
+    out = set()
+    for n in re.findall(r"\d{1,3}(?:[ \u00a0,.]\d{3})+|\d+", text or ""):
+        d = re.sub(r"\D", "", n)
+        if len(d) > 1:
+            out.add(d)
+    return out
 
 
 def interleave(items: list, per_source: int, limit: int) -> list:
@@ -269,32 +279,37 @@ def build_candidates(clustered: list) -> list:
     return cands
 
 
+def pick_photo(photos: list, query: str, used: set, sensitive: bool, min_score: int):
+    """Zdjęcie musi pasować do zapytania (opis alt); odrzuca obrazy sugerujące inne zdarzenie."""
+    words = set(re.findall(r"[a-z]{4,}", query.lower())) - GENERIC_WORDS
+    need = max(min_score, -(-len(words) // 2)) if min_score else 0
+    best, best_score = None, -1
+    for p in photos:
+        src = p.get("src", {})
+        u = src.get("large") or src.get("medium")
+        alt = (p.get("alt") or "").lower()
+        if not u or u in used or BAD_ALT_RE.search(alt) or (sensitive and PEOPLE_RE.search(alt)):
+            continue
+        score = sum(1 for w in words if w in alt)
+        if score > best_score:
+            best, best_score = (p, u), score
+    return best if best and best_score >= need else None
+
+
 def fetch_pexels(query: str, used: set, sensitive: bool, min_score: int):
-    """Wybiera zdjęcie, którego opis (alt) pasuje do zapytania; przy tematach wrażliwych pomija ludzi."""
     if not PEXELS_API_KEY:
         return None
-    words = set(re.findall(r"[a-z]{4,}", query.lower()))
     for attempt in range(3):
         try:
-            url = f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=15&orientation=landscape"
+            url = f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=20&orientation=landscape"
             req = urllib.request.Request(url, headers={"Authorization": PEXELS_API_KEY,
                                                        "User-Agent": "SwiatWMinute-Bot/1.0"})
             with urllib.request.urlopen(req, timeout=8) as r:
                 photos = json.loads(r.read().decode("utf-8")).get("photos", [])
-            best, best_score = None, -1
-            for p in photos:
-                src = p.get("src", {})
-                u = src.get("large") or src.get("medium")
-                alt = (p.get("alt") or "").lower()
-                if not u or u in used or (sensitive and PEOPLE_RE.search(alt)):
-                    continue
-                score = sum(1 for w in words if w in alt)
-                if score > best_score:
-                    best, best_score = (p, u), score
-            if best and best_score >= min_score:
-                used.add(best[1])
-                return {"url": best[1], "credit": best[0].get("photographer", ""),
-                        "credit_url": best[0].get("url", "")}
+            hit = pick_photo(photos, query, used, sensitive, min_score)
+            if hit:
+                used.add(hit[1])
+                return {"url": hit[1], "credit": hit[0].get("photographer", ""), "credit_url": hit[0].get("url", "")}
             return None
         except Exception as ex:
             if attempt == 2:
@@ -316,45 +331,64 @@ PROMPT = """Jesteś ostrym, rzetelnym redaktorem serwisu „Świat w Minutę” 
 Ale wszystko, co piszesz, musi dać się obronić tekstem źródła.
 
 FAKTY (ważniejsze niż styl):
-1. Używaj WYŁĄCZNIE informacji z pól "title" i "text" danego artykułu. Nie dodawaj liczb, dat, cytatów, nazwisk, przyczyn
-   ani prognoz spoza danych. Zastrzeżenia źródła ("prawdopodobnie", "wstępnie", "według") zachowaj we WSZYSTKICH polach.
-2. Pozycje z "grounded": false mają tylko tytuł i krótki opis — pisz je krótko i ostrożnie ("według doniesień"), bez liczb
-   spoza danych. Takich pozycji wybierz najwyżej 3.
-3. Nie przypisuj nikomu intencji ani motywów, których nie podaje źródło ("kłamią", "łatają dziurę", "okradają").
+1. Używaj WYŁĄCZNIE informacji z pól "title" i "text" danego artykułu. Nie dodawaj liczb, dat, cytatów, nazwisk, przyczyn,
+   prognoz ani kontekstu spoza danych. Zastrzeżenia źródła ("prawdopodobnie", "wstępnie", "według") zachowaj we wszystkich polach.
+2. Nie używaj nieokreślonych ilości ("kilkanaście", "liczne", "wiele", "setki"), jeśli źródło nie podaje takiego sformułowania.
+3. Pozycje z "grounded": false mają tylko tytuł i krótki opis. Pisz je KRÓCEJ (threads_post łącznie 250-400 znaków), tylko
+   z tego, co jest w tytule i opisie, bez dopełniania treści ogólnikami. Zastrzeżenie z nazwą źródła ("Fakt informuje:") daj RAZ,
+   w hooku — nie powtarzaj "według doniesień" w każdym polu. Wybierz takich pozycji najwyżej 2.
+4. Nie przypisuj nikomu intencji ani motywów, których nie podaje źródło.
+5. Nie zakładaj pory dnia, miejsca ani sytuacji odbiorcy ("poranne", "stoisz w korku"). Pytanie ma wynikać wprost z faktu.
 
 OSTRY STYL (w granicach faktów):
 - "title": mocny czasownik lub konkretna liczba/fakt ze źródła, do 60 znaków, bez pytajników, bez przesady ponad treść.
-- "comment": 1 zdanie (14-22 słów), CIĘTE, zbudowane na JEDNYM konkretnym fakcie lub liczbie ze źródła (kontrast, skala, skutek).
-  Wolno ironizować ze zjawisk, liczb i decyzji — nie z osób i grup ludzi. Zakaz ogólników typu "pokazuje wyzwania".
-- Zwracaj się do odbiorcy na „ty” ("Jak myślisz…", "Ty też to czujesz?"). Zero formalnego „Państwa”.
-- Dobra, naturalna polszczyzna; żadnych kalk z angielskiego.
+- "comment": 1 zdanie (14-22 słów), CIĘTE, zbudowane na kontraście lub skali dwóch faktów/liczb ze źródła albo na
+  nieoczywistym skutku. Wolno ironizować ze zjawisk, liczb i decyzji — nie z osób i grup ludzi.
+  ZAKAZANE sformułowania: "pokazuje", "dowodzi", "ujawnia", "świadczy", "podkreśla", "dobitnie", "po raz kolejny",
+  "kluczowy", "w sam punkt". Komentarz NIE może powtarzać summary innymi słowami.
+  Zły: "To pokazuje, jak trudne jest życie w kryzysie."
+  Dobry (fikcyjny wzór struktury): "Firma zapowiada 500 nowych miejsc pracy, ale w tym samym komunikacie zwalnia 700 osób."
+- Zwracaj się do odbiorcy na „ty”. Zero formalnego „Państwa”. Naturalna polszczyzna, bez kalk z angielskiego.
+- W threads_post nie powtarzaj komentarza słowo w słowo; zakończ pytaniem do odbiorców.
 
 FORMAT:
-- Każda pozycja = INNY temat. Nie wybieraj tematu, który dotyczy tego samego wydarzenia co pozycje z archiwum, nawet jeśli
+- Każda pozycja = INNY temat. Nie wybieraj tematu dotyczącego tego samego wydarzenia co pozycje z archiwum, nawet jeśli
   źródło lub język są inne. Max 3 pozycje z jednego źródła, różnorodne kategorie.
 - Wybierz do 14 tematów (mniej, jeśli brakuje dobrych, unikalnych — nie dobieraj na siłę).
 - Kategoria: POLSKA, GOSPODARKA, BIZNES, GEOPOLITYKA, OBRONNOŚĆ (tylko wojsko/zbrojenia), TECHNOLOGIE, ŚWIAT (wypadki,
   katastrofy, zdrowie, wydarzenia ogólne).
 - Emoji w tytule TYLKO z: 🚨 📉 📈 💥 🔥 ⚠️ ⚖️ 🏛️ 🛡️ 🪖 💰 🛢️ ⚡ 🤖 💻 🏥 🌍 🚀 🏗️ 📊 ⏰ 🏢 🌉 🏭 💵 🏦 🛒 🚗 ✈️ 🚢 🌾 ⚓ 🧬 🔋 📡 🗳️ 💼 🔒 ⛽
-- Flagi używaj tylko dla miejsca/tematu. Przy atakach, zamieszkach, konfliktach zbrojnych NIE dawaj flag stron konfliktu.
+- Flagi tylko dla miejsca/tematu. Przy atakach, zamieszkach, konfliktach zbrojnych NIE dawaj flag stron konfliktu.
 
 Zwróć TABLICĘ JSON obiektów:
 - "id": liczba, id artykułu z danych (kopiuj dokładnie)
 - "category", "title" (emoji + NAGŁÓWEK DUŻYMI LITERAMI), "hook" (1 zdanie), "summary" (2 zdania, same fakty), "comment"
 - "threads_post": dwa posty rozdzielone linią ---ODPOWIEDŹ---
-    Post 1 (320-380 znaków): NAGŁÓWEK Z EMOJI, linia-hook, 1-2 zdania sedna, na końcu: (Szczegóły i tło w odpowiedzi 👇🧵)
-    Post 2 (380-450 znaków): kontekst i liczby ze źródła, 1 cięte zdanie, pytanie do odbiorców kończące się 👇💬
+    Post 1 (320-380 znaków; dla "grounded": false krócej): NAGŁÓWEK Z EMOJI, linia-hook, 1-2 zdania sedna, na końcu:
+      (Szczegóły i tło w odpowiedzi 👇🧵)
+    Post 2 (380-450 znaków; dla "grounded": false krócej): kontekst i liczby ze źródła, pytanie do odbiorców kończące się 👇💬
     Linie oddzielaj podwójnym znakiem nowej linii.
 - "question": pytanie do odbiorców na „ty”, zakończone 👇💬
 - "image_query": 2-5 angielskich słów — konkretny, neutralny obiekt lub miejsce (bez nazwisk)
-- "sensitive": true, jeśli temat dotyczy przemocy, wypadku, śmierci, przestępstwa lub zdrowia konkretnej osoby; wtedy
-  "image_query" ma opisywać nieliteralny, neutralny motyw BEZ ludzi (np. "city street night", "documents desk", "hospital corridor")
+- "sensitive": true, jeśli temat dotyczy przemocy, wypadku, śmierci, przestępstwa lub zdrowia konkretnej osoby
 
-Archiwum (te tematy już były, nie powtarzaj ich):
+Archiwum (te wydarzenia już były, nie powtarzaj ich):
 __PREV__
 
 Dane wejściowe:
 __CANDIDATES__
+"""
+
+DEDUPE_PROMPT = """Poniżej NOWE pozycje i ARCHIWUM (to już opublikowano). Dla każdej nowej pozycji oceń, czy opisuje TO SAMO
+WYDARZENIE (ten sam incydent, decyzję, raport, atak, sprawę) co którakolwiek pozycja z archiwum — niezależnie od źródła i języka.
+Nowy, istotnie różny rozwój sprawy (nowe fakty, nowa decyzja) NIE jest powtórką.
+Zwróć JSON: {"repeats": [id, id, ...]} — tylko id powtórek (pusta tablica, jeśli brak).
+
+NOWE:
+__NEW__
+
+ARCHIWUM:
+__OLD__
 """
 
 REVIEW_PROMPT = """Jesteś redaktorem-weryfikatorem. Dla KAŻDEJ pozycji porównaj pola z "source_text" i "source_title".
@@ -375,26 +409,35 @@ __ITEMS__
 def validate_items(raw_items: list, candidates: list, known_links: set, known_titles: list) -> list:
     required = {"id", "category", "title", "hook", "summary", "comment", "threads_post", "question", "image_query"}
     valid, seen_titles, seen_ids, ungrounded_n = [], [], set(), 0
+    rej = Counter()
     for it in raw_items:
         if not isinstance(it, dict) or not required.issubset(it.keys()):
+            rej["brak pól"] += 1
             continue
         try:
             idx = int(it["id"])
             cand = candidates[idx]
         except Exception:
+            rej["zły id"] += 1
             continue
         if idx in seen_ids or norm_link(cand["link"]) in known_links:
+            rej["powtórka linku/id"] += 1
             continue
         category = normalize_category(it["category"])
         title = format_title(it["title"], category)
         summary, comment = str(it["summary"]).strip(), str(it["comment"]).strip()
         post = str(it["threads_post"]).strip()
-        if len(title) < 10 or len(summary) < 25 or len(comment) < 10 or len(post) < 400 or "---ODPOWIEDŹ---" not in post:
+        min_post = 400 if cand["grounded"] else 250
+        if (len(title) < 10 or len(summary) < 25 or len(comment) < 10 or len(post) < min_post
+                or "---ODPOWIEDŹ---" not in post):
+            rej["za krótkie / zły format"] += 1
             continue
         if any(are_topics_duplicate(title, p, 0.35) for p in seen_titles + known_titles):
+            rej["powtórka tematu"] += 1
             continue
         if not cand["grounded"]:
             if ungrounded_n >= MAX_UNGROUNDED_ITEMS:
+                rej["limit pozycji bez tekstu"] += 1
                 continue
             ungrounded_n += 1
         seen_ids.add(idx)
@@ -409,6 +452,8 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
             "_og": cand.get("og_image"),
             "_src": ((cand.get("text") or "") + " " + cand["snippet"])[:1800],
         })
+    if rej:
+        print(f"   odrzucone: {dict(rej)}")
     return valid
 
 
@@ -430,7 +475,7 @@ def review_items(client, items: list) -> list:
             continue
         new = {k: str(d.get(k, "")).strip() for k in ("title", "hook", "summary", "comment", "threads_post", "question")}
         if (len(new["title"]) < 10 or len(new["summary"]) < 25 or len(new["comment"]) < 10
-                or len(new["threads_post"]) < 400 or "---ODPOWIEDŹ---" not in new["threads_post"]):
+                or len(new["threads_post"]) < (400 if it["grounded"] else 250) or "---ODPOWIEDŹ---" not in new["threads_post"]):
             continue
         new["title"] = format_title(new["title"], it["category"])
         if any(new[k] != it[k] for k in new):
@@ -438,6 +483,26 @@ def review_items(client, items: list) -> list:
         it.update(new)
     print(f"  redakcja: zmieniono {changed}/{len(items)} pozycji")
     return items
+
+
+def drop_repeated_events(client, items: list, known_events: list) -> list:
+    """Semantyczna kontrola: usuwa pozycje opisujące to samo wydarzenie co archiwum (inne źródło/język)."""
+    if not items or not known_events:
+        return items
+    new = [{"id": i["id"], "title": i["title"], "summary": i["summary"][:200]} for i in items]
+    prompt = (DEDUPE_PROMPT.replace("__NEW__", json.dumps(new, ensure_ascii=False))
+                           .replace("__OLD__", json.dumps(known_events[:90], ensure_ascii=False)))
+    try:
+        data = gen_json(client, prompt, 0.0)
+        ids = {str(x) for x in (data.get("repeats", []) if isinstance(data, dict) else [])}
+    except Exception as ex:
+        print(f"  kontrola powtórzeń nie powiodła się: {ex}")
+        return items
+    kept = [i for i in items if i["id"] not in ids]
+    for i in items:
+        if i["id"] in ids:
+            print(f"  ↺ powtórka wydarzenia z archiwum → {i['title'][:55]}")
+    return kept
 
 
 def check_numbers(items: list) -> list:
@@ -497,7 +562,7 @@ def main():
             archive = {}
 
     # Wszystko, co już publikowaliśmy (w tym wydanie poranne przy wieczornym)
-    known_links, known_titles = set(), []
+    known_links, known_titles, known_events = set(), [], []
     for n, sk in enumerate(sorted(archive.keys(), reverse=True)):
         sc = archive.get(sk)
         if not isinstance(sc, dict) or sk == session_key:
@@ -507,6 +572,7 @@ def main():
                 known_links.add(norm_link(i["link"]))
             if n < DEDUPE_TITLE_SESSIONS:
                 known_titles += [t for t in (i.get("title"), i.get("source_title")) if t]
+                known_events.append(f"{i.get('title', '')} — {str(i.get('summary', ''))[:160]}")
 
     print("2. Deduplikacja (archiwum + wewnątrz feedu)")
     clustered, seen = [], set()
@@ -531,7 +597,7 @@ def main():
 
     print("4. Gemini: wybór i pisanie")
     client = genai.Client(api_key=GEMINI_API_KEY)
-    prompt = (PROMPT.replace("__PREV__", json.dumps(known_titles[:40], ensure_ascii=False))
+    prompt = (PROMPT.replace("__PREV__", json.dumps(known_events[:40], ensure_ascii=False))
                     .replace("__CANDIDATES__", json.dumps(ai_input, ensure_ascii=False)))
     items = []
     for attempt in (1, 2):
@@ -571,6 +637,11 @@ def main():
     if not items:
         sys.exit("AI nie zwróciło żadnych pozycji — nie nadpisuję istniejących plików")
 
+    print("4b. Gemini: kontrola powtórzeń wydarzeń względem archiwum")
+    items = drop_repeated_events(client, items, known_events)
+    if not items:
+        sys.exit("Wszystkie tematy już były — nie nadpisuję istniejących plików")
+
     print("5. Gemini: redakcja i weryfikacja względem źródeł")
     ai_items = [i for i in items if not i.get("auto")]
     review_items(client, ai_items)
@@ -584,9 +655,11 @@ def main():
     used_imgs = set()
     for it in items:
         sens = it.pop("sensitive", False)
-        ph = (fetch_pexels(it["image_query"], used_imgs, sens, 1)
-              or fetch_pexels(GENERIC_QUERY.get(it["category"], "news"), used_imgs, sens, 0))
-        it["image_url"] = ph["url"] if ph else FALLBACK_IMG
+        ph = fetch_pexels(it["image_query"], used_imgs, sens, 1)
+        if not ph and not sens:  # tematy wrażliwe: lepiej bez zdjęcia niż z nietrafionym
+            ph = fetch_pexels(GENERIC_QUERY.get(it["category"], "news"), used_imgs, sens, 0)
+        it["image_url"] = ph["url"] if ph else ""
+        it["image_illustrative"] = bool(ph)
         it["image_credit"] = ph["credit"] if ph else ""
         it["image_credit_url"] = ph["credit_url"] if ph else ""
         og = it.pop("_og", None)
