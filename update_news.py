@@ -34,11 +34,12 @@ FALLBACK_IMG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=8
 PL_TZ = ZoneInfo("Europe/Warsaw")
 MAX_AGE_HOURS = 24
 TARGET_ITEMS = 14
-MIN_ITEMS = 8               # lepiej mniej pozycji niż powtórki
-MAX_POOL = 50               # tyle artykułów próbujemy pobrać w całości
-MAX_CANDIDATES = 40
-MAX_PER_SOURCE = 4
-MAX_UNGROUNDED_CAND = 8     # kandydaci bez pełnego tekstu (Google News, paywalle)
+MIN_ITEMS = 10              # poniżej tego dobieramy pozycje awaryjne (lepiej mniej niż powtórki)
+GOOD_ITEMS = 12             # od tylu pozycji nie ponawiamy zapytania do AI
+MAX_POOL = 70               # tyle artykułów próbujemy pobrać w całości
+MAX_CANDIDATES = 45
+MAX_PER_SOURCE = 6
+MAX_UNGROUNDED_CAND = 10    # kandydaci bez pełnego tekstu (Google News, paywalle)
 MAX_UNGROUNDED_ITEMS = 2    # tyle takich pozycji może trafić do wydania
 GROUNDED_MIN_CHARS = 400
 ARCHIVE_MAX_SESSIONS = 60
@@ -46,12 +47,26 @@ DEDUPE_TITLE_SESSIONS = 8   # ~4 dni wstecz
 
 # (url, język, domyślna kategoria, nazwa źródła)
 FEEDS = [
+    # ── Polska: wiadomości ogólne (Polsat News: adresy z oficjalnej strony; pozostałe sprawdź w logu) ──
+    ("https://www.polsatnews.pl/rss/polska.xml", "pl", "POLSKA", "Polsat News"),
+    ("https://www.polsatnews.pl/rss/swiat.xml", "pl", "ŚWIAT", "Polsat News"),
+    ("https://www.polsatnews.pl/rss/biznes.xml", "pl", "GOSPODARKA", "Polsat News"),
+    ("https://www.polsatnews.pl/rss/technologie.xml", "pl", "TECHNOLOGIE", "Polsat News"),
+    ("https://tvn24.pl/najnowsze.xml", "pl", "POLSKA", "TVN24"),
+    ("https://tvn24.pl/biznes.xml", "pl", "GOSPODARKA", "TVN24"),
+    ("https://fakty.interia.pl/feed", "pl", "POLSKA", "Interia"),
+    ("https://biznes.interia.pl/feed", "pl", "GOSPODARKA", "Interia Biznes"),
+    ("https://wiadomosci.onet.pl/.feed", "pl", "POLSKA", "Onet"),
+    ("https://wiadomosci.wp.pl/rss.xml", "pl", "POLSKA", "WP Wiadomości"),
+    ("https://wiadomosci.gazeta.pl/pub/rss/wiadomosci_kraj.htm", "pl", "POLSKA", "Gazeta.pl"),
+    # ── Polska: gospodarka, biznes, obronność ──
     ("https://www.money.pl/rss/", "pl", "GOSPODARKA", "Money.pl"),
-    ("https://businessinsider.com.pl/.rss", "pl", "BIZNES", "Business Insider Polska"),
     ("https://www.bankier.pl/rss/wiadomosci.xml", "pl", "GOSPODARKA", "Bankier.pl"),
+    ("https://businessinsider.com.pl/.rss", "pl", "BIZNES", "Business Insider Polska"),
     ("https://www.wnp.pl/rss/artykuly.xml", "pl", "GOSPODARKA", "WNP.pl"),
     ("https://archiwum.rp.pl/rss/ekonomia", "pl", "GOSPODARKA", "Rzeczpospolita"),
     ("https://defence24.pl/rss", "pl", "OBRONNOŚĆ", "Defence24"),
+    # ── Świat ──
     ("https://feeds.bloomberg.com/markets/news.rss", "en", "GOSPODARKA", "Bloomberg"),
     ("https://search.cnbc.com/rs/search/view.html?partnerId=2000&keywords=markets&sort=date", "en", "GOSPODARKA", "CNBC"),
     ("https://feeds.bbci.co.uk/news/world/rss.xml", "en", "ŚWIAT", "BBC News"),
@@ -190,6 +205,19 @@ def numbers_in(text: str) -> set:
     return out
 
 
+def normtxt(t: str) -> str:
+    return re.sub(r"[^\w]+", " ", str(t).lower()).strip()
+
+
+def number_supported(n: str, src_nums: set) -> bool:
+    """Liczba z tekstu jest 'pokryta', jeśli jest w źródle, jest jej wielokrotnością tysiąca ('550' ↔ '550000')
+    albo to zaokrąglenie w dół ('ponad 300' ↔ '309')."""
+    if n in src_nums or (n + "000") in src_nums:
+        return True
+    z = len(n) - len(n.rstrip("0"))
+    return z >= 2 and any(len(x) == len(n) and x.startswith(n.rstrip("0")) for x in src_nums)
+
+
 def interleave(items: list, per_source: int, limit: int) -> list:
     by_src = defaultdict(list)
     for a in items:
@@ -205,11 +233,25 @@ def interleave(items: list, per_source: int, limit: int) -> list:
 
 
 # ───────────────────────── POBIERANIE ─────────────────────────
+def load_feed(url: str):
+    """Pobiera feed z przeglądarkowym User-Agent (domyślny UA feedparsera bywa blokowany)."""
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": HEADERS["User-Agent"],
+                                                   "Accept": "application/rss+xml, application/xml, text/xml, */*"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return feedparser.parse(r.read()), None
+    except Exception as ex:
+        return None, str(ex)[:70]
+
+
 def fetch_feeds() -> list:
     articles = []
     for url, lang, cat, default_name in FEEDS:
         try:
-            feed = feedparser.parse(url)
+            feed, err = load_feed(url)
+            if feed is None:
+                print(f"  ✗ RSS {default_name:<24} {err}  ({url[:60]})")
+                continue
             n = 0
             for e in feed.entries[:12]:
                 if not is_recent(e):
@@ -238,14 +280,18 @@ def fetch_feeds() -> list:
     return articles
 
 
+def _clean(t: str) -> str:
+    return re.sub(r"\s+", " ", html_lib.unescape(re.sub(r"<[^>]+>", " ", t or ""))).strip()
+
+
 def fetch_article(url: str):
-    """(tekst artykułu do ~1800 znaków, og:image lub None)."""
+    """(tekst artykułu do ~1800 znaków, og:image lub None). Źródła: JSON-LD articleBody, akapity <p>, meta description."""
     if not url or "news.google.com" in url:
         return "", None
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=8) as r:
-            raw = r.read(600_000).decode("utf-8", errors="ignore")
+            raw = r.read(800_000).decode("utf-8", errors="ignore")
     except Exception:
         return "", None
     img = None
@@ -257,12 +303,22 @@ def fetch_article(url: str):
             img = "https:" + u if u.startswith("//") else u
             img = img if img.startswith("http") else None
             break
-    paras = []
-    for p in re.findall(r"<p[^>]*>(.*?)</p>", raw, re.S | re.I):
-        t = re.sub(r"\s+", " ", html_lib.unescape(re.sub(r"<[^>]+>", " ", p))).strip()
-        if len(t) >= 60:
-            paras.append(t)
-    return " ".join(paras)[:1800], img
+    desc = ""
+    m = re.search(r'<meta[^>]+(?:property|name)=["\'](?:og:description|description)["\'][^>]+content=["\']([^"\']+)["\']', raw, re.I)
+    if m:
+        desc = _clean(m.group(1))
+    body = ""
+    m = re.search(r'"articleBody"\s*:\s*"((?:[^"\\]|\\.)*)"', raw)
+    if m:
+        try:
+            body = _clean(json.loads('"' + m.group(1) + '"'))
+        except Exception:
+            body = ""
+    paras = [t for t in (_clean(p) for p in re.findall(r"<p[^>]*>(.*?)</p>", raw, re.S | re.I)) if len(t) >= 40]
+    text = max([body, " ".join(paras)], key=len)
+    if len(text) < GROUNDED_MIN_CHARS and desc and desc not in text:
+        text = (desc + " " + text).strip()
+    return text[:1800], img
 
 
 def build_candidates(clustered: list) -> list:
@@ -272,6 +328,11 @@ def build_candidates(clustered: list) -> list:
     for a, (text, og) in zip(pool, results):
         a["text"], a["og_image"] = text, og
         a["grounded"] = len(text) >= GROUNDED_MIN_CHARS
+    stat = defaultdict(lambda: [0, 0])
+    for a in pool:
+        stat[a["source_name"]][0] += int(a["grounded"])
+        stat[a["source_name"]][1] += 1
+    print("  pełny tekst wg źródeł: " + ", ".join(f"{k} {v[0]}/{v[1]}" for k, v in stat.items()))
     grounded = [a for a in pool if a["grounded"]]
     ungrounded = [a for a in pool if not a["grounded"]][:MAX_UNGROUNDED_CAND]
     cands = (grounded + ungrounded)[:MAX_CANDIDATES]
@@ -348,13 +409,17 @@ OSTRY STYL (w granicach faktów):
   "kluczowy", "w sam punkt". Komentarz NIE może powtarzać summary innymi słowami.
   Zły: "To pokazuje, jak trudne jest życie w kryzysie."
   Dobry (fikcyjny wzór struktury): "Firma zapowiada 500 nowych miejsc pracy, ale w tym samym komunikacie zwalnia 700 osób."
-- Zwracaj się do odbiorcy na „ty”. Zero formalnego „Państwa”. Naturalna polszczyzna, bez kalk z angielskiego.
+- "comment" pisz w TRZECIEJ osobie (nie zaczynaj od "Widzisz/Płacisz/Kupujesz/Zostajesz…") i opieraj wyłącznie na faktach ze
+  źródła — żadnych własnych ocen relacji, czasu ani skali ("sojusznik", "w tydzień", "pomylił z chmurą"), jeśli nie ma ich w tekście.
+  Zwrot na „ty” stosuj tylko w pytaniu do odbiorców. Zero formalnego „Państwa”. Naturalna polszczyzna, bez kalk z angielskiego.
 - W threads_post nie powtarzaj komentarza słowo w słowo; zakończ pytaniem do odbiorców.
 
 FORMAT:
 - Każda pozycja = INNY temat. Nie wybieraj tematu dotyczącego tego samego wydarzenia co pozycje z archiwum, nawet jeśli
   źródło lub język są inne. Max 3 pozycje z jednego źródła, różnorodne kategorie.
-- Wybierz do 14 tematów (mniej, jeśli brakuje dobrych, unikalnych — nie dobieraj na siłę).
+- Wybierz 14 tematów (minimum 12; mniej tylko wtedy, gdy naprawdę brakuje unikalnych). Proporcje, o ile dane na to pozwalają:
+  co najmniej 5 pozycji o Polsce (artykuły z "lang": "pl": wydarzenia krajowe, polska gospodarka i biznes), 3-4 o świecie i
+  geopolityce, najwyżej 2 OBRONNOŚĆ i najwyżej 2 TECHNOLOGIE.
 - Kategoria: POLSKA, GOSPODARKA, BIZNES, GEOPOLITYKA, OBRONNOŚĆ (tylko wojsko/zbrojenia), TECHNOLOGIE, ŚWIAT (wypadki,
   katastrofy, zdrowie, wydarzenia ogólne).
 - Emoji w tytule TYLKO z: 🚨 📉 📈 💥 🔥 ⚠️ ⚖️ 🏛️ 🛡️ 🪖 💰 🛢️ ⚡ 🤖 💻 🏥 🌍 🚀 🏗️ 📊 ⏰ 🏢 🌉 🏭 💵 🏦 🛒 🚗 ✈️ 🚢 🌾 ⚓ 🧬 🔋 📡 🗳️ 💼 🔒 ⛽
@@ -370,6 +435,8 @@ Zwróć TABLICĘ JSON obiektów:
     Linie oddzielaj podwójnym znakiem nowej linii.
 - "question": pytanie do odbiorców na „ty”, zakończone 👇💬
 - "image_query": 2-5 angielskich słów — konkretny, neutralny obiekt lub miejsce (bez nazwisk)
+- "evidence": tablica 2 DOSŁOWNYCH fragmentów (4-15 słów każdy) skopiowanych znak w znak z pola "text" lub "title" artykułu,
+  które potwierdzają najważniejsze fakty i liczby pozycji (nie tłumacz ich, nie przerabiaj)
 - "sensitive": true, jeśli temat dotyczy przemocy, wypadku, śmierci, przestępstwa lub zdrowia konkretnej osoby
 
 Archiwum (te wydarzenia już były, nie powtarzaj ich):
@@ -435,6 +502,12 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
         if any(are_topics_duplicate(title, p, 0.35) for p in seen_titles + known_titles):
             rej["powtórka tematu"] += 1
             continue
+        blob = normtxt(cand["title"] + " " + (cand.get("text") or "") + " " + cand["snippet"])
+        ev = [e for e in (it.get("evidence") or []) if isinstance(e, str) and len(normtxt(e)) >= 12]
+        ok_ev = [e.strip() for e in ev if normtxt(e) in blob]
+        if not ok_ev:
+            rej["brak dowodu w źródle"] += 1
+            continue
         if not cand["grounded"]:
             if ungrounded_n >= MAX_UNGROUNDED_ITEMS:
                 rej["limit pozycji bez tekstu"] += 1
@@ -449,7 +522,7 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
             "image_query": str(it["image_query"]).strip() or "world news",
             "link": cand["link"], "source_name": cand["source_name"], "source_title": cand["title"],
             "grounded": cand["grounded"], "sensitive": bool(it.get("sensitive", False)),
-            "_og": cand.get("og_image"),
+            "evidence": ok_ev[:2], "_og": cand.get("og_image"),
             "_src": ((cand.get("text") or "") + " " + cand["snippet"])[:1800],
         })
     if rej:
@@ -511,7 +584,8 @@ def check_numbers(items: list) -> list:
     for it in items:
         blob = it["source_title"] + " " + it["_src"]
         mine = numbers_in(" ".join(it[k] for k in ("title", "hook", "summary", "comment", "threads_post", "question")))
-        extra = sorted(mine - numbers_in(blob))
+        src_nums = numbers_in(blob)
+        extra = sorted(n for n in mine if not number_supported(n, src_nums))
         if extra:
             print(f"  ⚠ liczby bez pokrycia w źródle {extra[:5]} → {it['title'][:50]}")
             if not it["grounded"]:
@@ -592,7 +666,7 @@ def main():
 
     print("3. Kandydaci + pełny tekst")
     candidates = build_candidates(clustered)
-    ai_input = [{"id": i, "title": c["title"], "source": c["source_name"], "grounded": c["grounded"],
+    ai_input = [{"id": i, "title": c["title"], "source": c["source_name"], "lang": c["lang"], "grounded": c["grounded"],
                  "text": (c.get("text") or c["snippet"])[:1500]} for i, c in enumerate(candidates)]
 
     print("4. Gemini: wybór i pisanie")
@@ -602,13 +676,15 @@ def main():
     items = []
     for attempt in (1, 2):
         try:
-            parsed = gen_json(client, prompt, 0.35)
+            hint = "" if attempt == 1 else ("\n\nUWAGA: poprzednia próba dała za mało pozycji. Wybierz 14 tematów, w tym co najmniej 5 polskich; "
+                                           "nie ograniczaj się do kilku źródeł.")
+            parsed = gen_json(client, prompt + hint, 0.35 if attempt == 1 else 0.5)
             raw_items = parsed if isinstance(parsed, list) else parsed.get("items", [])
             got = validate_items(raw_items, candidates, known_links, known_titles)
             print(f"   próba {attempt}: {len(got)} poprawnych z {len(raw_items)}")
             if len(got) > len(items):
                 items = got
-            if len(items) >= MIN_ITEMS:
+            if len(items) >= GOOD_ITEMS:
                 break
         except Exception as ex:
             print(f"   próba {attempt}: błąd AI: {ex}")
