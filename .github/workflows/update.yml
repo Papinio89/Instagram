@@ -1,9 +1,7 @@
 name: Auto Update News
 
 on:
-  schedule:
-    - cron: "0 5 * * *"    # ~07:00 Warszawa (lato) / 06:00 (zima) – wydanie poranne
-    - cron: "0 16 * * *"   # ~18:00 Warszawa (lato) / 17:00 (zima) – wydanie wieczorne
+
   workflow_dispatch:
 
 permissions:
