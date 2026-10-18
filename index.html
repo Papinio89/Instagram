@@ -33,8 +33,28 @@
 (function(){try{var t=localStorage.getItem('swm-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
 <style>
-:root{--bg:#f8fafc;--card:#fff;--muted:#f1f5f9;--line:#e2e8f0;--text:#0f172a;--sec:#475569;--mute:#64748b;--accent:#b45309;--accent-bg:#fef3c7;--btn:#0f172a;--btn-text:#fff;color-scheme:light}
-[data-theme=dark]{--bg:#020617;--card:#0f172a;--muted:#1e293b;--line:#1e293b;--text:#f1f5f9;--sec:#cbd5e1;--mute:#94a3b8;--accent:#fbbf24;--accent-bg:#3a2a07;--btn:#f8fafc;--btn-text:#0f172a;color-scheme:dark}
+:root{
+  --bg:#f8fafc;--card:#fff;--muted:#f1f5f9;--line:#e2e8f0;--text:#0f172a;--sec:#475569;--mute:#64748b;--accent:#b45309;--accent-bg:#fef3c7;--btn:#0f172a;--btn-text:#fff;color-scheme:light;
+  
+  /* Palety kategorii (Jasny motyw) */
+  --c-econ-bg: #ecfdf5; --c-econ-txt: #047857; --c-econ-brd: #a7f3d0;
+  --c-pol-bg: #fef2f2;  --c-pol-txt: #b91c1c;  --c-pol-brd: #fecaca;
+  --c-geo-bg: #eff6ff;  --c-geo-txt: #1d4ed8;  --c-geo-brd: #bfdbfe;
+  --c-def-bg: #f1f5f9;  --c-def-txt: #334155;  --c-def-brd: #cbd5e1;
+  --c-tech-bg: #f5f3ff; --c-tech-txt: #6d28d9; --c-tech-brd: #ddd6fe;
+  --c-fun-bg: #fdf4ff;  --c-fun-txt: #a21caf;  --c-fun-brd: #f5d0fe;
+}
+[data-theme=dark]{
+  --bg:#020617;--card:#0f172a;--muted:#1e293b;--line:#1e293b;--text:#f1f5f9;--sec:#cbd5e1;--mute:#94a3b8;--accent:#fbbf24;--accent-bg:#3a2a07;--btn:#f8fafc;--btn-text:#0f172a;color-scheme:dark;
+
+  /* Palety kategorii (Ciemny motyw) */
+  --c-econ-bg: rgba(6, 78, 59, 0.4);   --c-econ-txt: #6ee7b7; --c-econ-brd: rgba(16, 185, 129, 0.3);
+  --c-pol-bg: rgba(127, 29, 29, 0.4);  --c-pol-txt: #fca5a5;  --c-pol-brd: rgba(239, 68, 68, 0.3);
+  --c-geo-bg: rgba(30, 58, 138, 0.4);  --c-geo-txt: #93c5fd;  --c-geo-brd: rgba(59, 130, 246, 0.3);
+  --c-def-bg: rgba(30, 41, 59, 0.7);   --c-def-txt: #cbd5e1;  --c-def-brd: rgba(148, 163, 184, 0.3);
+  --c-tech-bg: rgba(76, 29, 149, 0.4); --c-tech-txt: #c4b5fd; --c-tech-brd: rgba(139, 92, 246, 0.3);
+  --c-fun-bg: rgba(112, 26, 117, 0.4); --c-fun-txt: #f0abfc;  --c-fun-brd: rgba(217, 70, 239, 0.3);
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
@@ -68,44 +88,35 @@ h2{font-size:19px;font-weight:800}
 .box{border:1px solid var(--line);background:var(--card);border-radius:16px}
 .search{padding:10px;margin-bottom:12px;position:relative}
 .search input{width:100%;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--muted);color:var(--text);padding:0 44px 0 14px;font:inherit;font-size:16px}
+.search input:focus{outline:none;border-color:var(--accent)}
 .search .x{position:absolute;right:14px;top:14px;border:0;background:none;width:44px;height:44px;margin:-12px -4px 0 0;font-size:22px;color:var(--mute)}
 .list{overflow:hidden}
 .row{display:flex;align-items:flex-start;gap:6px;padding:4px 8px 4px 4px;border-bottom:1px solid var(--line)}
 .row:last-child{border:0}
 .row.read{opacity:.6}.row.read .t{text-decoration:line-through}
-.row a{flex:1;min-width:0;display:flex;gap:8px;padding:10px 4px;text-decoration:none}
-.row .em{font-size:18px;line-height:1.3}
-.row .t{font-size:15px;font-weight:600;line-height:1.35}
-.row .s{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.row a{flex:1;min-width:0;display:flex;gap:10px;padding:10px 4px;text-decoration:none}
+.row .em{font-size:18px;line-height:1.3;margin-top:1px}
+.row .t{font-size:15px;font-weight:700;line-height:1.35;text-transform:uppercase}
+.row .s{display:block;font-size:12px;font-weight:700;margin-top:3px}
 .sep{padding:10px 16px;background:var(--muted);border-bottom:1px solid var(--line);font-size:13px;font-weight:700;color:var(--accent)}
 .chk,.sh{flex:none;width:44px;height:44px;border:0;background:none;display:grid;place-items:center;color:var(--mute)}
 .chk i{width:20px;height:20px;border:2px solid var(--mute);border-radius:6px;display:grid;place-items:center;font-style:normal;font-size:13px}
 .chk[aria-pressed=true] i{background:var(--accent);border-color:var(--accent);color:#111}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.card{display:flex;flex-direction:column;overflow:hidden}
+.card{display:flex;flex-direction:column;overflow:hidden;border-top:4px solid var(--cc,var(--line))}
 .card.read{opacity:.75}
 .media{position:relative;aspect-ratio:16/9;background:var(--muted);overflow:hidden}
 .media img{width:100%;height:100%;object-fit:cover;display:block}
 .ph{width:100%;height:100%;display:grid;place-items:center;font-size:44px;background:linear-gradient(135deg,#334155,#0f172a)}
-.ph[data-c=polska]{background:linear-gradient(135deg,#9f1239,#4c0519)}
-.ph[data-c=gospodarka],.ph[data-c=biznes]{background:linear-gradient(135deg,#047857,#022c22)}
-.ph[data-c=geopolityka],.ph[data-c=swiat]{background:linear-gradient(135deg,#1d4ed8,#172554)}
-.ph[data-c=obronnosc]{background:linear-gradient(135deg,#475569,#0f172a)}
-.ph[data-c=technologie]{background:linear-gradient(135deg,#6d28d9,#2e1065)}
-[data-c]{--cc:#475569;--cb:#e2e8f0}
-[data-c=polska]{--cc:#be123c;--cb:#ffe4e6}
-[data-c=gospodarka],[data-c=biznes]{--cc:#047857;--cb:#d1fae5}
-[data-c=geopolityka],[data-c=swiat]{--cc:#1d4ed8;--cb:#dbeafe}
-[data-c=obronnosc]{--cc:#334155;--cb:#e2e8f0}
-[data-c=technologie]{--cc:#6d28d9;--cb:#ede9fe}
-[data-theme=dark] [data-c]{--cc:#cbd5e1;--cb:#1e293b}
-[data-theme=dark] [data-c=polska]{--cc:#fda4af;--cb:#4c0519}
-[data-theme=dark] [data-c=gospodarka],[data-theme=dark] [data-c=biznes]{--cc:#6ee7b7;--cb:#022c22}
-[data-theme=dark] [data-c=geopolityka],[data-theme=dark] [data-c=swiat]{--cc:#93c5fd;--cb:#172554}
-[data-theme=dark] [data-c=technologie]{--cc:#c4b5fd;--cb:#2e1065}
-.chip{position:absolute;left:10px;top:10px;background:var(--cb);color:var(--cc);font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
-.card[data-c]{border-top:3px solid var(--cc)}
-.row[data-c] .s{color:var(--cc);font-weight:600}
+.chip{position:absolute;left:10px;top:10px;background:var(--card);color:var(--text);font-size:12px;font-weight:800;padding:4px 10px;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+
+/* Kolory źródeł w liście 60 sekund */
+.pub-pol{color:#b91c1c}[data-theme=dark] .pub-pol{color:#f87171}
+.pub-econ{color:#047857}[data-theme=dark] .pub-econ{color:#34d399}
+.pub-tech{color:#6d28d9}[data-theme=dark] .pub-tech{color:#a78bfa}
+.pub-def{color:#334155}[data-theme=dark] .pub-def{color:#94a3b8}
+.pub-geo{color:#1d4ed8}[data-theme=dark] .pub-geo{color:#60a5fa}
+
 #bnav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
 .btab{flex:1;min-height:58px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:600;color:var(--mute)}
 .btab span{font-size:20px;line-height:1}
@@ -115,15 +126,18 @@ h2{font-size:19px;font-weight:800}
 @media(min-width:640px){#bnav{display:none}}
 @media(max-width:639px){#top{bottom:calc(74px + env(safe-area-inset-bottom))}#toast{bottom:calc(74px + env(safe-area-inset-bottom))}.ig{display:none}main{padding-bottom:calc(100px + env(safe-area-inset-bottom))}}
 .body{padding:14px;display:flex;flex-direction:column;flex:1;gap:8px}
-.body h3{font-size:16px;font-weight:800}
+.body h3{font-size:16px;font-weight:800;text-transform:uppercase}
 .body p{margin:0;font-size:14px;color:var(--sec)}
-.credit{font-size:12px;color:var(--mute);padding:6px 14px 0}
-.credit a{color:var(--mute)}
-.cm{border-radius:12px;background:var(--cb,var(--accent-bg));border-left:4px solid var(--cc,var(--accent));padding:10px 12px;font-size:14px}
-.cm small{display:block;font-size:12px;font-weight:700;color:var(--cc,var(--accent));margin-bottom:2px}
+.credit{font-size:11px;color:var(--mute);padding:6px 14px 0;border-bottom:1px solid var(--line);background:var(--card)}
+.credit a{text-decoration:underline}
+
+/* Komentarz AI z dynamicznym tłem kategorii */
+.cm{border-radius:12px;background:var(--cb,var(--accent-bg));border:1px solid var(--cc-brd,var(--accent));padding:10px 12px;font-size:13px}
+.cm small{display:block;font-size:11px;font-weight:800;color:var(--cc,var(--accent));margin-bottom:2px;text-transform:uppercase}
+
 .foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--mute)}
-.foot .src{min-width:0}
-.foot .src b{color:var(--text);font-weight:700}
+.foot .src{min-width:0;font-weight:700;color:var(--text)}
+.foot .src span{font-weight:400;color:var(--mute)}
 .act{display:flex;gap:2px;flex:none}
 .act button,.act a{min-width:44px;height:44px;display:grid;place-items:center;border:0;background:none;color:var(--mute);text-decoration:none;font-size:15px;border-radius:10px}
 .act .chk{width:44px}
@@ -240,11 +254,13 @@ const reg = new Map();
 const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 function safeUrl(u) { try { const x = new URL(u, location.href); return (x.protocol === 'https:' || x.protocol === 'http:') ? x.href : '#'; } catch (e) { return '#'; } }
 const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l').replace(/[^a-z0-9]+/g, ' ').trim();
+
 function getTitle(v) {
-  const s = String(v || '').trim();
+  const s = String((typeof v === 'object' && v !== null) ? (v.title_pl || v.title || v.text || '') : v || '').trim();
   const m = s.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
   return m ? { emoji: m[1], title: s.slice(m[0].length).trim() } : { emoji: '', title: s };
 }
+
 const linkOf = x => x.link || x.url || '';
 const keyOf = x => x.id || String(linkOf(x)).toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') || norm(getTitle(x.title).title);
 const summaryOf = x => x.summary || x.description || x.excerpt || x.snippet || '';
@@ -253,12 +269,76 @@ const sourceOf = x => x.source_name || x.sourceName || x.source || '';
 const catOf = x => x.category || x.cat || 'Wiadomości';
 function uniq(list) { const seen = new Set(), out = []; for (const x of list || []) { const k = keyOf(x); if (!k || seen.has(k)) continue; seen.add(k); out.push(x); } return out; }
 function listOf(d) { return Array.isArray(d) ? d : (d && Array.isArray(d.items) ? d.items : []); }
+
 function imageOf(x) {
+  if (!x || typeof x !== 'object') return '';
   for (const c of [x.image_url, x.image, x.source_image_url, x.imageUrl, x.img, x.photo, x.thumbnail]) {
     if (typeof c === 'string' && /^https?:\/\//.test(c.trim())) return c.trim();
   }
   return '';
 }
+
+/* Wyciąganie czytelnej nazwy wydawcy */
+function formatSourcePublisher(x) {
+  const explicit = sourceOf(x);
+  if (explicit && String(explicit).trim()) return String(explicit).trim();
+  const url = safeUrl(linkOf(x));
+  if (url === '#') return 'Świat w Minutę';
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, '').toLowerCase();
+    const map = {
+      'money.pl': 'Money.pl',
+      'businessinsider.com.pl': 'Business Insider',
+      'bankier.pl': 'Bankier.pl',
+      'wnp.pl': 'WNP.pl',
+      'defence24.pl': 'Defence24',
+      'rp.pl': 'Rzeczpospolita',
+      'reuters.com': 'Reuters',
+      'bloomberg.com': 'Bloomberg',
+      'bbc.com': 'BBC News',
+      'upi.com': 'UPI News',
+      'onet.pl': 'Onet',
+      'wp.pl': 'Wirtualna Polska',
+      'interia.pl': 'Interia',
+      'tvn24.pl': 'TVN24',
+      'pap.pl': 'PAP'
+    };
+    if (map[host]) return map[host];
+    for (const [d, label] of Object.entries(map)) {
+      if (host.endsWith('.' + d)) return label;
+    }
+    const base = host.split('.')[0];
+    return base.charAt(0).toUpperCase() + base.slice(1);
+  } catch (e) {
+    return 'Źródło';
+  }
+}
+
+/* Kolor nazwy wydawcy w liście 60 sekund */
+function publisherColorClass(pub, cat) {
+  const p = String(pub || '').toLowerCase();
+  const c = norm(cat);
+  if (p.includes('onet') || p.includes('wp') || p.includes('tvn') || c.includes('polska') || c.includes('pilne')) return 'pub-pol';
+  if (p.includes('money') || p.includes('bankier') || p.includes('business') || p.includes('bloomberg') || c.includes('gospod')) return 'pub-econ';
+  if (p.includes('science') || p.includes('mental') || c.includes('tech') || c.includes('ai')) return 'pub-tech';
+  if (p.includes('defence') || c.includes('obron')) return 'pub-def';
+  return 'pub-geo';
+}
+
+/* Podpis pod zdjęciem */
+function formatImageCredit(imgUrl, x) {
+  if (!imgUrl || imgUrl === '#') return '';
+  const low = imgUrl.toLowerCase();
+  const author = x.photographer || x.image_author || '';
+  const authorUrl = safeUrl(x.photographer_url || x.image_author_url || 'https://www.pexels.com');
+  if (low.includes('pexels.com')) {
+    if (author) return `Zdjęcie ilustracyjne. Foto: <a href="${esc(authorUrl)}" target="_blank" rel="noopener">${esc(author)}</a> / Pexels`;
+    return `Zdjęcie ilustracyjne. Foto: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>`;
+  }
+  if (low.includes('unsplash.com')) return `Zdjęcie ilustracyjne. Foto: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>`;
+  return `Foto: ${esc(formatSourcePublisher(x))}`;
+}
+
 const CAT_EMOJI = { polska: '🇵🇱', gospodarka: '📊', biznes: '💼', geopolityka: '🌍', swiat: '🌍', obronnosc: '🛡️', technologie: '💻' };
 const catSlug = c => norm(c).split(' ')[0];
 const ph = c => `<div class="ph" data-c="${esc(catSlug(c))}" aria-hidden="true">${CAT_EMOJI[catSlug(c)] || '📰'}</div>`;
@@ -297,27 +377,30 @@ function pickEmoji(title, cat) {
 /* ---------- widoki ---------- */
 function rowHtml(x, title, emoji) {
   const k = keyOf(x); reg.set(k, x);
-  const link = safeUrl(linkOf(x)), isRead = read.has(k), src = sourceOf(x);
+  const link = safeUrl(linkOf(x)), isRead = read.has(k);
+  const pub = formatSourcePublisher(x), pubClass = publisherColorClass(pub, catOf(x));
   return `<div class="row${isRead ? ' read' : ''}" data-c="${esc(catSlug(catOf(x)))}">
     <button class="chk" data-act="read" data-key="${esc(k)}" aria-pressed="${isRead}" aria-label="Oznacz jako przeczytane"><i>${isRead ? '✓' : ''}</i></button>
-    <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''}><span class="em" aria-hidden="true">${esc(emoji || '📰')}</span><span><span class="t">${esc(title)}</span>${src ? `<span class="s">${esc(src)}</span>` : ''}</span></a>
+    <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''}><span class="em" aria-hidden="true">${esc(emoji || '📰')}</span><div style="min-width:0"><span class="t">${esc(title)}</span><span class="s ${pubClass}">${esc(pub)}</span></div></a>
     <button class="sh" data-act="share" data-key="${esc(k)}" aria-label="Udostępnij: ${esc(title)}">↗</button></div>`;
 }
+
 function card(x) {
   const k = keyOf(x); reg.set(k, x);
   const t = getTitle(x.title || x.text), img = imageOf(x), link = safeUrl(linkOf(x)), cat = catOf(x), isRead = read.has(k);
-  const sum = summaryOf(x), com = commentOf(x), src = sourceOf(x), date = fmtDay(x._day || dayOf(x.date));
+  const sum = summaryOf(x), com = commentOf(x), pub = formatSourcePublisher(x), date = fmtDay(x._day || dayOf(x.date));
+  const credit = formatImageCredit(img, x);
   const media = img ? `<img class="card-img" src="${esc(safeUrl(img))}" data-cat="${esc(cat)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : ph(cat);
-  const credit = img && x.image_credit
-    ? `<div class="credit">${x.image_illustrative ? 'Zdjęcie ilustracyjne. ' : ''}Foto: <a href="${esc(safeUrl(x.image_credit_url))}" target="_blank" rel="noopener">${esc(x.image_credit)}</a> / Pexels</div>` : '';
+  
   return `<article class="box card${isRead ? ' read' : ''}" id="n-${esc(k)}" data-c="${esc(catSlug(cat))}">
-    <div class="media">${media}<span class="chip">${esc(cat)}</span></div>${credit}
+    <div class="media">${media}<span class="chip">${esc(cat)}</span></div>
+    ${credit ? `<div class="credit">${credit}</div>` : ''}
     <div class="body">
       <h3>${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3>
       ${sum ? `<p>${esc(sum)}</p>` : ''}
-      ${com ? `<div class="cm"><small>Komentarz AI</small>${esc(com)}</div>` : ''}
+      ${com ? `<div class="cm" data-c="${esc(catSlug(cat))}"><small>Komentarz AI</small>${esc(com)}</div>` : ''}
       <div class="foot">
-        <div class="src">${src ? `<b>${esc(src)}</b>` : ''}${src && date ? ' · ' : ''}${esc(date)}</div>
+        <div class="src">${esc(pub)}${date ? ' <span>· ' + esc(date) + '</span>' : ''}</div>
         <div class="act">
           <button class="chk" data-act="read" data-key="${esc(k)}" aria-pressed="${isRead}" aria-label="Oznacz jako przeczytane"><i>${isRead ? '✓' : ''}</i></button>
           <button data-act="share" data-key="${esc(k)}" aria-label="Udostępnij ten news">↗</button>
@@ -326,6 +409,7 @@ function card(x) {
       </div>
     </div></article>`;
 }
+
 const cards = (list, empty) => list.length ? list.map(card).join('') : `<div class="empty" style="grid-column:1/-1">${empty}</div>`;
 
 function renderToday() {
@@ -338,8 +422,7 @@ function renderToday() {
   $('headlines').innerHTML = primary.map(row).join('') +
     (rest.length ? `<div class="sep">Pozostałe newsy na dziś · ${rest.length}</div>` + rest.map(row).join('') : '');
   const fp = fun.slice(0, 4);
-  $('fun-prev').classList.toggle('hide', !fp.length);
-  $('fun-prev-grid').innerHTML = fp.map(card).join('');
+  $('fun-prev').classList.toggle('hide', !fp.length);$('fun-prev-grid').innerHTML = fp.map(card).join('');
 }
 function renderAll() {
   const list = uniq(news);
@@ -357,8 +440,7 @@ function funPool() {
 }
 function renderFun() {
   const list = funPool();
-  $('fun-grid').innerHTML = cards(list.slice(0, shown.fun), 'Brak ciekawostek.');
-  $('fun-more').classList.toggle('hide', shown.fun >= list.length);
+  $('fun-grid').innerHTML = cards(list.slice(0, shown.fun), 'Brak ciekawostek.');$('fun-more').classList.toggle('hide', shown.fun >= list.length);
 }
 function weekPool() {
   const today = todayKey(), from = new Date(); from.setDate(from.getDate() - 6);
@@ -368,7 +450,7 @@ function weekPool() {
   news.concat(fast).forEach(x => pool.push(x));
   return uniq(pool);
 }
-const score = x => (summaryOf(x) ? 3 : 0) + (commentOf(x) ? 2 : 0) + (imageOf(x) ? 1 : 0) + (x.grounded === false ? -2 : 0);
+const score = x => (summaryOf(x) ? 3 : 0) + (commentOf(x) ? 2 : 0) + (imageOf(x) ? 1 : 0);
 function renderWeek() {
   const pool = weekPool(), byDay = {};
   pool.forEach(x => { (byDay[x._day || todayKey()] = byDay[x._day || todayKey()] || []).push(x); });
@@ -381,7 +463,7 @@ function renderWeek() {
   const cats = {}; pool.forEach(x => { const c = catOf(x); cats[c] = (cats[c] || 0) + 1; });
   const top = Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 6);
   $('week-body').innerHTML = `<p class="small">Ostatnie 7 dni · ${pool.length} materiałów z ${days.length} dni</p>
-    <div class="days">${top.map(([c, n]) => `<span class="tag" data-c="${esc(catSlug(c))}">${esc(c)} · ${n}</span>`).join('')}</div>
+    <div class="days">${top.map(([c, n]) => `<span class="tag" data-c="${esc(catSlug(c))}">${esc(c)} ·${n}</span>`).join('')}</div>
     <div class="grid">${cards(picked, 'Brak danych z ostatnich 7 dni.')}</div>`;
 }
 function normalizeArchive(data) {
@@ -394,8 +476,7 @@ function normalizeArchive(data) {
   }).filter(Boolean);
 }
 function renderArchive() {
-  if (!groups.length) { $('arch-body').innerHTML = '<div class="empty box">Brak archiwum.</div>'; $('arch-more').classList.add('hide'); return; }
-  $('arch-body').innerHTML = groups.slice(0, shown.arch).map(g => `<section style="margin-bottom:28px"><div class="top"><h3>${esc(g.label)}</h3><span class="small">${g.items.length} wiadomości</span></div><div class="grid">${g.items.map(card).join('')}</div></section>`).join('');
+  if (!groups.length) { $('arch-body').innerHTML = '<div class="empty box">Brak archiwum.</div>'; $('arch-more').classList.add('hide'); return; }$('arch-body').innerHTML = groups.slice(0, shown.arch).map(g => `<section style="margin-bottom:28px"><div class="top"><h3>${esc(g.label)}</h3><span class="small">${g.items.length} wiadomości</span></div><div class="grid">${g.items.map(card).join('')}</div></section>`).join('');
   $('arch-more').classList.toggle('hide', shown.arch >= groups.length);
 }
 function renderCurrent() {
@@ -404,20 +485,18 @@ function renderCurrent() {
 }
 function switchTab(t) {
   tab = t; shown = { all: 6, fun: 9, arch: 2 };
-  ['today', 'all', 'fast', 'fun', 'week', 'archive'].forEach(v => $('v-' + v).classList.toggle('hide', v !== t));
-  $('results').classList.add('hide');
+  ['today', 'all', 'fast', 'fun', 'week', 'archive'].forEach(v => $('v-' + v).classList.toggle('hide', v !== t));$('results').classList.add('hide');
   renderCurrent(); scrollTo({ top: 0 });
 }
 
 /* ---------- wyszukiwanie ---------- */
 function allItems() { return uniq([...news, ...raw, ...fast, ...fun, ...archiveFun, ...groups.flatMap(g => g.items)]); }
 function search() {
-  const q = $('q').value.trim(); $('qx').classList.toggle('hide', !q);
+  const q = $('q').value.trim();$('qx').classList.toggle('hide', !q);
   if (!q) { $('results').classList.add('hide'); return; }
   const words = norm(q).split(' ').filter(Boolean);
   const hits = allItems().filter(x => { const h = norm([x.title, x.title_pl, summaryOf(x), commentOf(x), catOf(x), sourceOf(x)].join(' ')); return words.every(w => h.includes(w)); });
-  $('results').classList.remove('hide');
-  $('results').innerHTML = `<div class="small" style="margin-bottom:6px">Wyniki: ${hits.length}</div><div class="box list">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return rowHtml(x, t.title, t.emoji || pickEmoji(t.title, catOf(x))); }).join('') || '<div class="empty">Nie znaleziono.</div>'}</div>`;
+  $('results').classList.remove('hide');$('results').innerHTML = `<div class="small" style="margin-bottom:6px">Wyniki: ${hits.length}</div><div class="box list">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return rowHtml(x, t.title, t.emoji || pickEmoji(t.title, catOf(x))); }).join('') || '<div class="empty">Nie znaleziono.</div>'}</div>`;
 }
 function clearSearch() { $('q').value = ''; search(); }
 
@@ -488,18 +567,17 @@ async function loadWidgets() {
   try {
     const d = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current=temperature_2m,weather_code&timezone=Europe%2FWarsaw')).json();
     const c = d.current.weather_code;
-    $('w-temp').textContent = Math.round(d.current.temperature_2m) + '°';
-    $('w-ico').textContent = c === 0 ? '☀️' : c <= 3 ? '🌤️' : c <= 48 ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '🌨️' : c <= 82 ? '🌦️' : '⛈️';
+    $('w-temp').textContent = Math.round(d.current.temperature_2m) + '°';$('w-ico').textContent = c === 0 ? '☀️' : c <= 3 ? '🌤️' : c <= 48 ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '🌨️' : c <= 82 ? '🌦️' : '⛈️';
   } catch (e) {}
   try {
     const rates = (await (await fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json')).json())[0].rates;
     const get = c => { const r = rates.find(x => x.code === c); return r ? r.mid.toFixed(2) : '—'; };
-    $('eur').textContent = get('EUR'); $('usd').textContent = get('USD');
+    $('eur').textContent = get('EUR');$('usd').textContent = get('USD');
   } catch (e) {}
 }
 function openFromHash() {
   const m = location.hash.match(/^#n=(.+)$/); if (!m) return;
-  const id = decodeURIComponent(m[1]), x = allItems().find(i => keyOf(i) === id);
+  const id = decodeURIComponent(m[1]), x = allItems().items || allItems().find(i => keyOf(i) === id);
   if (x) openModal(x);
 }
 async function init() {
@@ -508,7 +586,6 @@ async function init() {
   loadFailed = !n.ok && !r.ok;
   news = stamp(n.data, n.data); raw = stamp(r.data, r.data); fast = stamp(f.data, f.data); fun = stamp(u.data, u.data);
   archiveFun = stamp(af.data && !Array.isArray(af.data) && !af.data.items ? Object.values(af.data).flatMap(listOf) : af.data, {});
-  // Archiwum = wszystko POPRZEDNIE; bieżące wydanie (news/fast) jest w zakładkach głównych
   const current = new Set(news.concat(fast).map(keyOf));
   groups = normalizeArchive(a.data).map(g => ({ ...g, items: g.items.filter(x => !current.has(keyOf(x))) })).filter(g => g.items.length);
   const ts = String(n.data && n.data.timestamp || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2})/);
