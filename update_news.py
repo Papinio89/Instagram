@@ -40,7 +40,7 @@ MAX_POOL = 70               # tyle artykułów próbujemy pobrać w całości
 MAX_CANDIDATES = 45
 MAX_PER_SOURCE = 6
 MAX_UNGROUNDED_CAND = 10    # kandydaci bez pełnego tekstu (Google News, paywalle)
-MAX_UNGROUNDED_ITEMS = 2    # tyle takich pozycji może trafić do wydania
+MAX_UNGROUNDED_ITEMS = 1    # tyle takich pozycji może trafić do wydania
 GROUNDED_MIN_CHARS = 400
 ARCHIVE_MAX_SESSIONS = 60
 DEDUPE_TITLE_SESSIONS = 8   # ~4 dni wstecz
@@ -203,6 +203,13 @@ def normalize_post(post: str) -> str:
     a, b = parts[0].strip(), parts[1].strip()
     b = re.sub(r"\s*([^.!?\n]*\?\s*👇💬)\s*$", r"\n\n\1", b)
     return f"{a}\n\n---ODPOWIEDŹ---\n\n{b}"
+
+
+def novelty(text: str, reference: str) -> float:
+    """Jaka część słów (rdzeń 5 liter) z `text` NIE występuje w `reference` — miara, czy tekst coś dodaje."""
+    t = {w[:5] for w in extract_keywords(text)}
+    r = {w[:5] for w in extract_keywords(reference)}
+    return len(t - r) / len(t) if t else 0.0
 
 
 def numbers_in(text: str) -> set:
@@ -512,6 +519,10 @@ def validate_items(raw_items: list, candidates: list, known_links: set, known_ti
         if any(are_topics_duplicate(title, p, 0.35) for p in seen_titles + known_titles):
             rej["powtórka tematu"] += 1
             continue
+        # streszczenie musi coś dodawać do tytułu (inaczej to wypełniacz): ostrzej dla pozycji bez pełnego tekstu
+        if novelty(summary, title + " " + cand["title"]) < (0.4 if cand["grounded"] else 0.6):
+            rej["streszczenie bez nowych informacji"] += 1
+            continue
         body = normtxt(cand.get("text") or "")
         blob = body if cand["grounded"] else normtxt(cand["title"] + " " + (cand.get("text") or "") + " " + cand["snippet"])
         ev = [e for e in (it.get("evidence") or []) if isinstance(e, str) and len(normtxt(e)) >= 12]
@@ -734,6 +745,9 @@ def main():
     ai_items = [i for i in items if not i.get("auto")]
     review_items(client, ai_items)
     items = check_numbers(ai_items) + [i for i in items if i.get("auto")]
+    for i in items:  # komentarz, który tylko powtarza tytuł/streszczenie, nie jest pokazywany
+        if i["comment"] and novelty(i["comment"], i["title"] + " " + i["summary"] + " " + i["source_title"]) < 0.4:
+            i["comment"] = ""
     if not items:
         sys.exit("Po weryfikacji nic nie zostało — nie nadpisuję istniejących plików")
     for cat, n in Counter(i["category"] for i in items).most_common():
