@@ -56,7 +56,6 @@ nav.tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14px;color:var(--sec)}
 .tab[aria-current=page]{background:var(--btn);color:var(--btn-text);border-color:var(--btn)}
 main{padding:16px 0 96px}
-.notice{font-size:13px;color:var(--sec);margin:0 0 14px}
 .top{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:10px}
 h1,h2,h3{margin:0;line-height:1.25;letter-spacing:-.01em}
 h1{font-size:24px;font-weight:800}
@@ -114,7 +113,7 @@ h2{font-size:19px;font-weight:800}
 #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:90}
 .ig{display:inline-flex;align-items:center;text-decoration:none;background:linear-gradient(135deg,#c026d3,#ea580c);color:#fff}
 @media(min-width:640px){#bnav{display:none}}
-@media(max-width:639px){#top{bottom:76px}#toast{bottom:76px}.ig{display:none}main{padding-bottom:110px}}
+@media(max-width:639px){#top{bottom:calc(74px + env(safe-area-inset-bottom))}#toast{bottom:calc(74px + env(safe-area-inset-bottom))}.ig{display:none}main{padding-bottom:calc(100px + env(safe-area-inset-bottom))}}
 .body{padding:14px;display:flex;flex-direction:column;flex:1;gap:8px}
 .body h3{font-size:16px;font-weight:800}
 .body p{margin:0;font-size:14px;color:var(--sec)}
@@ -138,7 +137,7 @@ h2{font-size:19px;font-weight:800}
 .sec-h{margin:28px 0 10px}
 #toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);opacity:0;background:var(--btn);color:var(--btn-text);padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:.25s;z-index:60;pointer-events:none}
 #toast.show{transform:translate(-50%,0);opacity:1}
-#top{position:fixed;right:16px;bottom:24px;width:48px;height:48px;border-radius:50%;border:0;background:var(--btn);color:var(--btn-text);font-size:20px;z-index:30}
+#top{position:fixed;right:16px;bottom:24px;width:48px;height:48px;border-radius:50%;border:0;background:var(--btn);color:var(--btn-text);font-size:20px;z-index:55}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
 .modal>div{max-width:420px;width:100%}
 details.info{margin-top:32px}
@@ -173,7 +172,6 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;text-align:center;fo
 </header>
 
 <main class="wrap">
-  <p class="notice">Streszczenia i komentarze tworzy AI na podstawie publicznych źródeł. Zanim coś udostępnisz, sprawdź oryginał — link jest przy każdym materiale.</p>
   <div class="top"><div><h1>Dzisiaj w skrócie</h1></div><div id="updated" class="small" aria-live="polite">Ładowanie…</div></div>
   <div class="widgets" aria-label="Pogoda i kursy walut">
     <div class="w"><small>Warszawa</small><b><span id="w-temp">—°</span> <span id="w-ico" aria-hidden="true"></span></b></div>
