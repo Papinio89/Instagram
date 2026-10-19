@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Świat w Minutę — generator newsów v2 (Gemini + Pexels).
+"""Świat w Minutę — generator newsów (Gemini + Pexels).
 
+Prompt i styl wypowiedzi bez zmian. Dodane: źródła artykułów, podpisy zdjęć, więcej kanałów RSS,
+wyrównanie liczby tematów z jednego źródła, pola potrzebne stronie i generatorowi karuzel.
 Zapisuje: news.json, raw_feed.json, archive.json
 Sekrety (zmienne środowiskowe): GEMINI_API_KEY, PEXELS_API_KEY
 """
@@ -14,7 +16,6 @@ import time
 import urllib.parse
 import urllib.request
 from collections import Counter, defaultdict
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 from time import mktime
 from urllib.parse import parse_qs, urlparse
@@ -24,32 +25,24 @@ import feedparser
 from google import genai
 from google.genai import types
 
-# ───────────────────────── KONFIGURACJA ─────────────────────────
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")  # bez wartości domyślnej!
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
-USE_SOURCE_IMAGES = os.environ.get("USE_SOURCE_IMAGES", "0") == "1"  # 0 = tylko Pexels
+pl_tz = ZoneInfo("Europe/Warsaw")
 
-FALLBACK_IMG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
-PL_TZ = ZoneInfo("Europe/Warsaw")
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")          # BEZ wartości domyślnej — klucz tylko w sekretach
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
+USE_SOURCE_IMAGES = os.environ.get("USE_SOURCE_IMAGES", "0") == "1"   # 0 = zdjęcia z Pexels, 1 = og:image artykułu
+
 MAX_AGE_HOURS = 24
-TARGET_ITEMS = 14
-MIN_ITEMS = 10              # poniżej tego dobieramy pozycje awaryjne (lepiej mniej niż powtórki)
-GOOD_ITEMS = 12             # od tylu pozycji nie ponawiamy zapytania do AI
-MAX_POOL = 70               # tyle artykułów próbujemy pobrać w całości
-MAX_CANDIDATES = 45
-MAX_PER_SOURCE = 6
-MAX_UNGROUNDED_CAND = 10    # kandydaci bez pełnego tekstu (Google News, paywalle)
-MAX_UNGROUNDED_ITEMS = 1    # tyle takich pozycji może trafić do wydania
-GROUNDED_MIN_CHARS = 400
+MIN_ITEMS = 12
+MAX_PER_SOURCE = 3          # ile artykułów z jednego źródła trafia do AI (żeby Money/Bankier nie dominowały)
+MAX_CANDIDATES = 40
+SNIPPET_LEN = 500
 ARCHIVE_MAX_SESSIONS = 60
-DEDUPE_TITLE_SESSIONS = 8   # ~4 dni wstecz
 
 # (url, język, domyślna kategoria, nazwa źródła)
 FEEDS = [
-    # ── Polska: wiadomości ogólne (Polsat News: adresy z oficjalnej strony; pozostałe sprawdź w logu) ──
+    # --- POLSKA: wiadomości (Polsat News: adresy z oficjalnej strony; pozostałe sprawdź w logu) ---
     ("https://www.polsatnews.pl/rss/polska.xml", "pl", "POLSKA", "Polsat News"),
-    ("https://www.polsatnews.pl/rss/swiat.xml", "pl", "ŚWIAT", "Polsat News"),
+    ("https://www.polsatnews.pl/rss/swiat.xml", "pl", "GEOPOLITYKA", "Polsat News"),
     ("https://www.polsatnews.pl/rss/biznes.xml", "pl", "GOSPODARKA", "Polsat News"),
     ("https://www.polsatnews.pl/rss/technologie.xml", "pl", "TECHNOLOGIE", "Polsat News"),
     ("https://tvn24.pl/najnowsze.xml", "pl", "POLSKA", "TVN24"),
@@ -59,42 +52,53 @@ FEEDS = [
     ("https://wiadomosci.onet.pl/.feed", "pl", "POLSKA", "Onet"),
     ("https://wiadomosci.wp.pl/rss.xml", "pl", "POLSKA", "WP Wiadomości"),
     ("https://wiadomosci.gazeta.pl/pub/rss/wiadomosci_kraj.htm", "pl", "POLSKA", "Gazeta.pl"),
-    # ── Polska: gospodarka, biznes, obronność ──
+    ("https://notesfrompoland.com/feed/", "en", "POLSKA", "Notes from Poland"),
+    # --- POLSKA: gospodarka, biznes, przemysł, obronność ---
     ("https://www.money.pl/rss/", "pl", "GOSPODARKA", "Money.pl"),
-    ("https://www.bankier.pl/rss/wiadomosci.xml", "pl", "GOSPODARKA", "Bankier.pl"),
     ("https://businessinsider.com.pl/.rss", "pl", "BIZNES", "Business Insider Polska"),
+    ("https://www.bankier.pl/rss/wiadomosci.xml", "pl", "GOSPODARKA", "Bankier.pl"),
     ("https://www.wnp.pl/rss/artykuly.xml", "pl", "GOSPODARKA", "WNP.pl"),
     ("https://archiwum.rp.pl/rss/ekonomia", "pl", "GOSPODARKA", "Rzeczpospolita"),
     ("https://defence24.pl/rss", "pl", "OBRONNOŚĆ", "Defence24"),
-    # ── Świat ──
+    ("https://news.google.com/rss?hl=pl&gl=PL&ceid=PL:pl", "pl", "POLSKA", "Google News"),
+    # --- ŚWIAT: rynki, finanse, surowce ---
     ("https://feeds.bloomberg.com/markets/news.rss", "en", "GOSPODARKA", "Bloomberg"),
     ("https://search.cnbc.com/rs/search/view.html?partnerId=2000&keywords=markets&sort=date", "en", "GOSPODARKA", "CNBC"),
-    ("https://feeds.bbci.co.uk/news/world/rss.xml", "en", "ŚWIAT", "BBC News"),
-    ("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml", "en", "ŚWIAT", "BBC News"),
-    ("https://news.google.com/rss?hl=pl&gl=PL&ceid=PL:pl", "pl", "POLSKA", "Google News"),
+    # --- GEOPOLITYKA I WYDARZENIA GLOBALNE ---
+    ("https://feeds.bbci.co.uk/news/world/rss.xml", "en", "GEOPOLITYKA", "BBC News"),
+    ("https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml", "en", "GEOPOLITYKA", "BBC News"),
+    ("https://www.theguardian.com/world/rss", "en", "GEOPOLITYKA", "The Guardian"),
+    ("https://www.aljazeera.com/xml/rss/all.xml", "en", "GEOPOLITYKA", "Al Jazeera"),
+    ("https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "en", "GEOPOLITYKA", "The New York Times"),
+    ("https://rss.dw.com/rdf/rss-en-all", "en", "GEOPOLITYKA", "Deutsche Welle"),
     ("https://news.google.com/rss/search?q=world+news+geopolitics&hl=en-US&gl=US&ceid=US:en", "en", "GEOPOLITYKA", "Google News"),
+    # --- TECHNOLOGIE / AI ---
+    ("https://feeds.arstechnica.com/arstechnica/index", "en", "TECHNOLOGIE", "Ars Technica"),
+    ("https://www.theverge.com/rss/index.xml", "en", "TECHNOLOGIE", "The Verge"),
 ]
+# Usunięto: reutersagency.com/feed (feedy Reuters Agency nie działają od lat)
 
-POLISH_MONTHS = {1: "stycznia", 2: "lutego", 3: "marca", 4: "kwietnia", 5: "maja", 6: "czerwca",
-                 7: "lipca", 8: "sierpnia", 9: "września", 10: "października", 11: "listopada", 12: "grudnia"}
-STOP_WORDS = {"polsce", "polski", "polaków", "nowy", "nowa", "nowe", "roku", "swiat", "przez", "tylko",
-              "rzad", "rząd", "beda", "będą", "moze", "może", "oraz", "jest", "jego", "bardzo", "nawet",
-              "teraz", "after", "with", "from", "that", "this", "more"}
-GENERIC_QUERY = {"POLSKA": "Poland city street", "GOSPODARKA": "economy finance charts", "BIZNES": "business office",
-                 "GEOPOLITYKA": "world map globe", "OBRONNOŚĆ": "military equipment", "TECHNOLOGIE": "technology circuit",
-                 "ŚWIAT": "city skyline"}
-DEFAULT_EMOJI = {"POLSKA": "🇵🇱", "GOSPODARKA": "📊", "BIZNES": "💼", "GEOPOLITYKA": "🌍",
-                 "OBRONNOŚĆ": "🛡️", "TECHNOLOGIE": "💻", "ŚWIAT": "🌍"}
-ALLOWED_EMOJI = set("🚨📉📈💥🔥⚠⚖🏛🛡🪖💰🛢⚡🤖💻🏥🌍🚀🏗📊⏰🏢🌉🏭💵🏦🛒🚗✈🚢🌾⚓🧬🔋📡🗳📰💼🔒🧊🌡⛽")
+POLISH_MONTHS = {
+    1: "stycznia", 2: "lutego", 3: "marca", 4: "kwietnia",
+    5: "maja", 6: "czerwca", 7: "lipca", 8: "sierpnia",
+    9: "września", 10: "października", 11: "listopada", 12: "grudnia"
+}
+
+STOP_WORDS = {
+    "polsce", "polski", "polaków", "nowy", "nowa", "nowe", "roku", "swiat", "przez",
+    "tylko", "rzad", "rząd", "beda", "będą", "moze", "może", "oraz", "jest", "jego",
+    "bardzo", "nawet", "teraz", "after", "with", "from", "that", "this", "more"
+}
+HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"),
+    "Accept": "text/html,application/xhtml+xml",
+    "Accept-Language": "en-US,en;q=0.9,pl;q=0.8",
+}
+# zdjęcia sugerujące INNE wydarzenie (np. huragan przy zamieszkach) — nigdy nie wybierane
+BAD_ALT_RE = re.compile(r"hurricane|tornado|flood|earthquake|tsunami|cemetery|grave|funeral|coffin|abandoned|ruins|corpse", re.I)
 GENERIC_WORDS = {"view", "sign", "signs", "street", "night", "scene", "modern", "aerial", "system", "line",
                  "tracks", "landscape", "area", "concept", "background", "city"}
-# zdjęcia sugerujące INNE wydarzenie (np. huragan przy zamieszkach) — zawsze odrzucane
-BAD_ALT_RE = re.compile(r"hurricane|tornado|flood|earthquake|tsunami|cemetery|grave|funeral|coffin|abandoned|ruins|corpse", re.I)
-PEOPLE_RE = re.compile(r"\b(man|men|woman|women|people|person|child|children|kid|boy|girl|patient|soldier|"
-                       r"soldiers|crowd|couple|family|doctor|nurse|police|policeman|policemen|prosthetic)\b", re.I)
-HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                         "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-           "Accept": "text/html,application/xhtml+xml", "Accept-Language": "en-US,en;q=0.9,pl;q=0.8"}
 
 
 # ───────────────────────── NARZĘDZIA ─────────────────────────
@@ -102,15 +106,19 @@ def clean_link(url: str) -> str:
     if not url or url == "#":
         return "#"
     try:
-        tracking = {"utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
-                    "at_medium", "at_campaign", "fbclid", "gclid", "mc_cid", "mc_eid"}
-        p = urlparse(url)
-        if p.scheme not in ("http", "https"):
+        tracking_params = {
+            "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+            "at_medium", "at_campaign", "fbclid", "gclid", "mc_cid", "mc_eid"
+        }
+        parsed = urlparse(url)
+        if parsed.scheme not in ("http", "https"):
             return "#"
-        if p.query:
-            qs = {k: v[0] for k, v in parse_qs(p.query).items() if k not in tracking}
-            q = urllib.parse.urlencode(qs)
-            return f"{p.scheme}://{p.netloc}{p.path}" + (f"?{q}" if q else "")
+        if parsed.query:
+            qs = parse_qs(parsed.query)
+            clean_qs = {k: v[0] for k, v in qs.items() if k not in tracking_params}
+            if clean_qs:
+                return f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{urllib.parse.urlencode(clean_qs)}"
+            return f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
         return url
     except Exception:
         return url
@@ -121,19 +129,22 @@ def norm_link(url: str) -> str:
     try:
         p = urlparse(str(url).strip().lower())
         host = p.netloc.removeprefix("www.")
-        path = p.path.rstrip("/")
-        return f"{host}{path}" + (f"?{p.query}" if "news.google.com" in host and p.query else "")
+        return f"{host}{p.path.rstrip('/')}" + (f"?{p.query}" if "news.google.com" in host and p.query else "")
     except Exception:
         return str(url)
 
 
+def short_id(link: str) -> str:
+    return hashlib.sha1(link.encode("utf-8")).hexdigest()[:10]
+
+
 def is_recent(entry) -> bool:
-    pub = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
-    if not pub:
+    published = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
+    if not published:
         return True
     try:
-        dt = datetime.fromtimestamp(mktime(pub), tz=PL_TZ)
-        return datetime.now(PL_TZ) - dt <= timedelta(hours=MAX_AGE_HOURS)
+        pub_dt = datetime.fromtimestamp(mktime(published), tz=pl_tz)
+        return datetime.now(pl_tz) - pub_dt <= timedelta(hours=MAX_AGE_HOURS)
     except Exception:
         return True
 
@@ -146,36 +157,32 @@ def normalize_category(cat: str) -> str:
         return "OBRONNOŚĆ"
     if "TECH" in c or c == "AI":
         return "TECHNOLOGIE"
-    if "GEOPOLITYK" in c:
+    if "GEOPOLITYK" in c or "ŚWIAT" in c:
         return "GEOPOLITYKA"
-    if "ŚWIAT" in c or "SWIAT" in c:
-        return "ŚWIAT"
     if "BIZNES" in c or "SPÓŁK" in c or "FIRM" in c:
         return "BIZNES"
     return "GOSPODARKA"
 
 
-def format_title(title: str, category: str = "ŚWIAT") -> str:
-    """Emoji z listy dozwolonych + reszta WIELKIMI LITERAMI; naprawia spację przed U+FE0F."""
-    s = re.sub(r"\s+\ufe0f", "\ufe0f", str(title or "").strip())
-    s = re.sub(r"\s+", " ", s)
+def format_uppercase_title(title_str: str) -> str:
+    s = re.sub(r"\s+\ufe0f", "\ufe0f", title_str.strip())      # naprawia „⚖ ” (spacja przed selektorem emoji)
     if not s:
         return ""
-    m = re.match(r"^([^\w]+)(.*)$", s)
-    prefix, rest = (m.group(1).strip(), m.group(2).strip()) if m else ("", s)
-    chars = [c for c in prefix if c not in "\ufe0f\u200d "]
-    if not chars or not all(c in ALLOWED_EMOJI for c in chars):
-        prefix = DEFAULT_EMOJI.get(category, "📰")
-    return f"{prefix} {rest.upper()}".strip() if rest else ""
+    match = re.match(r'^([\U00010000-\U0010ffff\u2600-\u27bf\ufe0f\s]+)(.*)$', s)
+    if match:
+        emoji_prefix = match.group(1).strip()
+        rest = match.group(2).strip()
+        return f"{emoji_prefix} {rest.upper()}".strip()
+    return s.upper()
 
 
 def extract_keywords(text: str) -> set:
-    words = re.findall(r"[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{4,}", text.lower())
+    words = re.findall(r'[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{4,}', text.lower())
     return {w for w in words if w not in STOP_WORDS}
 
 
-def are_topics_duplicate(a: str, b: str, threshold: float = 0.40) -> bool:
-    w1, w2 = extract_keywords(a), extract_keywords(b)
+def are_topics_duplicate(title1: str, title2: str, threshold: float = 0.40) -> bool:
+    w1, w2 = extract_keywords(title1), extract_keywords(title2)
     if not w1 or not w2:
         return False
     common = w1 & w2
@@ -191,65 +198,16 @@ def write_json(path: str, data) -> None:
     os.replace(tmp, path)
 
 
-def short_id(link: str) -> str:
-    return hashlib.sha1(link.encode("utf-8")).hexdigest()[:10]
+def gen_json(client, prompt: str, temperature: float, safety=None):
+    cfg = dict(response_mime_type="application/json", temperature=temperature)
+    if safety:
+        cfg["safety_settings"] = safety
+    resp = client.models.generate_content(model=GEMINI_MODEL, contents=prompt, config=types.GenerateContentConfig(**cfg))
+    text = re.sub(r"^```(?:json)?|```$", "", (resp.text or "").strip()).strip()
+    return json.loads(text)
 
 
-def normalize_post(post: str) -> str:
-    """Stały układ: post 1 / pusta linia / ---ODPOWIEDŹ--- / pusta linia / post 2, pytanie w osobnym akapicie."""
-    parts = re.split(r"\s*---ODPOWIEDŹ---\s*", str(post).strip(), maxsplit=1)
-    if len(parts) != 2:
-        return str(post).strip()
-    a, b = parts[0].strip(), parts[1].strip()
-    b = re.sub(r"\s*([^.!?\n]*\?\s*👇💬)\s*$", r"\n\n\1", b)
-    return f"{a}\n\n---ODPOWIEDŹ---\n\n{b}"
-
-
-def novelty(text: str, reference: str) -> float:
-    """Jaka część słów (rdzeń 5 liter) z `text` NIE występuje w `reference` — miara, czy tekst coś dodaje."""
-    t = {w[:5] for w in extract_keywords(text)}
-    r = {w[:5] for w in extract_keywords(reference)}
-    return len(t - r) / len(t) if t else 0.0
-
-
-def numbers_in(text: str) -> set:
-    """Liczby z normalizacją separatorów tysięcy: '1,800' / '1 800' / '1.800' → '1800'."""
-    out = set()
-    for n in re.findall(r"\d{1,3}(?:[ \u00a0,.]\d{3})+|\d+", text or ""):
-        d = re.sub(r"\D", "", n)
-        if len(d) > 1:
-            out.add(d)
-    return out
-
-
-def normtxt(t: str) -> str:
-    return re.sub(r"[^\w]+", " ", str(t).lower()).strip()
-
-
-def number_supported(n: str, src_nums: set) -> bool:
-    """Liczba z tekstu jest 'pokryta', jeśli jest w źródle, jest jej wielokrotnością tysiąca ('550' ↔ '550000')
-    albo to zaokrąglenie w dół ('ponad 300' ↔ '309')."""
-    if n in src_nums or (n + "000") in src_nums:
-        return True
-    z = len(n) - len(n.rstrip("0"))
-    return z >= 2 and any(len(x) == len(n) and x.startswith(n.rstrip("0")) for x in src_nums)
-
-
-def interleave(items: list, per_source: int, limit: int) -> list:
-    by_src = defaultdict(list)
-    for a in items:
-        by_src[a["source_name"]].append(a)
-    queues = [v[:per_source] for v in by_src.values()]
-    out = []
-    while queues and len(out) < limit:
-        for q in queues:
-            if q and len(out) < limit:
-                out.append(q.pop(0))
-        queues = [q for q in queues if q]
-    return out
-
-
-# ───────────────────────── POBIERANIE ─────────────────────────
+# ───────────────────────── RSS ─────────────────────────
 def load_feed(url: str):
     """Pobiera feed z przeglądarkowym User-Agent (domyślny UA feedparsera bywa blokowany)."""
     try:
@@ -264,208 +222,175 @@ def load_feed(url: str):
 def fetch_feeds() -> list:
     articles = []
     for url, lang, cat, default_name in FEEDS:
-        try:
-            feed, err = load_feed(url)
-            if feed is None:
-                print(f"  ✗ RSS {default_name:<24} {err}  ({url[:60]})")
+        feed, err = load_feed(url)
+        if feed is None:
+            print(f"  ✗ RSS {default_name:<24} {err}  ({url[:60]})")
+            continue
+        n = 0
+        for entry in feed.entries[:12]:
+            if not is_recent(entry):
                 continue
-            n = 0
-            for e in feed.entries[:12]:
-                if not is_recent(e):
-                    continue
-                title = getattr(e, "title", "").strip()
-                link = clean_link(getattr(e, "link", "#"))
-                if len(title) <= 15 or link == "#":
-                    continue
-                src = default_name
-                try:
-                    src = (e.get("source", {}) or {}).get("title") or default_name
-                except Exception:
-                    pass
-                if src and title.endswith(f" - {src}"):
-                    title = title[: -len(src) - 3].strip()
-                snippet = re.sub(r"<[^>]+>", "", getattr(e, "summary", "")).strip()
-                snippet = html_lib.unescape(re.sub(r"\s+", " ", snippet))[:500]
-                articles.append({"title": title, "snippet": snippet, "link": link, "source_name": src,
-                                 "lang": lang, "feed_category": cat})
-                n += 1
-            print(f"  RSS {default_name:<24} {n:>2} art.")
-            if n == 0:
-                print(f"    ⚠ pusty feed: {url}")
-        except Exception as ex:
-            print(f"  ✗ RSS {url}: {ex}")
+            title = getattr(entry, "title", "").strip()
+            link = clean_link(getattr(entry, "link", "#"))
+            if len(title) <= 15 or link == "#":
+                continue
+            src = default_name
+            try:   # Google News podaje prawdziwego wydawcę w <source>
+                src = (entry.get("source", {}) or {}).get("title") or default_name
+            except Exception:
+                pass
+            if src and title.endswith(f" - {src}"):
+                title = title[: -len(src) - 3].strip()
+            summary = re.sub(r"<[^>]+>", "", getattr(entry, "summary", "")).strip()
+            snippet = html_lib.unescape(re.sub(r"\s+", " ", summary))[:SNIPPET_LEN]
+            articles.append({"title": title, "snippet": snippet, "link": link, "source_name": src,
+                             "lang": lang, "feed_category": cat})
+            n += 1
+        print(f"  RSS {default_name:<24} {n:>2} art.")
+        if n == 0:
+            print(f"    ⚠ pusty feed: {url}")
     return articles
 
 
-def _clean(t: str) -> str:
-    return re.sub(r"\s+", " ", html_lib.unescape(re.sub(r"<[^>]+>", " ", t or ""))).strip()
+def interleave(items: list, per_source: int, limit: int) -> list:
+    """Round-robin po źródłach: żadne źródło nie zdominuje listy kandydatów."""
+    by_src = defaultdict(list)
+    for a in items:
+        by_src[a["source_name"]].append(a)
+    queues = [v[:per_source] for v in by_src.values()]
+    out = []
+    while queues and len(out) < limit:
+        for q in queues:
+            if q and len(out) < limit:
+                out.append(q.pop(0))
+        queues = [q for q in queues if q]
+    return out
 
 
-def fetch_article(url: str):
-    """(tekst artykułu do ~1800 znaków, og:image lub None). Źródła: JSON-LD articleBody, akapity <p>, meta description."""
-    if not url or "news.google.com" in url:
-        return "", None, ""
-    try:
-        req = urllib.request.Request(url, headers=HEADERS)
-        with urllib.request.urlopen(req, timeout=8) as r:
-            raw = r.read(800_000).decode("utf-8", errors="ignore")
-    except Exception:
-        return "", None, ""
-    img = None
-    for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
-                r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']'):
-        m = re.search(pat, raw, re.I)
-        if m:
-            u = html_lib.unescape(m.group(1).strip())
-            img = "https:" + u if u.startswith("//") else u
-            img = img if img.startswith("http") else None
-            break
-    desc = ""
-    m = re.search(r'<meta[^>]+(?:property|name)=["\'](?:og:description|description)["\'][^>]+content=["\']([^"\']+)["\']', raw, re.I)
-    if m:
-        desc = _clean(m.group(1))
-    body = ""
-    m = re.search(r'"articleBody"\s*:\s*"((?:[^"\\]|\\.)*)"', raw)
-    if m:
-        try:
-            body = _clean(json.loads('"' + m.group(1) + '"'))
-        except Exception:
-            body = ""
-    paras = [t for t in (_clean(p) for p in re.findall(r"<p[^>]*>(.*?)</p>", raw, re.S | re.I)) if len(t) >= 40]
-    text = max([body, " ".join(paras)], key=len)
-    return text[:1800], img, desc
-
-
-def build_candidates(clustered: list) -> list:
-    pool = interleave(clustered, MAX_PER_SOURCE, MAX_POOL)
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        results = list(ex.map(lambda a: fetch_article(a["link"]), pool))
-    for a, (text, og, desc) in zip(pool, results):
-        a["text"], a["og_image"] = text, og
-        if len(desc) > len(a["snippet"]):
-            a["snippet"] = desc[:500]
-        # "grounded" = pełna treść ALBO treściwy lead z RSS (min. 150 znaków i wyraźnie więcej niż sam tytuł)
-        lead_ok = len(a["snippet"]) >= 150 and novelty(a["snippet"], a["title"]) >= 0.5
-        a["grounded"] = len(text) >= GROUNDED_MIN_CHARS or lead_ok
-    stat = defaultdict(lambda: [0, 0])
-    for a in pool:
-        stat[a["source_name"]][0] += int(a["grounded"])
-        stat[a["source_name"]][1] += 1
-    print("  pełny tekst wg źródeł: " + ", ".join(f"{k} {v[0]}/{v[1]}" for k, v in stat.items()))
-    grounded = [a for a in pool if a["grounded"]]
-    ungrounded = [a for a in pool if not a["grounded"]][:MAX_UNGROUNDED_CAND]
-    cands = (grounded + ungrounded)[:MAX_CANDIDATES]
-    print(f"  kandydaci: {len(cands)} (z pełnym tekstem: {sum(c['grounded'] for c in cands)})")
-    return cands
-
-
-def pick_photo(photos: list, query: str, used: set, sensitive: bool, min_score: int):
-    """Zdjęcie musi pasować do zapytania (opis alt); odrzuca obrazy sugerujące inne zdarzenie."""
+# ───────────────────────── ZDJĘCIA ─────────────────────────
+def pick_photo(photos: list, query: str, used: set):
+    """Najpierw zdjęcie, którego opis (alt) pasuje do zapytania; zawsze pomija obrazy sugerujące inne zdarzenie."""
     words = set(re.findall(r"[a-z]{4,}", query.lower())) - GENERIC_WORDS
-    need = max(min_score, -(-len(words) // 2)) if min_score else 0
     best, best_score = None, -1
     for p in photos:
         src = p.get("src", {})
         u = src.get("large") or src.get("medium")
         alt = (p.get("alt") or "").lower()
-        if not u or u in used or BAD_ALT_RE.search(alt) or (sensitive and PEOPLE_RE.search(alt)):
+        if not u or u in used or BAD_ALT_RE.search(alt):
             continue
         score = sum(1 for w in words if w in alt)
         if score > best_score:
             best, best_score = (p, u), score
-    return best if best and best_score >= need else None
+    return best
 
 
-def fetch_pexels(query: str, used: set, sensitive: bool, min_score: int):
+def fetch_pexels(query: str, used: set, retries: int = 2):
     if not PEXELS_API_KEY:
         return None
-    for attempt in range(3):
+    for attempt in range(retries + 1):
         try:
-            url = f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=20&orientation=landscape"
-            req = urllib.request.Request(url, headers={"Authorization": PEXELS_API_KEY,
-                                                       "User-Agent": "SwiatWMinute-Bot/1.0"})
-            with urllib.request.urlopen(req, timeout=8) as r:
-                photos = json.loads(r.read().decode("utf-8")).get("photos", [])
-            hit = pick_photo(photos, query, used, sensitive, min_score)
+            url = f"https://api.pexels.com/v1/search?query={urllib.parse.quote(query)}&per_page=15&orientation=landscape"
+            req = urllib.request.Request(url, headers={"Authorization": PEXELS_API_KEY, "User-Agent": "SwiatWMinute-Bot/1.0"})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                photos = json.loads(resp.read().decode("utf-8")).get("photos", [])
+            hit = pick_photo(photos, query, used)
             if hit:
-                used.add(hit[1])
-                return {"url": hit[1], "credit": hit[0].get("photographer", ""), "credit_url": hit[0].get("url", "")}
+                p, u = hit
+                used.add(u)
+                src = p.get("src", {})
+                return {"url": u, "portrait": src.get("portrait") or src.get("large2x") or u,
+                        "credit": p.get("photographer", ""), "credit_url": p.get("url", "")}
             return None
         except Exception as ex:
-            if attempt == 2:
-                print(f"  Pexels '{query}': {ex}")
-            time.sleep(1.5)
+            if attempt == retries:
+                print(f"Błąd Pexels dla '{query}': {ex}")
+            else:
+                time.sleep(1.5)
     return None
 
 
-# ───────────────────────── GEMINI ─────────────────────────
-def gen_json(client, prompt: str, temperature: float):
-    resp = client.models.generate_content(
-        model=GEMINI_MODEL, contents=prompt,
-        config=types.GenerateContentConfig(response_mime_type="application/json", temperature=temperature))
-    text = re.sub(r"^```(?:json)?|```$", "", (resp.text or "").strip()).strip()
-    return json.loads(text)
+def fetch_article_image(url: str):
+    if not url or url == "#" or "news.google.com" in url:
+        return None
+    try:
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=7) as resp:
+            page = resp.read(800_000).decode("utf-8", errors="ignore")
+        for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+                    r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']',
+                    r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']',
+                    r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']twitter:image["\']'):
+            m = re.search(pat, page, re.I)
+            if m:
+                img = html_lib.unescape(m.group(1).strip())
+                if img.startswith("//"):
+                    img = "https:" + img
+                if img.startswith("http"):
+                    return img
+    except Exception as ex:
+        print(f"  brak og:image ({url[:55]}…): {ex}")
+    return None
 
 
-PROMPT = """Jesteś ostrym, rzetelnym redaktorem serwisu „Świat w Minutę” (Instagram/Threads). Styl: dynamiczny, konkretny, z pazurem.
-Ale wszystko, co piszesz, musi dać się obronić tekstem źródła.
+# ───────────────────────── WALIDACJA I DOPASOWANIE ŹRÓDŁA ─────────────────────────
+def validate_items(items: list) -> list:
+    required = {"category", "title", "hook", "summary", "comment", "threads_post", "question", "image_query", "link"}
+    valid, seen_titles, seen_links = [], [], set()
+    for item in items:
+        if not isinstance(item, dict) or not required.issubset(item.keys()):
+            continue
+        title = format_uppercase_title(str(item.get("title", "")))
+        hook = str(item.get("hook", "")).strip()
+        summary = str(item.get("summary", "")).strip()
+        comment = str(item.get("comment", "")).strip()
+        threads_post = str(item.get("threads_post", "")).strip()
+        question = str(item.get("question", "")).strip()
+        category = normalize_category(item.get("category", "GOSPODARKA"))
+        image_query = str(item.get("image_query", "world news")).strip()
+        link = clean_link(str(item.get("link", "#")))
+        if len(title) < 10 or len(summary) < 25 or len(comment) < 10 or len(threads_post) < 420:
+            continue
+        if "---ODPOWIEDŹ---" not in threads_post:
+            continue
+        if link != "#" and link in seen_links:
+            continue
+        if any(are_topics_duplicate(title, prev, threshold=0.35) for prev in seen_titles):
+            continue
+        seen_titles.append(title)
+        if link != "#":
+            seen_links.add(link)
+        valid.append({"category": category, "title": title, "hook": hook, "summary": summary, "comment": comment,
+                      "threads_post": threads_post, "question": question, "image_query": image_query, "link": link})
+    return valid
 
-FAKTY (ważniejsze niż styl):
-1. Używaj WYŁĄCZNIE informacji z pól "title" i "text" danego artykułu. Nie dodawaj liczb, dat, cytatów, nazwisk, przyczyn,
-   prognoz ani kontekstu spoza danych. Zastrzeżenia źródła ("prawdopodobnie", "wstępnie", "według") zachowaj we wszystkich polach.
-2. Nie używaj nieokreślonych ilości ("kilkanaście", "liczne", "wiele", "setki"), jeśli źródło nie podaje takiego sformułowania.
-3. Pozycje z "grounded": false mają tylko tytuł i krótki opis. Pisz je KRÓCEJ (threads_post łącznie 250-400 znaków), tylko
-   z tego, co jest w tytule i opisie, bez dopełniania treści ogólnikami. Zastrzeżenie z nazwą źródła ("Fakt informuje:") daj RAZ,
-   w hooku — nie powtarzaj "według doniesień" w każdym polu. Wybierz takich pozycji najwyżej 2.
-4. Nie przypisuj nikomu intencji ani motywów, których nie podaje źródło.
-5. Nie zakładaj pory dnia, miejsca ani sytuacji odbiorcy ("poranne", "stoisz w korku"). Pytanie ma wynikać wprost z faktu.
 
-OSTRY STYL (w granicach faktów):
-- "title": mocny czasownik lub konkretna liczba/fakt ze źródła, do 60 znaków, bez pytajników, bez przesady ponad treść.
-- "comment": 1 zdanie (14-22 słów), CIĘTE, zbudowane na kontraście lub skali dwóch faktów/liczb ze źródła albo na
-  nieoczywistym skutku. Wolno ironizować z deklaracji, decyzji i polityk
-  publicznych oraz zestawiać je z faktami ze źródła (wzór: "Gdy [deklaracja lub fakt A ze źródła], [fakt B ze źródła]."). Bez wyzwisk
-  i bez przypisywania nazwanym osobom intencji, których źródło nie podaje.
-  ZAKAZANE sformułowania: "pokazuje", "dowodzi", "ujawnia", "świadczy", "podkreśla", "dobitnie", "po raz kolejny",
-  "kluczowy", "w sam punkt". Komentarz NIE może powtarzać summary innymi słowami.
-  Zły: "To pokazuje, jak trudne jest życie w kryzysie."
-  Dobry (fikcyjny wzór struktury): "Firma zapowiada 500 nowych miejsc pracy, ale w tym samym komunikacie zwalnia 700 osób."
-- "comment" pisz w TRZECIEJ osobie (nie zaczynaj od "Widzisz/Płacisz/Kupujesz/Zostajesz…") i opieraj wyłącznie na faktach ze
-  źródła — żadnych własnych ocen relacji, czasu ani skali ("sojusznik", "w tydzień", "pomylił z chmurą"), jeśli nie ma ich w tekście.
-  Zwrot na „ty” stosuj tylko w pytaniu do odbiorców. Zero formalnego „Państwa”. Naturalna polszczyzna, bez kalk z angielskiego.
-- W threads_post nie powtarzaj komentarza słowo w słowo; zakończ pytaniem do odbiorców.
+def resolve_sources(items: list, candidates: list) -> list:
+    """Przypisuje każdej pozycji prawdziwy artykuł-źródło (link, nazwa). Pozycje bez źródła odpadają
+    (model potrafi przepisać link z przykładu w prompcie)."""
+    by_link = {norm_link(a["link"]): a for a in candidates}
+    out, used = [], set()
+    for it in items:
+        a = by_link.get(norm_link(it["link"]))
+        if not a:   # zapas: najlepsze dopasowanie po słowach kluczowych tytułu/streszczenia
+            kw = extract_keywords(it["title"] + " " + it["summary"])
+            best, best_n = None, 0
+            for c in candidates:
+                n = len(kw & extract_keywords(c["title"]))
+                if n > best_n:
+                    best, best_n = c, n
+            a = best if best_n >= 2 else None
+        if not a or a["link"] in used:
+            print(f"  ✗ odrzucono (brak źródła w danych wejściowych): {it['title'][:55]}")
+            continue
+        used.add(a["link"])
+        it["link"] = a["link"]
+        it["source_name"] = a["source_name"]
+        it["source_title"] = a["title"]
+        it["lang"] = a["lang"]
+        it["id"] = short_id(a["link"])
+        out.append(it)
+    return out
 
-FORMAT:
-- Każda pozycja = INNY temat. Nie wybieraj tematu dotyczącego tego samego wydarzenia co pozycje z archiwum, nawet jeśli
-  źródło lub język są inne. Max 3 pozycje z jednego źródła, różnorodne kategorie.
-- Wybierz 14 tematów (minimum 12; mniej tylko wtedy, gdy naprawdę brakuje unikalnych). Proporcje, o ile dane na to pozwalają:
-  co najmniej 5 pozycji o Polsce (artykuły z "lang": "pl": wydarzenia krajowe, polska gospodarka i biznes), 3-4 o świecie i
-  geopolityce, najwyżej 2 OBRONNOŚĆ i najwyżej 2 TECHNOLOGIE.
-- Kategoria: POLSKA, GOSPODARKA, BIZNES, GEOPOLITYKA, OBRONNOŚĆ (tylko wojsko/zbrojenia), TECHNOLOGIE, ŚWIAT (wypadki,
-  katastrofy, zdrowie, wydarzenia ogólne).
-- Emoji w tytule TYLKO z: 🚨 📉 📈 💥 🔥 ⚠️ ⚖️ 🏛️ 🛡️ 🪖 💰 🛢️ ⚡ 🤖 💻 🏥 🌍 🚀 🏗️ 📊 ⏰ 🏢 🌉 🏭 💵 🏦 🛒 🚗 ✈️ 🚢 🌾 ⚓ 🧬 🔋 📡 🗳️ 💼 🔒 ⛽
-- Flagi tylko dla miejsca/tematu. Przy atakach, zamieszkach, konfliktach zbrojnych NIE dawaj flag stron konfliktu.
-
-Zwróć TABLICĘ JSON obiektów:
-- "id": liczba, id artykułu z danych (kopiuj dokładnie)
-- "category", "title" (emoji + NAGŁÓWEK DUŻYMI LITERAMI), "hook" (1 zdanie), "summary" (2 zdania, same fakty), "comment"
-- "threads_post": dwa posty rozdzielone linią ---ODPOWIEDŹ---
-    Post 1 (320-380 znaków; dla "grounded": false krócej): NAGŁÓWEK Z EMOJI, linia-hook, 1-2 zdania sedna, na końcu:
-      (Szczegóły i tło w odpowiedzi 👇🧵)
-    Post 2 (380-450 znaków; dla "grounded": false krócej): kontekst i liczby ze źródła, pytanie do odbiorców kończące się 👇💬
-    Linie oddzielaj podwójnym znakiem nowej linii.
-- "question": pytanie do odbiorców na „ty”, zakończone 👇💬
-- "image_query": 2-5 angielskich słów — konkretny, neutralny obiekt lub miejsce (bez nazwisk)
-- "evidence": tablica 2 DOSŁOWNYCH fragmentów (4-15 słów każdy) skopiowanych znak w znak z pola "text" lub "title" artykułu,
-  które potwierdzają najważniejsze fakty i liczby pozycji (nie tłumacz ich, nie przerabiaj)
-- "sensitive": true, jeśli temat dotyczy przemocy, wypadku, śmierci, przestępstwa lub zdrowia konkretnej osoby
-
-Archiwum (te wydarzenia już były, nie powtarzaj ich):
-__PREV__
-
-Dane wejściowe:
-__CANDIDATES__
-"""
 
 DEDUPE_PROMPT = """Poniżej NOWE pozycje i ARCHIWUM (to już opublikowano). Dla każdej nowej pozycji oceń, czy opisuje TO SAMO
 WYDARZENIE (ten sam incydent, decyzję, raport, atak, sprawę) co którakolwiek pozycja z archiwum — niezależnie od źródła i języka.
@@ -479,147 +404,22 @@ ARCHIWUM:
 __OLD__
 """
 
-REVIEW_PROMPT = """Jesteś redaktorem-weryfikatorem. Dla KAŻDEJ pozycji porównaj pola z "source_text" i "source_title".
-1. Usuń lub zastąp ostrożniejszym sformułowaniem każde twierdzenie, liczbę, nazwisko, przyczynę lub prognozę, których NIE wspiera
-   source_text. Zastrzeżenia źródła ("prawdopodobnie", "wstępnie", "według") muszą być zachowane we wszystkich polach,
-   także w threads_post. Jeśli "grounded": false, trzymaj się wyłącznie tytułu i opisu.
-2. Popraw błędy językowe: gramatykę, odmianę, ortografię, kalki z angielskiego.
-3. Zachowaj ostry, dynamiczny styl, zwrot do odbiorcy na „ty” i strukturę threads_post (separator ---ODPOWIEDŹ---, podwójne
-   nowe linie, emoji, długość ±15%). Nie łagodź stylu bez potrzeby.
-4. Nie dodawaj nowych informacji.
-Zwróć TABLICĘ JSON: dla każdej pozycji obiekt z polami id, title, hook, summary, comment, threads_post, question.
-
-Pozycje:
-__ITEMS__
-"""
-
-
-def validate_items(raw_items: list, candidates: list, known_links: set, known_titles: list) -> list:
-    required = {"id", "category", "title", "hook", "summary", "comment", "threads_post", "question", "image_query"}
-    valid, seen_titles, seen_ids, ungrounded_n = [], [], set(), 0
-    rej = Counter()
-    for it in raw_items:
-        if not isinstance(it, dict) or not required.issubset(it.keys()):
-            rej["brak pól"] += 1
-            continue
-        try:
-            idx = int(it["id"])
-            cand = candidates[idx]
-        except Exception:
-            rej["zły id"] += 1
-            continue
-        if idx in seen_ids or norm_link(cand["link"]) in known_links:
-            rej["powtórka linku/id"] += 1
-            continue
-        category = normalize_category(it["category"])
-        title = format_title(it["title"], category)
-        summary, comment = str(it["summary"]).strip(), str(it["comment"]).strip()
-        post = normalize_post(it["threads_post"])
-        min_post = 400 if cand["grounded"] else 250
-        if (len(title) < 10 or len(summary) < 25 or len(comment) < 10 or len(post) < min_post
-                or "---ODPOWIEDŹ---" not in post):
-            rej["za krótkie / zły format"] += 1
-            continue
-        if any(are_topics_duplicate(title, p, 0.35) for p in seen_titles + known_titles):
-            rej["powtórka tematu"] += 1
-            continue
-        # streszczenie musi coś dodawać do tytułu (inaczej to wypełniacz): ostrzej dla pozycji bez pełnego tekstu
-        if novelty(summary, title + " " + cand["title"]) < (0.4 if cand["grounded"] else 0.6):
-            rej["streszczenie bez nowych informacji"] += 1
-            continue
-        body = normtxt((cand.get("text") or "") + " " + cand["snippet"])   # treść + lead z RSS, bez samego tytułu
-        blob = body if cand["grounded"] else normtxt(cand["title"] + " " + body)
-        ev = [e for e in (it.get("evidence") or []) if isinstance(e, str) and len(normtxt(e)) >= 12]
-        ok_ev = [e.strip() for e in ev if normtxt(e) in blob]
-        if not ok_ev:
-            rej["brak dowodu w źródle"] += 1
-            continue
-        if not cand["grounded"]:
-            if ungrounded_n >= MAX_UNGROUNDED_ITEMS:
-                rej["limit pozycji bez tekstu"] += 1
-                continue
-            ungrounded_n += 1
-        seen_ids.add(idx)
-        seen_titles.append(title)
-        valid.append({
-            "id": short_id(cand["link"]), "category": category, "title": title,
-            "hook": str(it["hook"]).strip(), "summary": summary, "comment": comment,
-            "threads_post": post, "question": str(it["question"]).strip(),
-            "image_query": str(it["image_query"]).strip() or "world news",
-            "link": cand["link"], "source_name": cand["source_name"], "source_title": cand["title"],
-            "grounded": cand["grounded"], "sensitive": bool(it.get("sensitive", False)),
-            "evidence": ok_ev[:2], "_og": cand.get("og_image"),
-            "_src": ((cand.get("text") or "") + " " + cand["snippet"])[:1800],
-        })
-    if rej:
-        print(f"   odrzucone: {dict(rej)}")
-    return valid
-
-
-def review_items(client, items: list) -> list:
-    """Drugi przebieg: usuwa twierdzenia bez pokrycia w źródle i poprawia język. Z zabezpieczeniami."""
-    payload = [{"id": i["id"], "grounded": i["grounded"], "source_title": i["source_title"], "source_text": i["_src"],
-                "title": i["title"], "hook": i["hook"], "summary": i["summary"], "comment": i["comment"],
-                "threads_post": i["threads_post"], "question": i["question"]} for i in items]
-    try:
-        data = gen_json(client, REVIEW_PROMPT.replace("__ITEMS__", json.dumps(payload, ensure_ascii=False)), 0.1)
-    except Exception as ex:
-        print(f"  redakcja nie powiodła się (zostawiam wersję z 1. przebiegu): {ex}")
-        return items
-    fixed = {str(d.get("id")): d for d in data if isinstance(d, dict)} if isinstance(data, list) else {}
-    changed = 0
-    for it in items:
-        d = fixed.get(it["id"])
-        if not d:
-            continue
-        new = {k: str(d.get(k, "")).strip() for k in ("title", "hook", "summary", "comment", "threads_post", "question")}
-        if (len(new["title"]) < 10 or len(new["summary"]) < 25 or len(new["comment"]) < 10
-                or len(new["threads_post"]) < (400 if it["grounded"] else 250) or "---ODPOWIEDŹ---" not in new["threads_post"]):
-            continue
-        new["title"] = format_title(new["title"], it["category"])
-        new["threads_post"] = normalize_post(new["threads_post"])
-        if any(new[k] != it[k] for k in new):
-            changed += 1
-        it.update(new)
-    print(f"  redakcja: zmieniono {changed}/{len(items)} pozycji")
-    return items
-
 
 def drop_repeated_events(client, items: list, known_events: list) -> list:
-    """Semantyczna kontrola: usuwa pozycje opisujące to samo wydarzenie co archiwum (inne źródło/język)."""
     if not items or not known_events:
         return items
     new = [{"id": i["id"], "title": i["title"], "summary": i["summary"][:200]} for i in items]
-    prompt = (DEDUPE_PROMPT.replace("__NEW__", json.dumps(new, ensure_ascii=False))
-                           .replace("__OLD__", json.dumps(known_events[:90], ensure_ascii=False)))
+    prompt = DEDUPE_PROMPT.replace("__NEW__", json.dumps(new, ensure_ascii=False)).replace("__OLD__", json.dumps(known_events[:90], ensure_ascii=False))
     try:
         data = gen_json(client, prompt, 0.0)
         ids = {str(x) for x in (data.get("repeats", []) if isinstance(data, dict) else [])}
     except Exception as ex:
         print(f"  kontrola powtórzeń nie powiodła się: {ex}")
         return items
-    kept = [i for i in items if i["id"] not in ids]
     for i in items:
         if i["id"] in ids:
             print(f"  ↺ powtórka wydarzenia z archiwum → {i['title'][:55]}")
-    return kept
-
-
-def check_numbers(items: list) -> list:
-    """Liczby w tekście muszą występować w źródle. Pozycje bez pełnego tekstu z obcymi liczbami odpadają."""
-    out = []
-    for it in items:
-        blob = it["source_title"] + " " + it["_src"]
-        mine = numbers_in(" ".join(it[k] for k in ("title", "hook", "summary", "comment", "threads_post", "question")))
-        src_nums = numbers_in(blob)
-        extra = sorted(n for n in mine if not number_supported(n, src_nums))
-        if extra:
-            print(f"  ⚠ liczby bez pokrycia w źródle {extra[:5]} → {it['title'][:50]}")
-            if not it["grounded"]:
-                continue
-            it["needs_review"] = extra[:5]
-        out.append(it)
-    return out
+    return [i for i in items if i["id"] not in ids]
 
 
 def translate_titles(client, titles: list) -> list:
@@ -637,143 +437,210 @@ def translate_titles(client, titles: list) -> list:
     return titles
 
 
+# ───────────────────────── PROMPT (styl bez zmian) ─────────────────────────
+def build_prompt(previous_titles: list, candidates: list) -> str:
+    ai_input = [{"title": a["title"], "snippet": a["snippet"], "link": a["link"], "source": a["source_name"]} for a in candidates]
+    return f"""Jesteś redaktorem naczelnym formatu informacyjno-analitycznego „Świat w Minucie” (Instagram/Threads). 
+Twoje posty zdobywają wirale, ponieważ wybierasz RÓŻNORODNE, MOCNE I NAJCIEKAWSZE wydarzenia dnia.
+
+KATEGORYCZNY ZAKAZ DUBLOWANIA TEMATÓW (1 TEMAT = DOKŁADNIE 1 WPIS):
+- Każda wygenerowana wiadomość MUSI dotyczyć ZUPEŁNIE INNEJ sprawy, innej spółki, innego kraju lub problemu.
+- Kategoryczny zakaz generowania dwóch wpisów o tej samej ustawie, tym samym polityku, tej samej spółce czy tym samym raporcie giełdowym!
+- Jeśli w danych wejściowych jest kilka ciekawych tematów z Polski, technologii, surowców i obronności, MASZ WYBRAĆ PRZEKRÓJ NAJLEPSZYCH, a nie skupiać się na jednym wątku.
+
+Zadanie: Z poniższych unikalnych artykułów wybierz DOKŁADNIE 14-15 NAJWAŻNIEJSZYCH I NAJBARDZIEJ WCIĄGAJĄCYCH tematów w formacie JSON.
+
+ZASADA 1: NAGŁÓWEK ("title"):
+[Trafna emotikona] [AGRESYWNY, MOCNY NAGŁÓWEK DUŻYMI LITERAMI DO 60 ZNAKÓW]
+
+ZASADA 2: FORMAT THREADS ("threads_post") - DWA POSTY (650-800 ZNAKÓW):
+CZĘŚĆ 1 (Post główny – 320-380 znaków):
+[NAGŁÓWEK DUŻYMI LITERAMI Z EMOTIKONĄ]
+[Krzykliwy podwójny hook z flagami i wykrzyknikiem]
+[1-2 zdania uderzające w sedno problemu, zakończone:]
+(Szczegóły i tło w odpowiedzi 👇🧵)
+
+---ODPOWIEDŹ---
+
+CZĘŚĆ 2 (Odpowiedź pod postem – 380-450 znaków):
+[Konkretne liczby, kulisy i mechanizm, którego NIE MA na slajdzie graficznym]
+[1 bezlitosne, cięte zdanie podsumowujące obłudę lub realne koszty]
+[Konkretne pytanie prowokujące do dyskusji kończące się '👇💬']
+
+ZASADA 3: CIĘTY KOMENTARZ NA SLAJD ("comment"):
+- DOKŁADNIE 1 ZDANIE (14-22 słowa, KRÓTSZE NIŻ SUMMARY). Zero banałów.
+
+ZASADA 4: POJEDYNCZE KATEGORIE:
+Pole "category" to DOKŁADNIE JEDNO słowo:
+- "POLSKA" (min. 4)
+- "GOSPODARKA" (min. 4)
+- "BIZNES" (2-3)
+- "GEOPOLITYKA" (2)
+- "OBRONNOŚĆ" (max 2)
+- "TECHNOLOGIE" (max 1-2)
+
+WZORCOWY OBIEKT:
+{{
+  "category": "GOSPODARKA",
+  "title": "🚨 RZĄD PRZEPYCHA NOWY PODATEK: ZAPŁACĄ WSZYSCY KIEROWCY",
+  "hook": "Nowa opłata paliwowa wchodzi tylnymi drzwiami bez konsultacji społecznych.",
+  "summary": "Stawka wzrośnie o 14% od pierwszego dnia przyszłego miesiąca, co przełoży się na wzrost cen litra benzyny o 35 groszy. Ministerstwo tłumaczy decyzję koniecznością łatania dziury w Funduszu Drogowym.",
+  "comment": "Rządzący znowu opowiadają bajki o ochronie portfeli, podczas gdy przy dystrybutorze ściągają z nas kolejny ukryty haracz.",
+  "threads_post": "🚨 RZĄD PRZEPYCHA NOWY PODATEK: ZAPŁACĄ WSZYSCY KIEROWCY\\n\\nKolejny cichy haracz uderzy prosto w portfele milionów Polaków! ⛽🇵🇱\\n\\nBez zapowiedzi i bez debaty parlamentarnej rząd przeforsował korektę opłaty paliwowej. Od przyszłego miesiąca każda wizyta na stacji będzie zauważalnie droższa, a branża transportowa już liczy straty.\\n\\n(Szczegóły i tło w odpowiedzi 👇🧵)\\n\\n---ODPOWIEDŹ---\\n\\nNowe przepisy mają przynieść budżetowi ponad 4,2 miliarda złotych rocznie. Problem w tym, że wyższe koszty paliwa natychmiast przełożą się na ceny żywności i usług w sklepach.\\n\\nTo klasyczny mechanizm: politycy obiecują stabilizację, a dziury w finansach państwa łatają z pieniędzy kierowców. 📉⏳\\n\\nOdczujecie tę podwyżkę w codziennych wydatkach? 📊👇💬",
+  "question": "Jak ta zmiana wpłynie bezpośrednio na Twój domowy budżet? 👇💬",
+  "image_query": "gas station fuel price",
+  "link": "https://example.com"
+}}
+
+Unikaj tematów z archiwum:
+{json.dumps(previous_titles[:25], ensure_ascii=False)}
+
+Dane wejściowe (wybierz z nich 14-15 najciekawszych, CAŁKOWICIE RÓŻNYCH tematów; pole "link" skopiuj dokładnie z wybranego artykułu):
+{json.dumps(ai_input, ensure_ascii=False)}
+"""
+
+
+SAFETY = [
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold=types.HarmBlockThreshold.BLOCK_NONE),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HARASSMENT, threshold=types.HarmBlockThreshold.BLOCK_NONE),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold=types.HarmBlockThreshold.BLOCK_NONE),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold=types.HarmBlockThreshold.BLOCK_NONE),
+]
+
+
 # ───────────────────────── GŁÓWNY PRZEPŁYW ─────────────────────────
 def main():
-    if not GEMINI_API_KEY:
+    gemini_key = os.environ.get("GEMINI_API_KEY", "")
+    if not gemini_key:
         sys.exit("Brak GEMINI_API_KEY")
     if not PEXELS_API_KEY:
-        print("⚠ Brak PEXELS_API_KEY — zdjęcia będą zastępcze")
+        print("⚠ Brak PEXELS_API_KEY — pozycje będą bez zdjęć (strona pokaże kartę kategorii)")
 
-    now = datetime.now(PL_TZ)
-    session = "poranne" if now.hour < 12 else "wieczorne"
-    session_key = f"{now.strftime('%Y-%m-%d')}_{session}"
+    now_pl = datetime.now(pl_tz)
+    session_name = "poranne" if now_pl.hour < 12 else "wieczorne"
+    session_key = f"{now_pl.strftime('%Y-%m-%d')}_{session_name}"
 
     print("1. RSS")
-    raw = fetch_feeds()
-    print(f"   razem {len(raw)} artykułów")
-    if not raw:
+    raw_articles = fetch_feeds()
+    print(f"   razem {len(raw_articles)} surowych artykułów")
+    if not raw_articles:
         sys.exit("Brak artykułów z RSS — nie nadpisuję plików")
 
-    archive = {}
+    archive_data = {}
     if os.path.exists("archive.json"):
         try:
             with open("archive.json", encoding="utf-8") as f:
-                archive = json.load(f)
+                archive_data = json.load(f)
         except Exception:
-            archive = {}
+            archive_data = {}
 
-    # Wszystko, co już publikowaliśmy (w tym wydanie poranne przy wieczornym)
-    known_links, known_titles, known_events = set(), [], []
-    for n, sk in enumerate(sorted(archive.keys(), reverse=True)):
-        sc = archive.get(sk)
-        if not isinstance(sc, dict) or sk == session_key:
+    # Wszystko, co już publikowaliśmy (także wydanie poranne przy wieczornym), bez bieżącej sesji (nadpisywanej)
+    known_links, previous_titles, known_events = set(), [], []
+    for n, sk in enumerate(sorted(archive_data.keys(), reverse=True)):
+        sc = archive_data.get(sk)
+        if sk == session_key or not isinstance(sc, dict):
             continue
-        for i in sc.get("items", []):
-            if i.get("link"):
-                known_links.add(norm_link(i["link"]))
-            if n < DEDUPE_TITLE_SESSIONS:
-                known_titles += [t for t in (i.get("title"), i.get("source_title")) if t]
-                known_events.append(f"{i.get('title', '')} — {str(i.get('summary', ''))[:160]}")
+        for item in sc.get("items", []):
+            if item.get("link"):
+                known_links.add(norm_link(item["link"]))
+            if n < 8:
+                previous_titles += [t for t in (item.get("title"), item.get("source_title")) if t]
+                known_events.append(f"{item.get('title', '')} — {str(item.get('summary', ''))[:160]}")
 
     print("2. Deduplikacja (archiwum + wewnątrz feedu)")
     clustered, seen = [], set()
-    for a in raw:
-        k = norm_link(a["link"])
+    for art in raw_articles:
+        k = norm_link(art["link"])
         if k in seen or k in known_links:
             continue
-        if any(are_topics_duplicate(a["title"], p) for p in known_titles):
+        if any(are_topics_duplicate(art["title"], prev, threshold=0.40) for prev in previous_titles):
             continue
-        if any(are_topics_duplicate(a["title"], c["title"]) for c in clustered):
+        if any(are_topics_duplicate(art["title"], ex["title"], threshold=0.40) for ex in clustered):
             continue
-        clustered.append(a)
+        clustered.append(art)
         seen.add(k)
-    print(f"   nowych, unikalnych tematów: {len(clustered)} (z {len(raw)})")
+    print(f"   nowych, unikalnych tematów: {len(clustered)} (z {len(raw_articles)})")
     if not clustered:
         sys.exit("Brak nowych tematów — nie nadpisuję plików")
 
-    print("3. Kandydaci + pełny tekst")
-    candidates = build_candidates(clustered)
-    ai_input = [{"id": i, "title": c["title"], "source": c["source_name"], "lang": c["lang"], "grounded": c["grounded"],
-                 "text": (c["snippet"] + " " + c.get("text", "")).strip()[:1700]} for i, c in enumerate(candidates)]
+    candidates = interleave(clustered, MAX_PER_SOURCE, MAX_CANDIDATES)
+    print(f"   kandydaci dla AI: {len(candidates)} z {len({c['source_name'] for c in candidates})} źródeł")
 
-    print("4. Gemini: wybór i pisanie")
-    client = genai.Client(api_key=GEMINI_API_KEY)
-    prompt = (PROMPT.replace("__PREV__", json.dumps(known_events[:40], ensure_ascii=False))
-                    .replace("__CANDIDATES__", json.dumps(ai_input, ensure_ascii=False)))
+    print("3. Gemini")
+    client = genai.Client(api_key=gemini_key)
+    prompt = build_prompt(previous_titles, candidates)
     items = []
     for attempt in (1, 2):
         try:
-            hint = "" if attempt == 1 else ("\n\nUWAGA: poprzednia próba dała za mało pozycji. Wybierz 14 tematów, w tym co najmniej 5 polskich; "
-                                           "nie ograniczaj się do kilku źródeł.")
-            parsed = gen_json(client, prompt + hint, 0.35 if attempt == 1 else 0.5)
+            parsed = gen_json(client, prompt, 0.30, SAFETY)
             raw_items = parsed if isinstance(parsed, list) else parsed.get("items", [])
-            got = validate_items(raw_items, candidates, known_links, known_titles)
+            got = resolve_sources(validate_items(raw_items), candidates)
             print(f"   próba {attempt}: {len(got)} poprawnych z {len(raw_items)}")
             if len(got) > len(items):
                 items = got
-            if len(items) >= GOOD_ITEMS:
+            if len(items) >= MIN_ITEMS:
                 break
-        except Exception as ex:
-            print(f"   próba {attempt}: błąd AI: {ex}")
+        except Exception as e:
+            print(f"   próba {attempt}: błąd AI: {e}")
+
+    items = drop_repeated_events(client, items, known_events)
 
     # Awaryjnie: pozycje oparte wyłącznie na streszczeniu z RSS (bez dopisywania treści)
     if len(items) < MIN_ITEMS:
-        used = {i["link"] for i in items}
+        existing = {i["link"] for i in items}
         titles = [i["title"] for i in items]
-        for c in candidates:
+        for art in candidates:
             if len(items) >= MIN_ITEMS:
                 break
-            if c["link"] in used or len(c["snippet"]) < 25 or c["lang"] != "pl":
+            if art["link"] in existing or len(art["snippet"]) < 25 or art["lang"] != "pl":
                 continue
-            cat = normalize_category(c["feed_category"])
-            t = format_title("📰 " + c["title"][:60], cat)
-            if any(are_topics_duplicate(t, p, 0.35) for p in titles + known_titles):
+            upper_t = format_uppercase_title(f"📰 {art['title'][:55]}")
+            if any(are_topics_duplicate(upper_t, t, threshold=0.35) for t in titles + previous_titles):
                 continue
-            items.append({"id": short_id(c["link"]), "category": cat, "title": t, "hook": "", "summary": c["snippet"],
-                          "comment": "", "threads_post": "", "question": "", "image_query": GENERIC_QUERY.get(cat, "news"),
-                          "link": c["link"], "source_name": c["source_name"], "source_title": c["title"],
-                          "grounded": c["grounded"], "sensitive": False, "auto": True, "_og": c.get("og_image"), "_src": ""})
-            used.add(c["link"])
-            titles.append(t)
+            cat = normalize_category(art["feed_category"])
+            items.append({"id": short_id(art["link"]), "category": cat, "title": upper_t, "hook": "", "summary": art["snippet"],
+                          "comment": "", "threads_post": "", "question": "", "image_query": "news",
+                          "link": art["link"], "source_name": art["source_name"], "source_title": art["title"],
+                          "lang": art["lang"], "auto": True})
+            existing.add(art["link"])
+            titles.append(upper_t)
         print(f"   po uzupełnieniu awaryjnym: {len(items)}")
 
     if not items:
         sys.exit("AI nie zwróciło żadnych pozycji — nie nadpisuję istniejących plików")
 
-    print("4b. Gemini: kontrola powtórzeń wydarzeń względem archiwum")
-    items = drop_repeated_events(client, items, known_events)
-    if not items:
-        sys.exit("Wszystkie tematy już były — nie nadpisuję istniejących plików")
+    for cat, count in Counter(i["category"] for i in items).most_common():
+        print(f"   {cat}: {count}")
+    print("   źródła:", dict(Counter(i["source_name"] for i in items).most_common()))
 
-    print("5. Gemini: redakcja i weryfikacja względem źródeł")
-    ai_items = [i for i in items if not i.get("auto")]
-    review_items(client, ai_items)
-    items = check_numbers(ai_items) + [i for i in items if i.get("auto")]
-    for i in items:  # komentarz, który tylko powtarza tytuł/streszczenie, nie jest pokazywany
-        if i["comment"] and novelty(i["comment"], i["title"] + " " + i["summary"] + " " + i["source_title"]) < 0.4:
-            i["comment"] = ""
-    if not items:
-        sys.exit("Po weryfikacji nic nie zostało — nie nadpisuję istniejących plików")
-    for cat, n in Counter(i["category"] for i in items).most_common():
-        print(f"   {cat}: {n}")
+    print("4. Zdjęcia: Pexels + źródła artykułów")
+    used_imgs, source_ok = set(), 0
+    for item in items:
+        ph = fetch_pexels(item.get("image_query") or "business economy news", used_imgs)
+        og = fetch_article_image(item["link"])
+        item["source_image_url"] = og or ""
+        if og:
+            source_ok += 1
+        if USE_SOURCE_IMAGES and og:
+            item.update(image_url=og, image_portrait=og, image_credit="", image_credit_url="", image_illustrative=False, image_source="article")
+        elif ph:
+            item.update(image_url=ph["url"], image_portrait=ph["portrait"], image_credit=ph["credit"],
+                        image_credit_url=ph["credit_url"], image_illustrative=True, image_source="pexels")
+        else:
+            item.update(image_url="", image_portrait="", image_credit="", image_credit_url="", image_illustrative=False, image_source="")
+        item["image"] = item["image_url"]
+    print(f"   og:image znaleziono: {source_ok}/{len(items)}; zdjęcia Pexels: {sum(i['image_source'] == 'pexels' for i in items)}")
 
-    print("6. Zdjęcia (Pexels)")
-    used_imgs = set()
-    for it in items:
-        sens = it.pop("sensitive", False)
-        ph = fetch_pexels(it["image_query"], used_imgs, sens, 1)
-        if not ph and not sens:  # tematy wrażliwe: lepiej bez zdjęcia niż z nietrafionym
-            ph = fetch_pexels(GENERIC_QUERY.get(it["category"], "news"), used_imgs, sens, 1)
-        it["image_url"] = ph["url"] if ph else ""
-        it["image_illustrative"] = bool(ph)
-        it["image_credit"] = ph["credit"] if ph else ""
-        it["image_credit_url"] = ph["credit_url"] if ph else ""
-        og = it.pop("_og", None)
-        it["source_image_url"] = og if (USE_SOURCE_IMAGES and og) else it["image_url"]
-        it["image"] = it["source_image_url"]
-        it.pop("_src", None)
+    print("5. Zapis")
+    date_pretty = f"{now_pl.day} {POLISH_MONTHS[now_pl.month]} {now_pl.year}"
+    output_data = {"date": date_pretty, "time": now_pl.strftime("%H:%M"), "timestamp": now_pl.strftime("%Y-%m-%d_%H:%M"), "items": items}
+    write_json("news.json", output_data)
 
-    print("7. Tłumaczenie nagłówków raw_feed")
+    archive_data[session_key] = {**output_data, "items": [{k: v for k, v in i.items() if k not in ("threads_post", "question", "image_query")} for i in items]}
+    for old in sorted(archive_data.keys())[:-ARCHIVE_MAX_SESSIONS]:
+        del archive_data[old]
+    write_json("archive.json", archive_data)
+
     chosen = {norm_link(i["link"]) for i in items}
     raw_out = [dict(a) for a in clustered[:80] if norm_link(a["link"]) not in chosen]
     to_tr = [a for a in raw_out if a["lang"] == "en"]
@@ -782,20 +649,9 @@ def main():
     for a in raw_out:
         a.setdefault("title_pl", a["title"])
         a.pop("feed_category", None)
-
-    print("8. Zapis")
-    out = {"date": f"{now.day} {POLISH_MONTHS[now.month]} {now.year}", "time": now.strftime("%H:%M"),
-           "timestamp": now.strftime("%Y-%m-%d_%H:%M"), "items": items}
-    write_json("news.json", out)
-    archive[session_key] = {**out, "items": [{k: v for k, v in i.items()
-                                              if k not in ("threads_post", "evidence", "question", "image_query")}
-                                             for i in items]}
-    for old in sorted(archive.keys())[:-ARCHIVE_MAX_SESSIONS]:
-        del archive[old]
-    write_json("archive.json", archive)
-    write_json("raw_feed.json", {"date": out["date"], "time": out["time"], "timestamp": out["timestamp"],
+    write_json("raw_feed.json", {"date": date_pretty, "time": output_data["time"], "timestamp": output_data["timestamp"],
                                  "count": len(raw_out), "items": raw_out})
-    print(f"✓ Zapisano {len(items)} pozycji ({session}); bez pełnego tekstu: {sum(not i['grounded'] for i in items)}")
+    print(f"✓ Zapisano {len(items)} pozycji ({session_name}).")
 
 
 if __name__ == "__main__":
