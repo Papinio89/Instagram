@@ -79,7 +79,8 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 #back-top{bottom:calc(76px + env(safe-area-inset-bottom))}
 #toast{bottom:calc(76px + env(safe-area-inset-bottom))}
 @media(min-width:640px){body{padding-bottom:0}#bottom-nav{display:none}#back-top{bottom:20px}#toast{bottom:20px}}
-#scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#f59e0b,#d97706);width:0;z-index:100}
+#safe-top{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top);background:#020617;z-index:120}
+#scroll-progress{position:fixed;top:env(safe-area-inset-top);left:0;height:3px;background:linear-gradient(90deg,#f59e0b,#d97706);width:0;z-index:100}
 #ptr{position:absolute;top:-50px;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-muted);transition:transform .2s;pointer-events:none}
 #ptr.visible{transform:translateY(50px)}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
@@ -89,7 +90,8 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <div id="scroll-progress"></div>
 <div id="ptr">↓ Pociągnij, aby odświeżyć</div>
 
-<header class="sticky top-0 z-40 border-b backdrop-blur" style="background:var(--header-bg);border-color:var(--border)">
+<div id="safe-top"></div>
+<header class="sticky z-40 border-b" style="top:env(safe-area-inset-top);background:var(--bg);border-color:var(--border)">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
     <a href="#" onclick="goTop();return false" class="flex items-center gap-3" aria-label="Świat w Minutę">
       <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-lg text-white shadow-sm dark:bg-white dark:text-slate-900">🌍</div>
@@ -148,7 +150,6 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
     <button id="tab-today" class="tab active whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold" style="border-color:var(--border)" onclick="switchTab('today')">60 sekund</button>
     <button id="tab-all" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('all')">Dzisiejsze</button>
     <button id="tab-fast" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fast')">🚨 Pilne</button>
-    <button id="tab-fun" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fun')">✨ Ciekawostki</button>
     <button id="tab-week" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('week')">📅 Tydzień</button>
     <button id="tab-archive" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('archive')">Archiwum</button>
   </nav>
@@ -165,13 +166,6 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
       <div id="edition-time" class="text-right text-[11px] font-semibold text-sec"></div>
     </div>
     <div id="headline-list" class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)"><div class="p-6 text-center text-sm text-sec">Ładowanie…</div></div>
-    <div id="fun-preview" class="mt-6 hidden">
-      <div class="mb-2.5 flex items-center justify-between">
-        <div><div class="text-[11px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Na koniec</div><h2 class="text-base font-black text-main">✨ Ciekawostki</h2></div>
-        <button onclick="switchTab('fun')" class="text-xs font-bold amber">Więcej →</button>
-      </div>
-      <div id="fun-preview-grid" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"></div>
-    </div>
   </section>
 
   <section id="all-view" class="hidden">
@@ -183,15 +177,6 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
   <section id="fast-view" class="hidden">
     <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-red-500">Najważniejsze alerty</div><h2 class="text-lg font-black text-main">🚨 Pilne</h2></div>
     <div id="breaking" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
-  </section>
-
-  <section id="fun-view" class="hidden">
-    <div class="mb-3 flex items-center justify-between gap-3">
-      <div><div class="text-[11px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Rozrywka</div><h2 class="text-lg font-black text-main">✨ Ciekawostki</h2></div>
-      <button onclick="randomFunFact()" class="rounded-xl border px-3 py-2.5 text-xs font-bold surface text-main" style="border-color:var(--border)">🎲 Losuj ciekawostkę</button>
-    </div>
-    <div id="fun-grid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
-    <button id="fun-more" onclick="funShown+=9;renderFun()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
   </section>
 
   <section id="week-view" class="hidden">
@@ -229,8 +214,8 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
     <button onclick="switchTab('today')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="today"><span class="text-lg">⏱</span><span>60 sek</span></button>
     <button onclick="switchTab('all')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="all"><span class="text-lg">📰</span><span>Dzisiejsze</span></button>
     <button onclick="switchTab('fast')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fast"><span class="text-lg">🚨</span><span>Pilne</span></button>
-    <button onclick="switchTab('fun')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fun"><span class="text-lg">✨</span><span>Ciekawostki</span></button>
     <button onclick="switchTab('week')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="week"><span class="text-lg">📅</span><span>Tydzień</span></button>
+    <button onclick="switchTab('archive')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="archive"><span class="text-lg">🗂</span><span>Archiwum</span></button>
   </div>
 </nav>
 <button id="back-top" onclick="goTop()" class="fixed right-5 z-[60] hidden h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-base font-black text-white shadow-xl dark:bg-white dark:text-slate-950" aria-label="Wróć na górę">↑</button>
@@ -240,10 +225,10 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 'use strict';
 const $ = id => document.getElementById(id);
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
-let newsItems = [], rawFeedItems = [], fastItems = [], funItems = [], archiveFunItems = [], archiveGroups = [];
-let currentTab = 'today', allShown = 6, archiveShown = 2, funShown = 9, readKeys = new Set(), dataLoadFailed = false;
+let newsItems = [], rawFeedItems = [], fastItems = [], archiveGroups = [];
+let currentTab = 'today', allShown = 6, archiveShown = 2, readKeys = new Set(), dataLoadFailed = false;
 let titleCache = {}; try { titleCache = JSON.parse(store.get('swm-title-cache', '{}')); } catch (e) {}
-const DATA_FILES = { news: 'news.json', raw: 'raw_feed.json', fast: 'fast.json', fun: 'rozrywka.json', archive: 'archive.json', archiveFun: 'archive_rozrywka.json' };
+const DATA_FILES = { news: 'news.json', raw: 'raw_feed.json', fast: 'fast.json', archive: 'archive.json' };
 const reg = new Map();
 $('year').textContent = new Date().getFullYear();
 
@@ -260,7 +245,8 @@ const sourceLink = x => x.link || x.url || '#';
 const keyOf = x => x.id || String(sourceLink(x)).trim().toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') || normalize(getTitle(x.title).title);
 const getSummary = x => x.summary || x.description || x.excerpt || x.snippet || '';
 const getComment = x => x.comment || x.why || '';
-const sourceName = x => x.source_name || x.sourceName || x.source || '';
+function hostOf(u) { try { const h = new URL(u).hostname.replace(/^www\./, ''); return /(^|\.)google\.com$/.test(h) ? '' : h; } catch (e) { return ''; } }
+const sourceName = x => x.source_name || x.sourceName || x.source || hostOf(sourceLink(x));
 const category = x => x.category || x.cat || 'Wiadomości';
 const catSlug = c => normalize(c).split(' ')[0];
 const CAT_EMOJI = { polska: '🇵🇱', gospodarka: '📊', biznes: '💼', geopolityka: '🌍', swiat: '🌍', obronnosc: '🛡️', technologie: '💻' };
@@ -379,11 +365,18 @@ function headlineRow(item, title, emoji) {
     </a>
     <button class="hit rounded-lg text-mute hover:text-amber-500" onclick="act('share','${e}',event)" aria-label="Udostępnij">↗</button></div>`;
 }
+function creditHtml(x, img) {
+  if (!img) return '';
+  let t = '';
+  if (x.image_credit) t = `${x.image_illustrative ? 'Zdjęcie ilustracyjne. ' : ''}Foto: <a class="underline" href="${esc(safeUrl(x.image_credit_url))}" target="_blank" rel="noopener">${esc(x.image_credit)}</a> / Pexels`;
+  else { const h = hostOf(img); t = /pexels\.com$/.test(h) ? 'Zdjęcie ilustracyjne · Pexels' : (h ? 'Zdjęcie: ' + esc(h) : ''); }
+  return t ? `<div class="px-3.5 pt-1.5 text-[11px] text-mute">${t}</div>` : '';
+}
 function card(item) {
   const k = keyOf(item); reg.set(k, item);
   const t = getTitle(item.title || item.text), cat = category(item), img = imageOf(item), link = safeUrl(sourceLink(item));
   const sum = getSummary(item), com = getComment(item), src = sourceName(item), date = fmtDay(item._day || dayOf(item.date)), read = readKeys.has(k), e = ek(k);
-  const credit = img && item.image_credit ? `<div class="px-3.5 pt-1.5 text-[11px] text-mute">${item.image_illustrative ? 'Zdjęcie ilustracyjne. ' : ''}Foto: <a class="underline" href="${esc(safeUrl(item.image_credit_url))}" target="_blank" rel="noopener">${esc(item.image_credit)}</a> / Pexels</div>` : '';
+  const credit = creditHtml(item, img);
   return `<article class="card overflow-hidden rounded-2xl border shadow-sm flex flex-col surface ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}">
     <div class="relative aspect-video overflow-hidden" style="background:var(--bg-muted)">${imgTag(img, cat, false, '')}
       <span class="cchip absolute left-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase shadow">${esc(cat)}</span></div>${credit}
@@ -401,10 +394,6 @@ function card(item) {
       </div>
     </div></article>`;
 }
-function funMini(item) {
-  const t = getTitle(item.title || item.text), cat = category(item); reg.set(keyOf(item), item);
-  return `<article class="rounded-xl border p-2.5 surface" style="border-color:var(--border);border-top:3px solid var(--cc)" data-c="${esc(catSlug(cat))}"><div class="mb-0.5 text-[11px] font-extrabold uppercase tracking-wider text-fuchsia-500">${esc(cat === 'Wiadomości' ? 'Ciekawostka' : cat)}</div><h3 class="text-sm font-extrabold leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3></article>`;
-}
 async function translateHeadline(item) {
   const t = getTitle(item.title_pl || item.title); let title = t.title;
   if (!item.title_pl && isEnglishTitle(title)) title = await translateToPolish(title);
@@ -418,31 +407,29 @@ async function renderToday() {
   const [a, b] = await Promise.all([Promise.all(primary.map(translateHeadline)), Promise.all(rest.map(translateHeadline))]);
   const row = ({ item, title, emoji }) => headlineRow(item, title, emoji);
   $('headline-list').innerHTML = a.map(row).join('') + (b.length ? `<div class="px-3.5 py-2.5 border-y flex items-center gap-2" style="border-color:var(--border);background:var(--bg-muted)"><span class="text-[11px] font-black uppercase tracking-[.14em] amber">Pozostałe newsy na dziś</span><span class="text-[11px] text-mute">· ${b.length}</span></div>` + b.map(row).join('') : '');
-  const fp = funItems.slice(0, 4); $('fun-preview').classList.toggle('hidden', !fp.length); $('fun-preview-grid').innerHTML = fp.map(funMini).join('');
 }
 const cards = (l, empty) => l.length ? l.map(card).join('') : `<div class="col-span-full p-8 text-center text-sm text-sec">${empty}</div>`;
 function renderAll() { const l = uniq(newsItems); $('all-grid').innerHTML = cards(l.slice(0, allShown), 'Brak wiadomości.'); $('all-more').classList.toggle('hidden', allShown >= l.length); }
 function renderFast() { $('breaking').innerHTML = cards(uniq([...fastItems, ...newsItems.slice(0, 5)]), 'Brak pilnych.'); }
-function funPool() {
-  const map = new Map();
-  [...funItems.map(x => ({ ...x, _today: true })), ...archiveFunItems].forEach(x => { const k = keyOf(x), p = map.get(k); if (!p || (x._today && !p._today) || (!imageOf(p) && imageOf(x))) map.set(k, x); });
-  return [...map.values()].sort((a, b) => (b._today ? 1 : 0) - (a._today ? 1 : 0));
-}
-function renderFun() { const l = funPool(); $('fun-grid').innerHTML = cards(l.slice(0, funShown), 'Brak ciekawostek.'); const m = $('fun-more'); m.classList.toggle('hidden', funShown >= l.length); m.textContent = `Pokaż więcej (${Math.max(0, l.length - funShown)})`; }
-function randomFunFact() { const l = funPool(); if (!l.length) return showToast('Brak ciekawostek'); openModal(card(l[Math.floor(Math.random() * l.length)])); }
 const score = x => (getSummary(x) ? 3 : 0) + (getComment(x) ? 2 : 0) + (imageOf(x) ? 1 : 0) + (x.grounded === false ? -2 : 0);
+const DAYS_PL = ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'];
 function renderWeek() {
   const today = todayKey(), f = new Date(); f.setDate(f.getDate() - 6);
   const start = `${f.getFullYear()}-${String(f.getMonth() + 1).padStart(2, '0')}-${String(f.getDate()).padStart(2, '0')}`;
   const pool = []; archiveGroups.forEach(g => g.items.forEach(x => { if (x._day >= start && x._day <= today) pool.push(x); })); newsItems.concat(fastItems).forEach(x => pool.push(x));
   const all = uniq(pool), byDay = {}; all.forEach(x => (byDay[x._day] = byDay[x._day] || []).push(x));
-  const days = Object.keys(byDay).sort().reverse(), picked = [];
-  for (let r = 0; r < 2; r++) days.forEach(d => { const l = byDay[d].sort((a, b) => score(b) - score(a)); if (l[r] && picked.length < 12) picked.push(l[r]); });
-  const cats = {}; all.forEach(x => { const c = category(x); cats[c] = (cats[c] || 0) + 1; });
-  $('week-content').innerHTML = `<div class="rounded-2xl border p-5 mb-5 surface" style="border-color:var(--border);background:linear-gradient(135deg,rgba(16,185,129,.08),transparent)">
-    <h3 class="text-lg font-black text-main mb-1">Najlepsze z tygodnia</h3><p class="text-sm text-sec">${fmtDay(start)} – ${fmtDay(today)} · ${all.length} materiałów z ${days.length} dni</p>
-    <div class="mt-3 flex flex-wrap gap-2">${Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([c, n]) => `<span class="cchip rounded-full px-3 py-1 text-xs font-bold" data-c="${esc(catSlug(c))}">${esc(c)} · ${n}</span>`).join('')}</div></div>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">${cards(picked, 'Brak danych z ostatnich 7 dni.')}</div>`;
+  const days = Object.keys(byDay).sort().reverse();
+  const row = x => {
+    const k = keyOf(x); reg.set(k, x);
+    const t = getTitle(x.title_pl || x.title || x.text), link = safeUrl(sourceLink(x)), src = sourceName(x), c = esc(catSlug(category(x)));
+    const inner = `<span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" style="background:var(--cc)"></span><span class="min-w-0 flex-1"><span class="block text-[14px] font-semibold leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</span>${src ? `<span class="block text-[11px] font-semibold" style="color:var(--cc)">${esc(src)}</span>` : ''}</span>${link !== '#' ? '<span class="mt-0.5 text-mute" aria-hidden="true">↗</span>' : ''}`;
+    const cls = 'flex items-start gap-2.5 px-3.5 py-2.5 border-b last:border-0 no-underline headline-item';
+    return link !== '#' ? `<a href="${link}" target="_blank" rel="noopener" data-c="${c}" class="${cls}" style="border-color:var(--border)">${inner}</a>` : `<div data-c="${c}" class="${cls}" style="border-color:var(--border)">${inner}</div>`;
+  };
+  $('week-content').innerHTML = `<p class="mb-3 text-sm text-sec">${fmtDay(start)} – ${fmtDay(today)} · ${all.length} tematów z ${days.length} dni</p>` +
+    (days.length ? days.map(d => { const l = byDay[d].sort((a, b) => score(b) - score(a)).slice(0, 6), dt = new Date(d + 'T12:00:00');
+      return `<section class="mb-5"><h3 class="mb-1.5 text-[13px] font-black uppercase tracking-wide amber">${DAYS_PL[dt.getDay()]} · ${fmtDay(d).slice(0, 5)}</h3><div class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)">${l.map(row).join('')}</div></section>`; }).join('')
+      : '<div class="p-6 text-center text-sm text-sec">Brak danych z ostatnich 7 dni.</div>');
 }
 function normalizeArchive(data) {
   if (!data || typeof data !== 'object') return [];
@@ -458,20 +445,20 @@ function renderArchive() {
   $('archive-more').classList.toggle('hidden', archiveShown >= archiveGroups.length);
 }
 function renderCurrent() {
-  ({ today: renderToday, all: renderAll, fast: renderFast, fun: renderFun, week: renderWeek, archive: renderArchive })[currentTab]();
+  ({ today: renderToday, all: renderAll, fast: renderFast, week: renderWeek, archive: renderArchive })[currentTab]();
   document.querySelectorAll('#bottom-nav .bottom-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === currentTab));
 }
 function switchTab(tab) {
   currentTab = tab; document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); $('tab-' + tab).classList.add('active');
-  ['today', 'all', 'fast', 'fun', 'week', 'archive'].forEach(v => $(v + '-view').classList.toggle('hidden', v !== tab));
+  ['today', 'all', 'fast', 'week', 'archive'].forEach(v => $(v + '-view').classList.toggle('hidden', v !== tab));
   $('search-results').classList.add('hidden');
-  if (tab === 'all') allShown = 6; if (tab === 'archive') archiveShown = 2; if (tab === 'fun') funShown = 9;
+  if (tab === 'all') allShown = 6; if (tab === 'archive') archiveShown = 2;
   renderCurrent(); scrollTo({ top: 0, behavior: 'smooth' });
 }
 function search() {
   const q = $('search-input').value.trim(); $('search-clear').classList.toggle('hidden', !q);
   if (!q) return $('search-results').classList.add('hidden');
-  const pool = uniq([...newsItems, ...rawFeedItems, ...fastItems, ...funItems, ...archiveFunItems, ...archiveGroups.flatMap(g => g.items)]), words = normalize(q).split(' ').filter(Boolean);
+  const pool = uniq([...newsItems, ...rawFeedItems, ...fastItems, ...archiveGroups.flatMap(g => g.items)]), words = normalize(q).split(' ').filter(Boolean);
   const hits = pool.filter(x => { const h = normalize([x.title, x.title_pl, getSummary(x), getComment(x), category(x), sourceName(x)].join(' ')); return words.every(w => h.includes(w)); });
   $('search-results').classList.remove('hidden');
   $('search-results').innerHTML = `<div class="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-sec">Wyniki: ${hits.length}</div><div class="rounded-xl border overflow-hidden surface" style="border-color:var(--border)">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return headlineRow(x, t.title, t.emoji || pickEmoji(t.title, category(x))); }).join('') || '<div class="p-4 text-sm text-sec">Nie znaleziono.</div>'}</div>`;
@@ -490,10 +477,9 @@ async function loadWidgets() {
 }
 async function init() {
   updateThemeColor(); try { readKeys = new Set(JSON.parse(store.get('swm-read', '[]'))); } catch (e) {}
-  const [n, raw, f, r, a, af] = await Promise.all(Object.values(DATA_FILES).map(u => loadJson(u, {})));
+  const [n, raw, f, a] = await Promise.all(Object.values(DATA_FILES).map(u => loadJson(u, {})));
   dataLoadFailed = !n.ok && !raw.ok;
-  newsItems = stamp(n.data, n.data); rawFeedItems = stamp(raw.data, raw.data); fastItems = stamp(f.data, f.data); funItems = stamp(r.data, r.data);
-  archiveFunItems = stamp(af.data && !Array.isArray(af.data) && !af.data.items ? Object.values(af.data).flatMap(listOf) : af.data, {});
+  newsItems = stamp(n.data, n.data); rawFeedItems = stamp(raw.data, raw.data); fastItems = stamp(f.data, f.data);
   const current = new Set(newsItems.concat(fastItems).map(keyOf));  // archiwum = tylko wydania wcześniejsze
   archiveGroups = normalizeArchive(a.data).map(g => ({ ...g, items: g.items.filter(x => !current.has(keyOf(x))) })).filter(g => g.items.length);
   const ts = String(n.data && n.data.timestamp || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2})/);
@@ -501,7 +487,7 @@ async function init() {
   $('load-error').classList.toggle('hidden', !(dataLoadFailed && !newsItems.length && !rawFeedItems.length));
   await renderToday(); loadWidgets();
   const m = location.hash.match(/^#n=(.+)$/);
-  if (m) { const id = decodeURIComponent(m[1]), x = uniq([...newsItems, ...fastItems, ...funItems, ...archiveFunItems, ...archiveGroups.flatMap(g => g.items)]).find(i => keyOf(i) === id); if (x) openModal(card(x)); }
+  if (m) { const id = decodeURIComponent(m[1]), x = uniq([...newsItems, ...fastItems, ...archiveGroups.flatMap(g => g.items)]).find(i => keyOf(i) === id); if (x) openModal(card(x)); }
 }
 
 /* ---------- pull-to-refresh, przewijanie, klawisze, PWA ---------- */
