@@ -1,715 +1,584 @@
 {
-  "date": "18 października 2026",
-  "time": "19:43",
-  "timestamp": "2026-10-18_19:43",
-  "count": 73,
+  "date": "19 października 2026",
+  "time": "23:06",
+  "timestamp": "2026-10-19_23:06",
+  "count": 72,
   "items": [
     {
-      "title": "Zderzenie dwóch tramwajów. Jedna osoba w szpitalu",
-      "snippet": "W Łodzi zderzyły się dwa tramwaje. Jedna osoba trafiła do szpitala. Policja przekazała wstępne ustalenia.",
-      "link": "https://tvn24.pl/lodz/zderzenie-dwoch-tramwajow-w-lodzi-jedna-osoba-w-szpitalu-st9293546?source=rss",
-      "source_name": "TVN24",
+      "title": "Alert RCB dla województwa lubelskiego. Na niebie operują polskie myśliwce",
+      "snippet": "UWAGA! Rosyjski atak powietrzny na terenie Ukrainy. Sytuacja jest monitorowana. W przestrzeni RP operuje polskie lotnictwo. Oczekuj dalszych komunikatów - podało RCB. Alert został wysłany do odbiorców na terenie województwa lubelskiego. Według informacji ukraińskich mediów, jeden z dronów zmierza w kierunku przejścia granicznego z Polską. O godzinie 22:34 alarm został odwołany.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/alert-rcb-dla-wojewodztwa-lubelskiego-na-niebie-operuja-polskie-mysliwce/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Pobrane materiały Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Oglądaj TVN24 Najnowsze Fakty Świat Polska Regionalne Warszawa Łódź Katowice Kraków Poznań Trójmiasto Wrocław Kielce Kujawsko-pomorskie Lublin Lubuskie Olsztyn Opole Rzeszów Szczecin Białystok Więcej Biznes Meteo Sport Zdrowie Technologia Kultura i styl Konkret24 Kontakt24 Ciekawostki Newslettery Quizy Tematy Chińska ekspansja Męskie zdrowie Wybory w Krakowie Czytaj Słuchaj Oglądaj Łódź Zderzenie dwóch tramwajów. Jedna osoba w szpitalu Oprac. Mateusz Czajka | 18.10.2026, 19:36 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-canary/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_gb,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvn24/lodz/video,7152537/video,7152537?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer%401.61.0\\u0026accessModel=avod\\u0026paywall=no\\u0026terminal=tvn24_pl\\u0026subTerminal=tvn24_pl\\u0026maxVideos=60\\u0026slug=lodz_zderzenie_dwoch_tramwajow_w_lodzi_jedna_osoba_w_szpitalu_st9293546\\u0026",
-      "og_image": "https://tvn24.pl/_e/i/najnowsze/cdn-zdjecie-w-lodzi-zderzyly-sie-dwa-tramwaje-ph9293554/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "Zderzenie dwóch tramwajów. Jedna osoba w szpitalu"
+      "title_pl": "Alert RCB dla województwa lubelskiego. Na niebie operują polskie myśliwce"
     },
     {
-      "title": "Donald Tusk: Polska nie powtórzy błędów innych europejskich państw",
-      "snippet": "Premier Tusk oświadczył, że Polska nie powtórzy błędów innych europejskich państw i nie będzie też za nie płacić. Wskazał, że jego rząd broni kraj przed nielegalną imigrację i nie przyjmuje wniosków o azyl. \"To usłyszeli ode mnie liderzy Europy w Brukseli\" - napisał.",
-      "link": "https://tvn24.pl/polska/donald-tusk-polska-nie-powtorzy-bledow-innych-europejskich-panstw-st9293563?source=rss",
-      "source_name": "TVN24",
+      "title": "Z BMW została miazga, zginęły dwie osoby. Tragiczny wypadek na Dolnym Śląsku",
+      "snippet": "Dwóch obywateli Ukrainy zginęło w wypadku na drodze wojewódzkiej nr 358 na Dolnym Śląsku. Jak informują służby, obaj mieli po 31 lat. Według wstępnych ustaleń kierowca stracił panowanie nad samochodem i uderzył w drzewo.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/z-bmw-zostala-miazga-zginely-dwie-osoby-tragiczny-wypadek-na-dolnym-slasku/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Pobrane materiały Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Oglądaj TVN24 Najnowsze Fakty Świat Polska Regionalne Warszawa Łódź Katowice Kraków Poznań Trójmiasto Wrocław Kielce Kujawsko-pomorskie Lublin Lubuskie Olsztyn Opole Rzeszów Szczecin Białystok Więcej Biznes Meteo Sport Zdrowie Technologia Kultura i styl Konkret24 Kontakt24 Ciekawostki Newslettery Quizy Tematy Chińska ekspansja Męskie zdrowie Wybory w Krakowie Czytaj Słuchaj Oglądaj Polska Donald Tusk: Polska nie powtórzy błędów innych europejskich państw Filip Czerwiński | 18.10.2026, 19:27 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-canary/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_ga,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvn24/polska/article,donald-tusk-polska-nie-powtorzy-bledow-innych-europejskich-panstw-st9293563/article,donald-tusk-polska-nie-powtorzy-bledow-innych-europejskich-panstw-st9293563?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer%401.61.0\\u0026accessModel=avod\\u0026paywall=n",
-      "og_image": "https://tvn24.pl/_e/i/najnowsze/cdn-zdjecie-donald-tusk-w-brukseli-ph9291670/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "Donald Tusk: Polska nie powtórzy błędów innych europejskich państw"
+      "title_pl": "Z BMW została miazga, zginęły dwie osoby. Tragiczny wypadek na Dolnym Śląsku"
     },
     {
-      "title": "Ulewy w Hiszpanii. \"Nadchodzące godziny będą krytyczne\"",
-      "snippet": "W Hiszpanii obowiązują ostrzeżenia przed deszczem i burzami, a lokalnie mają one najwyższy stopień. Za złe warunki pogodowe odpowiada deszczonośny niż. W okolicach Barcelony powódź doprowadziła do śmierci jednej osoby.",
-      "link": "https://tvn24.pl/tvnmeteo/swiat/burza-dana-w-hiszpanii-nadchodzace-godziny-beda-krytyczne-st9293515?source=rss",
-      "source_name": "TVN24",
+      "title": "Specjalista wskazał newralgiczny punkt i wyjaśnił, co nie opłaca się Rosji. \"To nie to miejsce\"",
+      "snippet": "- Przesmyk suwalski to nie jest miejsce, w którym Rosja zaatakuje - powiedział Aleksander Olech, redaktor naczelny portalu Defence24.com w programie Najważniejsze pytania. Uspokajał na antenie Polsat News, że nie jesteśmy zagrożeni konfliktem pełnoskalowym od Federacji Rosyjskiej. - Im się to po prostu nie opłaca - ocenił, tłumacząc, dlaczego stoi na takim stanowisku.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/specjalista-wskazal-newralgiczny-punkt-i-wyjasnil-co-nie-oplaca-sie-rosji-to-nie-to-miejsce/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Pogoda Godzinowa Długoterminowa Na jutro Na weekend Najnowsze Polska Prognoza Świat Nauka Więcej Ciekawostki Podróże Smog Czytaj Słuchaj Oglądaj Świat Ulewy w Hiszpanii. \"Nadchodzące godziny będą krytyczne\" Zespół autorów Matylda Dziechcińska Agnieszka Stradecka | 18.10.2026, 19:17 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_gb,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvnmeteo/,swiat/article,burza-dana-w-hiszpanii-nadchodzace-godziny-beda-krytyczne-st9293515/article,burza-dana-w-hiszpanii-nadchodzace-godziny-beda-krytyczne-st9293515?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer%401.61.0\\u0026accessModel=avod\\u0026paywall=no\\u0026terminal=tvn24_pl\\u0026subTerminal=meteo_tvn24_pl\\u0026maxVideos=60\\u0026slug=tvnmeteo_swiat_burza_dana_w_hiszpanii_nadchodzace_godziny_beda_krytyczne_st9293515\\u0026articleEditDate=2026-10-18T17%3A43%3A15.000Z\\u0026autoplay=true\\u0026ma",
-      "og_image": "https://tvn24.pl/_e/i/tvnmeteo/najnowsze/cdn-zdjecie-powodzie-w-poludniowej-hiszpanii-ph9293501/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "Ulewy w Hiszpanii. \"Nadchodzące godziny będą krytyczne\""
+      "title_pl": "Specjalista wskazał newralgiczny punkt i wyjaśnił, co nie opłaca się Rosji. \"To nie to miejsce\""
     },
     {
-      "title": "Dziennikarze TVN nagrodzeni na festiwalu \"Człowiek w zagrożeniu\"",
-      "snippet": "W Łodzi zakończyła się 36. edycja Festiwalu Mediów \"Człowiek w Zagrożeniu\", poświęconego filmom dokumentalnym. Grand Prix zdobyli twórcy filmu \"Igrając z diabłem\". Nagrodzeni również zostali dziennikarze TVN za dwa materiały \"Superwizjera\" i jeden \"Uwagi!\".",
-      "link": "https://tvn24.pl/kultura-i-styl/dziennikarze-tvn-nagrodzeni-na-festiwalu-czlowiek-w-zagrozeniu-st9293500?source=rss",
-      "source_name": "TVN24",
+      "title": "Ewakuują mieszkańców, zatrzymają kolej. Wielka akcja saperów we Wrocławiu",
+      "snippet": "We Wrocławiu dojdzie we wtorek do ewakuacji mieszkańców i pracowników okolic ulicy Kolejowej. Ponadto wystąpią utrudnienia w kursowaniu komunikacji miejskiej, jak i pociągów regionalnych oraz dalekobieżnych. Utrudnienia spowodowane są usunięciem 250-kilogramowego pocisku lotniczego z czasów II wojny światowej - donosi Radio Wrocław.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/ewakuuja-mieszkancow-zatrzymaja-kolej-wielka-akcja-saperow-we-wroclawiu/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Pobrane materiały Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Oglądaj TVN24 Najnowsze Fakty Świat Polska Regionalne Warszawa Łódź Katowice Kraków Poznań Trójmiasto Wrocław Kielce Kujawsko-pomorskie Lublin Lubuskie Olsztyn Opole Rzeszów Szczecin Białystok Więcej Biznes Meteo Sport Zdrowie Technologia Kultura i styl Konkret24 Kontakt24 Ciekawostki Newslettery Quizy Tematy Chińska ekspansja Męskie zdrowie Wybory w Krakowie Czytaj Słuchaj Oglądaj Kultura i styl Dziennikarze TVN nagrodzeni na festiwalu \"Człowiek w zagrożeniu\" Filip Czerwiński | 18.10.2026, 18:42 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-canary/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_ga,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvn24/kultura-i-styl/article,dziennikarze-tvn-nagrodzeni-na-festiwalu-czlowiek-w-zagrozeniu-st9293500/article,dziennikarze-tvn-nagrodzeni-na-festiwalu-czlowiek-w-zagrozeniu-st9293500?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer%401.61.0\\u0026accessModel=avod\\u0026p",
-      "og_image": "https://tvn24.pl/_e/i/najnowsze/cdn-zdjecie-grzegorz-gluszak-i-tomasz-patora-nagrodzeni-na-festiwalu-czlowiek-w-zagrozeniu-ph9293558/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "Dziennikarze TVN nagrodzeni na festiwalu \"Człowiek w zagrożeniu\""
+      "title_pl": "Ewakuują mieszkańców, zatrzymają kolej. Wielka akcja saperów we Wrocławiu"
     },
     {
-      "title": "\"Niezidentyfikowany\" obiekt eksplodował nad Litwą. Ukraińcy przeprosili",
-      "snippet": "Rzecznik ukraińskiego MSZ Heorhij Tychyj wyraził ubolewanie z powodu wybuchu nad Litwą. Jak napisał, incydent ten \"mógł być skutkiem rosyjskich działań z zakresu walki radioelektronicznej, które spowodowały zmianę kursu dronów podczas operacji wymierzonej w legalne cele wojskowe ",
-      "link": "https://tvn24.pl/swiat/eksplozja-drona-nad-litwa-ukraincy-przeprosili-st9292974?source=rss",
-      "source_name": "TVN24",
+      "title": "Zatrzymanie Piotra W. Rzecznik Praw Obywatelskich wzywa do odpowiedzi",
+      "snippet": "Rzecznik Praw Obywatelskich podjął z urzędu sprawę dotyczącą interwencji funkcjonariuszy policji wobec mężczyzny w okolicy Trybunału Konstytucyjnego - poinformowało biuro RPO. Jak czytamy, współpracownicy Sylwii Gregorczyk-Abram chcą wiedzieć m.in., dlaczego mundurowi zastosowali środki przymusu bezpośredniego wobec Piotra W. Odpowiednie pisma trafiły do KSP oraz prokuratury.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/zatrzymanie-piotra-w-rzecznik-praw-obywatelskich-wzywa-do-odpowiedzi/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Pobrane materiały Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Oglądaj TVN24 Najnowsze Fakty Świat Polska Regionalne Warszawa Łódź Katowice Kraków Poznań Trójmiasto Wrocław Kielce Kujawsko-pomorskie Lublin Lubuskie Olsztyn Opole Rzeszów Szczecin Białystok Więcej Biznes Meteo Sport Zdrowie Technologia Kultura i styl Konkret24 Kontakt24 Ciekawostki Newslettery Quizy Tematy Chińska ekspansja Męskie zdrowie Wybory w Krakowie Czytaj Słuchaj Oglądaj Świat \"Niezidentyfikowany\" obiekt eksplodował nad Litwą. Ukraińcy przeprosili Zespół autorów Oprac. Mikołaj Gątkiewicz Oprac. Filip Czerwiński | 18.10.2026, 13:06 Aktualizacja: 18.10.2026, 18:35 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-canary/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_gb,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvn24/swiat/video,9292901/video,9292901?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer%401.61.0\\u0026accessModel=avod\\u0026paywall=no\\u0026terminal=tvn24_pl\\u0026subTerminal=tvn24_pl\\u0026m",
-      "og_image": "https://tvn24.pl/_e/i/najnowsze/cdn-zdjecie-2-juodonys-ph9293050/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "\"Niezidentyfikowany\" obiekt eksplodował nad Litwą. Ukraińcy przeprosili"
+      "title_pl": "Zatrzymanie Piotra W. Rzecznik Praw Obywatelskich wzywa do odpowiedzi"
     },
     {
-      "title": "\"Muzyka o sercu Wokulskiego\". Kompozytor o swojej pracy nad \"Lalką\"",
-      "snippet": "\"Lalkę\" w reżyserii Macieja Kawalskiego powinno się nie tylko oglądać, ale też i słuchać. \"To jest muzyka, która mówi chyba o sercu Wokulskiego\" - mówi Łukasz Targosz, który skomponował muzykę do filmu. Jak sam wspominał na antenie TVN24, początkowo w pracy skupiał się jednak na ",
-      "link": "https://tvn24.pl/kultura-i-styl/muzyka-o-sercu-wokulskiego-kompozytor-lukasz-targosz-o-swojej-pracy-nad-lalka-st9293411?source=rss",
-      "source_name": "TVN24",
+      "title": "Marcin Kierwiński w \"Gościu Wydarzeń\". Transmisja od godz. 19:15",
+      "snippet": "Rozmówcą Magdy Sakowskiej w poniedziałkowym Gościu Wydarzeń będzie szef MSWiA Marcin Kierwiński. Prowadząca porozmawia też z Szymonem Szynkowskim vel Sękiem z Rozwoju Plus, byłym szefem MSZ w ostatnim rządzie PiS. Transmisja na polsatnews.pl, w Interii, Polsacie, Polsat News i Wydarzeniach 24 od 19:15.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/marcin-kierwinski-w-gosciu-wydarzen-transmisja-od-godz-1915/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "text": "Szukaj Wyczyść Szukaj Znaleziono 0 materiałów zawierających: {\"showRestrictions\":false,\"datasourceId\":\"8417860\",\"selectors\":{\"heading\":\".Title\",\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Redakcja poleca: {\"showRestrictions\":false,\"slotName\":\"searchResults\",\"selectors\":{\"teaser\":\".SectionTeaser\",\"pictureOverlay\":\".PictureOverlay\"}} Zobacz więcej wyników Moje konto Pobrane materiały Oglądaj dalej Obserwowane Newslettery Preferencje treści Moje zakupy i karty Sklep Zrealizuj voucher Pomoc Zgłoś problem Edytuj dane Wyloguj się Zaloguj się {\"selectors\":{\"dialog\":\".Panel\",\"openBtn\":\"._button_1vwh2_1\",\"closeBtn\":\"._closeButton_1ostk_26\",\"wrapper\":\".Panel-wrapper\",\"portal\":\".NavigationDesktop\"},\"options\":{}} Menu Zamknij Dołącz do społeczności TVN24: Oglądaj TVN24 Najnowsze Fakty Świat Polska Regionalne Warszawa Łódź Katowice Kraków Poznań Trójmiasto Wrocław Kielce Kujawsko-pomorskie Lublin Lubuskie Olsztyn Opole Rzeszów Szczecin Białystok Więcej Biznes Meteo Sport Zdrowie Technologia Kultura i styl Konkret24 Kontakt24 Ciekawostki Newslettery Quizy Tematy Chińska ekspansja Męskie zdrowie Wybory w Krakowie Czytaj Słuchaj Oglądaj Kultura i styl \"Muzyka o sercu Wokulskiego\". Kompozytor o swojej pracy nad \"Lalką\" Oprac. Mateusz Czajka | 18.10.2026, 18:01 {\"nuviScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-stable/nuvi.react.min.mjs\",\"nuviCanaryScriptUrl\":\"https://nuvi2.cdntvn.pl/nab-canary/nuvi.react.min.mjs\",\"nuviMode\":\"debug\",\"siteVersion\":\"ab_atsdk_gb,zoltan,k2\",\"playlistUrl\":\"/_e/p/playlist/cue/tvn24/kultura-i-styl/article,muzyka-o-sercu-wokulskiego-kompozytor-lukasz-targosz-o-swojej-pracy-nad-lalka-st9293411/article,muzyka-o-sercu-wokulskiego-kompozytor-lukasz-targosz-o-swojej-pracy-nad-lalka-st9293411?keyframeWidth=480\\u0026env=production\\u0026appVersion=yennefer",
-      "og_image": "https://tvn24.pl/_e/i/najnowsze/cdn-zdjecie-kadr-z-filmu-lalka-rez-maciej-kawalski-ph9249347/alternates/WEBP_LANDSCAPE_1620",
-      "grounded": true,
-      "title_pl": "\"Muzyka o sercu Wokulskiego\". Kompozytor o swojej pracy nad \"Lalką\""
+      "title_pl": "Marcin Kierwiński w \"Gościu Wydarzeń\". Transmisja od godz. 19:15"
     },
     {
-      "title": "Radosław Sikorski zwraca uwagę sekretarzowi wojny. Napisał o Polakach zabitych w Afganistanie",
-      "snippet": "Szef polskiej dyplomacji Radosław Sikorski napisał amerykańskiemu sekretarzowi wojny, żeby powtórzył swoje słowa rodzinom zabitych polskich żołnierzy. Pete Hegseth powiedział, że w Afganistanie były jeden czy dwa państwa, które \"naprawdę\" brały udział w boju.",
-      "link": "https://tvn24.pl/swiat/radoslaw-sikorski-zwraca-uwage-sekretarzowi-wojny-pete-hegseth-wypowiedzial-sie-o-zolnierzach-isaf-w-afganistanie-st9293477?source=rss",
-      "source_name": "TVN24",
+      "title": "Żurek wytyka manipulację Nawrockiemu. \"Nie myli pojęć, próbuje pisać konstytucję od nowa\"",
+      "snippet": "Prezydent wręczył dziś nominacje sędziowskie i przy okazji znów próbował napisać Konstytucję od nowa - stwierdził minister sprawiedliwości Waldemar Żurek. Prokurator generalny nadmienił, że gdy Karol Nawrocki zrównuje akt powołania sędziego ze ślubowaniem w Trybunale Konstytucyjnym, nie myli pojęć. Celowo manipuluje - uznał Żurek.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/zurek-wytyka-manipulacje-nawrockiemu-nie-myli-pojec-probuje-pisac-konstytucje-od-nowa/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "title_pl": "Radosław Sikorski zwraca uwagę sekretarzowi wojny. Napisał o Polakach zabitych w Afganistanie"
+      "title_pl": "Żurek wytyka manipulację Nawrockiemu. \"Nie myli pojęć, próbuje pisać konstytucję od nowa\""
     },
     {
-      "title": "Fragment chińskiej rakiety nad Polską. Tak wyglądał przelot",
-      "snippet": "W niedzielę rano nad Polską przeleciał człon chińskiej rakiety Zhuque-2E o masie około pięciu ton. Dzięki obserwacjom z kilku stacji sieci Skytinel udało się odtworzyć przybliżoną trajektorię jego lotu.",
-      "link": "https://tvn24.pl/tvnmeteo/polska/zhuque-2e-fragment-chinskiej-rakiety-nad-polska-tak-wygladal-przelot-st9293424?source=rss",
-      "source_name": "TVN24",
+      "title": "Wędlina z groźną bakterią. Produkt pilnie znika ze sklepów, GIS ostrzega",
+      "snippet": "Partie trzech rodzajów salami: musli, z pieprzem oraz meksykańskiego zostały wycofane ze sprzedaży. Główny Inspektorat Sanitarny informuje, że podczas inspekcji weterynaryjnej wykryto w nich groźną bakterię Listeria monocytogenes, która może doprowadzić do listeriozy. Producentem wędliny jest Bell Polska Sp. z o.o.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/wedlina-z-grozna-bakteria-produkt-pilnie-znika-ze-sklepow-gis-ostrzega/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "title_pl": "Fragment chińskiej rakiety nad Polską. Tak wyglądał przelot"
+      "title_pl": "Wędlina z groźną bakterią. Produkt pilnie znika ze sklepów, GIS ostrzega"
     },
     {
-      "title": "Papież zwrócił się do wiernych z okna Pałacu Apostolskiego po przebytej operacji",
-      "snippet": "Leon XIV, który przeszedł kilka dni temu operację, pokazał się wiernym w oknie Pałacu Apostolskiego w Watykanie. Podziękował tym, którzy się za niego modlili, oraz personelowi Polikliniki Gemelli, gdzie usunięto mu guzek z płuca.",
-      "link": "https://tvn24.pl/swiat/papiez-leon-xiv-zwrocil-sie-do-wiernych-z-okna-palacu-apostolskiego-po-przebytej-operacji-st9293410?source=rss",
-      "source_name": "TVN24",
+      "title": "Aleksander Olech w programie \"Najważniejsze pytania\". Oglądaj od 18:00",
+      "snippet": "Gościem poniedziałkowego wydania Najważniejszych pytań będzie Aleksander Olech, redaktor naczelny portalu Defence24. Transmisja od godz. 18:00 w Polsat News, Interii i na polsatnews.pl. Program poprowadzą Karolina Olejak i Przemysław Szubartowicz.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/aleksander-olech-w-programie-najwazniejsze-pytania-ogladaj-od-1800/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "title_pl": "Papież zwrócił się do wiernych z okna Pałacu Apostolskiego po przebytej operacji"
+      "title_pl": "Aleksander Olech w programie \"Najważniejsze pytania\". Oglądaj od 18:00"
     },
     {
-      "title": "Odszedł 25 lat temu, ale \"Ślad\" pozostał",
-      "snippet": "Dokładnie ćwierć wieku temu w wypadku samochodowym zginął biskup Jan Chrapek - człowiek Kościoła, dialogu i mediów. Nagroda \"Ślad\" jego imienia jest jedną z ważniejszych w świecie polskiego dziennikarstwa.",
-      "link": "https://tvn24.pl/polska/25-lat-temu-w-wypadku-zginal-biskup-jan-chrapek-st9293362?source=rss",
-      "source_name": "TVN24",
+      "title": "Nawrocki wysłał sygnał w sprawie Trybunału. \"Nie ma innej drogi\"",
+      "snippet": "- Nie ma innej drogi w Polsce, nie ma innego doświadczenia ustrojowego, nie ma innego mechanizmu do zostania sędzią Rzeczypospolitej Polskiej, jak ten, aby złożyć przysięgę wobec prezydenta Rzeczypospolitej Polskiej - mówił Karol Nawrocki podczas poniedziałkowej uroczystości wręczenia nominacji sędziowskich. Mówiąc to, stwierdził, że wysyła jasny sygnał.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/nawrocki-wyslal-sygnal-w-sprawie-trybunalu-nie-ma-innej-drogi/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "title_pl": "Odszedł 25 lat temu, ale \"Ślad\" pozostał"
+      "title_pl": "Nawrocki wysłał sygnał w sprawie Trybunału. \"Nie ma innej drogi\""
     },
     {
-      "title": "Zmiana czasu może nam szkodzić. Psycholog tłumaczy, dlaczego",
-      "snippet": "Zmiana czasu ma negatywny wpływ na zdrowie - wskazują eksperci. Według badań ta praktyka może zaburzać funkcjonowanie zegara biologicznego, co pociąga za sobą szereg negatywnych konsekwencji.",
-      "link": "https://tvn24.pl/tvnmeteo/nauka/zmiana-czasu-na-zimowy-tak-przestawianie-zegarkow-moze-szkodliwie-wplywac-na-zdrowie-st9293335?source=rss",
-      "source_name": "TVN24",
+      "title": "Wypadek na terenie przedszkola. Karetka potrąciła trzyletnie dziecko",
+      "snippet": "Trzyletnie dziecko zostało potrącone na terenie przedszkola w Jedliczu w powiecie krośnieńskim (woj. podkarpackie). Jak wyjaśniła w rozmowie z polsatnews.pl policja, malec został przetransportowany do szpitala. Na miejscu trwają działania prokuratury. Z relacji strażaka miejscowego OSP wynika, że wypadek spowodowany był przez kierowcę karetki.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/wypadek-na-terenie-przedszkola-trzyletnie-dziecko-potracone/",
+      "source_name": "Polsat News",
       "lang": "pl",
-      "title_pl": "Zmiana czasu może nam szkodzić. Psycholog tłumaczy, dlaczego"
+      "title_pl": "Wypadek na terenie przedszkola. Karetka potrąciła trzyletnie dziecko"
     },
     {
-      "title": "Burza o słowa Hegsetha. Reaguje Sikorski, europoseł apeluje do Nawrockiego",
-      "snippet": "Szef Pentagonu Pete Hegseth stwierdził, że w walkach w Afganistanie w rzeczywistości uczestniczyło tylko kilku sojuszników NATO. Jego zdaniem udział innych był symboliczny. \"Powiedz to rodzinom 44 poległych polskich żołnierzy\" - zareagował szef polskiego MSZ Radosław Sikorski. Eu",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-burza-po-slowach-szefa-pentagonu-reaguje-sikorski-europosel,nId,23560115",
+      "title": "Syn Prigożyna odbudował Grupę Wagnera. Milionowe wpływy z nielegalnych biznesów",
+      "snippet": "Syn założyciela Grupy Wagnera, Jewgienija Prigożyna, przejął część najemników w Republice Środkowoafrykańskiej i prowadzi tam szereg nielegalnych biznesów. Grupa pod przewodnictwem Pawła Prigożyna ma czerpać zyski m.in. z wydobycia złota, a także handlu bronią i narkotykami - podaje Wall Street Journal.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/syn-prigozyna-odbudowal-grupe-wagnera-milionowe-plywy-z-nielegalnych-biznesow/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Syn Prigożyna odbudował Grupę Wagnera. Milionowe wpływy z nielegalnych biznesów"
+    },
+    {
+      "title": "Trump zgadza się na propozycję Putina. Przy okazji uderza w Zełenskiego. \"Może nadszedł czas\"",
+      "snippet": "Donald Trump jest gotów spotkać się z Władimirem Putinem oraz Xi Jinpingiem. Propozycję organizacji takiego szczytu wysunęła Rosja. - Chcielibyśmy porozmawiać o broni jądrowej i denuklearyzacji - powiedział w poniedziałek. Prezydent USA jednocześnie uznał, że ukraiński lider Wołodymyr Zełenski, w kontekście trwającej wojny, nie powinien dłużej negocjować w imieniu Kijowa.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/trump-zgadza-sie-na-propozycje-putina-przy-okazji-uderza-w-zelenskiego-moze-nadszedl-czas/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Trump zgadza się na propozycję Putina. Przy okazji uderza w Zełenskiego. \"Może nadszedł czas\""
+    },
+    {
+      "title": "Netanjahu słodzi Trumpowi przed wyborami. \"Największy przyjaciel Izraela\"",
+      "snippet": "- Donald Trump to największy przyjaciel, jakiego Izrael kiedykolwiek miał - powiedział Binjamin Netanjahu, cytowany przez AFP. Premier Izraela może liczyć na poparcie prezydenta USA przed zbliżającymi się wyborami. - Jesteś mężczyzną, którego chcę mieć u swego boku, Bibi - zwrócił się do izraelskiego polityka przywódca Stanów Zjednoczonych.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/netanjahu-slodzi-trumpowi-przed-wyborami-najwiekszy-przyjaciel-izraela/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Netanjahu słodzi Trumpowi przed wyborami. \"Największy przyjaciel Izraela\""
+    },
+    {
+      "title": "Raul Castro na celowniku USA. Jest nakaz aresztowania byłego przywódcy Kuby",
+      "snippet": "Prokurator generalny Florydy James Uthmeier poinformował o nakazie aresztowania wobec Raula Castro. 95-letni były kubański przywódca oskarżony jest m.in. o wydanie rozkazu zestrzelenia dwóch samolotów prowadzących misję humanitarną.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/raul-castro-na-celowniku-usa-jest-nakaz-aresztowania-bylego-przywodcy-kuby/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Raul Castro na celowniku USA. Jest nakaz aresztowania byłego przywódcy Kuby"
+    },
+    {
+      "title": "Sondażowy alarm dla Donalda Trumpa. Nie chodzi tylko o poparcie",
+      "snippet": "Donald Trump z najniższym poparciem od początku jego pierwszej kadencji - wynika z sondażu przeprowadzonego na zlecenie The Washington Post oraz ABC News. Prezydenta USA popiera 33 proc. badanych, a ponadto więcej niż połowa ankietowanych wskazuje, iż Trump wykorzystuje swoją pozycję, by się bogacić.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/sondazowy-alarm-dla-donalda-trumpa-nie-chodzi-tylko-o-poparcie/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Sondażowy alarm dla Donalda Trumpa. Nie chodzi tylko o poparcie"
+    },
+    {
+      "title": "Premier Holandii i jego partner spodziewają się dziecka. \"Do zobaczenia, maleństwo\"",
+      "snippet": "Premier Holandii Rob Jetten i jego partner Nicolas Keenan spodziewają się dziecka. Poinformowali o tym za pośrednictwem mediów społecznościowych. Pomoże im dawczyni jajeczka oraz surogatka. Nie mamy tu do czynienia z komercyjną surogacją - przekazała w oświadczeniu D66, partia polityczna holenderskiego polityka.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/premier-holandii-i-jego-partner-spodziewaja-sie-dziecka-do-zobaczenia-malenstwo/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Premier Holandii i jego partner spodziewają się dziecka. \"Do zobaczenia, maleństwo\""
+    },
+    {
+      "title": "Małpia ospa atakuje w Rosji. Potwierdzono zakażenie kolejnych pacjentów",
+      "snippet": "Szpital Kliniczny Chorób Zakaźnych w Petersburgu poinformował o pięciu pacjentach, którzy trafili do placówki z potwierdzoną małpią ospą - podaje agencja RIA Nowosti. Wcześniej informowano o innych przypadkach osób z podejrzeniem tej choroby, jakie odnotowano w Moskwie.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/malpia-ospa-atakuje-w-rosji-potwierdzono-zakazenie-kolejnych-pacjentow/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Małpia ospa atakuje w Rosji. Potwierdzono zakażenie kolejnych pacjentów"
+    },
+    {
+      "title": "Kreml dostrzegł masowe protesty w Europie. Pieskow grzmi o poważnym kryzysie",
+      "snippet": "- Niepokoje w praktyce graniczą z chaosem - ocenił Dmitrij Pieskow trwające w Europie protesty, cytowany przez agencję ANSA. Zdaniem rzecznika Kremla stanowią one poważny kryzys. Jednocześnie stwierdził, że masowe demonstracje w europejskich krajach to wewnętrzna sprawa tych państw.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/kreml-dostrzegl-masowe-protesty-w-europie-pieskow-grzmi-o-powaznym-kryzysie/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Kreml dostrzegł masowe protesty w Europie. Pieskow grzmi o poważnym kryzysie"
+    },
+    {
+      "title": "Tak rząd Francji może zdławić chaos na ulicach. Premier nie wyklucza stanu wyjątkowego",
+      "snippet": "Premier Francji zapowiedział, że może wprowadzić stan wyjątkowy - informuje AFP. Sebastien Lecornu stwierdził, że jeśli zajdzie trzeba, nie cofnie się przed tym. Jednocześnie przyznał, że na razie skuteczniejsze będzie wprowadzenie godzin policyjnych. - Jestem zdeterminowany, by przywrócić porządek - powiedział. Oskarżył też skrajnie lewicowy ruch o wprowadzanie chaosu w kraju.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/tak-rzad-francji-moze-zdlawic-chaos-na-ulicach-premier-nie-wyklucza-stanu-wyjatkowego/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Tak rząd Francji może zdławić chaos na ulicach. Premier nie wyklucza stanu wyjątkowego"
+    },
+    {
+      "title": "Zmiany na szczytach władzy w Rosji. \"Konieczne do kontynuowania pracy\"",
+      "snippet": "Premier Michaił Miszustin wprowadza zmiany, które uznaje za konieczne, aby zapewnić dalsze skuteczne funkcjonowanie rządu – przekazał rzecznik prasowy Kremla Dmitrij Pieskow. W poniedziałek w Rosji przeprowadzono rekonstrukcję rządu. Według przedstawionej propozycji popartej przez Władimira Putina mianowanych ma zostać czterech nowych wicepremierów.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/przetasowania-w-rosyjskim-rzadzie-konieczne-do-kontynuowania-pracy/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Zmiany na szczytach władzy w Rosji. \"Konieczne do kontynuowania pracy\""
+    },
+    {
+      "title": "Papież po operacji. Watykan wystosował komunikat do wiernych",
+      "snippet": "W środę odbędzie się audiencja generalna z udziałem Leona XIV - poinformowało Biuro Prasowe Stolicy Apostolskiej. Będzie to drugie spotkanie papieża z wiernymi po opuszczeniu przez niego Polikliniki Gemelli. Leon XIV przeszedł tam w ubiegłym tygodniu operację po tym, jak zdiagnozowano u niego nowotwór płuc.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/papiez-po-operacji-watykan-wystosowal-komunikat-do-wiernych/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Papież po operacji. Watykan wystosował komunikat do wiernych"
+    },
+    {
+      "title": "LOT zawiesza część połączeń lotniczych. Koszt paliwa okazuje się zbyt duży",
+      "snippet": "Polskie Linie Lotnicze LOT zawieszają część połączeń w ramach zimowego rozkładu rejsów - poinformował w poniedziałek Krzysztof Moczulski, rzecznik państwowego przewoźnika. Przyczyn jest kilka, lecz jedna wydaje się najważniejsza. - W lutym koszt paliwa stanowił ok. 25 proc. wszystkich kosztów ponoszonych przez linie lotnicze. Dziś może to być nawet 40 proc. - wyliczył przedstawiciel PLL LOT.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/lot-zawiesza-czesc-polaczen-lotniczych-koszt-paliwa-okazuje-sie-zbyt-duzy/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "LOT zawiesza część połączeń lotniczych. Koszt paliwa okazuje się zbyt duży"
+    },
+    {
+      "title": "Niemcy dadzą dzieciom nowe świadczenie. Pieniądze będą jednak zablokowane",
+      "snippet": "​Dzieci urodzone w latach 2020 i 2021 będą od 1 stycznia 2027 roku otrzymywać od państwa środki w ramach Frühstartrente. Nowy fundusz ma zapewnić młodemu pokoleniu lepszą sytuację finansową na starość. Rządowe pieniądze będzie można dodatkowo pomnażać.",
+      "link": "https://www.polsatnews.pl/wiadomosc/2026-10-19/niemcy-dadza-dzieciom-nowe-swiadczenie-pieniadze-beda-jednak-zablokowane/",
+      "source_name": "Polsat News",
+      "lang": "pl",
+      "title_pl": "Niemcy dadzą dzieciom nowe świadczenie. Pieniądze będą jednak zablokowane"
+    },
+    {
+      "title": "Rosja wzmacnia działania w pobliżu Polski. Ogromne inwestycje",
+      "snippet": "Rosja intensyfikuje działania w obwodzie kalingradzkim - donosi niemiecki \"FAZ\", powołując się na niepublikowany raport firmy Iceye. Dane satelitarne pozwalają zidentyfikować serię inwestycji, które mają na celu odbudować rosyjską potęgę na Bałtyku. Wśród nich znajduje się ogromny radar, który swoim zasięgiem obejmie nawet Wielką Brytanię.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-rosja-wzmacnia-dzialania-w-poblizu-polski-ogromne-inwestycje,nId,23560769",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000NF8J306URCCOF-C461.jpg",
-      "grounded": true,
-      "title_pl": "Burza o słowa Hegsetha. Reaguje Sikorski, europoseł apeluje do Nawrockiego"
+      "title_pl": "Rosja wzmacnia działania w pobliżu Polski. Ogromne inwestycje"
     },
     {
-      "title": "Rosja uzupełnia bazy przy granicach NATO. Analitycy kreślą trzy scenariusze",
-      "snippet": "Rosjanie ponownie uzupełniają bazy magazynowe, w tym także te w pobliżu granic NATO - podaje rosyjskie medium niezależne Ważnyje Istorii. Do punktów transportowane są czołgi, wozy opancerzony oraz instalacje artyleryjskie, które wyjechały z nich w pierwszych latach wojny. Co to o",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-rosja-uzupelnia-bazy-przy-granicach-nato-analitycy-kresla-tr,nId,23560102",
+      "title": "Nie tylko dżuma? Niebezpieczna choroba w Petersburgu i pod Moskwą",
+      "snippet": "W Petersburgu potwierdzono pięć przypadków małpiej ospy - poinformowała agencja TASS, powołując się na biuro prasowe Szpitala Klinicznego Chorób Zakaźnych im. S.P. Botkina. Wcześniej pięć osób, które miały kontakt z pacjentem podejrzewanym o zakażenie, trafiło do szpitala w obwodzie moskiewskim. Rosyjskie służby zapewniają, że dysponują odpowiednimi narzędziami do wykrywania wirusa.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-nie-tylko-dzuma-niebezpieczna-choroba-w-petersburgu-i-pod-mo,nId,23560768",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000NF8H1KITLJW1D-C461.jpg",
-      "grounded": true,
-      "title_pl": "Rosja uzupełnia bazy przy granicach NATO. Analitycy kreślą trzy scenariusze"
+      "title_pl": "Nie tylko dżuma? Niebezpieczna choroba w Petersburgu i pod Moskwą"
     },
     {
-      "title": "Obrady Episkopatu. Wśród zagadnień szkoła i finansowanie mediów",
-      "snippet": "Lekcje religii i wychowanie młodzieży znajdą się w programie jesiennego zebrania Episkopatu. Biskupi będą obradować w Zakopanem od 22 do 24 października 2026 r. Zajmą się również przygotowaniami do uruchomienia komisji badającej wykorzystywanie seksualne małoletnich w Kościele.",
-      "link": "https://wydarzenia.interia.pl/religia/news-episkopat-zjezdza-do-zakopanego-wsrod-zagadnien-szkola-i-fin,nId,23559259",
+      "title": "Niebezpiecznie na zachodzie Ukrainy. Polska poderwała myśliwce",
+      "snippet": "Lotnictwo wojskowe operowało na obszarze województw lubelskiego i podkarpackiego. Po godzinie alert Rządowego Centrum Bezpieczeństwa odwołano. To reakcja na ostrzał zachodniej Ukrainy przez Rosję. W ramach działań prewencyjnych zamknięto przestrzeń powietrzną nad rzeszowskim lotniskiem.",
+      "link": "https://wydarzenia.interia.pl/kraj/news-niebezpiecznie-na-zachodzie-ukrainy-polska-poderwala-mysliwc,nId,23560774",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000MGPAROF23909D-C461.jpg",
-      "grounded": true,
-      "title_pl": "Obrady Episkopatu. Wśród zagadnień szkoła i finansowanie mediów"
+      "title_pl": "Niebezpiecznie na zachodzie Ukrainy. Polska poderwała myśliwce"
     },
     {
-      "title": "ZUS przyspiesza wypłaty emerytur. Ci seniorzy dostaną pieniądze wcześniej",
-      "snippet": "Zakład Ubezpieczeń Społecznych przyspieszy część listopadowych wypłat emerytur i rent. Powodem jest układ kalendarza i dni świątecznych. Część seniorów otrzyma pieniądze wcześniej, a niektórzy pobiorą dwie wypłaty w jednym miesiącu.",
-      "link": "https://wydarzenia.interia.pl/kraj/news-zus-przyspiesza-wyplaty-emerytur-pieniadze-jeszcze-w-pazdzie,nId,23558662",
+      "title": "Po rozmowie z Putinem papież wykonał kolejny telefon. Ruch Leona XIV",
+      "snippet": "Papież rozmawiał telefonicznie z Wołodymyrem Zełenskim. Zaapelował o współpracę Ukrainy z Rosję celem ewakuacji miasta Oleszki. Kilka dni wcześniej Leon XIV skierował taki sam komunikat do Władimira Putina. W zaminowanych, pozbawionych wody i elektryczności Oleszkach nadal przebywa 2 tys. osób.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-po-rozmowie-z-putinem-papiez-wykonal-kolejny-telefon-ruch-le,nId,23560760",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000GFWFRL072OBIM-C461.jpg",
-      "grounded": true,
-      "title_pl": "ZUS przyspiesza wypłaty emerytur. Ci seniorzy dostaną pieniądze wcześniej"
+      "title_pl": "Po rozmowie z Putinem papież wykonał kolejny telefon. Ruch Leona XIV"
     },
     {
-      "title": "Najpierw Polska, teraz Litwa. Wzięli na celownik stację Starlinków",
-      "snippet": "\"Podjęto próbę podpalenia litewskiego obiektu, w którym przechowywany jest sprzęt komunikacyjny systemu Starlink\" - poinformował premier Litwy. Próba zakończyła się niepowodzeniem, ponieważ służby wcześniej ostrzegły placówkę. Premier nie wyklucza, że próba uderzenia w obiekt to ",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-najpierw-polska-teraz-proba-na-litwie-wzieli-na-celownik-sta,nId,23560087",
+      "title": "Chwile grozy na lotnisku w Peru, seria incydentów. Samolot stanął w ogniu",
+      "snippet": "Samolot peruwiańskich linii lotniczych LATAM stanął w ogniu podczas przygotowań do startu na lotnisku w Limie. W momencie zdarzenia na pokładzie znajdowali się pasażerowie, którzy zostali ewakuowani. Z kolei kilka dni wcześniej maszyna, należąca do tego samego przedsiębiorstwa, musiała awaryjnie lądować po gwałtownym wytraceniu wysokości.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-chwile-grozy-na-lotnisku-w-peru-seria-incydentow-samolot-sta,nId,23560748",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000NF82ENGFQFXHM-C461.jpg",
-      "grounded": true,
-      "title_pl": "Najpierw Polska, teraz Litwa. Wzięli na celownik stację Starlinków"
+      "title_pl": "Chwile grozy na lotnisku w Peru, seria incydentów. Samolot stanął w ogniu"
     },
     {
-      "title": "\"Zamknijcie granice\". Paryż jak \"po wojnie\", Trump reaguje",
-      "snippet": "Donald Trump zareagował na zamieszki we Francji. \"Imigracja ludzi z zupełnie innego świata, ludzi z nienawiścią w sercach, zniszczyła ten niegdyś wielki kraj\" - napisał w mediach społecznościowych. Polecił francuskiemu rządowi zamknięcie granic. \"Polska nie powtórzy błędów innych",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-zamknijcie-granice-paryz-jak-po-wojnie-trump-reaguje,nId,23560094",
+      "title": "Podpalenie anten Starlinka pod Sofią. Niemcom grozi 12 lat odsiadki",
+      "snippet": "Sąd w Sofii wyraził zgodę na wydanie europejskich nakazów aresztowania dwóch 19-letnich obywateli Niemiec, podejrzewanych o podpalenie anten sieci satelitarnej Starlink w Bułgarii. Do zdarzenia doszło 9 października w pobliżu stolicy kraju. Mężczyznom grozi od trzech do 12 lat więzienia.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-podpalenie-anten-starlinka-pod-sofia-niemcom-grozi-12-lat-od,nId,23560751",
       "source_name": "Interia",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#040a18;--service-configuration-action-color-default:#2e6ee5;--service-configuration-action-color-hover:#265cbf;--service-configuration-action-color-active:#2e6ee5;--service-configuration-action-color-disabled:#edf2fa;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000NF8BEEU544B99-C461.jpg",
-      "grounded": true,
-      "title_pl": "\"Zamknijcie granice\". Paryż jak \"po wojnie\", Trump reaguje"
+      "title_pl": "Podpalenie anten Starlinka pod Sofią. Niemcom grozi 12 lat odsiadki"
     },
     {
-      "title": "\"Moralne bankructwo\". Niemiecki dziennik wzywa Berlin w sprawie Polaków",
-      "snippet": "Brak finansowej pomocy dla polskich ofiar niemieckiej okupacji jest \"moralnym bankructwem\" niemieckiego rządu - pisze dziennik \"Die Welt\". Gazeta wezwała szybkiego podjęcia decyzji w tej sprawie.",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-moralne-bankructwo-niemiecki-dziennik-wzywa-berlin-w-sprawie,nId,23560064",
+      "title": "Paryż wprowadza godzinę policyjną. Demonstranci zwołują kolejne protesty",
+      "snippet": "Francuskie miasta zaczęły wprowadzać godzinę policyjną. Taką decyzję podjął już m. in. Paryż. Premier Sebastien Lecornu nie wyklucza również stanu wyjątkowego. Tymczasem żółte kamizelki zapowiadają kolejną mobilizację w najbliższą sobotę, a w mediach społecznościowych pojawiają się wezwania do następnych demonstracji. Władze obawiają się powtórki grabieży i starć z policją.",
+      "link": "https://wydarzenia.interia.pl/zagranica/news-paryz-wprowadza-godzine-policyjna-demonstranci-zwoluja-kolej,nId,23560708",
       "source_name": "Interia",
       "lang": "pl",
-      "title_pl": "\"Moralne bankructwo\". Niemiecki dziennik wzywa Berlin w sprawie Polaków"
+      "title_pl": "Paryż wprowadza godzinę policyjną. Demonstranci zwołują kolejne protesty"
     },
     {
-      "title": "Poszukiwania po zgłoszeniach mieszkańców. Wojsko apeluje",
-      "snippet": "Policjanci i żołnierze przerwali poszukiwania niezidentyfikowanego obiektu latającego w okolicy Zalewu Zemborzyckiego w Lublinie. Wojsko apeluje o wsłuchiwanie się tylko w oficjalne komunikaty i zwraca uwagę, by w przypadku odnalezienia ewentualnych szczątków obiektu pilnie zawia",
-      "link": "https://wydarzenia.interia.pl/lubelskie/news-poszukiwania-po-zgloszeniach-mieszkancow-wojsko-apeluje,nId,23560074",
+      "title": "RPO reaguje, w tle zatrzymanie Piotra W. Wnioski do policji i prokuratury",
+      "snippet": "Rzecznik Praw Obywatelskich podjął z urzędu sprawę dotyczącą interwencji policjantów wobec Piotra W. pod budynkiem Trybunału Konstytucyjnego. Pracownicy Biura RPO zwrócili się o informację do stołecznej policji i prokuratury. W. został zatrzymany przez funkcjonariuszy policji po tym, jak - według relacji służb - zaatakował policjantkę.",
+      "link": "https://wydarzenia.interia.pl/kraj/news-rpo-reaguje-w-tle-zatrzymanie-piotra-w-wnioski-do-policji-i,nId,23560719",
       "source_name": "Interia",
       "lang": "pl",
-      "title_pl": "Poszukiwania po zgłoszeniach mieszkańców. Wojsko apeluje"
+      "title_pl": "RPO reaguje, w tle zatrzymanie Piotra W. Wnioski do policji i prokuratury"
     },
     {
-      "title": "Głośne zatrzymanie Piotra W. Jest decyzja sądu",
-      "snippet": "Sąd w Warszawie nie zgodził się na areszt dla Piotra W. - informuje Polsat News. Mężczyzna został zatrzymany przez policję w piątek w pobliżu Trybunału Konstytucyjnego. W sobotę usłyszał zarzut m.in. naruszenia nietykalności cielesnej funkcjonariuszki.",
-      "link": "https://wydarzenia.interia.pl/kraj/news-glosne-zatrzymanie-piotra-w-jest-decyzja-sadu,nId,23560066",
+      "title": "Tusk reaguje na zamieszki we Francji. Wskazał na czasy rządów PiS",
+      "snippet": "- Rząd PiS otworzył bramy Polski dla wszystkich migrantów najszerzej ze wszystkich państw europejskich - oskarżył w nowym nagraniu Donald Tusk. Premier przypomniał o milionach wiz, wydawanych rocznie przez poprzedników. Jak zaznaczył, jego rząd cofa ten trend i zyskuje sojuszników dla nowego modelu polityki migracyjnej w Unii Europejskiej. Nagranie szefa polskiego rządu jest reakcją na zamieszki, wywołane przez migrantów na zachodzie Europy.",
+      "link": "https://wydarzenia.interia.pl/kraj/news-tusk-reaguje-na-zamieszki-we-francji-wskazal-na-czasy-rzadow,nId,23560737",
       "source_name": "Interia",
       "lang": "pl",
-      "title_pl": "Głośne zatrzymanie Piotra W. Jest decyzja sądu"
+      "title_pl": "Tusk reaguje na zamieszki we Francji. Wskazał na czasy rządów PiS"
     },
     {
-      "title": "Leon XIV przemówił do wiernych. Pierwsze słowa po operacji, padła zapowiedź",
-      "snippet": "- Chciałbym podziękować wszystkim osobom, które modliły się za mnie w tych dniach - powiedział Leon XIV podczas modlitwy Anioł Pański. Papież po raz pierwszy od operacji płuca zwrócił się do wiernych. Zapewnił ich, że będzie stopniowo \"wznawiał swoją działalność\". Z jego ust padł",
-      "link": "https://wydarzenia.interia.pl/zagranica/news-leon-xiv-przemowil-do-wiernych-pierwsze-slowa-po-operacji-pa,nId,23560041",
+      "title": "Nocny incydent z udziałem prokuratora. \"Pomyliłem drzwi\"",
+      "snippet": "Prokurator Andrzej Golec wszedł nocą do obcego mieszkania i miał obserwować jak właściciel lokalu bierze prysznic. Był pod wpływem alkoholu i nie reagował na wezwania do opuszczenia budynku - podaje tvn24.pl. Golec tłumaczył, że pomylił drzwi i szukał mieszkania znajomych. Jego zdaniem nie ma podstaw do wszczęcia sprawy o naruszenie miru domowego.",
+      "link": "https://wydarzenia.interia.pl/kraj/news-nocny-incydent-z-udzialem-prokuratora-pomylilem-drzwi,nId,23560700",
       "source_name": "Interia",
       "lang": "pl",
-      "title_pl": "Leon XIV przemówił do wiernych. Pierwsze słowa po operacji, padła zapowiedź"
+      "title_pl": "Nocny incydent z udziałem prokuratora. \"Pomyliłem drzwi\""
     },
     {
-      "title": "Incydent na Litwie, wskazywali Polskę. Jest nowy komunikat Ukrainy",
-      "snippet": "Nasze systemy radarowe nie potwierdzają przekroczenia granicy z Polski na Litwę przez odnaleziony tam obiekt - przekazał Interii rzecznik MON Janusz Sejmej. Jesteśmy w kontakcie ze stroną litewską - dodał. Wcześniej Litwa podawała, że dron prawdopodobnie wleciał od strony Polski.",
-      "link": "https://wydarzenia.interia.pl/kraj/news-incydent-na-litwie-wskazywali-polske-jest-nowy-komunikat-ukr,nId,23560050",
-      "source_name": "Interia",
-      "lang": "pl",
-      "title_pl": "Incydent na Litwie, wskazywali Polskę. Jest nowy komunikat Ukrainy"
-    },
-    {
-      "title": "Zderzenie tramwajów w centrum Łodzi. 71-latka trafiła do szpitala",
-      "snippet": "71-latka trafiła do szpitala po wypadku tramwajowym, do którego doszło w Łodzi. - Ze wstępnych ustaleń wynika, że motorniczy linii nr 8 nie dostosował prędkości i uderzył w tramwaj linii 12, który oczekiwał na zielone światło - przekazała rzeczniczka KWP w Łodzi nadkom. Edyta Mac",
-      "link": "https://wydarzenia.interia.pl/lodzkie/news-zderzenie-tramwajow-w-centrum-lodzi-71-latka-trafila-do-szpi,nId,23560048",
-      "source_name": "Interia",
-      "lang": "pl",
-      "title_pl": "Zderzenie tramwajów w centrum Łodzi. 71-latka trafiła do szpitala"
-    },
-    {
-      "title": "Nawet 21,5 tys. zł za gram. Ten kamień jest droższy niż złoto",
-      "snippet": "Wartość meteorytów zależy od ich składu, pochodzenia i stanu zachowania. Ceny najrzadszych okazów sięgają tysięcy euro za gram. Znaczenie ma jednak nie tylko wartość znaleziska, ale również to, gdzie i w jaki sposób zostało odkryte.",
-      "link": "https://biznes.interia.pl/finanse/news-zwykly-kamien-moze-byc-wart-fortune-za-gram-placa-nawet-21-t,nId,23560089",
+      "title": "Niemiecki rząd będzie współpracować z gigantem z USA. Celem rozwój AI",
+      "snippet": "Niemiecki rząd ogłosił w poniedziałek partnerstwo z amerykańskim gigantem technologicznym - firmą Nvidia. Celem ma być rozwój sztucznej inteligencji w zastosowaniach przemysłowych - informuje AFP.",
+      "link": "https://biznes.interia.pl/gospodarka/news-niemiecki-rzad-bedzie-wspolpracowac-z-gigantem-z-usa-celem-r,nId,23560766",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000EMUSUXJUNS1QL-C461.jpg",
-      "grounded": true,
-      "title_pl": "Nawet 21,5 tys. zł za gram. Ten kamień jest droższy niż złoto"
+      "title_pl": "Niemiecki rząd będzie współpracować z gigantem z USA. Celem rozwój AI"
     },
     {
-      "title": "Studenci mają problem ze znalezieniem pracy. \"Firmy szukają specjalistów\"",
-      "snippet": "Znalezienie pracy, którą można połączy ze studiami graniczy z cudem. Sztuczna inteligencja przejmuje część zadań biurowych, a pracodawcy oczekują od kandydatów doświadczenia, którego młodzi nie mają gdzie zdobyć. \"Firmy szukają specjalistów, a student, który łapie różne fuchy, by",
-      "link": "https://biznes.interia.pl/praca/news-studenci-szukaja-pracy-ale-odbijaja-sie-od-sciany-powod-jest,nId,23560077",
+      "title": "Umowa o współpracy z Air Arabia. Polska okazała się „ukrytą perłą”",
+      "snippet": "Rośnie dostępność komunikacyjna między regionem Zatoki Perskiej i Polską. Polska Organizacja Turystyczna i linia lotnicza Air Arabia będą promować na bliskowschodnich rynkach wczasy w naszym kraju.",
+      "link": "https://biznes.interia.pl/gospodarka/news-umowa-o-wspolpracy-z-air-arabia-polska-okazala-sie-ukryta-pe,nId,23560757",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000MKS2UTI6B4NYT-C461.jpg",
-      "grounded": true,
-      "title_pl": "Studenci mają problem ze znalezieniem pracy. \"Firmy szukają specjalistów\""
+      "title_pl": "Umowa o współpracy z Air Arabia. Polska okazała się „ukrytą perłą”"
     },
     {
-      "title": "Parkowanie w miastach coraz trudniejsze. Do 2040 roku ma zniknąć tysiące miejsc",
-      "snippet": "Kierowcy coraz częściej mają problem ze znalezieniem wolnego miejsca parkingowego. Sytuacja może się pogorszyć, choć niekoniecznie z powodu zmian w organizacji ruchu czy polityki ekologicznej. Jak wynika z raportu organizacji Transport & Environment i Clean Cities Campaign, jedny",
-      "link": "https://biznes.interia.pl/gospodarka/news-miejsc-parkingowych-bedzie-coraz-mniej-powod-jest-zaskakujac,nId,23560046",
+      "title": "Wielki problem w relacjach USA-Chiny. Nałożono sankcje na pięć firm",
+      "snippet": "Departament Stanu USA nałożył sankcje na pięć chińskich firm powiązanych z byłym inżynierem Google'a, który wykradł informacje amerykańskiej firmy. Kradzież własności intelektualnej pozostaje wielkim problemem w relacjach USA-Chiny.",
+      "link": "https://biznes.interia.pl/gospodarka/news-usa-sankcje-na-chinskie-firmy-powiazane-ze-skazanym-inzynier,nId,23560741",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000JDVYCB4MR1RUW-C461.jpg",
-      "grounded": true,
-      "title_pl": "Parkowanie w miastach coraz trudniejsze. Do 2040 roku ma zniknąć tysiące miejsc"
+      "title_pl": "Wielki problem w relacjach USA-Chiny. Nałożono sankcje na pięć firm"
     },
     {
-      "title": "Suszarka, zmywarka, piekarnik. Które urządzenie kosztuje najwięcej?",
-      "snippet": "Suszarka, piekarnik i zmywarka mogą wyraźnie zwiększać zużycie prądu. Nie każde urządzenie będzie jednak zużywać tyle samo prądu. Duże znaczenie mają technologia, program i częstotliwość korzystania ze sprzętu. Które urządzenia zużywają najwięcej energii i ile może kosztować ich ",
-      "link": "https://biznes.interia.pl/finanse/news-suszarka-piekarnik-czy-zmywarka-to-urzadzenia-moga-podnosic,nId,23558819",
+      "title": "Wielkie porozumienia USA w Azji Środkowej. Miliardy dolarów na stole",
+      "snippet": "54 porozumienia o łącznej wartości 12 mld dolarów zostały zawarte pomiędzy Stanami Zjednoczonymi a Uzbekistanem - poinformowało uzbeckie ministerstwo inwestycji, przemysłu i handlu.",
+      "link": "https://biznes.interia.pl/gospodarka/news-wielkie-porozumienia-usa-w-azji-srodkowej-miliardy-dolarow-n,nId,23560717",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000NEVJEYPPF1VC4-C461.jpg",
-      "grounded": true,
-      "title_pl": "Suszarka, zmywarka, piekarnik. Które urządzenie kosztuje najwięcej?"
+      "title_pl": "Wielkie porozumienia USA w Azji Środkowej. Miliardy dolarów na stole"
     },
     {
-      "title": "Polsce trudno stawić czoła kilku firmom. \"Działają z pozycji siły\"",
-      "snippet": "Globalne firmy technologiczne coraz mocniej wpływają na to, jakie informacje do nas docierają, a ich władza sięga coraz dalej. Podczas EFNI w Sopocie eksperci wskazywali, jak UE może ograniczyć władzę cyfrowych gigantów. Wyzwaniem pozostaje nie tylko uregulowanie sektora, ale egz",
-      "link": "https://biznes.interia.pl/gospodarka/news-europa-ma-problem-z-big-techami-bardzo-ciemne-wieki,nId,23559776",
+      "title": "Volkswagen zaciska pasa. Może zamrozić pensje na lata",
+      "snippet": "Niemiecki dziennik \"Süddeutsche Zeitung\" donosi, że Volkswagen chce utrzymać pensje pracowników na poziomie z 2026 roku aż do 2030 roku. Taka decyzja wpłynęłaby na sytuację tysięcy osób - liczba zatrudnionych w koncernie to ok. 660 tys.",
+      "link": "https://biznes.interia.pl/praca/news-kolejne-problemy-motoryzacyjnego-giganta-mozliwe-zamrozenie,nId,23560665",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000N8ABI02EU3V4X-C461.jpg",
-      "grounded": true,
-      "title_pl": "Polsce trudno stawić czoła kilku firmom. \"Działają z pozycji siły\""
+      "title_pl": "Volkswagen zaciska pasa. Może zamrozić pensje na lata"
     },
     {
-      "title": "Na klatkach schodowych pojawiły się ostrzeżenia. Chodzi o rachunki",
-      "snippet": "Spółdzielnie mieszkaniowe już teraz przypominają lokatorom o sposobach na ograniczenie zużycia ciepła. Na klatkach schodowych pojawiają się ostrzeżenia dotyczące m.in. wietrzenia i korzystania z kaloryferów. Jeden z mieszkańców Torunia zaniepokoił się jednak informacją o możliwym",
-      "link": "https://biznes.interia.pl/finanse/news-spoldzielnie-ostrzegaja-przed-wzrostem-rachunkow-zalamka-juz,nId,23560028",
+      "title": "Wyższy VAT ma pomóc budżetowi. Rachunek mogą zapłacić konsumenci",
+      "snippet": "Podatek przychodowy i możliwe zmiany stawek VAT wracają do debaty - zauważa Robert Gwiazdowski. Wszystko w obliczu deficytu budżetowego sięgającego 280 mld zł. Na znaczeniu zyskuje również ryzyko inwestowania na giełdzie oraz sytuacja na rynku nieruchomości, gdzie ograniczona podaż gruntów może dodatkowo podbijać ceny mieszkań. Więcej w podcaście wideo \"Gwiazdowski mówi Interii\".",
+      "link": "https://biznes.interia.pl/podcast-gwiazdowski-mowi-interii/video-gwiazdowski-mowi-interii-rzad-szuka-dodatkowych-wplywow-poda,nId,23560648",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "text": "\";inherits:true;initial-value:0}body{--service-configuration-font-set:\"Open Sans\",sans-serif,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;--service-configuration-font-preload:\"Regular,Semibold,Bold\";--service-configuration-browser-theme-color:#044d32;--service-configuration-action-color-default:#078758;--service-configuration-action-color-hover:#044d32;--service-configuration-action-color-active:#078758;--service-configuration-action-color-disabled:#bbc7d5;--service-configuration-body-background-color:#fff}*,:after,:before{box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0}hr{height:0;color:inherit}h1,h2{font-size:inherit;font-weight:inherit}b{font-weight:bolder}button{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button{text-transform:none}button{-webkit-appearance:button;background-color:transparent;background-image:none}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}figure,h1,h2,hr,p{margin:0}menu,ol,ul{list-style:none;margin:0;padding:0}[role=button],button{cursor:pointer}button:disabled{cursor:default}[hidden]{display:none}body,html{max-width:100vw}body{--theme-color-default:var(--service-configuration-action-color-default);--theme-color-hover:var(--service-configuration-action-color-hover);--theme-color-active:var(--service-configuration-action-color-active);--theme-color-disabled:var(--service-configuration-action-color-disabled);background:var(--service-configuration-body-background-color,inherits)}body.force_top{top:0!important}.ids-skip-links{--ids-skip-links-top:5px}.ids-skip-links .ids-skip-links__link.i",
-      "og_image": "https://i.iplsc.com/-/000G3PUHXY17W1F0-C461.jpg",
-      "grounded": true,
-      "title_pl": "Na klatkach schodowych pojawiły się ostrzeżenia. Chodzi o rachunki"
+      "title_pl": "Wyższy VAT ma pomóc budżetowi. Rachunek mogą zapłacić konsumenci"
     },
     {
-      "title": "Produkt zepsuty i zgubiłeś paragon? Zobacz, jak można złożyć reklamacje",
-      "snippet": "Zepsuty czajnik, lokówka, a może gofrownica? Na mniejsze sprzęty AGD mnóstwo osób nie trzyma paragonów, jednak czy brak tego \"papierka\" uniemożliwia złożenie reklamacji na produkt, który po kilku miesiącach nie działa jak powinien? Czy można odzyskać pieniądze? Wyjaśniamy.",
-      "link": "https://biznes.interia.pl/finanse/news-zgubiles-paragon-a-produkt-sie-zepsul-jak-odzyskac-pieniadze,nId,23558601",
+      "title": "Klucz do silnej i bezpiecznej Polski. Minister przedstawia ważny warunek",
+      "snippet": "\"Nie będzie bezpieczeństwa państw bez bezpieczeństwa energetycznego\" - podkreślił minister energii Miłosz Motyka po poniedziałkowym spotkaniu szefów resortów państw Grupy Wyszehradzkiej. W jego ocenie Europa powinna ograniczyć uzależnienie od surowców z importu, a bezpieczeństwo energetyczne oprzeć na własnym przemyśle i technologiach.",
+      "link": "https://biznes.interia.pl/gospodarka/news-minister-energii-mowi-o-silnej-gospodarce-polski-podaje-wazn,nId,23560636",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "title_pl": "Produkt zepsuty i zgubiłeś paragon? Zobacz, jak można złożyć reklamacje"
+      "title_pl": "Klucz do silnej i bezpiecznej Polski. Minister przedstawia ważny warunek"
     },
     {
-      "title": "Przelew 800 plus może się spóźnić. Wszystko przez jedną zmianę",
-      "snippet": "Jeśli polujesz na promocje bankowe i często zmieniasz rachunek osobisty, musisz pamiętać o tym, że ZUS nie dowie się o tym z automatu. Jeśli pobierasz 800 plus, warto dopełnić formalności - w przeciwnym wypadku przelew świadczenia przyjdzie z opóźnieniem.",
-      "link": "https://biznes.interia.pl/finanse/news-zus-moze-spoznic-sie-z-przelewem-800-plus-powod-nie-lezy-po,nId,23558666",
+      "title": "Musk sprezentuje akcje SpaceX milionom ludzi. Darowizna warta miliardy",
+      "snippet": "Elon Musk zapowiedział, że w 2027 roku zamierza przekazać po jednej akcji SpaceX każdemu dziecku w Ameryce. Złożył deklarację krótko po tym, jak Anthropic ogłosił, że przeznaczy część akcji na cele publiczne.",
+      "link": "https://biznes.interia.pl/gieldy/news-wielki-plan-elona-muska-chce-rozdawac-akcje-spacex-podal-war,nId,23560552",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "title_pl": "Przelew 800 plus może się spóźnić. Wszystko przez jedną zmianę"
+      "title_pl": "Musk sprezentuje akcje SpaceX milionom ludzi. Darowizna warta miliardy"
     },
     {
-      "title": "PZU chce przejąć lidera ukraińskiego rynku. Znamy planowany termin",
-      "snippet": "PZU chce sfinalizować przejęcie MetLife Ukraina w pierwszym kwartale 2027 r. Polski ubezpieczyciel czeka na zgody ukraińskich organów regulacyjnych, by przejąć 100 proc. akcji spółki, która kontroluje około połowy tamtejszego rynku ubezpieczeń na życie.",
-      "link": "https://biznes.interia.pl/finanse/news-pzu-przejmuje-ukrainskiego-giganta-podalo-termin-sfinalizowa,nId,23560019",
+      "title": "Szczyt APEC okazją do rozmów Trumpa, Putina i Xi. Media o propozycji Kremla",
+      "snippet": "Władimir Putin chce zorganizować szczyt mocarstw, który miałby przypominać historyczną Jałtę. Moskwa sondowała możliwość rozmów z Trumpem i Xi Jinpingiem w listopadzie, licząc na nowe porozumienie.",
+      "link": "https://biznes.interia.pl/polityka/news-putin-zlozyl-trumpowi-propozycje-chodzi-o-spotkanie-we-trzec,nId,23560446",
       "source_name": "Interia Biznes",
       "lang": "pl",
-      "title_pl": "PZU chce przejąć lidera ukraińskiego rynku. Znamy planowany termin"
+      "title_pl": "Szczyt APEC okazją do rozmów Trumpa, Putina i Xi. Media o propozycji Kremla"
     },
     {
-      "title": "Sezon grzewczy ruszył, a z nim obawy o rachunki. Jest haczyk",
-      "snippet": "Rozpoczęcie sezonu grzewczego już za nami. Niestety, wszystko wskazuje na to, że rachunki za ogrzewanie mogą uderzyć nas po kieszeni. Co prawda ceny energii znacząco nie wzrosły, ale winę ponoszą dodatkowe opłaty.",
-      "link": "https://biznes.interia.pl/finanse/news-ogrzewasz-dom-gazem-lub-pradem-sprawdz-za-co-mozesz-zaplacic,nId,23558640",
-      "source_name": "Interia Biznes",
-      "lang": "pl",
-      "title_pl": "Sezon grzewczy ruszył, a z nim obawy o rachunki. Jest haczyk"
-    },
-    {
-      "title": "Tłumy na ulicach Portugalii. Domagają się wyższych płac. \"Życie jest za drogie\"",
-      "snippet": "Kilkadziesiąt tysięcy osób wyszło na ulice portugalskich miast, by zaprotestować przeciwko rosnącym kosztom życia i kryzysowi mieszkaniowemu. Demonstranci domagali się m.in. wyższych płac i przystępnych cen najmu. \"Życie jest za drogie!\", \"Podnieście pensje!\" i \"Płace sprawiedliw",
-      "link": "https://biznes.interia.pl/gospodarka/news-portugalczycy-wychodza-na-ulice-zycie-jest-za-drogie,nId,23560015",
-      "source_name": "Interia Biznes",
-      "lang": "pl",
-      "title_pl": "Tłumy na ulicach Portugalii. Domagają się wyższych płac. \"Życie jest za drogie\""
-    },
-    {
-      "title": "Podatki i opłaty naliczane na mieszkania i domy. Nie tylko czynsz i media",
-      "snippet": "Wielu właścicieli mieszkań i domów po opłaceniu czynszu i mediów zapomina o innych podatkach i opłatach, którym podlega ich nieruchomość czy ziemia. Opóźnienie w ich opłacie czy aktualizacji danych może spowodować naliczenie odsetek lub wyższe opłaty. Sprawdź wymagane podatki i t",
-      "link": "https://biznes.interia.pl/finanse/news-podatek-od-nieruchomosci-to-nie-wszystko-za-to-tez-placi-wla,nId,23558240",
-      "source_name": "Interia Biznes",
-      "lang": "pl",
-      "title_pl": "Podatki i opłaty naliczane na mieszkania i domy. Nie tylko czynsz i media"
-    },
-    {
-      "title": "Poszukiwania obiektu pod Lublinem przerwane. Służby informują, co dalej",
-      "snippet": "Policja i wojsko zakończyły poszukiwania niezidentyfikowanego obiektu latającego w okolicach Zalewu Zemborzyckiego w Lublinie. Działania będą kontynuowane w poniedziałek.",
-      "link": "https://wiadomosci.onet.pl/lublin/tajemniczy-obiekt-nad-zalewem-zemborzyckim-sluzby-zakonczyly-poszukiwania/tvnc8te",
+      "title": "\"Powinni to zrobić natychmiast\". Donald Trump powraca do zaskakującego pomysłu",
+      "snippet": "Prezydent USA ponownie zaapelował o zastąpienie drugiego członu w nazwie stanu Nowy Meksyk, co ma, jego zdaniem, podnieść prestiż i uzdrowić system wyborczy.",
+      "link": "https://wiadomosci.onet.pl/swiat/donald-trump-nie-odpuszcza-znow-domaga-sie-zmiany-na-mapie-stanow-zjednoczonych/8f16th8",
       "source_name": "Onet",
       "lang": "pl",
-      "text": "'+w+\" \",b+=w.length+1,s.index=++s.index%s.length}while(b =0||t.indexOf(\"trident\")>=0)h();else for(var n,r=p(),i=document.querySelectorAll(\".whitelistLink\"),o=0,a=Math.min(r.length,i.length);o 255){i=!1;break}}if(i)return e}var a=t[t.length-1];return a in n&&n[a].indexOf(t[t.length-2])>=0?t.slice(-3).join(\".\"):t.slice(-2).join(\".\")}},function(e,t){if(window.getComputedStyle)var n=function(e){return window.getComputedStyle(e)};else if(window.document.documentElement.currentStyle)n=function(e){return e.currentStyle};else n=function(){return{length:0}};e.exports=n},function(e,t){e.exports={get:function(){return window.onetAds||window.dlApi}}},function(e,t){e.exports={initPianoAdbDetection:function(){if(!window.setNptTechAdblockerCookie){document.cookie=\"__adblocker=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/\",window.setNptTechAdblockerCookie=function(e){var t=new Date;t.setTime(t.getTime()+3e5),document.cookie=\"__adblocker=\"+(e?\"true\":\"false\")+\"; expires=\"+t.toUTCString()+\"; path=/\"};var e=document.createElement(\"script\");e.setAttribute(\"async\",!0),e.setAttribute(\"src\",\"//www.npttech.com/advertising.js\"),e.setAttribute(\"onerror\",\"setNptTechAdblockerCookie(true);\"),document.getElementsByTagName(\"head\")[0].appendChild(e)}},getPianoAdbDetectionStatus:function(e){if(!e.pianoAdblockDetection)return null;var t=document.cookie.split(\"; \").find((function(e){return e.startsWith(\"__adblocker=\")}));return!!(!!t&&\"true\"===t.split(\"=\")[1])}}},function(e,t,n){var r=n(11),i=n(12),o=n(1),a=function(){\"use strict\";function e(){r(this,e),this.entryTypes=[\"first-input\",\"largest-contentful-paint\",\"paint\",\"layout-shift\",\"event\"],this.stats=[],this.preservedStats=[],this._observer=null,this.collectPerf=!0,this.config_seg_rand=parseInt(\"44\"),this.processStats=this.processStats.bind(this)}retu",
-      "og_image": "https://cdn.wiadomosci.onet.pl/1/51Mk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy8wY2M4NGEzMmNkM2EyYmIyNTg1ZDJjMGRmOTI0NTYzYi5qcGeTlQMAAM0IAM0EgJMFzQlgzQTslQfZjGh0dHBzOi8vY2RuLndpYWRvbW9zY2kub25ldC5wbC8xL3VicGs5azdhSFIwY0hNNkx5OWpaRzR1ZDJsaFpHOXRiM05qYVM1dmJtVjBMbkJzTDJsdFp5OXNiMmR2WDI5dVpYUmZkMmxoWkc5dGIzTmphUzV3Ym1lUmxRSUFaTVBEM2dBQ29UQUhvVEVFCMIA3gACoTAHoTEE",
-      "grounded": true,
-      "title_pl": "Poszukiwania obiektu pod Lublinem przerwane. Służby informują, co dalej"
+      "title_pl": "\"Powinni to zrobić natychmiast\". Donald Trump powraca do zaskakującego pomysłu"
     },
     {
-      "title": "Samochód zderzył się z pociągiem na Pomorzu Zachodnim. Duże utrudnienia na trasie",
-      "snippet": "W miejscowości Tymień pod Koszalinem (woj. zachodniopomorskie) samochód osobowy zderzył się z pociągiem — informuje TVP3 Szczecin. Na razie brak informacji o poszkodowanych. Pasażerowie kolei muszą jednak liczyć się z poważnymi utrudnieniami.",
-      "link": "https://wiadomosci.onet.pl/szczecin/samochod-zderzyl-sie-z-pociagiem-na-pomorzu-zachodnim-duze-utrudnienia-na-trasie/c1010kc",
+      "title": "Rosjanie przechodzą w tryb oszczędzania. Masowo przestawiają się na tańszy sprzęt",
+      "snippet": "Rosjanie zaczęli ograniczać wydatki na zakup elektroniki. W okresie od stycznia do sierpnia tego roku sprzedaż takich towarów wzrosła bardziej pod względem liczby sztuk niż wartości, co świadczy o spadku średniej wartości paragonu i przejściu Rosjan na najbardziej przystępne cenowo modele, podaje \"Kommiersant\".",
+      "link": "https://wiadomosci.onet.pl/swiat/rosjanie-przechodza-w-tryb-oszczedzania-masowo-przestawiaja-sie-na-tanszy-sprzet/j9f2v0b",
       "source_name": "Onet",
       "lang": "pl",
-      "text": "'+w+\" \",b+=w.length+1,s.index=++s.index%s.length}while(b =0||t.indexOf(\"trident\")>=0)h();else for(var n,r=p(),i=document.querySelectorAll(\".whitelistLink\"),o=0,a=Math.min(r.length,i.length);o 255){i=!1;break}}if(i)return e}var a=t[t.length-1];return a in n&&n[a].indexOf(t[t.length-2])>=0?t.slice(-3).join(\".\"):t.slice(-2).join(\".\")}},function(e,t){if(window.getComputedStyle)var n=function(e){return window.getComputedStyle(e)};else if(window.document.documentElement.currentStyle)n=function(e){return e.currentStyle};else n=function(){return{length:0}};e.exports=n},function(e,t){e.exports={get:function(){return window.onetAds||window.dlApi}}},function(e,t){e.exports={initPianoAdbDetection:function(){if(!window.setNptTechAdblockerCookie){document.cookie=\"__adblocker=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/\",window.setNptTechAdblockerCookie=function(e){var t=new Date;t.setTime(t.getTime()+3e5),document.cookie=\"__adblocker=\"+(e?\"true\":\"false\")+\"; expires=\"+t.toUTCString()+\"; path=/\"};var e=document.createElement(\"script\");e.setAttribute(\"async\",!0),e.setAttribute(\"src\",\"//www.npttech.com/advertising.js\"),e.setAttribute(\"onerror\",\"setNptTechAdblockerCookie(true);\"),document.getElementsByTagName(\"head\")[0].appendChild(e)}},getPianoAdbDetectionStatus:function(e){if(!e.pianoAdblockDetection)return null;var t=document.cookie.split(\"; \").find((function(e){return e.startsWith(\"__adblocker=\")}));return!!(!!t&&\"true\"===t.split(\"=\")[1])}}},function(e,t,n){var r=n(11),i=n(12),o=n(1),a=function(){\"use strict\";function e(){r(this,e),this.entryTypes=[\"first-input\",\"largest-contentful-paint\",\"paint\",\"layout-shift\",\"event\"],this.stats=[],this.preservedStats=[],this._observer=null,this.collectPerf=!0,this.config_seg_rand=parseInt(\"44\"),this.processStats=this.processStats.bind(this)}retu",
-      "og_image": "https://cdn.wiadomosci.onet.pl/1/xGgk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy8zMTVjODIwNTM2ZGMzODVmZjdjM2ViZjkzNmEyNWE4NS5qcGeTlQMAzQI5zRVfzQwGkwXNCWDNBOyVB9mMaHR0cHM6Ly9jZG4ud2lhZG9tb3NjaS5vbmV0LnBsLzEvdWJwazlrN2FIUjBjSE02THk5alpHNHVkMmxoWkc5dGIzTmphUzV2Ym1WMExuQnNMMmx0Wnk5c2IyZHZYMjl1WlhSZmQybGhaRzl0YjNOamFTNXdibWVSbFFJQVpNUEQzZ0FDb1RBSG9URUUIwgDeAAKhMAehMQQ",
-      "grounded": true,
-      "title_pl": "Samochód zderzył się z pociągiem na Pomorzu Zachodnim. Duże utrudnienia na trasie"
+      "title_pl": "Rosjanie przechodzą w tryb oszczędzania. Masowo przestawiają się na tańszy sprzęt"
     },
     {
-      "title": "Niemcy czy USA? Polacy wskazali bardziej wiarygodnego sojusznika [SONDAŻ]",
-      "snippet": "Więcej Polaków postrzega Stany Zjednoczone jako bardziej wiarygodnego sojusznika niż Niemcy — wskazują wyniki sondażu SW Research dla \"Rzeczpospolitej\". Mimo to niemal co trzeci respondent uważa, że zarówno Berlin, jak i Waszyngton nie są dla Polski partnerami godnymi zaufania.",
-      "link": "https://wiadomosci.onet.pl/kraj/zapytali-polakow-o-bardziej-wiarygodnego-sojusznika-jest-nowy-sondaz/2mdkmst",
+      "title": "Czarne chmury nad koalicją rządzącą. Jest nowy sondaż parlamentarny",
+      "snippet": "Gdyby wybory parlamentarne odbyły się już dziś, KO wygrałaby je, ale razem z Lewicą miałaby zbyt mało mandatów, aby uzyskać bezwzględną większość — wynika z najnowszego sondażu partyjnego United Surveys dla Wirtualnej Polski. PSL i Polska 2050 nie weszłyby bowiem do Sejmu.",
+      "link": "https://wiadomosci.onet.pl/kraj/ko-na-czele-ale-bez-mandatow-i-wladzy-nowy-sondaz-nie-pozostawia-zludzen/b5zgzkg",
       "source_name": "Onet",
       "lang": "pl",
-      "text": "'+w+\" \",b+=w.length+1,s.index=++s.index%s.length}while(b =0||t.indexOf(\"trident\")>=0)h();else for(var n,r=p(),i=document.querySelectorAll(\".whitelistLink\"),o=0,a=Math.min(r.length,i.length);o 255){i=!1;break}}if(i)return e}var a=t[t.length-1];return a in n&&n[a].indexOf(t[t.length-2])>=0?t.slice(-3).join(\".\"):t.slice(-2).join(\".\")}},function(e,t){if(window.getComputedStyle)var n=function(e){return window.getComputedStyle(e)};else if(window.document.documentElement.currentStyle)n=function(e){return e.currentStyle};else n=function(){return{length:0}};e.exports=n},function(e,t){e.exports={get:function(){return window.onetAds||window.dlApi}}},function(e,t){e.exports={initPianoAdbDetection:function(){if(!window.setNptTechAdblockerCookie){document.cookie=\"__adblocker=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/\",window.setNptTechAdblockerCookie=function(e){var t=new Date;t.setTime(t.getTime()+3e5),document.cookie=\"__adblocker=\"+(e?\"true\":\"false\")+\"; expires=\"+t.toUTCString()+\"; path=/\"};var e=document.createElement(\"script\");e.setAttribute(\"async\",!0),e.setAttribute(\"src\",\"//www.npttech.com/advertising.js\"),e.setAttribute(\"onerror\",\"setNptTechAdblockerCookie(true);\"),document.getElementsByTagName(\"head\")[0].appendChild(e)}},getPianoAdbDetectionStatus:function(e){if(!e.pianoAdblockDetection)return null;var t=document.cookie.split(\"; \").find((function(e){return e.startsWith(\"__adblocker=\")}));return!!(!!t&&\"true\"===t.split(\"=\")[1])}}},function(e,t,n){var r=n(11),i=n(12),o=n(1),a=function(){\"use strict\";function e(){r(this,e),this.entryTypes=[\"first-input\",\"largest-contentful-paint\",\"paint\",\"layout-shift\",\"event\"],this.stats=[],this.preservedStats=[],this._observer=null,this.collectPerf=!0,this.config_seg_rand=parseInt(\"44\"),this.processStats=this.processStats.bind(this)}retu",
-      "og_image": "https://cdn.wiadomosci.onet.pl/1/Jrok9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy9hYWViM2M5YWI0YmUyOGI4OTNhZmFiNTYyYWUwNDMwZi5qcGeTlQMAP80IAM0EgJMFzQlgzQTslQfZjGh0dHBzOi8vY2RuLndpYWRvbW9zY2kub25ldC5wbC8xL3VicGs5azdhSFIwY0hNNkx5OWpaRzR1ZDJsaFpHOXRiM05qYVM1dmJtVjBMbkJzTDJsdFp5OXNiMmR2WDI5dVpYUmZkMmxoWkc5dGIzTmphUzV3Ym1lUmxRSUFaTVBEM2dBQ29UQUhvVEVFCMIA3gACoTAHoTEE",
-      "grounded": true,
-      "title_pl": "Niemcy czy USA? Polacy wskazali bardziej wiarygodnego sojusznika [SONDAŻ]"
+      "title_pl": "Czarne chmury nad koalicją rządzącą. Jest nowy sondaż parlamentarny"
     },
     {
-      "title": "Zełenski po rozmowie z ludźmi Trumpa. \"Pokój można osiągnąć dzięki sile\"",
-      "snippet": "Prezydent Ukrainy Wołodymyr Zełenski poinformował, że rozmawiał za pośrednictwem łączy internetowych ze Steve’em Witkoffem i Jaredem Kushnerem — wysłannikami Białego Domu. Kijów i Waszyngton przygotowują kolejne kroki dyplomatyczne. Zełenski w niedzielnym wywiadzie poinformował, ",
-      "link": "https://wiadomosci.onet.pl/swiat/wolodymyr-zelenski-rozmawial-z-ludzmi-z-otoczenia-donalda-trumpa-zamiescil-wpis/hnbp9l2",
+      "title": "Donald Trump: pora by ktoś inny negocjował w imieniu Ukrainy",
+      "snippet": "— Nadeszła pora, by zamiast Wołodymyra Zełenskiego ktoś inny negocjował w imieniu Ukrainy — oświadczył prezydent USA Donald Trump. Amerykański przywódca wyraził także gotowość do spotkania z przedstawicielami Rosji oraz Chin.",
+      "link": "https://wiadomosci.onet.pl/swiat/donald-trump-pora-by-ktos-inny-negocjowal-w-imieniu-ukrainy/y9xrjdb",
       "source_name": "Onet",
       "lang": "pl",
-      "text": "'+w+\" \",b+=w.length+1,s.index=++s.index%s.length}while(b =0||t.indexOf(\"trident\")>=0)h();else for(var n,r=p(),i=document.querySelectorAll(\".whitelistLink\"),o=0,a=Math.min(r.length,i.length);o 255){i=!1;break}}if(i)return e}var a=t[t.length-1];return a in n&&n[a].indexOf(t[t.length-2])>=0?t.slice(-3).join(\".\"):t.slice(-2).join(\".\")}},function(e,t){if(window.getComputedStyle)var n=function(e){return window.getComputedStyle(e)};else if(window.document.documentElement.currentStyle)n=function(e){return e.currentStyle};else n=function(){return{length:0}};e.exports=n},function(e,t){e.exports={get:function(){return window.onetAds||window.dlApi}}},function(e,t){e.exports={initPianoAdbDetection:function(){if(!window.setNptTechAdblockerCookie){document.cookie=\"__adblocker=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/\",window.setNptTechAdblockerCookie=function(e){var t=new Date;t.setTime(t.getTime()+3e5),document.cookie=\"__adblocker=\"+(e?\"true\":\"false\")+\"; expires=\"+t.toUTCString()+\"; path=/\"};var e=document.createElement(\"script\");e.setAttribute(\"async\",!0),e.setAttribute(\"src\",\"//www.npttech.com/advertising.js\"),e.setAttribute(\"onerror\",\"setNptTechAdblockerCookie(true);\"),document.getElementsByTagName(\"head\")[0].appendChild(e)}},getPianoAdbDetectionStatus:function(e){if(!e.pianoAdblockDetection)return null;var t=document.cookie.split(\"; \").find((function(e){return e.startsWith(\"__adblocker=\")}));return!!(!!t&&\"true\"===t.split(\"=\")[1])}}},function(e,t,n){var r=n(11),i=n(12),o=n(1),a=function(){\"use strict\";function e(){r(this,e),this.entryTypes=[\"first-input\",\"largest-contentful-paint\",\"paint\",\"layout-shift\",\"event\"],this.stats=[],this.preservedStats=[],this._observer=null,this.collectPerf=!0,this.config_seg_rand=parseInt(\"44\"),this.processStats=this.processStats.bind(this)}retu",
-      "og_image": "https://cdn.wiadomosci.onet.pl/1/RIUk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy9hM2ZmNTliYjkxNmRiZmViNDM4M2ZmOGQxNGIwOWYwNS5qcGeTlQMAzIvNEVzNCcOTBc0JYM0E7JUH2YxodHRwczovL2Nkbi53aWFkb21vc2NpLm9uZXQucGwvMS91YnBrOWs3YUhSMGNITTZMeTlqWkc0dWQybGhaRzl0YjNOamFTNXZibVYwTG5Cc0wybHRaeTlzYjJkdlgyOXVaWFJmZDJsaFpHOXRiM05qYVM1d2JtZVJsUUlBWk1QRDNnQUNvVEFIb1RFRQjCAN4AAqEwB6ExBA",
-      "grounded": true,
-      "title_pl": "Zełenski po rozmowie z ludźmi Trumpa. \"Pokój można osiągnąć dzięki sile\""
+      "title_pl": "Donald Trump: pora by ktoś inny negocjował w imieniu Ukrainy"
     },
     {
-      "title": "Nadciąga duże tąpnięcie w pogodzie. Wiemy, gdzie w poniedziałek będzie najgorzej",
-      "snippet": "Po serii słonecznych i ciepłych dni w poniedziałek nie będzie już śladu. Przed nami gwałtowny spadek temperatury, a do tego więcej chmur, z których czasami popada deszcz albo mżawka. Szczególnie nieprzyjemną pogodę najbliższe godziny przyniosą na wschodzie oraz południu.",
-      "link": "https://wiadomosci.onet.pl/pogoda/zbliza-sie-tapniecie-w-pogodzie-wiemy-gdzie-w-poniedzialek-bedzie-najgorzej/bjj2qql",
+      "title": "Rak wyniszcza Europę. Zamieszki we Francji to tylko symptom choroby [OPINIA]",
+      "snippet": "Francuskie zamieszki to nie odosobniony wybuch gniewu, lecz symptom głębokiego kryzysu, który dotyka cały Zachód. Rozpad wspólnych wartości, utrata tożsamości i niewydolność instytucji prowadzą Europę ku załamaniu finansowemu i społecznemu. A Francja może być dopiero początkiem.",
+      "link": "https://wiadomosci.onet.pl/swiat/rak-wyniszcza-europe-zamieszki-we-francji-to-tylko-symptom-choroby-opinia/h4edlek",
       "source_name": "Onet",
       "lang": "pl",
-      "text": "'+w+\" \",b+=w.length+1,s.index=++s.index%s.length}while(b =0||t.indexOf(\"trident\")>=0)h();else for(var n,r=p(),i=document.querySelectorAll(\".whitelistLink\"),o=0,a=Math.min(r.length,i.length);o 255){i=!1;break}}if(i)return e}var a=t[t.length-1];return a in n&&n[a].indexOf(t[t.length-2])>=0?t.slice(-3).join(\".\"):t.slice(-2).join(\".\")}},function(e,t){if(window.getComputedStyle)var n=function(e){return window.getComputedStyle(e)};else if(window.document.documentElement.currentStyle)n=function(e){return e.currentStyle};else n=function(){return{length:0}};e.exports=n},function(e,t){e.exports={get:function(){return window.onetAds||window.dlApi}}},function(e,t){e.exports={initPianoAdbDetection:function(){if(!window.setNptTechAdblockerCookie){document.cookie=\"__adblocker=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/\",window.setNptTechAdblockerCookie=function(e){var t=new Date;t.setTime(t.getTime()+3e5),document.cookie=\"__adblocker=\"+(e?\"true\":\"false\")+\"; expires=\"+t.toUTCString()+\"; path=/\"};var e=document.createElement(\"script\");e.setAttribute(\"async\",!0),e.setAttribute(\"src\",\"//www.npttech.com/advertising.js\"),e.setAttribute(\"onerror\",\"setNptTechAdblockerCookie(true);\"),document.getElementsByTagName(\"head\")[0].appendChild(e)}},getPianoAdbDetectionStatus:function(e){if(!e.pianoAdblockDetection)return null;var t=document.cookie.split(\"; \").find((function(e){return e.startsWith(\"__adblocker=\")}));return!!(!!t&&\"true\"===t.split(\"=\")[1])}}},function(e,t,n){var r=n(11),i=n(12),o=n(1),a=function(){\"use strict\";function e(){r(this,e),this.entryTypes=[\"first-input\",\"largest-contentful-paint\",\"paint\",\"layout-shift\",\"event\"],this.stats=[],this.preservedStats=[],this._observer=null,this.collectPerf=!0,this.config_seg_rand=parseInt(\"44\"),this.processStats=this.processStats.bind(this)}retu",
-      "og_image": "https://cdn.wiadomosci.onet.pl/1/xDMk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy82M2Y2MGJjZjhjN2ZlZmEyYmY2ZDM3MTc1MTlhY2I5My5wbmeTlQMAAM0HgM0EOJMFzQlgzQTslQfZjGh0dHBzOi8vY2RuLndpYWRvbW9zY2kub25ldC5wbC8xL3VicGs5azdhSFIwY0hNNkx5OWpaRzR1ZDJsaFpHOXRiM05qYVM1dmJtVjBMbkJzTDJsdFp5OXNiMmR2WDI5dVpYUmZkMmxoWkc5dGIzTmphUzV3Ym1lUmxRSUFaTVBEM2dBQ29UQUhvVEVFCMIA3gACoTAHoTEE",
-      "grounded": true,
-      "title_pl": "Nadciąga duże tąpnięcie w pogodzie. Wiemy, gdzie w poniedziałek będzie najgorzej"
+      "title_pl": "Rak wyniszcza Europę. Zamieszki we Francji to tylko symptom choroby [OPINIA]"
     },
     {
-      "title": "Dron eksplodował nad Litwą w niedzielę rano. Kijów wskazuje winnego",
-      "snippet": "Ukraina przeprosiła Litwę za zdarzenie z dronem, który w niedzielę eksplodował nad północną częścią tego kraju. Kijów tłumaczy, że bezzałogowiec mógł zmienić kurs w wyniku rosyjskiej walki radioelektronicznej podczas ataku na cele wojskowe w Rosji.",
-      "link": "https://wiadomosci.onet.pl/swiat/kijow-tlumaczy-incydent-z-dronem-na-litwie-wskazuje-na-dzialania-rosji/yg0g1kf",
+      "title": "Kanadyjska prowincja odłączy się od reszty kraju? Ruszyło referendum",
+      "snippet": "W kanadyjskiej prowincji Alberta rozpoczęło się referendum. Jedno z pytań dotyczy odłączenia się regionu od reszty kraju. Gdyby mieszkańcy zdecydowali się na taką opcję, potrzebne byłoby jednak jeszcze jedno głosowanie.",
+      "link": "https://wiadomosci.onet.pl/swiat/kanadyjska-prowincja-odlaczy-sie-od-reszty-kraju-ruszylo-referendum/ernkzk3",
       "source_name": "Onet",
       "lang": "pl",
-      "title_pl": "Dron eksplodował nad Litwą w niedzielę rano. Kijów wskazuje winnego"
+      "title_pl": "Kanadyjska prowincja odłączy się od reszty kraju? Ruszyło referendum"
     },
     {
-      "title": "Pięć tekstów, które nasi Czytelnicy docenili w tym tygodniu [LISTA]",
-      "snippet": "Cała prawda o pracy młodych psychologów, komentarz Sławomira Sierakowskiego na temat Karola Nawrockiego, Sławomira Mentzena, Konrada Berkowicza i ich \"problemów z kobietami\" oraz rozmowa z jednym z najlepszych neurochirurgów na świecie, który wskazuje, co naprawdę może opóźnić st",
-      "link": "https://wiadomosci.onet.pl/kraj/piec-tekstow-ktore-docenili-nasi-czytelnicy-w-tym-tygodniu-lista/8qd7ews",
+      "title": "Fala zamieszek we Francji. Paryż i inne miasta objęte restrykcjami",
+      "snippet": "Władze Francji zdecydowały się na wprowadzenie godziny policyjnej w wybranych częściach kilku miast, w tym w Paryżu, Lille i Nicei. Decyzja ta zapadła po weekendzie pełnym zamieszek i grabieży, które wybuchły w związku z ogólnokrajowymi protestami antyrządowymi.",
+      "link": "https://wiadomosci.onet.pl/swiat/godzina-policyjna-w-wybranych-czesciach-francji-rzad-reaguje-na-zamieszki/p319s2h",
       "source_name": "Onet",
       "lang": "pl",
-      "title_pl": "Pięć tekstów, które nasi Czytelnicy docenili w tym tygodniu [LISTA]"
+      "title_pl": "Fala zamieszek we Francji. Paryż i inne miasta objęte restrykcjami"
     },
     {
-      "title": "Tragedia podczas nabożeństwa w Ekwadorze. Krzyż runął na kapłana",
-      "snippet": "Zdarzenie miało miejsce w czasie codziennej mszy odprawianej przez proboszcza parafii pw. Matki Bożej Nieustającej Pomocy w Guayaquil w Ekwadorze. O śmierci ojca Patricio Alfredo Sancheza Molinariego parafia poinformowała w sobotę.",
-      "link": "https://wiadomosci.onet.pl/swiat/krzyz-runal-na-kaplana-ktory-odprawial-msze-tragedia-w-ekwadorze/svss4e8",
+      "title": "Wojna o TK. Prof. Antoni Dudek tonuje nastroje. \"Coraz mniej istotne\"",
+      "snippet": "— Obie strony [sporu politycznego] mogą się przeliczyć, jeśli myślą, że \"sukces\" w wojnie o Trybunał Konstytucyjny coś istotnego zmieni w Polsce — ocenił prof. Antoni Dudek w TVN 24.",
+      "link": "https://wiadomosci.onet.pl/kraj/spor-wokol-tk-prof-antoni-dudek-komentuje-coraz-mniej-istotne/6gylrn1",
       "source_name": "Onet",
       "lang": "pl",
-      "title_pl": "Tragedia podczas nabożeństwa w Ekwadorze. Krzyż runął na kapłana"
+      "title_pl": "Wojna o TK. Prof. Antoni Dudek tonuje nastroje. \"Coraz mniej istotne\""
     },
     {
-      "title": "Udaremniono atak w Tiranie. Premier Albanii wskazuje na Iran",
-      "snippet": "Premier Albanii Edi Rama poinformował w niedzielę, że służby zneutralizowały dron wyposażony w materiały wybuchowe, który miał uderzyć w budynek rządowy w Tiranie. Zdarzenie zbiegło się z trwającymi od pięciu dni antyrządowymi protestami w stolicy kraju. Rama oskarżył o atak zagr",
-      "link": "https://wiadomosci.wp.pl/udaremniono-atak-w-tiranie-premier-albanii-wskazuje-na-iran-7341440082446336a",
+      "title": "Radosław Sikorski zwrócił się do prezydenta. \"Rosja czy Unia Europejska?\"",
+      "snippet": "— To, że Władimir Putin chciałby \"nowej Jałty\", to nie znaczy, że do niej dojdzie. Marzy o tym od dekad, bo chciałby odgrywać rolę jednego z podmiotów takiego \"triumwiratu\", który rządzi światem — ocenił w TVN24 Radosław Sikorski. Minister spraw zagranicznych zwrócił się w tym kontekście z pytaniem do Karola Nawrockiego.",
+      "link": "https://wiadomosci.onet.pl/kraj/sikorski-zwrocil-sie-prezydenta-rosja-czy-unia-europejska/kskzr69",
+      "source_name": "Onet",
+      "lang": "pl",
+      "title_pl": "Radosław Sikorski zwrócił się do prezydenta. \"Rosja czy Unia Europejska?\""
+    },
+    {
+      "title": "Francuzi w strachu po zamieszkach. \"To się powtórzy. Bez wątpienia\"",
+      "snippet": "Setki zamaskowanych młodych ludzi napłynęły w weekend z ubogich przedmieść do północno-wschodniej części stolicy Francji. Przybyły, by niszczyć i podpalać. — Niektórzy z nich przyjechali samochodami, żeby plądrować — mówią \"Bildowi\" właściciele sklepów po grabieżach w Paryżu.",
+      "link": "https://wiadomosci.onet.pl/swiat/pladrowanie-paryza-to-zaplanowana-akcja-wlasciciele-sklepow-to-byla-wojna/dgy79tx",
+      "source_name": "Onet",
+      "lang": "pl",
+      "title_pl": "Francuzi w strachu po zamieszkach. \"To się powtórzy. Bez wątpienia\""
+    },
+    {
+      "title": "\"Chłopie, oddaj mandat\". Dominika Długosz bez litości dla Michała Kołodziejczaka",
+      "snippet": "Afera wokół Michała Kołodziejczaka nie zwalnia, a do całej historii wkracza Krzysztof Rutkowski. W \"Naczelnych\" Dominika Długosz i Marcin Zawada wracają do ujawnionych nagrań i zarzutów wobec posła. Prowadzący przyglądają się też wydarzeniom przed TK, sporowi o ślubowanie nowych sędziów oraz kolejnej opowieści prezesa PiS o \"zamachu stanu\".",
+      "link": "https://wiadomosci.onet.pl/tylko-w-onecie/naczelni-afera-wokol-michala-kolodziejczaka-ostre-slowa-dominiki-dlugosz/k82tpre",
+      "source_name": "Onet",
+      "lang": "pl",
+      "title_pl": "\"Chłopie, oddaj mandat\". Dominika Długosz bez litości dla Michała Kołodziejczaka"
+    },
+    {
+      "title": "Francja po zamieszkach. Tyle osób zatrzymano",
+      "snippet": "Minister sprawiedliwości Francji Gerald Darmanin poinformował, że od weekendu policja zatrzymała 2513 osób. W wielu przypadkach zastosowano przedłużone zatrzymanie, a 67 osób trafiło do aresztu. Władze zapowiedziały wykorzystanie geolokalizacji podsłuchów oraz rozpoznawania twarzy po zamieszkach, do których doszło podczas protestów przeciwko rosnącym kosztom życia.",
+      "link": "https://wiadomosci.wp.pl/francja-po-zamieszkach-tyle-osob-zatrzymano-7341841306941472a",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] \"Teraz działa\". Wskazał winnych zakłóceń Starlinków Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Świat Udaremniono atak w Tiranie. Premier Albanii wskazuje na Iran Udaremniono atak w Tiranie. Premier Albanii wskazuje na Iran Premier Albanii Edi Rama poinformował w niedzielę, że służby zneutralizowały dron wyposażony w materiały wybuchowe, który miał uderzyć w budynek rządowy w Tiranie. Zdarzenie zbiegło się z trwającymi od pięciu dni antyrządowymi protestami w s",
-      "og_image": "https://v.wpimg.pl/OTRlZmJiYDUzDixeZRJtIHBWeAQjS2N2J05gT2VYdmZiFHULIwUqJjccNUMtGzokMxsqQzoFYDUiBXUbe0YrPSEcNgwzRio5MAk-Qn4Me2dhXWheZ1EtMDNBblh-UWI2ZVw_QCgIfG1mCTwPKFkqY3AR",
-      "grounded": true,
-      "title_pl": "Udaremniono atak w Tiranie. Premier Albanii wskazuje na Iran"
+      "title_pl": "Francja po zamieszkach. Tyle osób zatrzymano"
     },
     {
-      "title": "Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA]",
-      "snippet": "Rosyjskie ataki na Ukrainę coraz mocniej dają się we znaki krajom ościennym. W nocy przestrzeń powietrzną Litwy przekroczył dron, który spadł nieopodal Wilna. O możliwym niezidentyfikowanym obiekcie donosili wojsku także mieszkańcy Lubelszczyzny. Tymczasem we Francji mija kolejny",
-      "link": "https://wiadomosci.wp.pl/poszukiwania-na-lubelszczyznie-i-zamieszki-we-francji-co-dzialo-sie-w-niedziele-skrot-dnia-7341431706126368a",
+      "title": "Generał ostrzega przed Rosją. \"Gromadzą sprzęt\"",
+      "snippet": "Rosja nie rezygnuje z rozbudowy swojego potencjału i nadal może stanowić zagrożenie dla państw NATO? Gen. Tomasz Piotrowski odpowiedział na pytanie Anny Dyner w debacie w programie TERAZ WP. Wojskowy zwrócił uwagę na determinację Moskwy i wskazał na niepokojące materiały satelitarne pokazujące gromadzenie sprzętu prze armię Putina.",
+      "link": "https://wiadomosci.wp.pl/general-ostrzega-przed-rosja-gromadza-sprzet-7341822603977793v",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : \"Teraz działa\". Wskazał winnych zakłóceń Starlinków Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] oprac. Adrianna Rymaszewska 18 października 2026, 19:13 1 komentarz Udostępnij Udostępnij na Facebooku Udostępnij na X Udostępnij na WhatsApp Kopiuj link SKRÓT DNIA Źródło zdjęć: © East News, PAP | Wojtek Jargiło, Wu Zhizu",
-      "og_image": "https://v.wpimg.pl/NWI0ZDliYTYoUix3QxJsI2sKeC0FS2J1PBJgZkNYfGN5SG1yXEYoPiVVKCEcBmAwO0UqJRsZYCclHzs0BUY4ZmZUMzccBS8uZlU3JgkNYWR6B299Dlksen8BOSVBXX4zKh04fQ5aY2Z-A28mWA13NS0HP2YR",
-      "grounded": true,
-      "title_pl": "Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA]"
+      "title_pl": "Generał ostrzega przed Rosją. \"Gromadzą sprzęt\""
     },
     {
-      "title": "\"Teraz działa\". Wskazał winnych zakłóceń Starlinków",
-      "snippet": "Prezydent Ukrainy Wołodymyr Zełenski w wywiadzie dla telewizji NBC wprost wskazał administrację Trumpa jako źródło zakłóceń w działaniu systemu satelitarnego Starlink na Ukrainie. Przestrzegł też, że zniesienie sankcji wobec Rosji wzmacnia wojnę Putina, a ewentualne opowiedzenie ",
-      "link": "https://wiadomosci.wp.pl/teraz-dziala-wskazal-winnych-zaklocen-starlinkow-7341431520639008a",
+      "title": "Eksperci o liczbie żołnierzy, którą powinna dysponować Polska",
+      "snippet": "– Do tego, byśmy w sposób odpowiedzialny mogli to zdefiniować, potrzebne jest pewne założenie – stwierdził gość debaty o bezpieczeństwie państwa w WP, gen. Tomasz Piotrowski, były Dowódca Operacyjny Rodzajów Sił Zbrojnych, pytany o to, czy da się określić, ilu żołnierzy zawodowych, a ilu rezerwistów potrzebuje Polska, by móc się bronić. Tym \"założeniem\" według generała ma być nowa strategia bezpieczeństwa narodowego.",
+      "link": "https://wiadomosci.wp.pl/eksperci-o-liczbie-zolnierzy-ktora-powinna-dysponowac-polska-7341815501967937v",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Konflikty Wojna w Ukrainie \"Teraz działa\". Wskazał winnych zakłóceń Starlinków \"Teraz działa\". Wskazał winnych zakłóceń Starlinków Prezydent Ukrainy Wołodymyr Zełenski w wywiadzie dla telewizji NBC wprost wskazał administrację Trumpa jako źródło zakłóceń w działaniu systemu satelitarnego Starlink na Ukrainie. Przestrzegł też, że zniesienie sankcji w",
-      "og_image": "https://v.wpimg.pl/MGQzMzllYiYwGDtJQxdvM3NAbxMFTmFlJFh3WENdeX5mAnRDVEMrLj0fPx8cA2MgIw89GxscYzc9VSwKBUM7dn4eJAkcACw-fh8gGAkIYiJiTX1NDlR9amNIek9BWHp3M1d0TQhVYHM1S30eX190IjUYfVgR",
-      "grounded": true,
-      "title_pl": "\"Teraz działa\". Wskazał winnych zakłóceń Starlinków"
+      "title_pl": "Eksperci o liczbie żołnierzy, którą powinna dysponować Polska"
     },
     {
-      "title": "Weteran Legii ujawnia kulisy służby. Wspomina o absurdalnych zadaniach",
-      "snippet": "Gościem Patrycjusza Wyżgi w programie \"Didaskalia\" był Sebastian Cybulski - pisarz, weteran i autor głośnych wspomnień z Legii Cudzoziemskiej, w której służył pod pseudonimem \"Pitbull\". W szczerej rozmowie zdemontował narosłe wokół formacji mity, ujawniając bezwzględne mechanizmy",
-      "link": "https://wiadomosci.wp.pl/weteran-legii-ujawnia-kulisy-sluzby-wspomina-o-absurdalnych-zadaniach-7338259661034561v",
+      "title": "W tym Polska jest słaba. Parafianowicz i Bartosiak alarmują ws. wojska",
+      "snippet": "Jak poprawić bezpieczeństwo Polski w obliczu zagrożenia ze strony dronów? Podczas debaty w programie Teraz WP, Zbigniew Parafianowicz zwrócił uwagę na brak skutecznego systemu ostrzegania ludności. Jacek Bartosiak przedstawił z kolei pomysł pilnego utworzenia jednostki do walki z bezzałogowcami.",
+      "link": "https://wiadomosci.wp.pl/w-tym-polska-jest-slaba-parafianowicz-i-bartosiak-alarmuja-ws-wojska-7341824998175809v",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] \"Teraz działa\". Wskazał winnych zakłóceń Starlinków Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Świat Weteran Legii ujawnia kulisy służby. Wspomina o absurdalnych zadaniach Weteran Legii ujawnia kulisy służby. Wspomina o absurdalnych zadaniach Udostępnij Udostępnij na Facebooku Udostępnij na X Udostępnij na WhatsApp Kopiuj link Proponowane filmy Sikorski: weto prezydenta jest za mocne, nie ustąpię ws. ambasadorów \"Gospodarcze NATO\", broń jądrowa i twarde negocj",
-      "og_image": "https://v.wpimg.pl/cmV2Yi5qTAw3UC9aGgpBGXQIewBcU09PIxBjSxpAUVVmSm5bBV4UHSJEdx5FGQAJOBw6BVoEB0JlA2lfDUJXQGcAKRtQBwFDPEI-S0g",
-      "grounded": true,
-      "title_pl": "Weteran Legii ujawnia kulisy służby. Wspomina o absurdalnych zadaniach"
+      "title_pl": "W tym Polska jest słaba. Parafianowicz i Bartosiak alarmują ws. wojska"
     },
     {
-      "title": "Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force",
-      "snippet": "Dramatyczne wydarzenia rozegrały się na stadionie Alamodome w San Antonio w Teksasie. Podczas pokazu wojskowego poprzedzającego akademicki mecz futbolu amerykańskiego komandos Sił Powietrznych USA runął na murawę z wysokości ponad 50 m. Mimo natychmiastowej reanimacji i przewiezi",
-      "link": "https://wiadomosci.wp.pl/tragedia-na-stadionie-w-teksasie-nie-zyje-komandos-air-force-7341423396665376a",
+      "title": "Platforma usuwa oferty. W tle grabieże podczas zamieszek we Francji",
+      "snippet": "Sprzedająca używane rzeczy platforma Vinted usuwa z sieci ogłoszenia dotyczące przedmiotów, które mogły zostać skradzione podczas zamieszek we Francji. Firma zapowiedziała także blokowanie kont naruszających zasady i przekazała, że współpracuje z francuskimi władzami oraz policją.",
+      "link": "https://wiadomosci.wp.pl/platforma-usuwa-oferty-w-tle-grabieze-podczas-zamieszek-we-francji-7341826422753312a",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] \"Teraz działa\". Wskazał winnych zakłóceń Starlinków \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Świat USA Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force Dramatyczne wydarzenia rozegrały się na stadionie Alamodome w San Antonio w Teksasie. Podczas pokazu wojskowego poprzedzającego akademicki mecz futbolu amerykańskiego komandos Sił Powietrznych USA runął na murawę z wysokości po",
-      "og_image": "https://v.wpimg.pl/MTFjYTBkYjUnCC9nbRBvIGRQez0rSWF2M0hjdm1af2B2Em5ickQrPSoPKzEyBGMzNB8pNTUbYyQqRTgkK0Q7ZWkOMCcyBywtaQ80NicPYjZzW2pkcV90eSBaPTVvX3xsf0c4ZiQNYGZ1XWhlIQp9MCVeYHY_",
-      "grounded": true,
-      "title_pl": "Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force"
+      "title_pl": "Platforma usuwa oferty. W tle grabieże podczas zamieszek we Francji"
     },
     {
-      "title": "\"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu",
-      "snippet": "Sąd nie uwzględnił wniosku prokuratury o tymczasowe aresztowanie Piotra W. Na decyzję zareagował Jarosław Kaczyński, który opublikował ostry wpis na portalu X, krytykując działania prokuratury i nawiązując do odpowiedzialności politycznej. \"Nie ma zgody na bezprawie\" – napisał pr",
-      "link": "https://wiadomosci.wp.pl/nie-ma-zgody-na-bezprawie-ostry-wpis-kaczynskiego-po-decyzji-sadu-7341421262657536a",
+      "title": "Sukces Ukrainy na froncie. Odbiła nowe terytoria",
+      "snippet": "Ukraińskie Siły Obrony rozszerzyły kontrolę nad częścią obwodu ługańskiego dzięki operacji \"Vivaldi\" – poinformował w poniedziałek generał Andrij Biłecki, dowódca Zgrupowania Wojsk \"Centrum\". Działania pozwoliły także pokrzyżować rosyjskie plany dotyczące aglomeracji słowiańsko-kramatorskiej.",
+      "link": "https://wiadomosci.wp.pl/sukces-ukrainy-na-froncie-odbila-nowe-terytoria-7341823022307360a",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "text": "Polska Polska Społeczeństwo Sądownictwo Gospodarka Świat Świat Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Regionalne Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Religia Historia Konflikty Konflikty Konflikty Wojna w Ukrainie Wojna w Izraelu Wojna z Iranem Edukacja Nauka i ciekawostki Opinie i komentarze Relacje na żywo Wideo Najnowsze Obserwuj nas na: Popularne w serwisie Wiadomości : Poszukiwania na Lubelszczyźnie i upragniony triumf Chwalińskiej [SKRÓT DNIA] \"Teraz działa\". Wskazał winnych zakłóceń Starlinków Tragedia na stadionie w Teksasie. Nie żyje komandos Air Force Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków Przejdź na Polska Społeczeństwo Sądownictwo Gospodarka Świat NATO Unia Europejska USA Rosja Ukraina Niemcy Białoruś Bliski Wschód Iran Izrael WP Premium Pogoda Regionalne Dolnośląskie Kujawsko-Pomorskie Lubelskie Lubuskie Łódzkie Małopolskie Mazowieckie Opolskie Podkarpackie Podlaskie Pomorskie Śląskie Świętokrzyskie Warmińsko-Mazurskie Wielkopolskie Zachodniopomorskie Polityka Zaloguj WP Wiadomości Polityka \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu \"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu Sąd nie uwzględnił wniosku prokuratury o tymczasowe aresztowanie Piotra W. Na decyzję zareagował Jarosław Kaczyński, który opublikował ostry wpis na portalu X, krytykując działania prokuratury i nawiązując do odpowiedzial",
-      "og_image": "https://v.wpimg.pl/YWI2YTQwdjYoUC9nfgx7I2sIez04VXV1PBBjdn5GYGV5SnYyOBs8JSxCNno2BSwnKEUpeiEbdjY5W3YiYFg9PjpCNTUoWDw6K1c9ezNFaGV4VGBnfBY7MysfbWZpE3RveVQ9eWMUbTYrBDhgYRI9Z2tP",
-      "grounded": true,
-      "title_pl": "\"Nie ma zgody na bezprawie\". Ostry wpis Kaczyńskiego po decyzji sądu"
+      "title_pl": "Sukces Ukrainy na froncie. Odbiła nowe terytoria"
     },
     {
-      "title": "Nuklearne groźby Rosji wobec NATO. Polacy ocenili słowa Moskwy",
-      "snippet": "Rosyjskie zapowiedzi dotyczące możliwości użycia broni jądrowej w obronie obwodu królewieckiego nie wywołują paniki wśród polskich obywateli. Aż siedmiu na dziesięciu Polaków traktuje retorykę Kremla wyłącznie jako blef i próbę zastraszenia Zachodu, bez faktycznego zamiaru sięgni",
-      "link": "https://wiadomosci.wp.pl/nuklearne-grozby-rosji-wobec-nato-polacy-ocenili-slowa-moskwy-7340674324568064a",
+      "title": "Coś wleciało nad Lubelszczyznę? 24 zgłoszenia, zero śladów",
+      "snippet": "Mieszkańcy czterech powiatów Lubelszczyzny, od granicy z Białorusią i Ukrainą po Lublin, słyszeli na niebie dziwny dźwięk silnika. Dwa dni poszukiwań nie dały nic. – Nie ma takiego systemu, który by widział wszystko, zawsze i wszędzie – mówi WP gen. Tomasz Drewniak, były inspektor Sił Powietrznych.",
+      "link": "https://wiadomosci.wp.pl/cos-wlecialo-nad-lubelszczyzne-24-zgloszenia-zero-sladow-7341711749187680a",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "title_pl": "Nuklearne groźby Rosji wobec NATO. Polacy ocenili słowa Moskwy"
+      "title_pl": "Coś wleciało nad Lubelszczyznę? 24 zgłoszenia, zero śladów"
     },
     {
-      "title": "Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego",
-      "snippet": "Podczas przemówienia na Uniwersytecie Tennessee Pete Hegseth zakwestionował rzeczywisty udział sojuszników z NATO w działaniach bojowych w Afganistanie. Słowa szefa Pentagonu wywołały oburzenie. Komentatorzy zarzucają sekretarzowi obrony USA obrazę żołnierzy.",
-      "link": "https://wiadomosci.wp.pl/burza-po-slowach-szefa-pentagonu-jest-apel-do-nawrockiego-7341411920369696a",
+      "title": "Pijany kierowca sparaliżował ruch w centrum Warszawy. Jest nagranie",
+      "snippet": "Groźne zdarzenie w ścisłym centrum stolicy. W niedzielny wieczór kompletnie pijany 28-latek kierujący luksusowym Porsche stracił panowanie nad autem, uderzył w krawężnik, a następnie staranował Audi i zatrzymał się na pasach. W sieci pojawiło się nagranie ukazujące skutki kolizji.",
+      "link": "https://wiadomosci.wp.pl/warszawa/pijany-kierowca-sparalizowal-ruch-w-centrum-warszawy-jest-nagranie-7341808983118401v",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "title_pl": "Burza po słowach szefa Pentagonu. Jest apel do Nawrockiego"
+      "title_pl": "Pijany kierowca sparaliżował ruch w centrum Warszawy. Jest nagranie"
     },
     {
-      "title": "Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie",
-      "snippet": "\"Żałujemy incydentu i przepraszamy\" – oświadczyło ukraińskie MSZ po tym, jak w litewskiej wsi Jodańce odnaleziono szczątki bezzałogowca biorącego udział w operacji przeciwko celom w Rosji. Kijów wskazuje na ingerencję rosyjskich systemów walki elektronicznej i deklaruje pełną wsp",
-      "link": "https://wiadomosci.wp.pl/wina-rosyjskich-zaklocen-ukraina-tlumaczy-sie-litwie-7341411450271776a",
+      "title": "Alert RCB dla dwóch województw odwołany",
+      "snippet": "Rządowe Centrum Bezpieczeństwa ogłosiło w poniedziałek alert dla województw: lubelskiego i podkarpackiego. W polskiej przestrzeni powietrznej operuje wojskowe lotnictwo. Lotnisko w Rzeszowie zostało zamknięte. Po godz. 22:30 alert odwołano.",
+      "link": "https://wiadomosci.wp.pl/polska-znow-poderwala-samoloty-jest-alert-rcb-dla-dwoch-wojewodztw-7341820408780832a",
       "source_name": "WP Wiadomości",
       "lang": "pl",
-      "title_pl": "Wina rosyjskich zakłóceń? Ukraina tłumaczy się po incydencie na Litwie"
+      "title_pl": "Alert RCB dla dwóch województw odwołany"
     },
     {
-      "title": "Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków",
-      "snippet": "W nocy z soboty na niedzielę na Litwie ktoś próbował podpalić firmę przechowującą dziewięć anten satelitarnych Starlink wykorzystywanych przez Ukrainę. Premier Mindaugas Sinkevičius ocenił zdarzenie jako element rosyjskiej wojny hybrydowej i zapowiedział zwołanie posiedzenia Komi",
-      "link": "https://wiadomosci.wp.pl/celowali-w-starlinki-dla-ukrainy-proba-podpalenia-na-litwie-7341404356479008a",
-      "source_name": "WP Wiadomości",
-      "lang": "pl",
-      "title_pl": "Sąsiad Polski zwołuje pilną naradę. W tle próba podpalenia Starlinków"
+      "title": "Lithuania says Ukrainian drone that struck car entered its airspace from Poland",
+      "snippet": "However, Poland has so far said that there is no confirmation of an object crossing the border.",
+      "link": "https://notesfrompoland.com/2026/10/19/lithuania-says-ukrainian-drone-that-struck-car-entered-its-airspace-from-poland/",
+      "source_name": "Notes from Poland",
+      "lang": "en",
+      "title_pl": "Litwa twierdzi, że ukraiński dron, który uderzył w samochód, wleciał w jej przestrzeń powietrzną z Polski"
     },
     {
-      "title": "Bronił swojego sklepu przed złodziejami. Wideo z Francji",
-      "snippet": "Dramatyczne nagranie z Nicei, na którym pobity sklepikarz do końca próbuje ratować swój dobytek przed napastnikami, stało się symbolem fali przemocy, jaka przetoczyła się przez Francję. Podczas gdy internet obiegają kolejne dowody wandalizmu i grabieży z całego kraju, organizacje",
-      "link": "https://wiadomosci.wp.pl/bronil-swojego-sklepu-przed-zlodziejami-wideo-z-francji-hitem-sieci-7341401028126720a",
-      "source_name": "WP Wiadomości",
-      "lang": "pl",
-      "title_pl": "Bronił swojego sklepu przed złodziejami. Wideo z Francji"
-    },
-    {
-      "title": "Polska armia ofiarą \"widzimisię\" Trumpa? Potężne problemy uderzają w bezpieczeństwo",
-      "snippet": "Amerykanie po raz kolejny pokazują, jak wiele zależy od \"widzimisię\" aktualnego lokatora Białego Domu. Ukraina przekonuje się o tym przy Starlinku i dostępie do informacji wywiadowczych. Polska ma jednak własne powody, żeby uważnie obserwować tę sytuację.",
-      "link": "https://wiadomosci.wp.pl/polska-armia-ofiara-widzimisie-trumpa-potezne-problemy-uderzaja-w-bezpieczenstwo-7340280568904160a",
-      "source_name": "WP Wiadomości",
-      "lang": "pl",
-      "title_pl": "Polska armia ofiarą \"widzimisię\" Trumpa? Potężne problemy uderzają w bezpieczeństwo"
-    },
-    {
-      "title": "Lagarde do rosyjskiego ministra: gospodarka wymaga pokoju",
-      "snippet": "Prezes Europejskiego Banku Centralnego wykorzystała zamknięte spotkanie w Bangkoku do konfrontacji z przedstawicielem Rosji. Christine Lagarde przekazała jasny komunikat dla Władimira Putina dotyczący wpływu wojny na globalną gospodarkę i dobrobyt.",
-      "link": "https://www.money.pl/gospodarka/lagarde-do-rosyjskiego-ministra-gospodarka-wymaga-pokoju-7341372014630912a.html",
+      "title": "Zmiana na stacjach od wtorku. Minister ogłosił nowe ceny paliw",
+      "snippet": "We wtorek, 20 października maksymalna cena dla benzyny Pb95 wynosić będzie 6,79 zł/l, dla benzyny Pb98 7,56 zł/l, a dla oleju napędowego 7,97 zł/l - poinformował minister energii w obwieszczeniu.",
+      "link": "https://www.money.pl/gospodarka/zmiana-na-stacjach-od-wtorku-minister-oglosil-nowe-ceny-paliw-7341694519683104a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/MDk5Mzc4YiUKVztJTE9vMEkPbxMKFmFmHhd3WEwFdHZbTWIcClgoNg5FIlQERjg0CkI9VBNYYiUbXGIMUhspLRhFIRsaGygpCVApVVYCLCENV3pPTgQvcFgYeRgHAmAlXwB4V1JReXRSDH5NW1Z7cklI",
-      "grounded": true,
-      "title_pl": "Lagarde do rosyjskiego ministra: gospodarka wymaga pokoju"
+      "title_pl": "Zmiana na stacjach od wtorku. Minister ogłosił nowe ceny paliw"
     },
     {
-      "title": "Chora ochrona zdrowia. Tak doszliśmy do ściany w zarobkach lekarzy [OPINIA]",
-      "snippet": "Ostatnie tygodnie przynoszą kolejne doniesienia o nadużyciach, skrajnie wysokich zarobkach części personelu i nieefektywności w polskim systemie ochrony zdrowia. Wszystko to dzieje się w warunkach, gdy publiczne nakłady na zdrowie osiągają rekordowe poziomy, a jednocześnie szpita",
-      "link": "https://www.money.pl/finanse/chora-ochrona-zdrowia-tak-doszlismy-do-sciany-w-zarobkach-lekarzy-opinia-7341342708295680a.html",
+      "title": "Zgoda w Watykanie. Ujawnia kulisy ratowania TV Puls",
+      "snippet": "- Generał franciszkanów musiał się na to zgodzić, a generał franciszkanów raportuje do papieża - wspomina początki TV Dariusz Dąbski, jej obecny właściciel. Zobacz fragment \"Biznes Klasy\".",
+      "link": "https://www.money.pl/pieniadze/zgoda-w-watykanie-ujawnia-kulisy-ratowania-tv-puls-7339945300316737v.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/OTM2YTI5YDUsUC9nZk5tIG8Iez0gF2N2OBBjdmYEdmZ9SnYyIFkqJihCNnouRzokLEUpejlZYDU9W3YieBorPT5CNTUwGio5L1c9ey8Gdzd7VD02ZA15YnkfbWB6BGI2ewBseXEDe21-BDhmcAJ9YG9P",
-      "grounded": true,
-      "title_pl": "Chora ochrona zdrowia. Tak doszliśmy do ściany w zarobkach lekarzy [OPINIA]"
+      "title_pl": "Zgoda w Watykanie. Ujawnia kulisy ratowania TV Puls"
     },
     {
-      "title": "\"Siły państwa połączone z mafijnymi\". Były prezes o upadku Optimusa",
-      "snippet": "To jest najciekawsza i taka najsmutniejsza historia w moim życiu. Uważam w ogóle dla Polski to za bardzo smutne. Mogliśmy mieć swoją markę komputerową – mówi Dariusz Dąbski, dziś właściciel TV Puls. Zobacz fragment \"Biznes Klasy\".",
-      "link": "https://www.money.pl/gospodarka/sily-panstwa-polaczone-z-mafijnymi-byly-prezes-o-upadku-optimusa-7339930620854849v.html",
+      "title": "Zwrot w sprawie KSeF. Dodatkowy rok bez kar",
+      "snippet": "Przedsiębiorcy mogą zyskać dodatkowy rok bez kar za błędy w Krajowym Systemie e-Faktur. Rząd zajmie się we wtorek projektem ustawy, który przesuwa ich wprowadzenie na 2028 r. Ministerstwo Finansów przekonuje, że zmiana pozwoli podatnikom lepiej przygotować się do nowych obowiązków i uniknąć sankcji.",
+      "link": "https://www.money.pl/firma/rzad-szykuje-wazna-zmiane-w-ksef-przedsiebiorcy-moga-odetchnac-7341672679782432a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/ZTExLnBudTUkGjpdbQ54IGdCbgcrV3Z2MFp2TG1EbGN3AHVac1otJDEOYRsyGTU1IVUtHitbLSQtGygAbBY2OzAcY1x0RDk3Ixx5Q3YWbjVoTChaJlhiMXFPYQxwFjtmfEotWSdEa3o1FitMPw",
-      "grounded": true,
-      "title_pl": "\"Siły państwa połączone z mafijnymi\". Były prezes o upadku Optimusa"
+      "title_pl": "Zwrot w sprawie KSeF. Dodatkowy rok bez kar"
     },
     {
-      "title": "Mieszkania po seniorach na rynku. Wielki problem młodych [OPINIA]",
-      "snippet": "Na rynek nieruchomości będzie trafiać coraz więcej lokali odziedziczonych po seniorach. Może to wywołać znaczące spadki cen. \"Problemem będzie jednak to, że spora część nieruchomości znajduje się w miejscach, w których niewiele osób chce mieszkać\" – pisze w opinii dla money.pl Ka",
-      "link": "https://www.money.pl/biznes/demografia-uderza-w-rynek-mieszkaniowy-pustoszenie-polski-i-problem-sloikow-opinia-7341280572471328a.html",
+      "title": "Prezydent ponowił nominacje. Cztery osoby do zarządu NBP",
+      "snippet": "Karol Nawrocki ponownie skierował do premiera nominacje czterech osób do zarządu NBP. Donald Tusk wcześniej odmówił kontrasygnaty. Tymczasem już w listopadzie skład zarządu banku może spaść poniżej ustawowego minimum.",
+      "link": "https://www.money.pl/gospodarka/pilna-sprawa-w-nbp-nawrocki-wykonal-ruch-teraz-kolej-tuska-7341651285628928a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/MTE3MWU1YjUkUTtkekpvIGcJbz48E2F2MBF3dXoAdGZ1S2IxPF0oJiBDInkyQzgkJEQ9eSVdYjU1WmIhZB4pPTZDITYsHig5J1YpeDYHfzZ9V302eAV0YSMeeTRjAWA2JAd0emAHL2V0BHwyYAJ4YmdO",
-      "grounded": true,
-      "title_pl": "Mieszkania po seniorach na rynku. Wielki problem młodych [OPINIA]"
+      "title_pl": "Prezydent ponowił nominacje. Cztery osoby do zarządu NBP"
     },
     {
-      "title": "W tej prowincji jest ropa naftowa. Mogą odłączyć się od Kanady",
-      "snippet": "Mieszkańcy Alberty zadecydują o pozostaniu w Kanadzie. W poniedziałkowym głosowaniu zadecydują, czy jej władze rozpoczną procedurę prowadzącą do wiążącego referendum niepodległościowego. Głosowanie nie oznacza natychmiastowego odłączenia regionu od kraju – podaje \"Rzeczpospolita\"",
-      "link": "https://www.money.pl/polityka/w-tej-prowincji-jest-ropa-naftowa-moga-odlaczyc-sie-od-kanady-7341258106279968a.html",
+      "title": "Takiej sytuacji z cenami gazu nie było od 4 lat",
+      "snippet": "Ceny gazu w Europie osiągnęły najwyższy poziom od końca 2022 r. Inwestorzy obawiają się o dostawy z Bliskiego Wschodu i niski poziom zapasów przed zimą. Analitycy ostrzegają przed kolejnymi podwyżkami. Na tle Europy wyróżnia się Polska, której magazyny są niemal pełne.",
+      "link": "https://www.money.pl/gospodarka/takiej-sytuacji-z-cenami-gazu-nie-bylo-od-4-lat-7341645264988192a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/YzFhZjM1dhsnCixZYkp7DmRSeAMkE3VYM0pgSGIAYEh2EHUMJF08CCMYNUQqQywKJx8qRD1ddhs2AXUcfB49EzUYNgs0HjwXJA0-RXwBak5xCzwJYFVoSnZFbggoAnQbdlpiRysCOBl3CTxZeAdoSmQV",
-      "grounded": true,
-      "title_pl": "W tej prowincji jest ropa naftowa. Mogą odłączyć się od Kanady"
+      "title_pl": "Takiej sytuacji z cenami gazu nie było od 4 lat"
     },
     {
-      "title": "\"Bardzo dobra decyzja\". Trump komentuje zniesienie sankcji na Rosję",
-      "snippet": "Donald Trump powiedział, że jego decyzja w sprawie odstąpienia od nałożenia nowych sankcji na Rosję jest dobra dla kraju i świata. Zasugerował jednak, że sprawa nie jest jeszcze rozstrzygnięta.",
-      "link": "https://www.money.pl/gospodarka/bardzo-dobra-decyzja-trump-komentuje-zniesienie-sankcji-na-rosje-7341248865163296a.html",
+      "title": "Zwrot na rynku. Oto co się dzieje z cenami ropy",
+      "snippet": "Ropa na globalnych rynkach tanieje, a notowania surowca wycofują się z najwyższych poziomów od pięciu miesięcy. Inwestorzy liczą na to, że podaż ropy z Bliskiego Wschodu utrzyma się na poziomie sprzed wojny, mimo zaostrzenia walk w regionie – podają maklerzy.",
+      "link": "https://www.money.pl/gospodarka/zwrot-na-rynku-oto-co-sie-dzieje-z-cenami-ropy-7341628241553440a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Giełda Giełda Notowania GPW Spółki GPW Porównanie spółek Giełda na żywo Giełdy światowe Komunikaty ESPI Surowce Narzędzia giełdowe Waluty Waluty Waluty Kursy walut Kalkulator walutowy Bitcoin Forex Depozyty Moja firma Moja firma Moja firma Zakładanie Firmy 2026 Poradnik KSEF Samodzielna księgowość PKD PKWiU Mobility Praca Praca Praca Oferty pracy Wynagrodzenia Kalkulator PPK Kalkulator wynagrodzeń Gospodarka Gospodarka Gospodarka BizTech Ekologia, OZE, ESG Nieruchomości i budownictwo Emerytury Prawo Kariera i rynek pracy Finanse osobiste Kalkulatory Kalkulatory Kalkulatory Kalkulator urlopu macierzyńskiego Kalkulator odsetkowy Kalkulator zakupów na firmę Kalkulator składek ZUS Kalkulator wynagrodzenia za pracę w nadgodzinach Kalkulator dat Kalkulator wynagrodzenia chorobowego Kalkulator ekwiwalentu za urlop wypoczynkowy Kalkulator stażu pracy Kalkulator kredytu hipotecznego Kalkulator składek ZUS dla działalności gospodarczej Strefa money Strefa money Strefa money Biznes Klasa Brands From Poland 2026 Nagroda Money 2026 Biznes od Środka Ring Ekonomiczny Money Insights Moc Regionów Wydarzenia Wydarzenia Wydarzenia Invest Cuffs Polska 2026 Impact 2026 Europejski Kongres Gospodarczy 2026 Game Industry Conference 2025 Kongres ESG Polska Moc Biznesu Local Trends Sopot 2025 Podatki Podatki Podatki Wiadomości podatkowe Pit Formularze podatkowe Poradniki podatkowe Znajdź Adres Prawo Prawo Prawo Wiadomości Fundusze Fundusze Fundusze Wiadomości Profile funduszy Wyszukiwarka fundusz Stopa zwrotu z funduszy Kalkulator prowizji Kalkulator zysku Archiwum Funduszy Banki Banki Banki Poradniki Ubezpieczenia Emerytury Emerytury Emerytury Poradniki Obserwuj nas na: Popularne w serwisie Money.pl : Ukraiński dron na Litwie. Kijów wskazuje na Rosję Mieszkania od wojska na licytacjach. Ceny od",
-      "og_image": "https://v.wpimg.pl/NzIxZTYzYRsoGixndgFsDmtCeD0wWGJYPFpgdnZLd0h5AHUyMBYrCCwINXo-CDsKKA8qeikWYRs5EXUiaFUqEzoINjUgVSsXKx0-ez0YKkJxTDkydB99TH9VbmQ7S2NCLE8-eW5Ldk17ST9iah8vTWsF",
-      "grounded": true,
-      "title_pl": "\"Bardzo dobra decyzja\". Trump komentuje zniesienie sankcji na Rosję"
+      "title_pl": "Zwrot na rynku. Oto co się dzieje z cenami ropy"
     },
     {
-      "title": "Bajki dla naiwnych. Uszczelnienie podatków nie załata dziury w budżecie [ANALIZA]",
-      "snippet": "Prezydent Karol Nawrocki twierdzi, że polski budżet jest nieszczelny. Dlatego sprzeciwia się podwyżkom podatków. Chciałby, aby rząd zajął się lepszym egzekwowaniem już istniejących obciążeń. Ekonomiści wątpią jednak, aby mogło to istotnie poprawić kondycję finansów publicznych. C",
-      "link": "https://www.money.pl/podatki/bajki-dla-naiwnych-uszczelnienie-podatkow-nie-zalata-dziury-w-budzecie-analiza-7340752827226144a.html",
+      "title": "Chińska gospodarka zaskakuje. PKB w górę. Pekin coraz bliżej realizacji celu",
+      "snippet": "Chińska gospodarka urosła w trzecim kwartale o 4,5 proc., przekraczając oczekiwania analityków. Pekin zbliża się do realizacji rocznego celu wzrostu, choć kraj nadal zmaga się z kryzysem nieruchomości i słabym popytem wewnętrznym. Motorem napędowym pozostaje eksport.",
+      "link": "https://www.money.pl/gospodarka/chinska-gospodarka-zaskakuje-wynik-lepszy-od-prognoz-7341612689975328a.html",
       "source_name": "Money.pl",
       "lang": "pl",
-      "title_pl": "Bajki dla naiwnych. Uszczelnienie podatków nie załata dziury w budżecie [ANALIZA]"
+      "title_pl": "Chińska gospodarka zaskakuje. PKB w górę. Pekin coraz bliżej realizacji celu"
     },
     {
-      "title": "Zarabia pół miliona rocznie na Airbnb. Najsłynniejszy domek wystawiony na sprzedaż",
-      "snippet": "Ten domek w szkockich Highlands jest najczęściej dodawany do listy życzeń nieruchomości do dyspozycji w ramach Airbnb w Wielkiej Brytanii. Swoim właścicielom przynosił wraz z otaczającą działką ponad 100 tys. funtów (ok. ponad 500 tys. zł) dochodu rocznie. Teraz został wystawiony na sprzedaż.",
-      "link": "https://www.bankier.pl/wiadomosc/Zarabia-pol-miliona-rocznie-na-Airbnb-Najslynniejszy-domek-wystawiony-na-sprzedaz-9213132.html",
-      "source_name": "Bankier.pl",
+      "title": "Ile kosztuje dolar? Kurs dolara do złotego PLN/USD 19.10.2026",
+      "snippet": "Kurs dolara - 19.10.2026. W poniedziałek za jednego dolara (USD) trzeba zapłacić 3.8921 zł.",
+      "link": "https://www.money.pl/pieniadze/ile-kosztuje-dolar-kurs-dolara-do-zlotego-pln-usd-19-10-2026-7341613692651520a.html",
+      "source_name": "Money.pl",
       "lang": "pl",
-      "text": "Domowe finanse Zarabia pół miliona rocznie na Airbnb. Najsłynniejszy domek wystawiony na sprzedaż Podziel się Skomentuj Newsletter .o-article-bar{background-color:#f2f4f5;border-bottom:1px solid #dadee3}.o-article-bar__scroll-wrapper{position:relative;width:100%;height:64px;overflow:hidden}.o-article-bar__scroll-outer{padding-bottom:20px;margin-bottom:0;position:relative;overflow-y:hidden}.o-article-bar__scroll-inner{overflow:visible}.o-article-bar__scroll-btn{display:none}.o-article-bar .m-link-with-image-list{display:-webkit-box;display:-ms-flexbox;display:flex}.o-article-bar .m-link-with-image-list__item{border:0}.o-article-bar .m-link-with-image-list__anchor{padding:12px 0;height:64px;font-size:1.2rem;line-height:1.5;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.o-article-bar .m-link-with-image-list__anchor .a-image__img{width:74px;height:40px;-o-object-fit:cover;object-fit:cover}.o-article-bar .m-link-with-image-list__anchor .a-image+.m-link-with-image-list__text{width:188px;padding:0 20px 0 8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image{position:relative}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after,.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{content:\" \";display:block;position:absolute;z-index:10;top:50%;left:50%;margin-left:-10px;margin-top:-8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{width:20px;height:16px;background-color:rgba(255,255,255,.7);border-radius:2px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid #e75020;margin-left:-5px;margin-top:-6px}.o-article-bar .m-link-with-image-list__text{width:262px;height:a",
-      "og_image": "https://galeria.bankier.pl/p/c/7/952bbef736ea7b-948-568-0-82-1436-861.jpg",
-      "grounded": true,
-      "title_pl": "Zarabia pół miliona rocznie na Airbnb. Najsłynniejszy domek wystawiony na sprzedaż"
-    },
-    {
-      "title": "Kraków pełen nowych mieszkań. Deweloperzy ruszyli do dzielnic, które omijali",
-      "snippet": "Po trzech kwartałach 2026 r. oferta nowych mieszkań w Krakowie przekracza 12,1 tys. lokali, a średnia cena metra kwadratowego wzrosła w ciągu roku o 4 proc. Za tym pozornie spokojnym obrazem rynku kryją się jednak istotne zmiany. Deweloperzy coraz śmielej inwestują w dzielnicach, które jeszcze niedawno miały marginalne znaczenie na rynku pierwotnym.",
-      "link": "https://www.bankier.pl/wiadomosc/Krakow-pelen-nowych-mieszkan-Deweloperzy-ruszyli-do-dzielnic-ktore-omijali-9214123.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "text": "Nieruchomości Kraków pełen nowych mieszkań. Deweloperzy ruszyli do dzielnic, które omijali Podziel się Skomentuj Newsletter .o-article-bar{background-color:#f2f4f5;border-bottom:1px solid #dadee3}.o-article-bar__scroll-wrapper{position:relative;width:100%;height:64px;overflow:hidden}.o-article-bar__scroll-outer{padding-bottom:20px;margin-bottom:0;position:relative;overflow-y:hidden}.o-article-bar__scroll-inner{overflow:visible}.o-article-bar__scroll-btn{display:none}.o-article-bar .m-link-with-image-list{display:-webkit-box;display:-ms-flexbox;display:flex}.o-article-bar .m-link-with-image-list__item{border:0}.o-article-bar .m-link-with-image-list__anchor{padding:12px 0;height:64px;font-size:1.2rem;line-height:1.5;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.o-article-bar .m-link-with-image-list__anchor .a-image__img{width:74px;height:40px;-o-object-fit:cover;object-fit:cover}.o-article-bar .m-link-with-image-list__anchor .a-image+.m-link-with-image-list__text{width:188px;padding:0 20px 0 8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image{position:relative}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after,.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{content:\" \";display:block;position:absolute;z-index:10;top:50%;left:50%;margin-left:-10px;margin-top:-8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{width:20px;height:16px;background-color:rgba(255,255,255,.7);border-radius:2px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid #e75020;margin-left:-5px;margin-top:-6px}.o-article-bar .m-link-with-image-list__text{width:262px;height:auto;max",
-      "og_image": "https://galeria.bankier.pl/p/3/6/c7fd960fe63bf7-948-568-81-0-4342-2605.jpg",
-      "grounded": true,
-      "title_pl": "Kraków pełen nowych mieszkań. Deweloperzy ruszyli do dzielnic, które omijali"
-    },
-    {
-      "title": "„Największa bańka naszego życia”. Miliarderzy ostrzegają przed krachem",
-      "snippet": "Coraz więcej miliarderów-inwestorów ostrzega przed bańką spekulacyjną związaną ze sztuczną inteligencją. Ponieważ giełdy wciąż biją rekordy, inwestorzy muszą zdecydować, czy już teraz zrealizować zyski, czy nadal korzystać z fali wzrostów.",
-      "link": "https://www.bankier.pl/wiadomosc/Najwieksza-banka-naszego-zycia-Miliarderzy-ostrzegaja-przed-krachem-9214052.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "text": "Giełda „Największa bańka naszego życia”. Miliarderzy ostrzegają przed krachem Podziel się Skomentuj Newsletter .o-article-bar{background-color:#f2f4f5;border-bottom:1px solid #dadee3}.o-article-bar__scroll-wrapper{position:relative;width:100%;height:64px;overflow:hidden}.o-article-bar__scroll-outer{padding-bottom:20px;margin-bottom:0;position:relative;overflow-y:hidden}.o-article-bar__scroll-inner{overflow:visible}.o-article-bar__scroll-btn{display:none}.o-article-bar .m-link-with-image-list{display:-webkit-box;display:-ms-flexbox;display:flex}.o-article-bar .m-link-with-image-list__item{border:0}.o-article-bar .m-link-with-image-list__anchor{padding:12px 0;height:64px;font-size:1.2rem;line-height:1.5;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.o-article-bar .m-link-with-image-list__anchor .a-image__img{width:74px;height:40px;-o-object-fit:cover;object-fit:cover}.o-article-bar .m-link-with-image-list__anchor .a-image+.m-link-with-image-list__text{width:188px;padding:0 20px 0 8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image{position:relative}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after,.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{content:\" \";display:block;position:absolute;z-index:10;top:50%;left:50%;margin-left:-10px;margin-top:-8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{width:20px;height:16px;background-color:rgba(255,255,255,.7);border-radius:2px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid #e75020;margin-left:-5px;margin-top:-6px}.o-article-bar .m-link-with-image-list__text{width:262px;height:auto;max-height:36px;",
-      "og_image": "https://galeria.bankier.pl/p/6/b/8d0b7625f0bcad-948-567-0-32-1000-599.jpg",
-      "grounded": true,
-      "title_pl": "„Największa bańka naszego życia”. Miliarderzy ostrzegają przed krachem"
-    },
-    {
-      "title": "Trump o Francji: Imigracja zniszczyła ten niegdyś wielki kraj",
-      "snippet": "Imigracja ludzi z zupełnie innego świata zniszczyła Francję — napisał na platformie Truth Social w niedzielę prezydent USA Donald Trump, komentując sobotnie zamieszki. Poradził Francuzom by „zamknęli granice i przejęli kontrolę”.",
-      "link": "https://www.bankier.pl/wiadomosc/Trump-o-Francji-Imigracja-zniszczyla-ten-niegdys-wielki-kraj-9214450.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "text": "Gospodarka Trump o Francji: Imigracja zniszczyła ten niegdyś wielki kraj Podziel się Skomentuj Newsletter .o-article-bar{background-color:#f2f4f5;border-bottom:1px solid #dadee3}.o-article-bar__scroll-wrapper{position:relative;width:100%;height:64px;overflow:hidden}.o-article-bar__scroll-outer{padding-bottom:20px;margin-bottom:0;position:relative;overflow-y:hidden}.o-article-bar__scroll-inner{overflow:visible}.o-article-bar__scroll-btn{display:none}.o-article-bar .m-link-with-image-list{display:-webkit-box;display:-ms-flexbox;display:flex}.o-article-bar .m-link-with-image-list__item{border:0}.o-article-bar .m-link-with-image-list__anchor{padding:12px 0;height:64px;font-size:1.2rem;line-height:1.5;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.o-article-bar .m-link-with-image-list__anchor .a-image__img{width:74px;height:40px;-o-object-fit:cover;object-fit:cover}.o-article-bar .m-link-with-image-list__anchor .a-image+.m-link-with-image-list__text{width:188px;padding:0 20px 0 8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image{position:relative}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after,.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{content:\" \";display:block;position:absolute;z-index:10;top:50%;left:50%;margin-left:-10px;margin-top:-8px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::before{width:20px;height:16px;background-color:rgba(255,255,255,.7);border-radius:2px}.o-article-bar .m-link-with-image-list__anchor.-video .a-image::after{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid #e75020;margin-left:-5px;margin-top:-6px}.o-article-bar .m-link-with-image-list__text{width:262px;height:auto;max-height:36px;paddi",
-      "og_image": "https://galeria.bankier.pl/p/a/9/6ec958975d65b2-948-568-9-192-3846-2307.jpg",
-      "grounded": true,
-      "title_pl": "Trump o Francji: Imigracja zniszczyła ten niegdyś wielki kraj"
-    },
-    {
-      "title": "Dochody na Mazowszu mocno w górę. Tyle wynosi miesięcznie na osobę",
-      "snippet": "W województwie mazowieckim w 2025 r. sytuacja gospodarstw domowych w porównaniu z rokiem poprzednim poprawiła się — podał Urząd Statystyczny w Warszawie z okazji obchodzonego 17 października Międzynarodowego Dnia Walki z Ubóstwem.",
-      "link": "https://www.bankier.pl/wiadomosc/Dochody-na-Mazowszu-mocno-w-gore-Tyle-wynosi-miesiecznie-na-osobe-9214196.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "title_pl": "Dochody na Mazowszu mocno w górę. Tyle wynosi miesięcznie na osobę"
-    },
-    {
-      "title": "Microsoft sprzedawał dane użytkowników aplikacji randkowej",
-      "snippet": "Norweski urząd ochrony danych (Datatilsynet) poinformował w poniedziałek o nałożeniu kary w wysokości 92 mln koron (ponad 37 mln zł) na należącą do Microsoftu firmę Xandr. Spółka sprzedawała bez zgody użytkowników dane z aplikacji randkowej Grindr.",
-      "link": "https://www.bankier.pl/wiadomosc/Microsoft-sprzedawal-dane-uzytkownikow-aplikacji-randkowej-9211202.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "title_pl": "Microsoft sprzedawał dane użytkowników aplikacji randkowej"
-    },
-    {
-      "title": "Co oglądają 14-latkowie w internecie? Szefowa kontrwywiadu bije na alarm",
-      "snippet": "Norweski kontrwywiad PST obserwuje coraz więcej nieletnich radykałów, dla których ideologia ma niewielkie znaczenie albo nie ma go wcale. Szefowa PST Beate Gangaas powiedziała PAP, że istotą radykalizacji staje się sama przemoc.",
-      "link": "https://www.bankier.pl/wiadomosc/Co-ogladaja-14-latkowie-w-internecie-Szefowa-kontrwywiadu-bije-na-alarm-9214200.html",
-      "source_name": "Bankier.pl",
-      "lang": "pl",
-      "title_pl": "Co oglądają 14-latkowie w internecie? Szefowa kontrwywiadu bije na alarm"
-    },
-    {
-      "title": "Wskazał scenariusz dla Polski. Ekspert o wojnie i oskarżeniach o zdradę",
-      "snippet": "W piątek, 16 października, na antenie radia Wnet gościł Marek Budzisz z think tanku Strategy&Future. Ekspert kreślił scenariusze dla powojennej Ukrainy, zauważając przy tym, że Polska może stanąć w obliczu poważnego wyzwania.",
-      "link": "https://defence24.pl/geopolityka/wskazal-scenariusz-dla-polski-ekspert-o-wojnie-i-oskarzeniach-o-zdrade",
-      "source_name": "Defence24",
-      "lang": "pl",
-      "text": "W piątek, 16 października, na antenie radia Wnet gościł Marek Budzisz z think tanku Strategy&Future. Ekspert kreślił scenariusze dla powojennej Ukrainy, zauważając przy tym, że Polska może stanąć w obliczu poważnego wyzwania. W piątek, 16 października, z dziennikarzami radia Wnet rozmawiał Marek Budzisz, ekspert z think tanku Strategy&Future. W rozmowie Budzisz stwierdził, że powojenna przyszłość Ukrainy rysować się będzie w jednym z dwóch scenariuszy. Pierwszy z nich, zasadniczo pozytywny, obrazuje pogodzenie się społeczeństwa z utratą okupowanych dziś przez Rosję terytoriów , włącznie z przejściem do powolnej odbudowy państwa. Drugi scenariusz jest znacznie mniej pozytywny. „ Mamy negatywny scenariusz: Ukraina zdestabilizowana, z problemami asymilacji ludzi wracających z frontu do życia cywilnego, z dramatyczną zapaścią demograficzną. Państwo będące ciężarem dla sąsiadów i wspólnoty europejskiej ” – opisywał Marek Budzisz. Ekspert twierdził, że niekorzystne dla Ukrainy zakończenie wojny może doprowadzić do wyraźnego pogorszenia relacji polsko-ukraińskich. Według Marka Budzisza, Ukraina może obwiniać Zachód o swoją porażkę , a Polska będzie pierwszym krajem, na który spadną oskarżenia o zdradę. „ Ukraina wyjdzie z tej wojny jako państwo wewnętrznie, psychologicznie przeświadczone o tym, że Zachód wbił nóż w plecy. Polska może być tu kandydatem na tego, kogo będzie się oskarżać o wbicie tego noża ” – stwierdził Marek Budzisz.",
-      "og_image": "https://cdn.defence24.pl/2026/10/02/1024x576px/7cfPJo6OZztxXpBBTRc2H9YD1W9nAlCUFsvhwDTb.3xmo.jpg",
-      "grounded": true,
-      "title_pl": "Wskazał scenariusz dla Polski. Ekspert o wojnie i oskarżeniach o zdradę"
-    },
-    {
-      "title": "Alarm na Litwie. Dron miał nadlecieć z Polski. Wilno chce wspólnego śledztwa",
-      "snippet": "Litwa zaproponowała Polsce wspólne śledztwo po odnalezieniu szczątków obiektu, który w niedzielę 18 października wywołał alarm powietrzny. Poderwano myśliwce NATO i czasowo zamknięto lotnisko w Kownie. Według litewskiego ministra obrony prawdopodobnie był to dron, który nadleciał od strony Polski. Polski MON przekazał jednak, że systemy radarowe nie potwierdziły przekroczenia granicy z Litwą.",
-      "link": "https://defence24.pl/polityka-obronna/alarm-na-litwie-dron-mial-nadleciec-z-polski-wilno-chce-wspolnego-sledztwa",
-      "source_name": "Defence24",
-      "lang": "pl",
-      "text": "Litwa zaproponowała Polsce wspólne śledztwo po odnalezieniu szczątków obiektu, który w niedzielę 18 października wywołał alarm powietrzny. Poderwano myśliwce NATO i czasowo zamknięto lotnisko w Kownie. Według litewskiego ministra obrony prawdopodobnie był to dron, który nadleciał od strony Polski. Polski MON przekazał jednak, że systemy radarowe nie potwierdziły przekroczenia granicy z Litwą. Minister obrony Litwy Robertas Kaunas poinformował, że skontaktował się z polskim ministrem obrony i zwrócił się o współpracę przy wyjaśnianiu zdarzenia. Zaznaczył, że wskazanie Polski jako kierunku przylotu opiera się na wstępnych ustaleniach. Szczątki znaleziono w pobliżu miejscowości Juodžionys w rejonie poswolskim na północy Litwy. Na miejsce skierowano wojsko i policję. Teren zabezpieczono, a służby rozpoczęły zbieranie materiału do ustalenia charakteru obiektu. Według informacji przytoczonych przez ministra odłamki mogły uszkodzić samochód cywilny. W odpowiedzi na wykrycie obiektu poderwano myśliwce NATO. Kaunas przekazał, że z powodu złych warunków atmosferycznych piloci nie zdołali nawiązać kontaktu wzrokowego z celem. Tymczasowo zamknięto również lotnisko w Kownie. Alarm powietrzny objął okręgi szawelski i poniewieski. Mieszkańców wezwano do niezwłocznego udania się w bezpieczne miejsca. W okręgu kowieńskim obowiązywało ostrzeżenie żółte. Wszystkie te alerty zostały następnie odwołane. Litewski minister obrony zapowiedział także sprawdzenie działania systemu ostrzegania. Zażądał szczegółowej chronologii zdarzeń oraz wyjaśnienia, czy mieszkańcy terenów, nad którymi mógł przemieszczać się obiekt, zostali powiadomieni na czas. Polski MON: radary nie potwierdziły przekroczenia granicy Według informacji przekazanej Reutersowi przez rzecznika polskiego Ministerstwa Obrony Narodo",
-      "og_image": "https://cdn.defence24.pl/2026/09/22/1024x576px/yrsernbqhexunpjeoxz2mx8qjnb1qted7ukdf7wn.tcje.jpg",
-      "grounded": true,
-      "title_pl": "Alarm na Litwie. Dron miał nadlecieć z Polski. Wilno chce wspólnego śledztwa"
-    },
-    {
-      "title": "F-16 zestrzeliły rosyjskie drony. Rumunia pokazała zdjęcia z akcji",
-      "snippet": "Rumuńskie Ministerstwo Obrony opublikowało w niedzielę zdjęcia z misji, podczas której myśliwce F-16 zestrzeliły dwa rosyjskie drony. Do przechwycenia doszło w sobotę nad rumuńskimi wodami terytorialnymi na Morzu Czarnym. Rumuński resort obrony zidentyfikował zniszczone bezzałogo",
-      "link": "https://defence24.pl/sily-zbrojne/f-16-zestrzelily-rosyjskie-drony-rumunia-pokazala-zdjecia-z-akcji",
-      "source_name": "Defence24",
-      "lang": "pl",
-      "title_pl": "F-16 zestrzeliły rosyjskie drony. Rumunia pokazała zdjęcia z akcji"
-    },
-    {
-      "title": "Nowe informacje ws. poszukiwań drona. Pilny komunikat Dowództwa Operacyjnego",
-      "snippet": "Wojskowy śmigłowiec wspiera poszukiwania związane z podejrzeniem naruszenia polskiej przestrzeni powietrznej w nocy z soboty na niedzielę. Dowództwo Operacyjne Rodzajów Sił Zbrojnych poinformowało w nowym komunikacie, że służby analizują kilka scenariuszy, w tym działania przemyt",
-      "link": "https://defence24.pl/polityka-obronna/nowe-informacje-ws-poszukiwan-drona-pilny-komunikat-dowodztwa-operacyjnego",
-      "source_name": "Defence24",
-      "lang": "pl",
-      "title_pl": "Nowe informacje ws. poszukiwań drona. Pilny komunikat Dowództwa Operacyjnego"
+      "title_pl": "Ile kosztuje dolar? Kurs dolara do złotego PLN/USD 19.10.2026"
     }
   ]
 }
