@@ -2,20 +2,16 @@
 <html lang="pl" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="google-site-verification" content="H5A7hYqtGvIkrkRu8L8L3TiSZbSN7Zk5BCJEPgt3p1w">
 <meta id="theme-color-meta" name="theme-color" content="#f8fafc">
-<meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
-
 <title>Świat w Minutę — Wiadomości</title>
 <meta name="description" content="Najważniejsze wiadomości świata w 60 sekund. Fakty, geopolityka, rynki i obronność — krótko i na temat.">
 <meta name="robots" content="index, follow">
-
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Świat w Minutę">
 <meta name="mobile-web-app-capable" content="yes">
-
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://swiat-w-minute.vercel.app/">
 <meta property="og:title" content="Świat w Minutę — Przegląd dnia">
@@ -23,163 +19,102 @@
 <meta property="og:image" content="https://swiat-w-minute.vercel.app/og-image.png">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Świat w Minutę">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Świat w Minutę — Przegląd dnia">
 <meta name="twitter:description" content="Najważniejsze wiadomości świata w 60 sekund.">
 <meta name="twitter:image" content="https://swiat-w-minute.vercel.app/og-image.png">
-
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="manifest" href="/manifest.json">
-
 <script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        colors: {
-          surface: { DEFAULT: '#ffffff', dark: '#0f172a' }
-        }
-      }
-    }
-  }
-</script>
+<script>tailwind.config = { darkMode: 'class' }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('swm-dark');var d=t===null?matchMedia('(prefers-color-scheme: dark)').matches:t==='1';if(d)document.documentElement.classList.add('dark');}catch(e){}})();
+</script>
 <style>
-  :root {
-    --bg: #f8fafc;
-    --bg-card: #ffffff;
-    --bg-muted: #f1f5f9;
-    --border: #e2e8f0;
-    --text: #0f172a;
-    --text-secondary: #64748b;
-    --text-muted: #94a3b8;
-    --header-bg: rgba(255,255,255,0.95);
-  }
-  .dark {
-    --bg: #020617;
-    --bg-card: #0f172a;
-    --bg-muted: #1e293b;
-    --border: #1e293b;
-    --text: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --header-bg: rgba(2,6,23,0.95);
-  }
-  html, body {
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overscroll-behavior-y: contain;
-  }
-  .card-img { aspect-ratio: 16/9; object-fit: cover; }
-  .tab.active { background: #0f172a; color: #fff; }
-  .dark .tab.active { background: #f8fafc; color: #0f172a; }
-  #toast {
-    transform: translateY(120px); opacity: 0; pointer-events: none; transition: .25s;
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
-  .headline-item { transition: background .15s; }
-  .headline-item:hover { background: rgba(245,158,11,.08); }
-  .headline-item.read { opacity: .55; }
-  .headline-item.read .title { text-decoration: line-through; text-decoration-color: #94a3b8; }
-  .card.read { opacity: .72; }
-  .check-btn {
-    width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid #cbd5e1;
-    display: inline-flex; align-items: center; justify-content: center;
-    flex-shrink: 0; cursor: pointer; transition: .15s; font-size: 11px;
-    background: transparent; color: transparent;
-  }
-  .check-btn.checked { background: #f59e0b; border-color: #f59e0b; color: #111; }
-  .dark .check-btn { border-color: #64748b; }
-  .surface { background: var(--bg-card); border-color: var(--border); }
-  .text-main { color: var(--text); }
-  .text-sec { color: var(--text-secondary); }
-  .text-mute { color: var(--text-muted); }
-  #help-panel { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-  #help-panel.open { max-height: 280px; }
-
-  #install-btn {
-    display: none; align-items: center; gap: 6px; border-radius: 12px;
-    padding: 8px 14px; font-size: 12px; font-weight: 700;
-    background: linear-gradient(135deg, #f59e0b, #d97706); color: #111;
-    border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(245,158,11,.35);
-  }
-  #install-btn.show { display: inline-flex; }
-
-  #bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-    border-top: 1px solid var(--border); background: var(--header-bg);
-    backdrop-filter: blur(12px);
-  }
-  #bottom-nav .bottom-tab {
-    color: var(--text-muted); padding: 6px 4px; border-radius: 10px;
-    font-size: 10px; font-weight: 700; transition: .15s;
-  }
-  #bottom-nav .bottom-tab.active { color: #f59e0b; }
-  body { padding-bottom: 64px; }
-  @media (min-width: 640px) {
-    body { padding-bottom: 0; }
-    #bottom-nav { display: none; }
-  }
-
-  .react-btn { transition: .15s; cursor: pointer; }
-  .react-btn.active { color: #f59e0b !important; border-color: #f59e0b !important; background: rgba(245,158,11,0.1); }
-
-  #scroll-progress {
-    position: fixed; top: 0; left: 0; height: 3px;
-    background: linear-gradient(90deg, #f59e0b, #d97706);
-    width: 0%; z-index: 100; transition: width 0.05s linear;
-  }
-
-  #ptr {
-    position: absolute; top: -50px; left: 0; right: 0; height: 50px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    transition: transform .2s; pointer-events: none;
-  }
-  #ptr.visible { transform: translateY(50px); }
+:root{--bg:#f8fafc;--bg-card:#fff;--bg-muted:#f1f5f9;--border:#e2e8f0;--text:#0f172a;--text-secondary:#475569;--text-muted:#64748b;--header-bg:rgba(255,255,255,.95);--accent:#b45309}
+.dark{--bg:#020617;--bg-card:#0f172a;--bg-muted:#1e293b;--border:#1e293b;--text:#f1f5f9;--text-secondary:#cbd5e1;--text-muted:#94a3b8;--header-bg:rgba(2,6,23,.95);--accent:#fbbf24}
+html,body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);overscroll-behavior-y:contain}
+/* kolory kategorii: --cc = kolor akcentu, --cb = tło */
+[data-c]{--cc:#475569;--cb:#e2e8f0}
+[data-c=polska]{--cc:#be123c;--cb:#ffe4e6}
+[data-c=gospodarka],[data-c=biznes]{--cc:#047857;--cb:#d1fae5}
+[data-c=geopolityka],[data-c=swiat]{--cc:#1d4ed8;--cb:#dbeafe}
+[data-c=obronnosc]{--cc:#334155;--cb:#e2e8f0}
+[data-c=technologie]{--cc:#6d28d9;--cb:#ede9fe}
+.dark [data-c]{--cc:#cbd5e1;--cb:#1e293b}
+.dark [data-c=polska]{--cc:#fda4af;--cb:#4c0519}
+.dark [data-c=gospodarka],.dark [data-c=biznes]{--cc:#6ee7b7;--cb:#022c22}
+.dark [data-c=geopolityka],.dark [data-c=swiat]{--cc:#93c5fd;--cb:#172554}
+.dark [data-c=technologie]{--cc:#c4b5fd;--cb:#2e1065}
+.cchip{background:var(--cb);color:var(--cc)}
+.cbox{background:var(--cb);border:1.5px solid var(--cc);border-radius:12px}
+.cbox .lbl{color:var(--cc)}
+.card[data-c]{border-top:3px solid var(--cc)}
+.card.read{opacity:.72}
+.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(135deg,var(--cc),#0f172a);font-size:40px}
+.ph-s{font-size:24px}
+.thumb{width:60px;height:60px;flex:none;border-radius:12px;overflow:hidden;background:var(--bg-muted);border:1px solid var(--border)}
+.tab.active{background:#0f172a;color:#fff}.dark .tab.active{background:#f8fafc;color:#0f172a}
+#toast{transform:translateY(120px);opacity:0;pointer-events:none;transition:.25s}#toast.show{transform:translateY(0);opacity:1}
+.headline-item{transition:background .15s}.headline-item:hover{background:rgba(245,158,11,.08)}
+.headline-item.read{opacity:.55}.headline-item.read .title{text-decoration:line-through;text-decoration-color:#94a3b8}
+.check-btn{width:24px;height:24px;border-radius:7px;border:1.5px solid #94a3b8;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;font-size:13px;background:transparent;color:transparent}
+.check-btn.checked{background:#f59e0b;border-color:#f59e0b;color:#111}
+.hit{min-width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.surface{background:var(--bg-card);border-color:var(--border)}
+.text-main{color:var(--text)}.text-sec{color:var(--text-secondary)}.text-mute{color:var(--text-muted)}
+.amber{color:var(--accent)}
+:focus-visible{outline:2px solid #f59e0b;outline-offset:2px}
+#help-panel{max-height:0;overflow:hidden;transition:max-height .3s ease}#help-panel.open{max-height:280px}
+#install-btn{display:none;align-items:center;gap:6px;border-radius:12px;padding:8px 14px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#f59e0b,#d97706);color:#111;border:0;cursor:pointer}
+#install-btn.show{display:inline-flex}
+#bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:50;border-top:1px solid var(--border);background:var(--header-bg);backdrop-filter:blur(12px);padding-bottom:env(safe-area-inset-bottom)}
+#bottom-nav .bottom-tab{color:var(--text-muted);padding:6px 4px;border-radius:10px;font-size:11px;font-weight:700;min-width:56px}
+#bottom-nav .bottom-tab.active{color:#f59e0b}
+body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+#back-top{bottom:calc(76px + env(safe-area-inset-bottom))}
+#toast{bottom:calc(76px + env(safe-area-inset-bottom))}
+@media(min-width:640px){body{padding-bottom:0}#bottom-nav{display:none}#back-top{bottom:20px}#toast{bottom:20px}}
+#scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#f59e0b,#d97706);width:0;z-index:100}
+#ptr{position:absolute;top:-50px;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-muted);transition:transform .2s;pointer-events:none}
+#ptr.visible{transform:translateY(50px)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
 </style>
 </head>
 <body class="min-h-screen relative">
-
 <div id="scroll-progress"></div>
 <div id="ptr">↓ Pociągnij, aby odświeżyć</div>
 
-<header class="sticky top-0 z-40 border-b backdrop-blur" style="background: var(--header-bg); border-color: var(--border);">
+<header class="sticky top-0 z-40 border-b backdrop-blur" style="background:var(--header-bg);border-color:var(--border)">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-    <a href="#" onclick="goTop();return false" class="flex items-center gap-3">
-      <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-lg text-white shadow-sm dark:bg-white dark:text-slate-900">🌍</div>
+    <a href="#" onclick="goTop();return false" class="flex items-center gap-3" aria-label="Świat w Minutę">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-lg text-white shadow-sm dark:bg-white dark:text-slate-900">🌍</div>
       <div>
         <div class="text-sm font-black tracking-tight text-main">Świat w Minutę</div>
-        <div class="text-[10px] font-medium text-sec">Najważniejsze wiadomości bez zbędnego szumu</div>
+        <div class="text-[11px] font-medium text-sec">Najważniejsze wiadomości bez zbędnego szumu</div>
       </div>
     </a>
     <div class="flex items-center gap-2">
       <button id="install-btn" onclick="installPWA()">📲 Zainstaluj</button>
-      <button onclick="toggleHelp()" class="h-9 w-9 rounded-xl border text-sm surface text-main" style="border-color: var(--border);" aria-label="Pomoc">?</button>
-      <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="hidden rounded-xl bg-gradient-to-r from-fuchsia-600 to-orange-500 px-3 py-2 text-xs font-bold text-white sm:block">Instagram</a>
-      <button onclick="toggleDark()" class="h-9 w-9 rounded-xl border text-sm surface text-main" style="border-color: var(--border);" aria-label="Tryb ciemny">☾</button>
+      <button onclick="toggleHelp()" class="hit rounded-xl border text-sm surface text-main" aria-label="Pomoc">?</button>
+      <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="hidden h-10 items-center rounded-xl bg-gradient-to-r from-fuchsia-600 to-orange-500 px-3 text-xs font-bold text-white sm:inline-flex">Instagram</a>
+      <button onclick="toggleDark()" class="hit rounded-xl border text-sm surface text-main" aria-label="Tryb jasny / ciemny">☾</button>
     </div>
   </div>
 </header>
 
 <main class="mx-auto max-w-6xl px-4 pb-28 pt-4">
-
-  <div id="help-panel" class="mb-3 rounded-2xl border surface" style="border-color: var(--border);">
+  <div id="help-panel" class="mb-3 rounded-2xl border surface" style="border-color:var(--border)">
     <div class="p-4 text-sm">
-      <div class="mb-2 text-xs font-black uppercase tracking-wider text-amber-500">Skróty i wskazówki</div>
+      <div class="mb-2 text-xs font-black uppercase tracking-wider amber">Skróty i wskazówki</div>
       <ul class="space-y-1.5 text-sec text-[13px]">
-        <li><kbd class="rounded bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 text-[11px] font-bold text-main">?</kbd> — pokaż / ukryj tę pomoc</li>
-        <li><kbd class="rounded bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 text-[11px] font-bold text-main">Esc</kbd> — wyczyść wyszukiwanie</li>
-        <li><span class="font-semibold text-main">□</span> — zaznacz jako przeczytane</li>
-        <li><span class="font-semibold text-main">↗</span> — udostępnij</li>
-        <li><span class="font-semibold text-main">☾</span> — tryb jasny / ciemny</li>
-        <li class="pt-1 text-mute">Pociągnij w dół, aby odświeżyć</li>
+        <li><b class="text-main">?</b> — pokaż / ukryj tę pomoc · <b class="text-main">Esc</b> — wyczyść wyszukiwanie</li>
+        <li><b class="text-main">□</b> — oznacz jako przeczytane · <b class="text-main">↗</b> — udostępnij · <b class="text-main">☾</b> — tryb jasny / ciemny</li>
+        <li class="text-mute">Pociągnij w dół, aby odświeżyć</li>
       </ul>
     </div>
   </div>
@@ -187,727 +122,404 @@
   <section class="mb-4">
     <div class="mb-2.5 flex items-end justify-between gap-3">
       <div>
-        <div class="text-[10px] font-bold uppercase tracking-[.18em] text-amber-500">Dzisiaj</div>
+        <div class="text-[11px] font-bold uppercase tracking-[.18em] amber">Dzisiaj</div>
         <h1 class="text-xl font-black tracking-tight sm:text-2xl text-main">Świat w Minutę</h1>
       </div>
-      <div id="last-update" class="text-right text-[10px] text-sec">Ładowanie…</div>
+      <div id="last-update" class="text-right text-[11px] text-sec" aria-live="polite">Ładowanie…</div>
     </div>
-    <div id="info-widgets" class="grid grid-cols-3 gap-1.5">
-      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color: var(--border);">
-        <div class="text-[9px] font-bold uppercase text-sec">WAW</div>
-        <div class="mt-0.5 flex items-center gap-1 text-sm font-black text-main">
-          <span id="weather-temp">—°</span>
-          <span id="weather-icon" class="text-sm">🌤️</span>
-        </div>
-      </div>
-      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color: var(--border);">
-        <div class="text-[9px] font-bold uppercase text-sec">EUR</div>
-        <div id="eur-rate" class="mt-0.5 text-sm font-black text-main">—</div>
-      </div>
-      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color: var(--border);">
-        <div class="text-[9px] font-bold uppercase text-sec">USD</div>
-        <div id="usd-rate" class="mt-0.5 text-sm font-black text-main">—</div>
-      </div>
+    <div class="grid grid-cols-3 gap-1.5">
+      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">WAW</div><div class="mt-0.5 flex items-center gap-1 text-sm font-black text-main"><span id="weather-temp">—°</span><span id="weather-icon" class="text-sm">🌤️</span></div></div>
+      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">EUR</div><div id="eur-rate" class="mt-0.5 text-sm font-black text-main">—</div></div>
+      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">USD</div><div id="usd-rate" class="mt-0.5 text-sm font-black text-main">—</div></div>
     </div>
   </section>
 
-  <section id="search-box" class="mb-3 rounded-2xl border p-2.5 shadow-sm surface" style="border-color: var(--border);">
+  <section class="mb-3 rounded-2xl border p-2.5 shadow-sm surface" style="border-color:var(--border)">
     <div class="relative">
+      <label for="search-input" class="sr-only">Szukaj wiadomości</label>
       <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">⌕</span>
-      <input id="search-input" oninput="search()" 
-             class="w-full rounded-xl border py-2 pl-9 pr-9 text-sm outline-none focus:border-amber-400 text-main"
-             style="background: var(--bg-muted); border-color: var(--border); color: var(--text);"
-             placeholder="Szukaj wiadomości…">
-      <button onclick="clearSearch()" class="absolute right-2 top-1/2 hidden -translate-y-1/2 px-2 text-mute" id="search-clear">×</button>
+      <input id="search-input" oninput="search()" class="w-full rounded-xl border py-2.5 pl-9 pr-10 text-base outline-none focus:border-amber-400 text-main" style="background:var(--bg-muted);border-color:var(--border);color:var(--text)" placeholder="Szukaj wiadomości…" autocomplete="off">
+      <button onclick="clearSearch()" class="absolute right-1 top-1/2 hidden h-10 w-10 -translate-y-1/2 text-mute text-xl" id="search-clear" aria-label="Wyczyść wyszukiwanie">×</button>
     </div>
     <div id="search-results" class="mt-2.5 hidden"></div>
   </section>
 
   <nav class="mb-4 flex gap-1.5 overflow-x-auto pb-1" aria-label="Nawigacja">
-    <button id="tab-today" class="tab active whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold" style="border-color: var(--border);" onclick="switchTab('today')">60 sekund</button>
-    <button id="tab-all" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold text-sec" style="border-color: var(--border);" onclick="switchTab('all')">Dzisiejsze</button>
-    <button id="tab-fast" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold text-sec" style="border-color: var(--border);" onclick="switchTab('fast')">🚨 Pilne</button>
-    <button id="tab-fun" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold text-sec" style="border-color: var(--border);" onclick="switchTab('fun')">✨ Ciekawostki</button>
-    <button id="tab-week" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold text-sec" style="border-color: var(--border);" onclick="switchTab('week')">📅 Tydzień</button>
-    <button id="tab-archive" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2 text-xs font-bold text-sec" style="border-color: var(--border);" onclick="switchTab('archive')">Archiwum</button>
+    <button id="tab-today" class="tab active whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold" style="border-color:var(--border)" onclick="switchTab('today')">60 sekund</button>
+    <button id="tab-all" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('all')">Dzisiejsze</button>
+    <button id="tab-fast" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fast')">🚨 Pilne</button>
+    <button id="tab-fun" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fun')">✨ Ciekawostki</button>
+    <button id="tab-week" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('week')">📅 Tydzień</button>
+    <button id="tab-archive" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('archive')">Archiwum</button>
   </nav>
 
-  <div id="load-error" class="mb-4 hidden rounded-2xl border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200">
+  <div id="load-error" class="mb-4 hidden rounded-2xl border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200" role="alert">
     <div class="font-bold">Nie udało się pobrać wydania</div>
     <p class="mt-1 text-[13px] opacity-90">Sprawdź połączenie i odśwież stronę.</p>
-    <button onclick="location.reload()" class="mt-3 rounded-xl bg-red-600 px-4 py-2 text-xs font-bold text-white">Odśwież</button>
+    <button onclick="location.reload()" class="mt-3 rounded-xl bg-red-600 px-4 py-2.5 text-xs font-bold text-white">Odśwież</button>
   </div>
 
   <section id="today-view">
     <div class="mb-3 flex items-end justify-between gap-3">
-      <div>
-        <div class="text-[10px] font-bold uppercase tracking-[.18em] text-amber-500">Dzisiejsza minuta</div>
-        <h2 class="text-lg font-black text-main">Najważniejsze dziś</h2>
-      </div>
-      <div id="edition-time" class="text-right text-[10px] font-semibold text-sec"></div>
+      <div><div class="text-[11px] font-bold uppercase tracking-[.18em] amber">Dzisiejsza minuta</div><h2 class="text-lg font-black text-main">Najważniejsze dziś</h2></div>
+      <div id="edition-time" class="text-right text-[11px] font-semibold text-sec"></div>
     </div>
-    <div id="headline-list" class="rounded-2xl border overflow-hidden surface" style="border-color: var(--border);">
-      <div class="p-6 text-center text-sm text-sec">Ładowanie…</div>
-    </div>
+    <div id="headline-list" class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)"><div class="p-6 text-center text-sm text-sec">Ładowanie…</div></div>
     <div id="fun-preview" class="mt-6 hidden">
       <div class="mb-2.5 flex items-center justify-between">
-        <div>
-          <div class="text-[10px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Na koniec</div>
-          <h2 class="text-base font-black text-main">✨ Ciekawostki</h2>
-        </div>
-        <button onclick="switchTab('fun')" class="text-xs font-bold text-amber-500">Więcej →</button>
+        <div><div class="text-[11px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Na koniec</div><h2 class="text-base font-black text-main">✨ Ciekawostki</h2></div>
+        <button onclick="switchTab('fun')" class="text-xs font-bold amber">Więcej →</button>
       </div>
       <div id="fun-preview-grid" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4"></div>
     </div>
   </section>
 
   <section id="all-view" class="hidden">
-    <div class="mb-3">
-      <div class="text-[10px] font-bold uppercase tracking-[.18em] text-blue-500">Pełny feed</div>
-      <h2 class="text-lg font-black text-main">📰 Dzisiejsze news</h2>
-    </div>
+    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-blue-500">Pełny feed</div><h2 class="text-lg font-black text-main">📰 Dzisiejsze newsy</h2></div>
     <div id="all-grid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
-    <button id="all-more" onclick="loadMoreAll()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-2.5 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
+    <button id="all-more" onclick="allShown+=6;renderAll()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
   </section>
 
   <section id="fast-view" class="hidden">
-    <div class="mb-3">
-      <div class="text-[10px] font-bold uppercase tracking-[.18em] text-red-500">Najważniejsze alerty</div>
-      <h2 class="text-lg font-black text-main">🚨 Pilne</h2>
-    </div>
+    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-red-500">Najważniejsze alerty</div><h2 class="text-lg font-black text-main">🚨 Pilne</h2></div>
     <div id="breaking" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
   </section>
 
   <section id="fun-view" class="hidden">
     <div class="mb-3 flex items-center justify-between gap-3">
-      <div>
-        <div class="text-[10px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Rozrywka</div>
-        <h2 class="text-lg font-black text-main">✨ Ciekawostki</h2>
-      </div>
-      <button onclick="randomFunFact()" class="rounded-xl border px-3 py-2 text-xs font-bold surface" style="border-color: var(--border);">
-        🎲 Losuj ciekawostkę
-      </button>
+      <div><div class="text-[11px] font-bold uppercase tracking-[.18em] text-fuchsia-500">Rozrywka</div><h2 class="text-lg font-black text-main">✨ Ciekawostki</h2></div>
+      <button onclick="randomFunFact()" class="rounded-xl border px-3 py-2.5 text-xs font-bold surface text-main" style="border-color:var(--border)">🎲 Losuj ciekawostkę</button>
     </div>
     <div id="fun-grid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
-    <button id="fun-more" onclick="loadMoreFun()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-2.5 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
+    <button id="fun-more" onclick="funShown+=9;renderFun()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
   </section>
 
   <section id="week-view" class="hidden">
-    <div class="mb-4">
-      <div class="text-[10px] font-bold uppercase tracking-[.18em] text-emerald-500">Przegląd</div>
-      <h2 class="text-lg font-black text-main">📅 Tydzień w skrócie</h2>
-    </div>
+    <div class="mb-4"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-emerald-500">Przegląd</div><h2 class="text-lg font-black text-main">📅 Tydzień w skrócie</h2></div>
     <div id="week-content"></div>
   </section>
 
   <section id="archive-view" class="hidden">
-    <div class="mb-3">
-      <div class="text-[10px] font-bold uppercase tracking-[.18em] text-sec">Historia</div>
-      <h2 class="text-lg font-black text-main">🗂 Archiwum</h2>
-    </div>
+    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-sec">Historia</div><h2 class="text-lg font-black text-main">🗂 Archiwum</h2></div>
     <div id="archive-content"></div>
-    <button id="archive-more" onclick="loadMoreArchive()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-2.5 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż starsze wydania</button>
+    <button id="archive-more" onclick="archiveShown+=2;renderArchive()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż starsze wydania</button>
   </section>
-
 </main>
 
-<footer class="border-t" style="background: var(--bg-card); border-color: var(--border);">
+<footer class="border-t" style="background:var(--bg-card);border-color:var(--border)">
   <div class="mx-auto max-w-6xl px-4 py-8">
-    <button onclick="toggleDisclaimer()" class="mx-auto flex items-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-bold text-sec" style="background: var(--bg-muted); border-color: var(--border);">
-      ℹ️ Ważne informacje o stronie
-    </button>
-    <div id="disclaimer" class="mt-4 hidden rounded-2xl border p-5 text-left" style="background: var(--bg-muted); border-color: var(--border);">
+    <button onclick="document.getElementById('disclaimer').classList.toggle('hidden')" class="mx-auto flex items-center gap-2 rounded-xl border px-4 py-3 text-xs font-bold text-sec" style="background:var(--bg-muted);border-color:var(--border)">ℹ️ Ważne informacje o stronie</button>
+    <div id="disclaimer" class="mt-4 hidden rounded-2xl border p-5 text-left" style="background:var(--bg-muted);border-color:var(--border)">
       <h3 class="text-sm font-black text-main mb-3">Ważne informacje</h3>
       <ul class="space-y-2.5 text-xs leading-relaxed text-sec">
-        <li><span class="font-bold text-main">Czym jest ta strona?</span> Świat w Minutę to krótki przegląd dnia: geopolityka, gospodarka, obronność i technologia. Cel to szybki, czytelny skrót — nie pełna relacja dziennikarska.</li>
-        <li><span class="font-bold text-main">Skąd biorą się treści?</span> Materiały są wybierane z publicznych źródeł (m.in. serwisy informacyjne i kanały RSS), a następnie skracane i redagowane z pomocą AI.</li>
-        <li><span class="font-bold text-main">AI może się mylić.</span> Podsumowania bywają uproszczone, niekompletne albo nieprecyzyjne.</li>
-        <li><span class="font-bold text-main">Sprawdzaj źródła.</span> Przy każdym materiale jest link do oryginału.</li>
+        <li><b class="text-main">Czym jest ta strona?</b> Świat w Minutę to krótki przegląd dnia: geopolityka, gospodarka, obronność i technologia. To szybki skrót, nie pełna relacja dziennikarska.</li>
+        <li><b class="text-main">Skąd biorą się treści?</b> Z publicznych źródeł (serwisy informacyjne i kanały RSS), skracane i redagowane z pomocą AI. Przy każdym materiale jest nazwa źródła i link do oryginału.</li>
+        <li><b class="text-main">AI może się mylić.</b> Podsumowania bywają uproszczone lub niepełne. Komentarz jest oceną, nie rekomendacją. Zanim udostępnisz treść dalej — zajrzyj do źródła.</li>
+        <li><b class="text-main">Zdjęcia</b> są ilustracyjne (Pexels) i nie przedstawiają opisywanych wydarzeń, chyba że podpis mówi inaczej.</li>
+        <li><b class="text-main">Niezależność.</b> Strona nie jest powiązana z partiami, redakcjami ani instytucjami, o których pisze.</li>
+        <li><b class="text-main">Kontakt:</b> Instagram <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="font-bold amber hover:underline">@swiatwminute</a></li>
       </ul>
     </div>
-    <div class="mt-5 flex flex-col items-center gap-3 text-[11px] text-mute">
-      <p>Świat w Minutę © <span id="year"></span></p>
-    </div>
+    <p class="mt-5 text-center text-[11px] text-mute">Świat w Minutę © <span id="year"></span></p>
   </div>
 </footer>
 
-<nav id="bottom-nav">
+<nav id="bottom-nav" aria-label="Szybka nawigacja">
   <div class="flex justify-around items-center h-14 px-1">
-    <button onclick="switchTab('today')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="today">
-      <span class="text-lg">⏱</span><span>60 sek</span>
-    </button>
-    <button onclick="switchTab('all')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="all">
-      <span class="text-lg">📰</span><span>Dzisiejsze</span>
-    </button>
-    <button onclick="switchTab('fast')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fast">
-      <span class="text-lg">🚨</span><span>Pilne</span>
-    </button>
-    <button onclick="switchTab('fun')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fun">
-      <span class="text-lg">✨</span><span>Ciekawostki</span>
-    </button>
-    <button onclick="switchTab('week')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="week">
-      <span class="text-lg">📅</span><span>Tydzień</span>
-    </button>
+    <button onclick="switchTab('today')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="today"><span class="text-lg">⏱</span><span>60 sek</span></button>
+    <button onclick="switchTab('all')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="all"><span class="text-lg">📰</span><span>Dzisiejsze</span></button>
+    <button onclick="switchTab('fast')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fast"><span class="text-lg">🚨</span><span>Pilne</span></button>
+    <button onclick="switchTab('fun')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fun"><span class="text-lg">✨</span><span>Ciekawostki</span></button>
+    <button onclick="switchTab('week')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="week"><span class="text-lg">📅</span><span>Tydzień</span></button>
   </div>
 </nav>
-
-<button id="back-top" onclick="goTop()" class="fixed bottom-20 right-5 z-[60] hidden h-11 w-11 items-center justify-center rounded-full bg-slate-950 text-base font-black text-white shadow-xl sm:bottom-5 dark:bg-white dark:text-slate-950">↑</button>
-<div id="toast" class="fixed bottom-20 left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-xl sm:bottom-5"></div>
+<button id="back-top" onclick="goTop()" class="fixed right-5 z-[60] hidden h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-base font-black text-white shadow-xl dark:bg-white dark:text-slate-950" aria-label="Wróć na górę">↑</button>
+<div id="toast" class="fixed left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-xl" role="status"></div>
 
 <script>
 'use strict';
 const $ = id => document.getElementById(id);
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+let newsItems = [], rawFeedItems = [], fastItems = [], funItems = [], archiveFunItems = [], archiveGroups = [];
+let currentTab = 'today', allShown = 6, archiveShown = 2, funShown = 9, readKeys = new Set(), dataLoadFailed = false;
+let titleCache = {}; try { titleCache = JSON.parse(store.get('swm-title-cache', '{}')); } catch (e) {}
+const DATA_FILES = { news: 'news.json', raw: 'raw_feed.json', fast: 'fast.json', fun: 'rozrywka.json', archive: 'archive.json', archiveFun: 'archive_rozrywka.json' };
+const reg = new Map();
+$('year').textContent = new Date().getFullYear();
 
-let itemsRegistry = [];
-function regItem(item) {
-  const id = itemsRegistry.length;
-  itemsRegistry.push(item);
-  return id;
-}
-
-let newsItems = [], rawFeedItems = [], fastItems = [], funItems = [], archiveGroups = [];
-let archiveFunItems = [];
-let allFunItems = [];
-let currentTab = 'today', allShown = 6, archiveShown = 2, funShown = 9;
-let readKeys = new Set();
-let dataLoadFailed = false;
-
-const DATA_FILES = {
-  news: 'news.json',
-  raw: 'raw_feed.json',
-  fast: 'fast.json',
-  fun: 'rozrywka.json',
-  archive: 'archive.json',
-  archiveFun: 'archive_rozrywka.json'
-};
-
-document.getElementById('year').textContent = new Date().getFullYear();
-
-function escapeHtml(v) {
-  return String(v == null ? '' : v)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
+/* ---------- pomocnicze ---------- */
+const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+function safeUrl(u) { try { if (!u || u === '#') return '#'; const x = new URL(u); return (x.protocol === 'https:' || x.protocol === 'http:') ? x.href : '#'; } catch (e) { return '#'; } }
+const normalize = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l').replace(/[^a-z0-9]+/g, ' ').trim();
 function getTitle(v) {
   const s = String(v || '').trim();
-  const m = s.match(/^(\p{Extended_Pictographic}|\p{Emoji_Presentation})\s*/u);
+  const m = s.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
   return m ? { emoji: m[1], title: s.slice(m[0].length).trim() } : { emoji: '', title: s };
 }
-
+const sourceLink = x => x.link || x.url || '#';
+const keyOf = x => x.id || String(sourceLink(x)).trim().toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') || normalize(getTitle(x.title).title);
+const getSummary = x => x.summary || x.description || x.excerpt || x.snippet || '';
+const getComment = x => x.comment || x.why || '';
+const sourceName = x => x.source_name || x.sourceName || x.source || '';
+const category = x => x.category || x.cat || 'Wiadomości';
+const catSlug = c => normalize(c).split(' ')[0];
+const CAT_EMOJI = { polska: '🇵🇱', gospodarka: '📊', biznes: '💼', geopolityka: '🌍', swiat: '🌍', obronnosc: '🛡️', technologie: '💻' };
+function uniq(list) { const seen = new Set(), out = []; for (const x of list || []) { const k = keyOf(x); if (!k || seen.has(k)) continue; seen.add(k); out.push(x); } return out; }
+const listOf = d => Array.isArray(d) ? d : (d && Array.isArray(d.items) ? d.items : []);
+function imageOf(x) {
+  for (const c of [x.image_url, x.image, x.source_image_url, x.imageUrl, x.img, x.photo, x.thumbnail, x.thumb, x.cover, x.picture]) {
+    if (typeof c === 'string' && /^https?:\/\//.test(c.trim())) return c.trim();
+  }
+  if (Array.isArray(x.images)) for (const i of x.images) { const u = typeof i === 'string' ? i : (i && (i.url || i.src)); if (u && /^https?:\/\//.test(u)) return u; }
+  return '';
+}
+const dayOf = v => { const m = String(v || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? m[0] : ''; };
+const fmtDay = d => { const m = String(d || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? `${m[3]}.${m[2]}.${m[1]}` : ''; };
+const todayKey = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`; };
+function stamp(list, payload) {
+  const day = dayOf(payload && (payload.timestamp || payload.date)) || todayKey();
+  return listOf(list).filter(x => x && typeof x === 'object').map(x => x._day ? x : { ...x, _day: dayOf(x.date || x.published_at) || day });
+}
+function showToast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(showToast._t); showToast._t = setTimeout(() => t.classList.remove('show'), 2200); }
+const has = (t, stems) => new RegExp('(?:^|[^\\p{L}])(?:' + stems + ')', 'u').test(t);
 function pickEmoji(title, cat) {
   const t = (title + ' ' + (cat || '')).toLowerCase();
-  if (/trump|biden|usa|ameryk/.test(t)) return '🇺🇸';
-  if (/china|chiny|pekin/.test(t)) return '🇨🇳';
-  if (/russia|rosja|putin|moskwa/.test(t)) return '🇷🇺';
-  if (/ukraine|ukraina|kijów/.test(t)) return '🇺🇦';
-  if (/nato|wojna|atak|missile|rakiet|obron|wojsk|armia/.test(t)) return '🛡️';
-  if (/oil|ropa|paliw|gaz|energetyk/.test(t)) return '⛽️';
-  if (/ai|sztuczn|chatgpt|openai|gemini/.test(t)) return '🤖';
-  if (/bank|inflacj|gospodark|rynek|finanse|podatek/.test(t)) return '💰';
-  if (/polska|warszawa|polski/.test(t)) return '🇵🇱';
-  return '📰';
+  if (has(t, 'trump|biden|biały dom|white house|usa|ameryk')) return '🇺🇸';
+  if (has(t, 'chin|pekin|beijing')) return '🇨🇳';
+  if (has(t, 'rosj|putin|moskw|kreml|russia')) return '🇷🇺';
+  if (has(t, 'ukrain|kijów|kyiv|zełensk|zelensk')) return '🇺🇦';
+  if (has(t, 'izrael|gaz[aąy]|hamas|palestyn')) return '🇮🇱';
+  if (has(t, 'nato|wojn|atak|rakiet|obron|wojsk|żołnierz|army|military|missile')) return '🛡️';
+  if (has(t, 'rop[aęy]|paliw|diesel|energ|benzyn|oil')) return '⛽';
+  if (has(t, 'ai\\b|sztuczn|chatgpt|openai|gemini|claude')) return '🤖';
+  if (has(t, 'bank|inflacj|gospodark|rynk|giełd|stock|dolar|euro|walut|podatk|budżet')) return '💰';
+  if (has(t, 'apple|google|microsoft|meta\\b|tesla|musk|komputer|software|technolog')) return '💻';
+  if (has(t, 'klimat|pogod|powódź|hurricane|katastrof|pożar')) return '🔥';
+  if (has(t, 'zdrow|szpital|wirus|szczep|covid')) return '🏥';
+  if (has(t, 'sport|piłk|olimp|mecz|lig')) return '⚽';
+  if (has(t, 'nasa|kosmos|satelit|space')) return '🚀';
+  if (has(t, 'polsk|warszaw|sejm|rząd')) return '🇵🇱';
+  if (has(t, 'unia europejska|bruksel|\\bue\\b|europ')) return '🇪🇺';
+  if (has(t, 'cyber|hack|wyciek')) return '🕵️';
+  return CAT_EMOJI[catSlug(cat)] || '📰';
 }
-
-function normalize(s) {
-  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+function isEnglishTitle(text) {
+  const t = String(text || '');
+  if (/[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(t)) return false;
+  return /\b(the|and|for|with|from|that|this|will|have|been|says|said|after|china|russia|trump|ukraine|israel|market|oil|price|attack|plan|billion|million|president|government|officials|announced|report)\b/i.test(t) || t.split(/\s+/).length >= 5;
 }
-
-function keyOf(x) {
-  return String(x.link || x.url || '').trim().toLowerCase().replace(/\/$/,'') || normalize(getTitle(x.title).title);
-}
-
-function uniqueByKey(items) {
-  const seen = new Set(), out = [];
-  for (const x of items || []) {
-    const k = keyOf(x);
-    if (!k || seen.has(k)) continue;
-    seen.add(k);
-    out.push(x);
-  }
-  return out;
-}
-
-function getSummary(x) { return x.summary || x.description || x.excerpt || ''; }
-function getComment(x) { return x.comment || x.why || ''; }
-function sourceName(x) { return x.source_name || x.sourceName || x.source || ''; }
-function sourceLink(x) { return x.link || x.url || '#'; }
-function category(x) { return x.category || x.cat || 'Wiadomości'; }
-
-function imageOf(x) {
-  if (!x || typeof x !== 'object') return '';
-  const candidates = [
-    x.source_image_url, x.image_url, x.image, x.imageUrl, x.img, x.photo, 
-    x.thumbnail, x.thumb, x.sourceImageUrl, x.cover, x.cover_url
-  ];
-  for (const c of candidates) {
-    if (typeof c === 'string' && c.trim().startsWith('http')) {
-      return c.trim().replace(/&amp;/g, '&');
+async function translateToPolish(text) {  // tylko awaryjnie, gdy w danych nie ma title_pl
+  const key = text.trim().toLowerCase();
+  if (titleCache[key]) return titleCache[key];
+  try {
+    const d = await (await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 500))}&langpair=en|pl`)).json();
+    let tr = d && d.responseData && d.responseData.translatedText && d.responseData.translatedText.trim();
+    if (tr && tr.toLowerCase() !== text.toLowerCase() && !tr.includes('MYMEMORY')) {
+      tr = tr.charAt(0).toUpperCase() + tr.slice(1); titleCache[key] = tr; store.set('swm-title-cache', JSON.stringify(titleCache)); return tr;
     }
-  }
-  return 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop';
+  } catch (e) {}
+  return text;
 }
 
-function formatItemDate(x) {
-  const raw = x.date || x.published_at || x.timestamp || x._archiveDate;
-  if (!raw) return '';
-  const s = String(raw).trim();
-  const m = s.match(/(\d{4})[_-](\d{1,2})[_-](\d{1,2})/);
-  if (m) return `${m[3].padStart(2,'0')}.${m[2].padStart(2,'0')}.${m[1]}`;
-  return s.slice(0, 24);
+/* ---------- zdjęcia ---------- */
+function proxiedImg(url) { try { return 'https://images.weserv.nl/?url=' + encodeURIComponent(new URL(url).href.replace(/^https?:\/\//, '')) + '&w=800&fit=cover&output=webp'; } catch (e) { return ''; } }
+const ph = (cat, small, em) => `<div class="ph${small ? ' ph-s' : ''}" data-c="${esc(catSlug(cat))}" aria-hidden="true">${esc(em || CAT_EMOJI[catSlug(cat)] || '📰')}</div>`;
+function imgTag(src, cat, small, em) {
+  const u = safeUrl(src);
+  if (!u || u === '#') return ph(cat, small, em);
+  return `<img src="${esc(u)}" data-proxy="${esc(proxiedImg(u))}" data-tried="0" data-cat="${esc(cat)}" data-small="${small ? 1 : 0}" data-em="${esc(em || '')}" class="h-full w-full object-cover" loading="lazy" referrerpolicy="no-referrer" decoding="async" alt="" onerror="window.__imgFallback(this)">`;
 }
+window.__imgFallback = function (el) {
+  if (el.dataset.tried === '0' && el.dataset.proxy) { el.dataset.tried = '1'; el.src = el.dataset.proxy; return; }
+  const p = el.parentElement; if (p) p.innerHTML = ph(el.dataset.cat, el.dataset.small === '1', el.dataset.em);
+};
 
-function categoryClass(cat) {
-  const c = normalize(cat);
-  if (c.includes('ai') || c.includes('technolog')) return 'bg-violet-100 text-violet-700 dark:bg-violet-950 dark:text-violet-300';
-  if (c.includes('gospod') || c.includes('finans')) return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300';
-  if (c.includes('obronn') || c.includes('wojsk')) return 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200';
-  if (c.includes('polska')) return 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300';
-  return 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300';
-}
-
-function isRead(x) { return readKeys.has(keyOf(x)); }
-
-function toggleReadById(id, ev) {
+/* ---------- akcje ---------- */
+const ek = k => encodeURIComponent(k);
+function act(type, k, ev) {
   if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-  const item = itemsRegistry[id];
-  if (!item) return;
-  const k = keyOf(item);
-  if (!k) return;
-  if (readKeys.has(k)) readKeys.delete(k); else readKeys.add(k);
-  try { localStorage.setItem('swm-read', JSON.stringify([...readKeys])); } catch(e){}
-  renderCurrent();
+  const key = decodeURIComponent(k), x = reg.get(key); if (!x) return;
+  if (type === 'read') { readKeys.has(key) ? readKeys.delete(key) : readKeys.add(key); store.set('swm-read', JSON.stringify([...readKeys])); renderCurrent(); if (!$('search-results').classList.contains('hidden')) search(); }
+  else if (type === 'share') shareItem(x);
+  else if (type === 'source') shareSource(x);
 }
-
-function safeUrl(u) { try { return new URL(u, location.href).href; } catch(e){ return '#'; } }
-
-async function shareItemById(id, ev) {
-  if (ev) { ev.preventDefault(); ev.stopPropagation(); }
-  const item = itemsRegistry[id];
-  if (!item) return;
-  const t = getTitle(item.title);
-  const headline = ((t.emoji ? t.emoji + ' ' : '') + t.title).trim();
-  const payload = headline + '\n' + (item.link || location.href);
-
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: headline, text: payload, url: item.link || location.href });
-      return;
-    } catch(e) {}
-  }
-  try {
-    await navigator.clipboard.writeText(payload);
-    showToast('Skopiowano do schowka');
-  } catch(e) {
-    showToast('Nie udało się skopiować');
-  }
+async function shareItem(item) {
+  const t = getTitle(item.title || item.text), head = ((t.emoji ? t.emoji + ' ' : '') + t.title).trim();
+  const url = location.origin + location.pathname + '#n=' + encodeURIComponent(keyOf(item));
+  const text = [head, getSummary(item), getComment(item) ? '💬 ' + getComment(item) : '', '— via Świat w Minutę'].filter(Boolean).join('\n\n');
+  if (navigator.share) { try { await navigator.share({ title: head, text, url }); showToast('Udostępniono news'); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+  try { await navigator.clipboard.writeText(text + '\n' + url); showToast('Skopiowano news do schowka'); } catch (e) { showToast('Nie udało się udostępnić'); }
 }
-
-function showToast(msg) {
-  const t = $('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(() => t.classList.remove('show'), 2000);
+async function shareSource(item) {
+  const url = safeUrl(sourceLink(item)); if (url === '#') return showToast('Brak linku do źródła');
+  const t = getTitle(item.title || item.text), head = ((t.emoji ? t.emoji + ' ' : '') + t.title).trim();
+  if (navigator.share) { try { await navigator.share({ title: head || 'Źródło', text: head, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+  try { await navigator.clipboard.writeText(head + '\n' + url); showToast('Link źródła skopiowany'); } catch (e) { showToast('Nie udało się skopiować'); }
 }
-
-function toggleHelp() { $('help-panel').classList.toggle('open'); }
-function toggleDisclaimer() { $('disclaimer').classList.toggle('hidden'); }
-function updateThemeColor() {
-  const meta = $('theme-color-meta');
-  if (meta) meta.setAttribute('content', document.documentElement.classList.contains('dark') ? '#020617' : '#f8fafc');
+function openModal(inner) {
+  const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+  m.innerHTML = `<div class="w-full max-w-sm">${inner}<button class="mt-3 w-full rounded-xl bg-slate-950 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950" onclick="this.closest('.modal').remove()">Zamknij</button></div>`;
+  m.addEventListener('click', e => { if (e.target === m) m.remove(); }); document.body.appendChild(m);
 }
+const toggleHelp = () => $('help-panel').classList.toggle('open');
+const goTop = () => scrollTo({ top: 0, behavior: 'smooth' });
+function updateThemeColor() { $('theme-color-meta').setAttribute('content', document.documentElement.classList.contains('dark') ? '#020617' : '#f8fafc'); }
+function toggleDark() { document.documentElement.classList.toggle('dark'); store.set('swm-dark', document.documentElement.classList.contains('dark') ? '1' : '0'); updateThemeColor(); }
 
-function headlineRow(item) {
-  const id = regItem(item);
-  const link = sourceLink(item);
-  const read = isRead(item);
-  const t = getTitle(item.title);
-  const emoji = t.emoji || pickEmoji(t.title, category(item));
-  const title = t.title;
-
-  return `
-    <div class="headline-item flex items-start gap-2.5 px-3.5 py-3 border-b last:border-0 ${read ? 'read' : ''}" style="border-color: var(--border);">
-      <button class="check-btn ${read ? 'checked' : ''} mt-0.5" onclick="toggleReadById(${id}, event)">
-        ${read ? '✓' : ''}
-      </button>
-      <a href="${link && link !== '#' ? escapeHtml(safeUrl(link)) : '#'}" ${link && link !== '#' ? 'target="_blank" rel="noopener"' : ''}
-         class="min-w-0 flex-1 flex items-start gap-2 no-underline">
-        <span class="mt-0.5 text-base leading-none shrink-0">${escapeHtml(emoji)}</span>
-        <span class="title text-[14px] font-semibold leading-snug text-main">${escapeHtml(title)}</span>
-      </a>
-      <button onclick="shareItemById(${id}, event)" class="shrink-0 mt-0.5 h-7 w-7 rounded-lg flex items-center justify-center text-mute hover:text-amber-500">↗</button>
-    </div>`;
+/* ---------- widoki ---------- */
+function headlineRow(item, title, emoji) {
+  const k = keyOf(item); reg.set(k, item);
+  const link = safeUrl(sourceLink(item)), read = readKeys.has(k), cat = category(item), src = sourceName(item), e = ek(k);
+  return `<div class="headline-item flex items-center gap-2 px-2.5 py-2.5 border-b last:border-0 ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}">
+    <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="Oznacz jako przeczytane"><span class="check-btn ${read ? 'checked' : ''}">${read ? '✓' : ''}</span></button>
+    <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''} class="min-w-0 flex-1 flex items-center gap-3 no-underline">
+      <div class="thumb">${imgTag(imageOf(item), cat, true, emoji)}</div>
+      <span class="min-w-0"><span class="title block text-[14px] font-semibold leading-snug text-main">${esc(title)}</span>
+      <span class="mt-0.5 block text-[11px] font-semibold" style="color:var(--cc)">${esc([src, cat !== 'Wiadomości' ? cat : ''].filter(Boolean).join(' · '))}</span></span>
+    </a>
+    <button class="hit rounded-lg text-mute hover:text-amber-500" onclick="act('share','${e}',event)" aria-label="Udostępnij">↗</button></div>`;
 }
-
 function card(item) {
-  const id = regItem(item);
-  const t = getTitle(item.title);
-  const img = imageOf(item);
-  const link = sourceLink(item);
-  const summary = getSummary(item);
-  const comment = getComment(item);
-  const cat = category(item);
-  const read = isRead(item);
-
-  return `
-    <article class="card overflow-hidden rounded-2xl border shadow-sm flex flex-col surface ${read ? 'read' : ''}" style="border-color: var(--border);">
-      <div class="relative overflow-hidden" style="background: var(--bg-muted);">
-        <img src="${escapeHtml(safeUrl(img))}" class="card-img w-full" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop'">
-        <div class="absolute left-2.5 top-2.5">
-          <span class="rounded-full px-2 py-0.5 text-[9px] font-extrabold uppercase shadow ${categoryClass(cat)}">${escapeHtml(cat)}</span>
-        </div>
-        <div class="absolute right-2.5 top-2.5 flex gap-1.5">
-          <button onclick="toggleReadById(${id}, event)" class="check-btn ${read ? 'checked' : ''} shadow" style="background: var(--bg-card);">${read ? '✓' : ''}</button>
-          <button type="button" onclick="shareItemById(${id}, event)" class="h-[18px] w-[18px] rounded-[5px] shadow flex items-center justify-center text-[10px] text-sec hover:text-amber-600" style="background: var(--bg-card);">↗</button>
+  const k = keyOf(item); reg.set(k, item);
+  const t = getTitle(item.title || item.text), cat = category(item), img = imageOf(item), link = safeUrl(sourceLink(item));
+  const sum = getSummary(item), com = getComment(item), src = sourceName(item), date = fmtDay(item._day || dayOf(item.date)), read = readKeys.has(k), e = ek(k);
+  const credit = img && item.image_credit ? `<div class="px-3.5 pt-1.5 text-[11px] text-mute">${item.image_illustrative ? 'Zdjęcie ilustracyjne. ' : ''}Foto: <a class="underline" href="${esc(safeUrl(item.image_credit_url))}" target="_blank" rel="noopener">${esc(item.image_credit)}</a> / Pexels</div>` : '';
+  return `<article class="card overflow-hidden rounded-2xl border shadow-sm flex flex-col surface ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}">
+    <div class="relative aspect-video overflow-hidden" style="background:var(--bg-muted)">${imgTag(img, cat, false, '')}
+      <span class="cchip absolute left-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase shadow">${esc(cat)}</span></div>${credit}
+    <div class="p-3.5 flex flex-col flex-1">
+      <h3 class="text-[15px] font-black leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3>
+      ${sum ? `<p class="mt-2 text-[13px] leading-relaxed text-sec">${esc(sum)}</p>` : ''}
+      ${com ? `<div class="cbox mt-2.5 p-2.5 text-[13px]"><div class="lbl mb-0.5 text-[11px] font-extrabold uppercase tracking-wider">Komentarz AI</div><div class="leading-relaxed text-main">${esc(com)}</div></div>` : ''}
+      <div class="mt-auto pt-2.5 flex items-center justify-between gap-2 border-t" style="border-color:var(--border);margin-top:12px">
+        <div class="min-w-0 truncate text-[11px] font-semibold text-mute">${src ? `<span style="color:var(--cc)">${esc(src)}</span>` : ''}${src && date ? ' · ' : ''}${esc(date)}</div>
+        <div class="flex items-center shrink-0">
+          <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="Oznacz jako przeczytane"><span class="check-btn ${read ? 'checked' : ''}">${read ? '✓' : ''}</span></button>
+          <button class="hit text-sec" onclick="act('share','${e}',event)" aria-label="Udostępnij ten news">↗</button>
+          ${link !== '#' ? `<a href="${link}" target="_blank" rel="noopener" class="text-[11px] font-bold amber hover:underline px-1">Źródło →</a><button class="hit text-[11px] font-bold text-sec" onclick="act('source','${e}',event)" aria-label="Udostępnij link do źródła">↗</button>` : ''}
         </div>
       </div>
-      <div class="p-3.5 flex flex-col flex-1">
-        <h3 class="text-[15px] font-black leading-snug text-main">${t.emoji ? escapeHtml(t.emoji)+' ' : ''}${escapeHtml(t.title)}</h3>
-        ${summary ? `<p class="mt-2 text-[13px] leading-relaxed text-sec">${escapeHtml(summary)}</p>` : ''}
-        ${comment ? `<div class="mt-2.5 rounded-xl p-2.5 text-xs" style="background: rgba(245,158,11,0.12);"><div class="mb-0.5 text-[9px] font-extrabold uppercase tracking-wider text-amber-600 dark:text-amber-400">Komentarz</div><div class="leading-relaxed text-main italic">"${escapeHtml(comment)}"</div></div>` : ''}
-        
-        <div class="mt-auto pt-2.5 flex items-center justify-between gap-2 border-t" style="border-color: var(--border);">
-          <div class="truncate text-[10px] font-semibold text-mute">
-            ${formatItemDate(item) ? `<span class="text-amber-600 dark:text-amber-400">${escapeHtml(formatItemDate(item))}</span>` : ''}
-          </div>
-          ${link && link !== '#' ? `<a href="${escapeHtml(safeUrl(link))}" target="_blank" rel="noopener" class="text-[10px] font-bold text-amber-600 hover:underline">Źródło →</a>` : ''}
-        </div>
-      </div>
-    </article>`;
+    </div></article>`;
 }
-
 function funMini(item) {
-  const t = getTitle(item.title);
-  return `<article class="rounded-xl border p-2.5 surface" style="border-color: var(--border);">
-    <div class="mb-0.5 text-[9px] font-extrabold uppercase tracking-wider text-fuchsia-500">${escapeHtml(category(item) || 'CIEKAWOSTKA')}</div>
-    <h3 class="text-sm font-extrabold leading-snug text-main">${t.emoji ? escapeHtml(t.emoji)+' ' : ''}${escapeHtml(t.title)}</h3>
-  </article>`;
+  const t = getTitle(item.title || item.text), cat = category(item); reg.set(keyOf(item), item);
+  return `<article class="rounded-xl border p-2.5 surface" style="border-color:var(--border);border-top:3px solid var(--cc)" data-c="${esc(catSlug(cat))}"><div class="mb-0.5 text-[11px] font-extrabold uppercase tracking-wider text-fuchsia-500">${esc(cat === 'Wiadomości' ? 'Ciekawostka' : cat)}</div><h3 class="text-sm font-extrabold leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3></article>`;
 }
-
-function renderToday() {
-  const primary = uniqueByKey(newsItems || []);
-  const primaryKeys = new Set(primary.map(keyOf));
-  const rest = uniqueByKey((rawFeedItems || []).filter(x => !primaryKeys.has(keyOf(x))));
-  const total = primary.length + rest.length;
-
+async function translateHeadline(item) {
+  const t = getTitle(item.title_pl || item.title); let title = t.title;
+  if (!item.title_pl && isEnglishTitle(title)) title = await translateToPolish(title);
+  return { item, title, emoji: (t.emoji && t.emoji !== '•') ? t.emoji : pickEmoji(title, category(item)) };
+}
+async function renderToday() {
+  const primary = uniq(newsItems), keys = new Set(primary.map(keyOf));
+  const rest = uniq(rawFeedItems.filter(x => !keys.has(keyOf(x)))), total = primary.length + rest.length;
   $('edition-time').textContent = total ? `${total} tematów` : '';
-  if (!total) {
-    $('headline-list').innerHTML = '<div class="p-6 text-center text-sm text-sec">Brak wiadomości.</div>';
-    return;
-  }
-
-  let html = primary.map(headlineRow).join('');
-  if (rest.length) {
-    html += `
-      <div class="px-3.5 py-2.5 border-y flex items-center gap-2" style="border-color: var(--border); background: var(--bg-muted);">
-        <span class="text-[10px] font-black uppercase tracking-[.14em] text-amber-600 dark:text-amber-400">Pozostałe newsy</span>
-        <span class="text-[10px] text-mute">· ${rest.length}</span>
-      </div>`;
-    html += rest.map(headlineRow).join('');
-  }
-
-  $('headline-list').innerHTML = html;
-
-  const fp = funItems.slice(0, 4);
-  $('fun-preview').classList.toggle('hidden', !fp.length);$('fun-preview-grid').innerHTML = fp.map(funMini).join('');
+  if (!total) { $('headline-list').innerHTML = `<div class="p-6 text-center text-sm text-sec">${dataLoadFailed ? 'Brak danych.' : 'Brak wiadomości.'}</div>`; return; }
+  const [a, b] = await Promise.all([Promise.all(primary.map(translateHeadline)), Promise.all(rest.map(translateHeadline))]);
+  const row = ({ item, title, emoji }) => headlineRow(item, title, emoji);
+  $('headline-list').innerHTML = a.map(row).join('') + (b.length ? `<div class="px-3.5 py-2.5 border-y flex items-center gap-2" style="border-color:var(--border);background:var(--bg-muted)"><span class="text-[11px] font-black uppercase tracking-[.14em] amber">Pozostałe newsy na dziś</span><span class="text-[11px] text-mute">· ${b.length}</span></div>` + b.map(row).join('') : '');
+  const fp = funItems.slice(0, 4); $('fun-preview').classList.toggle('hidden', !fp.length); $('fun-preview-grid').innerHTML = fp.map(funMini).join('');
 }
-
-function renderAll() {
-  const items = newsItems.slice(0, allShown);
-  $('all-grid').innerHTML = items.length ? items.map(card).join('') : '<div class="col-span-full p-8 text-center text-sm text-sec">Brak wiadomości.</div>';
-  $('all-more').classList.toggle('hidden', allShown >= newsItems.length);
+const cards = (l, empty) => l.length ? l.map(card).join('') : `<div class="col-span-full p-8 text-center text-sm text-sec">${empty}</div>`;
+function renderAll() { const l = uniq(newsItems); $('all-grid').innerHTML = cards(l.slice(0, allShown), 'Brak wiadomości.'); $('all-more').classList.toggle('hidden', allShown >= l.length); }
+function renderFast() { $('breaking').innerHTML = cards(uniq([...fastItems, ...newsItems.slice(0, 5)]), 'Brak pilnych.'); }
+function funPool() {
+  const map = new Map();
+  [...funItems.map(x => ({ ...x, _today: true })), ...archiveFunItems].forEach(x => { const k = keyOf(x), p = map.get(k); if (!p || (x._today && !p._today) || (!imageOf(p) && imageOf(x))) map.set(k, x); });
+  return [...map.values()].sort((a, b) => (b._today ? 1 : 0) - (a._today ? 1 : 0));
 }
-function loadMoreAll() { allShown += 6; renderAll(); }
-
-function renderFast() {
-  const items = uniqueByKey([...fastItems, ...newsItems.slice(0,5)]);
-  $('breaking').innerHTML = items.length ? items.map(card).join('') : '<div class="p-6 text-center text-sm text-sec">Brak pilnych.</div>';
-}
-
-function prepareFunItems() {
-  const today = (funItems || []).map(x => ({...x, _isToday: true}));
-  allFunItems = uniqueByKey([...today, ...(archiveFunItems || [])]);
-}
-
-function renderFun() {
-  prepareFunItems();
-  const items = allFunItems.slice(0, funShown);
-  $('fun-grid').innerHTML = items.length ? items.map(card).join('') : '<div class="col-span-full p-8 text-center text-sm text-sec">Brak ciekawostek.</div>';
-  const more = $('fun-more');
-  more.classList.toggle('hidden', funShown >= allFunItems.length);
-}
-function loadMoreFun() { funShown += 9; renderFun(); }
-
-function randomFunFact() {
-  prepareFunItems();
-  if (!allFunItems.length) { showToast('Brak ciekawostek'); return; }
-  const item = allFunItems[Math.floor(Math.random() * allFunItems.length)];
-  const t = getTitle(item.title);
-  const html = `
-    <div style="position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px" onclick="this.remove()">
-      <div class="surface rounded-2xl p-6 max-w-sm w-full border" style="border-color:var(--border)" onclick="event.stopPropagation()">
-        <div class="text-center text-3xl mb-3">🎲</div>
-        <div class="text-[10px] font-bold uppercase tracking-wider text-fuchsia-500 mb-1 text-center">Ciekawostka dnia</div>
-        <h3 class="text-base font-black leading-snug mb-3 text-center">${t.emoji || ''} ${escapeHtml(t.title)}</h3>
-        ${getSummary(item) ? `<p class="text-sm text-sec mb-4 text-center">${escapeHtml(getSummary(item))}</p>` : ''}
-        <button onclick="this.closest('div[style*=fixed]').remove()" class="w-full py-2.5 rounded-xl bg-slate-950 text-white text-sm font-bold dark:bg-white dark:text-slate-950">Zamknij</button>
-      </div>
-    </div>`;
-  document.body.insertAdjacentHTML('beforeend', html);
-}
-
+function renderFun() { const l = funPool(); $('fun-grid').innerHTML = cards(l.slice(0, funShown), 'Brak ciekawostek.'); const m = $('fun-more'); m.classList.toggle('hidden', funShown >= l.length); m.textContent = `Pokaż więcej (${Math.max(0, l.length - funShown)})`; }
+function randomFunFact() { const l = funPool(); if (!l.length) return showToast('Brak ciekawostek'); openModal(card(l[Math.floor(Math.random() * l.length)])); }
+const score = x => (getSummary(x) ? 3 : 0) + (getComment(x) ? 2 : 0) + (imageOf(x) ? 1 : 0) + (x.grounded === false ? -2 : 0);
 function renderWeek() {
-  const pool = uniqueByKey([...newsItems, ...fastItems]);
-  let html = `<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">`;
-  html += pool.map(card).join('') + `</div>`;
-  $('week-content').innerHTML = pool.length ? html : '<div class="p-6 text-center text-sm text-sec">Brak danych.</div>';
+  const today = todayKey(), f = new Date(); f.setDate(f.getDate() - 6);
+  const start = `${f.getFullYear()}-${String(f.getMonth() + 1).padStart(2, '0')}-${String(f.getDate()).padStart(2, '0')}`;
+  const pool = []; archiveGroups.forEach(g => g.items.forEach(x => { if (x._day >= start && x._day <= today) pool.push(x); })); newsItems.concat(fastItems).forEach(x => pool.push(x));
+  const all = uniq(pool), byDay = {}; all.forEach(x => (byDay[x._day] = byDay[x._day] || []).push(x));
+  const days = Object.keys(byDay).sort().reverse(), picked = [];
+  for (let r = 0; r < 2; r++) days.forEach(d => { const l = byDay[d].sort((a, b) => score(b) - score(a)); if (l[r] && picked.length < 12) picked.push(l[r]); });
+  const cats = {}; all.forEach(x => { const c = category(x); cats[c] = (cats[c] || 0) + 1; });
+  $('week-content').innerHTML = `<div class="rounded-2xl border p-5 mb-5 surface" style="border-color:var(--border);background:linear-gradient(135deg,rgba(16,185,129,.08),transparent)">
+    <h3 class="text-lg font-black text-main mb-1">Najlepsze z tygodnia</h3><p class="text-sm text-sec">${fmtDay(start)} – ${fmtDay(today)} · ${all.length} materiałów z ${days.length} dni</p>
+    <div class="mt-3 flex flex-wrap gap-2">${Object.entries(cats).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([c, n]) => `<span class="cchip rounded-full px-3 py-1 text-xs font-bold" data-c="${esc(catSlug(c))}">${esc(c)} · ${n}</span>`).join('')}</div></div>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">${cards(picked, 'Brak danych z ostatnich 7 dni.')}</div>`;
 }
-
-function renderArchive() {
-  if (!archiveGroups.length) {
-    $('archive-content').innerHTML = '<div class="rounded-2xl border border-dashed p-8 text-center text-sm text-sec" style="border-color:var(--border)">Brak archiwum.</div>';
-    $('archive-more').classList.add('hidden');
-    return;
-  }
-  const groups = archiveGroups.slice(0, archiveShown);
-  $('archive-content').innerHTML = groups.map(g => `
-    <section class="mb-7">
-      <div class="mb-2.5 flex items-end justify-between">
-        <h3 class="text-base font-black text-main">${escapeHtml(g.label || 'Archiwum')}</h3>
-        <span class="text-[10px] text-sec">${(g.items || []).length} wiadomości</span>
-      </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">${(g.items || []).map(card).join('')}</div>
-    </section>`).join('');
-  $('archive-more').classList.toggle('hidden', archiveShown >= archiveGroups.length);
-}
-function loadMoreArchive() { archiveShown += 2; renderArchive(); }
-
-function renderCurrent() {
-  itemsRegistry = [];
-  if (currentTab === 'today') renderToday();
-  else if (currentTab === 'all') renderAll();
-  else if (currentTab === 'fast') renderFast();
-  else if (currentTab === 'fun') renderFun();
-  else if (currentTab === 'week') renderWeek();
-  else renderArchive();
-  updateBottomNav();
-}
-
-function updateBottomNav() {
-  document.querySelectorAll('#bottom-nav .bottom-tab').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.tab === currentTab);
-  });
-}
-
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  const tabBtn = $('tab-' + tab);
-  if (tabBtn) tabBtn.classList.add('active');
-  ['today-view','all-view','fast-view','fun-view','week-view','archive-view'].forEach(id => {
-    const el = $(id);
-    if (el) el.classList.add('hidden');
-  });
-  const map = { today:'today-view', all:'all-view', fast:'fast-view', fun:'fun-view', week:'week-view', archive:'archive-view' };
-  const target = $(map[tab]);
-  if (target) target.classList.remove('hidden');
-  
-  if (tab === 'all') allShown = 6;
-  if (tab === 'archive') archiveShown = 2;
-  if (tab === 'fun') funShown = 9;
-  renderCurrent();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function search() {
-  const q = ($('search-input').value \vert{}\vert{} '').toLowerCase().trim();$('search-clear').classList.toggle('hidden', !q);
-  if (!q) { $('search-results').classList.add('hidden'); return; }
-  const pool = uniqueByKey([...newsItems, ...rawFeedItems, ...fastItems, ...funItems]);
-  const hits = pool.filter(x => normalize(x.title + ' ' + getSummary(x)).includes(normalize(q)));
-  $('search-results').classList.remove('hidden');$('search-results').innerHTML = `
-    <div class="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-sec">Wyniki: ${hits.length}</div>
-    <div class="rounded-xl border overflow-hidden surface" style="border-color:var(--border)">
-      ${hits.slice(0,20).map(headlineRow).join('') || '<div class="p-4 text-sm text-sec">Nie znaleziono.</div>'}
-    </div>`;
-}
-
-function clearSearch() {
-  $('search-input').value = '';
-  $('search-results').classList.add('hidden');$('search-clear').classList.add('hidden');
-}
-
-function goTop() { window.scrollTo({ top:0, behavior:'smooth' }); }
-function toggleDark() {
-  document.documentElement.classList.toggle('dark');
-  try { localStorage.setItem('swm-dark', document.documentElement.classList.contains('dark') ? '1' : '0'); } catch(e){}
-  updateThemeColor();
-}
-
-async function loadJson(url, fallback) {
-  try {
-    const r = await fetch(url, { cache: 'no-store' });
-    if (!r.ok) return { ok: false, data: fallback };
-    return { ok: true, data: await r.json() };
-  } catch(e) {
-    return { ok: false, data: fallback };
-  }
-}
-
 function normalizeArchive(data) {
   if (!data || typeof data !== 'object') return [];
-  const out = [];
-  for (const key of Object.keys(data).sort().reverse()) {
-    const v = data[key];
-    if (v && Array.isArray(v.items)) {
-      out.push({ label: v.date || key.replace(/_/g, ' '), items: v.items });
-    }
-  }
-  return out;
+  return Object.keys(data).sort().reverse().map(key => {
+    const v = data[key]; if (!v || !Array.isArray(v.items)) return null;
+    const day = dayOf(key) || dayOf(v.timestamp), kind = /poranne/.test(key) ? 'poranne' : /wieczorne/.test(key) ? 'wieczorne' : '';
+    return { day, label: `${v.date || fmtDay(day)}${kind ? ' · ' + kind : ''}`, items: stamp(v.items, { timestamp: day }) };
+  }).filter(Boolean);
 }
-
-async function init() {
-  try {
-    if (localStorage.getItem('swm-dark') === '1') document.documentElement.classList.add('dark');
-    updateThemeColor();
-    readKeys = new Set(JSON.parse(localStorage.getItem('swm-read') || '[]'));
-  } catch(e) {}
-
-  const [n, raw, f, r, a, af] = await Promise.all([
-    loadJson(DATA_FILES.news, { items: [] }),
-    loadJson(DATA_FILES.raw, { items: [] }),
-    loadJson(DATA_FILES.fast, { items: [] }),
-    loadJson(DATA_FILES.fun, { items: [] }),
-    loadJson(DATA_FILES.archive, {}),
-    loadJson(DATA_FILES.archiveFun, {})
-  ]);
-
-  newsItems = Array.isArray(n.data) ? n.data : (n.data.items || []);
-  rawFeedItems = Array.isArray(raw.data) ? raw.data : (raw.data.items || []);
-  fastItems = Array.isArray(f.data) ? f.data : (f.data.items || []);
-  funItems = Array.isArray(r.data) ? r.data : (r.data.items || []);
-  archiveGroups = normalizeArchive(a.data);
-
-  archiveFunItems = [];
-  if (af.data && typeof af.data === 'object') {
-    for (const key of Object.keys(af.data)) {
-      const g = af.data[key];
-      if (g && Array.isArray(g.items)) archiveFunItems.push(...g.items);
-    }
-  }
-
-  $('last-update').textContent = 'Wydanie: ' + (n.data.date || new Date().toLocaleDateString('pl-PL'));
-  renderToday();
-  loadWidgets();
+function renderArchive() {
+  if (!archiveGroups.length) { $('archive-content').innerHTML = '<div class="rounded-2xl border border-dashed p-8 text-center text-sm text-sec" style="border-color:var(--border)">Brak archiwum.</div>'; $('archive-more').classList.add('hidden'); return; }
+  $('archive-content').innerHTML = archiveGroups.slice(0, archiveShown).map(g => `<section class="mb-7"><div class="mb-2.5 flex items-end justify-between"><h3 class="text-base font-black text-main">${esc(g.label)}</h3><span class="text-[11px] text-sec">${g.items.length} wiadomości</span></div><div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">${g.items.map(card).join('')}</div></section>`).join('');
+  $('archive-more').classList.toggle('hidden', archiveShown >= archiveGroups.length);
 }
+function renderCurrent() {
+  ({ today: renderToday, all: renderAll, fast: renderFast, fun: renderFun, week: renderWeek, archive: renderArchive })[currentTab]();
+  document.querySelectorAll('#bottom-nav .bottom-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === currentTab));
+}
+function switchTab(tab) {
+  currentTab = tab; document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); $('tab-' + tab).classList.add('active');
+  ['today', 'all', 'fast', 'fun', 'week', 'archive'].forEach(v => $(v + '-view').classList.toggle('hidden', v !== tab));
+  $('search-results').classList.add('hidden');
+  if (tab === 'all') allShown = 6; if (tab === 'archive') archiveShown = 2; if (tab === 'fun') funShown = 9;
+  renderCurrent(); scrollTo({ top: 0, behavior: 'smooth' });
+}
+function search() {
+  const q = $('search-input').value.trim(); $('search-clear').classList.toggle('hidden', !q);
+  if (!q) return $('search-results').classList.add('hidden');
+  const pool = uniq([...newsItems, ...rawFeedItems, ...fastItems, ...funItems, ...archiveFunItems, ...archiveGroups.flatMap(g => g.items)]), words = normalize(q).split(' ').filter(Boolean);
+  const hits = pool.filter(x => { const h = normalize([x.title, x.title_pl, getSummary(x), getComment(x), category(x), sourceName(x)].join(' ')); return words.every(w => h.includes(w)); });
+  $('search-results').classList.remove('hidden');
+  $('search-results').innerHTML = `<div class="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-sec">Wyniki: ${hits.length}</div><div class="rounded-xl border overflow-hidden surface" style="border-color:var(--border)">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return headlineRow(x, t.title, t.emoji || pickEmoji(t.title, category(x))); }).join('') || '<div class="p-4 text-sm text-sec">Nie znaleziono.</div>'}</div>`;
+}
+function clearSearch() { $('search-input').value = ''; $('search-results').classList.add('hidden'); $('search-clear').classList.add('hidden'); }
 
+/* ---------- dane ---------- */
+async function loadJson(url, fallback) {
+  try { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw new Error(r.status); return { ok: true, data: await r.json() }; }
+  catch (e) { console.warn('Nie udało się pobrać', url, e); return { ok: false, data: fallback }; }
+}
 async function loadWidgets() {
-  try {
-    const w = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current=temperature_2m,weather_code&timezone=Europe%2FWarsaw');
-    const d = await w.json();
-    $('weather-temp').textContent = Math.round(d.current.temperature_2m) + '°';$('weather-icon').textContent = weatherEmoji(d.current.weather_code);
-  } catch(e){}
-  try {
-    const r = await fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json');
-    const d = await r.json();
-    const rates = d[0].rates;
-    $('eur-rate').textContent = (rates.find(x => x.code === 'EUR')?.mid \vert{}\vert{} 0).toFixed(2);$('usd-rate').textContent = (rates.find(x => x.code === 'USD')?.mid || 0).toFixed(2);
-  } catch(e){}
+  try { const d = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current=temperature_2m,weather_code&timezone=Europe%2FWarsaw')).json(); const c = d.current.weather_code;
+    $('weather-temp').textContent = Math.round(d.current.temperature_2m) + '°'; $('weather-icon').textContent = c === 0 ? '☀️' : c <= 3 ? '🌤️' : c <= 48 ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '🌨️' : c <= 82 ? '🌦️' : '⛈️'; } catch (e) {}
+  try { const rates = (await (await fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json')).json())[0].rates; const g = c => { const r = rates.find(x => x.code === c); return r ? r.mid.toFixed(2) : '—'; }; $('eur-rate').textContent = g('EUR'); $('usd-rate').textContent = g('USD'); } catch (e) {}
+}
+async function init() {
+  updateThemeColor(); try { readKeys = new Set(JSON.parse(store.get('swm-read', '[]'))); } catch (e) {}
+  const [n, raw, f, r, a, af] = await Promise.all(Object.values(DATA_FILES).map(u => loadJson(u, {})));
+  dataLoadFailed = !n.ok && !raw.ok;
+  newsItems = stamp(n.data, n.data); rawFeedItems = stamp(raw.data, raw.data); fastItems = stamp(f.data, f.data); funItems = stamp(r.data, r.data);
+  archiveFunItems = stamp(af.data && !Array.isArray(af.data) && !af.data.items ? Object.values(af.data).flatMap(listOf) : af.data, {});
+  const current = new Set(newsItems.concat(fastItems).map(keyOf));  // archiwum = tylko wydania wcześniejsze
+  archiveGroups = normalizeArchive(a.data).map(g => ({ ...g, items: g.items.filter(x => !current.has(keyOf(x))) })).filter(g => g.items.length);
+  const ts = String(n.data && n.data.timestamp || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2})/);
+  $('last-update').textContent = ts ? `Wydanie: ${ts[3]}.${ts[2]}, ${ts[4]}:${ts[5]}` : '';
+  $('load-error').classList.toggle('hidden', !(dataLoadFailed && !newsItems.length && !rawFeedItems.length));
+  await renderToday(); loadWidgets();
+  const m = location.hash.match(/^#n=(.+)$/);
+  if (m) { const id = decodeURIComponent(m[1]), x = uniq([...newsItems, ...fastItems, ...funItems, ...archiveFunItems, ...archiveGroups.flatMap(g => g.items)]).find(i => keyOf(i) === id); if (x) openModal(card(x)); }
 }
 
-function weatherEmoji(c) {
-  if (c === 0) return '☀️';
-  if (c <= 3) return '🌤️';
-  if (c <= 48) return '🌫️';
-  if (c <= 67) return '🌧️';
-  if (c <= 77) return '🌨️';
-  if (c <= 82) return '🌦️';
-  return '⛈️';
-}
-
-/* Pull to Refresh */
-let ptrStartY = 0;
-let ptrPulling = false;
-const ptrEl = $('ptr');
-
-document.addEventListener('touchstart', e => {
-  if (window.scrollY <= 0) {
-    ptrStartY = e.touches[0].clientY;
-    ptrPulling = true;
-  }
+/* ---------- pull-to-refresh, przewijanie, klawisze, PWA ---------- */
+let ptrY = 0, ptrOn = false; const ptr = $('ptr');
+document.addEventListener('touchstart', e => { if (scrollY <= 0) { ptrY = e.touches[0].clientY; ptrOn = true; } }, { passive: true });
+document.addEventListener('touchmove', e => { if (!ptrOn) return; const on = e.touches[0].clientY - ptrY > 60 && scrollY <= 0; ptr.classList.toggle('visible', on); ptr.textContent = on ? '↑ Puść, aby odświeżyć' : '↓ Pociągnij, aby odświeżyć'; }, { passive: true });
+document.addEventListener('touchend', () => { if (!ptrOn) return; ptrOn = false; if (ptr.classList.contains('visible')) { ptr.textContent = 'Odświeżanie…'; setTimeout(() => location.reload(), 400); } });
+addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - innerHeight; $('scroll-progress').style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
+  const b = $('back-top'); b.classList.toggle('hidden', scrollY <= 400); b.classList.toggle('flex', scrollY > 400);
 }, { passive: true });
-
-document.addEventListener('touchmove', e => {
-  if (!ptrPulling) return;
-  const diff = e.touches[0].clientY - ptrStartY;
-  if (diff > 60 && window.scrollY <= 0) {
-    ptrEl.classList.add('visible');
-    ptrEl.textContent = '↑ Puść, aby odświeżyć';
-  } else {
-    ptrEl.classList.remove('visible');
-    ptrEl.textContent = '↓ Pociągnij, aby odświeżyć';
-  }
-}, { passive: true });
-
-document.addEventListener('touchend', () => {
-  if (!ptrPulling) return;
-  ptrPulling = false;
-  if (ptrEl.classList.contains('visible')) {
-    ptrEl.textContent = 'Odświeżanie…';
-    setTimeout(() => location.reload(), 400);
-  } else {
-    ptrEl.classList.remove('visible');
-  }
-});
-
-/* Pasek postępu */
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  $('scroll-progress').style.width = progress + '%';
-
-  const btn = $('back-top');
-  if (scrollTop > 400) { btn.classList.remove('hidden'); btn.classList.add('flex'); }
-  else { btn.classList.add('hidden'); btn.classList.remove('flex'); }
-}, { passive: true });
-
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape') clearSearch();
-  if (e.key === '?' || (e.shiftKey && e.key === '/')) { e.preventDefault(); toggleHelp(); }
-});
-
-/* PWA */
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  $('install-btn')?.classList.add('show');
-});
-window.addEventListener('appinstalled', () => {
-  deferredPrompt = null;
-  $('install-btn')?.classList.remove('show');
-});
-async function installPWA() {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  if (outcome === 'accepted') showToast('Aplikacja zainstalowana!');
-  deferredPrompt = null;
-  $('install-btn')?.classList.remove('show');
-}
-
+addEventListener('keydown', e => { if (e.key === 'Escape') { clearSearch(); document.querySelectorAll('.modal').forEach(m => m.remove()); } if (e.key === '?' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); toggleHelp(); } });
+let deferred = null;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; $('install-btn').classList.add('show'); });
+addEventListener('appinstalled', () => { deferred = null; $('install-btn').classList.remove('show'); });
+async function installPWA() { if (!deferred) return; deferred.prompt(); const { outcome } = await deferred.userChoice; if (outcome === 'accepted') showToast('Aplikacja zainstalowana!'); deferred = null; $('install-btn').classList.remove('show'); }
+if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
 init();
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('SW zarejestrowany:', reg.scope))
-        .catch(err => console.warn('SW błąd:', err));
-    });
-  }
 </script>
 </body>
 </html>
