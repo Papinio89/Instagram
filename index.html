@@ -252,7 +252,9 @@ const getComment = x => x.comment || x.why || '';
 /* Inteligentne wyciąganie nazwy portalu z linku lub pola */
 function formatPublisher(x) {
   const explicit = x.source_name || x.sourceName || x.source;
-  if (explicit && String(explicit).trim()) return String(explicit).trim();
+  if (explicit && String(explicit).trim() && !String(explicit).includes('google.com')) {
+    return String(explicit).trim();
+  }
   const u = safeUrl(sourceLink(x));
   if (u === '#') return 'Świat w Minutę';
   try {
@@ -267,21 +269,28 @@ function formatPublisher(x) {
       'reuters.com': 'Reuters',
       'bloomberg.com': 'Bloomberg',
       'bbc.com': 'BBC News',
-      'upi.com': 'UPI News',
+      'bbc.co.uk': 'BBC News',
+      'cnbc.com': 'CNBC',
       'onet.pl': 'Onet',
       'wp.pl': 'Wirtualna Polska',
       'interia.pl': 'Interia',
       'tvn24.pl': 'TVN24',
+      'polsatnews.pl': 'Polsat News',
       'pap.pl': 'PAP'
     };
-    if (map[host]) return map[host];
     for (const [d, label] of Object.entries(map)) {
-      if (host.endsWith('.' + d)) return label;
+      if (host === d || host.endsWith('.' + d)) return label;
+    }
+    if (host.includes('google.com')) {
+      const rawT = String(x.title || '');
+      const m = rawT.match(/\s+-\s+([^-]+)$/);
+      if (m && m[1].trim().length < 28) return m[1].trim();
+      return 'Google News';
     }
     const base = host.split('.')[0];
-    return base.charAt(0).toUpperCase() + base.slice(1);
+    return base.charAt(0).toUpperCase() + base.slice(1) + (host.endsWith('.pl') ? '.pl' : '');
   } catch (e) {
-    return 'Źródło';
+    return 'Wiadomości';
   }
 }
 
@@ -362,16 +371,20 @@ window.__imgFallback = function (el) {
 function creditHtml(x, img) {
   if (!img) return '';
   const low = img.toLowerCase();
+  const pub = formatPublisher(x);
+
   if (low.includes('pexels.com')) {
     const a = x.photographer || x.image_author;
     if (a) return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne. Foto: <a class="underline" href="${esc(safeUrl(x.photographer_url || 'https://www.pexels.com'))}" target="_blank" rel="noopener">${esc(a)}</a> / Pexels</div>`;
-    return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne. Foto: <a class="underline" href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></div>`;
+    return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne · Pexels</div>`;
   }
   if (low.includes('unsplash.com')) {
-    return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne. Foto: <a class="underline" href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></div>`;
+    return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne · Unsplash</div>`;
   }
-  const pub = formatPublisher(x);
-  return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Foto: ${esc(pub)}</div>`;
+  if (pub && pub !== 'Wiadomości' && pub !== 'Google News') {
+    return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Foto: ${esc(pub)}</div>`;
+  }
+  return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Foto: materiały prasowe</div>`;
 }
 
 /* ---------- akcje ---------- */
@@ -416,7 +429,9 @@ function headlineRow(item, title, emoji) {
       <div class="thumb">${imgTag(imageOf(item), cat, true, emoji)}</div>
       <span class="min-w-0">
         <span class="title block text-[14px] font-semibold leading-snug text-main">${esc(title)}</span>
-        <span class="mt-0.5 block text-[11px] font-bold" style="color:var(--cc)">${esc(pub)}</span>
+        <span class="mt-0.5 block text-[11px] font-bold" style="color:var(--cc)">
+          ${esc(pub)}${cat && cat !== 'Wiadomości' ? ` · <span class="font-semibold opacity-75">${esc(cat)}</span>` : ''}
+        </span>
       </span>
     </a>
     <button class="hit rounded-lg text-mute hover:text-amber-500" onclick="act('share','${e}',event)" aria-label="Udostępnij">↗</button></div>`;
