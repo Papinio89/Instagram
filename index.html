@@ -8,6 +8,7 @@
 <title>Świat w Minutę — Wiadomości</title>
 <meta name="description" content="Najważniejsze wiadomości świata w 60 sekund. Fakty, geopolityka, rynki i obronność — krótko i na temat.">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://swiat-w-minute.vercel.app/">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Świat w Minutę">
@@ -31,6 +32,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Świat w Minutę",
+  "url": "https://swiat-w-minute.vercel.app/",
+  "description": "Najważniejsze wiadomości świata w 60 sekund. Fakty, geopolityka, rynki i obronność — krótko i na temat.",
+  "inLanguage": "pl-PL",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://swiat-w-minute.vercel.app/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <script>
 (function(){try{var t=localStorage.getItem('swm-dark');var d=t===null?matchMedia('(prefers-color-scheme: dark)').matches:t==='1';if(d)document.documentElement.classList.add('dark');}catch(e){}})();
 </script>
@@ -87,33 +103,37 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 #ptr{position:absolute;top:-50px;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--text-muted);transition:transform .2s;pointer-events:none}
 #ptr.visible{transform:translateY(50px)}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:200}
+.skip-link:focus{position:fixed;left:16px;top:16px;width:auto;height:auto;padding:12px 18px;background:#f59e0b;color:#111;font-weight:700;border-radius:12px;outline:2px solid #111}
 </style>
 </head>
 <body class="min-h-screen relative">
+<a href="#main-content" class="skip-link">Przejdź do treści</a>
 <div id="scroll-progress"></div>
 <div id="ptr">↓ Pociągnij, aby odświeżyć</div>
 
 <div id="safe-top"></div>
 <header class="sticky z-40 border-b" style="top:env(safe-area-inset-top);background:var(--bg);border-color:var(--border)">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-    <a href="#" onclick="goTop();return false" class="flex items-center gap-3" aria-label="Świat w Minutę">
-      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-lg text-white shadow-sm dark:bg-white dark:text-slate-900">🌍</div>
+    <a href="#" onclick="goTop();return false" class="flex items-center gap-3" aria-label="Świat w Minutę — strona główna">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-lg text-white shadow-sm dark:bg-white dark:text-slate-900" aria-hidden="true">🌍</div>
       <div>
         <div class="text-sm font-black tracking-tight text-main">Świat w Minutę</div>
         <div class="text-[11px] font-medium text-sec">Najważniejsze wiadomości bez zbędnego szumu</div>
       </div>
     </a>
     <div class="flex items-center gap-2">
-      <button id="install-btn" onclick="installPWA()">📲 Zainstaluj</button>
-      <button onclick="toggleHelp()" class="hit rounded-xl border text-sm surface text-main" aria-label="Pomoc">?</button>
-      <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="hidden h-10 items-center rounded-xl bg-gradient-to-r from-fuchsia-600 to-orange-500 px-3 text-xs font-bold text-white sm:inline-flex">Instagram</a>
-      <button onclick="toggleDark()" class="hit rounded-xl border text-sm surface text-main" aria-label="Tryb jasny / ciemny">☾</button>
+      <button id="install-btn" onclick="installPWA()" aria-label="Zainstaluj aplikację">📲 Zainstaluj</button>
+      <button onclick="toggleHelp()" class="hit rounded-xl border text-sm surface text-main" aria-label="Pokaż pomoc i skróty klawiszowe" aria-expanded="false" id="help-btn">?</button>
+      <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="hidden h-10 items-center rounded-xl bg-gradient-to-r from-fuchsia-600 to-orange-500 px-3 text-xs font-bold text-white sm:inline-flex" aria-label="Profil Instagram Świat w Minutę">Instagram</a>
+      <button onclick="toggleDark()" class="hit rounded-xl border text-sm surface text-main" aria-label="Przełącz tryb jasny / ciemny">☾</button>
     </div>
   </div>
 </header>
 
-<main class="mx-auto max-w-6xl px-4 pb-28 pt-4">
-  <div id="help-panel" class="mb-3 rounded-2xl border surface" style="border-color:var(--border)">
+<main id="main-content" class="mx-auto max-w-6xl px-4 pb-28 pt-4">
+  <div id="help-panel" class="mb-3 rounded-2xl border surface" style="border-color:var(--border)" role="region" aria-label="Skróty i wskazówki">
     <div class="p-4 text-sm">
       <div class="mb-2 text-xs font-black uppercase tracking-wider amber">Skróty i wskazówki</div>
       <ul class="space-y-1.5 text-sec text-[13px]">
@@ -124,37 +144,37 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
     </div>
   </div>
 
-  <section class="mb-4">
+  <section class="mb-4" aria-labelledby="today-heading">
     <div class="mb-2.5 flex items-end justify-between gap-3">
       <div>
         <div class="text-[11px] font-bold uppercase tracking-[.18em] amber">Dzisiaj</div>
-        <h1 class="text-xl font-black tracking-tight sm:text-2xl text-main">Świat w Minutę</h1>
+        <h1 id="today-heading" class="text-xl font-black tracking-tight sm:text-2xl text-main">Świat w Minutę</h1>
       </div>
       <div id="last-update" class="text-right text-[11px] text-sec" aria-live="polite">Ładowanie…</div>
     </div>
-    <div class="grid grid-cols-3 gap-1.5">
-      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">WAW</div><div class="mt-0.5 flex items-center gap-1 text-sm font-black text-main"><span id="weather-temp">—°</span><span id="weather-icon" class="text-sm">🌤️</span></div></div>
+    <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Pogoda i kursy walut">
+      <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">WAW</div><div class="mt-0.5 flex items-center gap-1 text-sm font-black text-main"><span id="weather-temp">—°</span><span id="weather-icon" class="text-sm" aria-hidden="true">🌤️</span></div></div>
       <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">EUR</div><div id="eur-rate" class="mt-0.5 text-sm font-black text-main">—</div></div>
       <div class="rounded-xl border px-2.5 py-1.5 surface" style="border-color:var(--border)"><div class="text-[10px] font-bold uppercase text-sec">USD</div><div id="usd-rate" class="mt-0.5 text-sm font-black text-main">—</div></div>
     </div>
   </section>
 
-  <section class="mb-3 rounded-2xl border p-2.5 shadow-sm surface" style="border-color:var(--border)">
+  <section class="mb-3 rounded-2xl border p-2.5 shadow-sm surface" style="border-color:var(--border)" aria-label="Wyszukiwanie">
     <div class="relative">
       <label for="search-input" class="sr-only">Szukaj wiadomości</label>
-      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">⌕</span>
-      <input id="search-input" oninput="search()" class="w-full rounded-xl border py-2.5 pl-9 pr-10 text-base outline-none focus:border-amber-400 text-main" style="background:var(--bg-muted);border-color:var(--border);color:var(--text)" placeholder="Szukaj wiadomości…" autocomplete="off">
+      <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm" aria-hidden="true">⌕</span>
+      <input id="search-input" oninput="search()" class="w-full rounded-xl border py-2.5 pl-9 pr-10 text-base outline-none focus:border-amber-400 text-main" style="background:var(--bg-muted);border-color:var(--border);color:var(--text)" placeholder="Szukaj wiadomości…" autocomplete="off" enterkeyhint="search">
       <button onclick="clearSearch()" class="absolute right-1 top-1/2 hidden h-10 w-10 -translate-y-1/2 text-mute text-xl" id="search-clear" aria-label="Wyczyść wyszukiwanie">×</button>
     </div>
-    <div id="search-results" class="mt-2.5 hidden"></div>
+    <div id="search-results" class="mt-2.5 hidden" role="region" aria-live="polite" aria-label="Wyniki wyszukiwania"></div>
   </section>
 
-  <nav class="mb-4 flex gap-1.5 overflow-x-auto pb-1" aria-label="Nawigacja">
-    <button id="tab-today" class="tab active whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold" style="border-color:var(--border)" onclick="switchTab('today')">60 sekund</button>
-    <button id="tab-all" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('all')">Dzisiejsze</button>
-    <button id="tab-fast" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fast')">🚨 Pilne</button>
-    <button id="tab-week" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('week')">📅 Tydzień</button>
-    <button id="tab-archive" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('archive')">Archiwum</button>
+  <nav class="mb-4 flex gap-1.5 overflow-x-auto pb-1" aria-label="Filtry wiadomości">
+    <button id="tab-today" class="tab active whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold" style="border-color:var(--border)" onclick="switchTab('today')" aria-pressed="true">60 sekund</button>
+    <button id="tab-all" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('all')" aria-pressed="false">Dzisiejsze</button>
+    <button id="tab-fast" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('fast')" aria-pressed="false">🚨 Pilne</button>
+    <button id="tab-week" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('week')" aria-pressed="false">📅 Tydzień</button>
+    <button id="tab-archive" class="tab whitespace-nowrap rounded-xl border px-3.5 py-2.5 text-xs font-bold text-sec" style="border-color:var(--border)" onclick="switchTab('archive')" aria-pressed="false">Archiwum</button>
   </nav>
 
   <div id="load-error" class="mb-4 hidden rounded-2xl border border-red-300 bg-red-50 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200" role="alert">
@@ -163,66 +183,86 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
     <button onclick="location.reload()" class="mt-3 rounded-xl bg-red-600 px-4 py-2.5 text-xs font-bold text-white">Odśwież</button>
   </div>
 
-  <section id="today-view">
+  <section id="today-view" aria-labelledby="headline-heading">
     <div class="mb-3 flex items-end justify-between gap-3">
-      <div><div class="text-[11px] font-bold uppercase tracking-[.18em] amber">Dzisiejsza minuta</div><h2 class="text-lg font-black text-main">Najważniejsze dziś</h2></div>
+      <div><div class="text-[11px] font-bold uppercase tracking-[.18em] amber">Dzisiejsza minuta</div><h2 id="headline-heading" class="text-lg font-black text-main">Najważniejsze dziś</h2></div>
       <div id="edition-time" class="text-right text-[11px] font-semibold text-sec"></div>
     </div>
-    <div id="headline-list" class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)"><div class="p-6 text-center text-sm text-sec">Ładowanie…</div></div>
+    <div id="headline-list" class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)" role="list"><div class="p-6 text-center text-sm text-sec">Ładowanie…</div></div>
   </section>
 
-  <section id="all-view" class="hidden">
-    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-blue-500">Pełny feed</div><h2 class="text-lg font-black text-main">📰 Dzisiejsze newsy</h2></div>
+  <section id="all-view" class="hidden" aria-labelledby="all-heading">
+    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-blue-500">Pełny feed</div><h2 id="all-heading" class="text-lg font-black text-main">📰 Dzisiejsze newsy</h2></div>
     <div id="all-grid" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
     <button id="all-more" onclick="allShown+=6;renderAll()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż więcej</button>
   </section>
 
-  <section id="fast-view" class="hidden">
-    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-red-500">Najważniejsze alerty</div><h2 class="text-lg font-black text-main">🚨 Pilne</h2></div>
+  <section id="fast-view" class="hidden" aria-labelledby="fast-heading">
+    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-red-500">Najważniejsze alerty</div><h2 id="fast-heading" class="text-lg font-black text-main">🚨 Pilne</h2></div>
     <div id="breaking" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
   </section>
 
-  <section id="week-view" class="hidden">
-    <div class="mb-4"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-emerald-500">Przegląd</div><h2 class="text-lg font-black text-main">📅 Tydzień w skrócie</h2></div>
+  <section id="week-view" class="hidden" aria-labelledby="week-heading">
+    <div class="mb-4">
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-emerald-500">Przegląd tygodnia</div>
+      <h2 id="week-heading" class="text-lg font-black text-main">📅 TOP 15 Wydarzeń</h2>
+    </div>
     <div id="week-content"></div>
   </section>
 
-  <section id="archive-view" class="hidden">
-    <div class="mb-3"><div class="text-[11px] font-bold uppercase tracking-[.18em] text-sec">Historia</div><h2 class="text-lg font-black text-main">🗂 Archiwum</h2></div>
-    <div id="archive-content"></div>
-    <button id="archive-more" onclick="archiveShown+=2;renderArchive()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż starsze wydania</button>
+  <section id="archive-view" class="hidden" aria-labelledby="archive-heading">
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-[.18em] text-sec">Historia wydań</div>
+        <h2 id="archive-heading" class="text-lg font-black text-main">🗂 Archiwum</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <label for="archive-month-select" class="text-xs font-bold text-sec">Miesiąc:</label>
+        <select id="archive-month-select" onchange="onArchiveMonthChange(this.value)"
+                class="rounded-xl border px-3 py-2 text-xs font-bold surface text-main outline-none focus:border-amber-400"
+                style="border-color:var(--border)">
+          <option value="main">Ostatnie 30 dni</option>
+        </select>
+      </div>
+    </div>
+    <div id="archive-content" class="space-y-4"></div>
+    <button id="archive-more" onclick="archiveShown+=2;renderArchive()" class="mx-auto mt-5 hidden rounded-xl bg-slate-950 px-5 py-3 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Pokaż wcześniejsze wydania</button>
   </section>
 </main>
 
 <footer class="border-t" style="background:var(--bg-card);border-color:var(--border)">
   <div class="mx-auto max-w-6xl px-4 py-8">
-    <button onclick="document.getElementById('disclaimer').classList.toggle('hidden')" class="mx-auto flex items-center gap-2 rounded-xl border px-4 py-3 text-xs font-bold text-sec" style="background:var(--bg-muted);border-color:var(--border)">ℹ️ Ważne informacje o stronie</button>
+    <button onclick="document.getElementById('disclaimer').classList.toggle('hidden')" class="mx-auto flex items-center gap-2 rounded-xl border px-4 py-3 text-xs font-bold text-sec" style="background:var(--bg-muted);border-color:var(--border)" aria-expanded="false" aria-controls="disclaimer">ℹ️ Ważne informacje o stronie</button>
     <div id="disclaimer" class="mt-4 hidden rounded-2xl border p-5 text-left" style="background:var(--bg-muted);border-color:var(--border)">
       <h3 class="text-sm font-black text-main mb-3">Ważne informacje</h3>
       <ul class="space-y-2.5 text-xs leading-relaxed text-sec">
         <li><b class="text-main">Czym jest ta strona?</b> Świat w Minutę to krótki przegląd dnia: geopolityka, gospodarka, obronność i technologia. To szybki skrót, nie pełna relacja dziennikarska.</li>
         <li><b class="text-main">Skąd biorą się treści?</b> Z publicznych źródeł (serwisy informacyjne i kanały RSS), skracane i redagowane z pomocą AI. Przy każdym materiale jest nazwa źródła i link do oryginału.</li>
         <li><b class="text-main">AI może się mylić.</b> Podsumowania bywają uproszczone lub niepełne. Komentarz jest oceną, nie rekomendacją. Zanim udostępnisz treść dalej — zajrzyj do źródła.</li>
-        <li><b class="text-main">Zdjęcia</b> są ilustracyjne (Pexels) i nie przedstawiają opisywanych wydarzeń, chyba że podpis mówi inaczej.</li>
+        <li><b class="text-main">Zdjęcia</b> są ilustracyjne (Pexels) lub pochodzą bezpośrednio z serwisów źródłowych.</li>
         <li><b class="text-main">Niezależność.</b> Strona nie jest powiązana z partiami, redakcjami ani instytucjami, o których pisze.</li>
         <li><b class="text-main">Kontakt:</b> Instagram <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="font-bold amber hover:underline">@swiatwminute</a></li>
       </ul>
     </div>
-    <p class="mt-5 text-center text-[11px] text-mute">Świat w Minutę © <span id="year"></span></p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-[11px] text-mute">
+      <a href="https://www.instagram.com/swiatwminute/" target="_blank" rel="noopener" class="hover:text-main underline-offset-2 hover:underline">Instagram</a>
+      <span aria-hidden="true">·</span>
+      <span>Świat w Minutę © <span id="year"></span></span>
+    </div>
   </div>
 </footer>
 
-<nav id="bottom-nav" aria-label="Szybka nawigacja">
+<nav id="bottom-nav" aria-label="Szybka nawigacja mobilna">
   <div class="flex justify-around items-center h-14 px-1">
-    <button onclick="switchTab('today')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="today"><span class="text-lg">⏱</span><span>60 sek</span></button>
-    <button onclick="switchTab('all')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="all"><span class="text-lg">📰</span><span>Dzisiejsze</span></button>
-    <button onclick="switchTab('fast')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fast"><span class="text-lg">🚨</span><span>Pilne</span></button>
-    <button onclick="switchTab('week')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="week"><span class="text-lg">📅</span><span>Tydzień</span></button>
-    <button onclick="switchTab('archive')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="archive"><span class="text-lg">🗂</span><span>Archiwum</span></button>
+    <button onclick="switchTab('today')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="today" aria-label="60 sekund"><span class="text-lg" aria-hidden="true">⏱</span><span>60 sek</span></button>
+    <button onclick="switchTab('all')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="all" aria-label="Dzisiejsze newsy"><span class="text-lg" aria-hidden="true">📰</span><span>Dzisiejsze</span></button>
+    <button onclick="switchTab('fast')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="fast" aria-label="Pilne alerty"><span class="text-lg" aria-hidden="true">🚨</span><span>Pilne</span></button>
+    <button onclick="switchTab('week')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="week" aria-label="Przegląd tygodnia"><span class="text-lg" aria-hidden="true">📅</span><span>Tydzień</span></button>
+    <button onclick="switchTab('archive')" class="bottom-tab flex flex-col items-center gap-0.5" data-tab="archive" aria-label="Archiwum"><span class="text-lg" aria-hidden="true">🗂</span><span>Archiwum</span></button>
   </div>
 </nav>
 <button id="back-top" onclick="goTop()" class="fixed right-5 z-[60] hidden h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-base font-black text-white shadow-xl dark:bg-white dark:text-slate-950" aria-label="Wróć na górę">↑</button>
-<div id="toast" class="fixed left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-xl" role="status"></div>
+<div id="toast" class="fixed left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-slate-950 px-4 py-2.5 text-xs font-bold text-white shadow-xl" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
@@ -233,6 +273,7 @@ let currentTab = 'today', allShown = 6, archiveShown = 2, readKeys = new Set(), 
 let titleCache = {}; try { titleCache = JSON.parse(store.get('swm-title-cache', '{}')); } catch (e) {}
 const DATA_FILES = { news: 'news.json', raw: 'raw_feed.json', fast: 'fast.json', archive: 'archive.json' };
 const reg = new Map();
+const monthlyArchiveCache = new Map();
 $('year').textContent = new Date().getFullYear();
 
 /* ---------- pomocnicze ---------- */
@@ -244,12 +285,26 @@ function getTitle(v) {
   const m = s.match(/^(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*)\s*/u);
   return m ? { emoji: m[1], title: s.slice(m[0].length).trim() } : { emoji: '', title: s };
 }
+
+/** Zamienia CAPS LOCK na czytelny Title Case / sentence case */
+function toReadableTitle(raw) {
+  const s = String(raw || '').trim();
+  if (!s) return s;
+  // Jeśli >60% liter to wielkie — traktujemy jako CAPS
+  const letters = s.replace(/[^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '');
+  if (!letters.length) return s;
+  const upper = (letters.match(/[A-ZĄĆĘŁŃÓŚŹŻ]/g) || []).length;
+  if (upper / letters.length < 0.55) return s; // już wygląda OK
+  // Sentence case: pierwsza litera wielka, reszta małe (zachowujemy znaki)
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
+    .replace(/\b(usa|ue|nato|ai|nbp|pis|po|tvn|bbc|eu)\b/gi, m => m.toUpperCase());
+}
+
 const sourceLink = x => x.link || x.url || '#';
 const keyOf = x => x.id || String(sourceLink(x)).trim().toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') || normalize(getTitle(x.title).title);
 const getSummary = x => x.summary || x.description || x.excerpt || x.snippet || '';
-const getComment = x => x.comment || x.why || '';
+const getComment = x => x.comment || x.why || x.why_important || x.whyImportant || x.important || x.ai_comment || '';
 
-/* Inteligentne wyciąganie nazwy portalu z linku lub pola */
 function formatPublisher(x) {
   const explicit = x.source_name || x.sourceName || x.source;
   if (explicit && String(explicit).trim() && !String(explicit).includes('google.com')) {
@@ -299,16 +354,71 @@ const catSlug = c => normalize(c).split(' ')[0];
 const CAT_EMOJI = { polska: '🇵🇱', gospodarka: '📊', biznes: '💼', geopolityka: '🌍', swiat: '🌍', obronnosc: '🛡️', technologie: '💻' };
 function uniq(list) { const seen = new Set(), out = []; for (const x of list || []) { const k = keyOf(x); if (!k || seen.has(k)) continue; seen.add(k); out.push(x); } return out; }
 const listOf = d => Array.isArray(d) ? d : (d && Array.isArray(d.items) ? d.items : []);
+
+/* ZAWSZE PIERWSZEŃSTWO MA ORYGINALNY KADR Z ARTYKUŁU */
 function imageOf(x) {
-  for (const c of [x.image_url, x.image, x.source_image_url, x.imageUrl, x.img, x.photo, x.thumbnail, x.thumb, x.cover, x.picture]) {
+  if (!x || typeof x !== 'object') return '';
+  const candidates = [
+    x.source_image_url,
+    x.sourceImageUrl,
+    x.image_url,
+    x.imageUrl,
+    x.image,
+    x.img,
+    x.photo,
+    x.thumbnail,
+    x.thumb,
+    x.cover,
+    x.picture
+  ];
+  for (const c of candidates) {
     if (typeof c === 'string' && /^https?:\/\//.test(c.trim())) return c.trim();
   }
-  if (Array.isArray(x.images)) for (const i of x.images) { const u = typeof i === 'string' ? i : (i && (i.url || i.src)); if (u && /^https?:\/\//.test(u)) return u; }
+  if (Array.isArray(x.images)) {
+    for (const i of x.images) {
+      const u = typeof i === 'string' ? i : (i && (i.url || i.src));
+      if (u && /^https?:\/\//.test(u)) return u;
+    }
+  }
   return '';
 }
+
+function pexelsFallbackOf(x) {
+  if (!x || typeof x !== 'object') return '';
+  for (const c of [x.image_url, x.image, x.image_portrait]) {
+    if (typeof c === 'string' && c.includes('pexels.com')) return c.trim();
+  }
+  return '';
+}
+
 const dayOf = v => { const m = String(v || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? m[0] : ''; };
 const fmtDay = d => { const m = String(d || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? `${m[3]}.${m[2]}.${m[1]}` : ''; };
 const todayKey = () => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`; };
+
+/** Względny czas: "2 godz. temu", "wczoraj", "3 dni temu" */
+function relativeTime(item) {
+  const raw = item.published_at || item.date || item.timestamp || item._day;
+  if (!raw) return '';
+  let d;
+  if (typeof raw === 'number') d = new Date(raw);
+  else {
+    const m = String(raw).match(/(\d{4})-(\d{2})-(\d{2})(?:[T_ ](\d{2}):(\d{2}))?/);
+    if (!m) return fmtDay(raw);
+    d = new Date(+m[1], +m[2] - 1, +m[3], m[4] ? +m[4] : 12, m[5] ? +m[5] : 0);
+  }
+  if (isNaN(d.getTime())) return fmtDay(raw);
+  const now = Date.now();
+  const diff = Math.max(0, now - d.getTime());
+  const mins = Math.floor(diff / 60000);
+  if (mins < 60) return mins <= 1 ? 'przed chwilą' : mins + ' min temu';
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return hours + (hours === 1 ? ' godz. temu' : ' godz. temu');
+  const days = Math.floor(hours / 24);
+  if (days === 1) return 'wczoraj';
+  if (days < 7) return days + ' dni temu';
+  return fmtDay(d.toISOString().slice(0, 10));
+}
+
 function stamp(list, payload) {
   const day = dayOf(payload && (payload.timestamp || payload.date)) || todayKey();
   return listOf(list).filter(x => x && typeof x === 'object').map(x => x._day ? x : { ...x, _day: dayOf(x.date || x.published_at) || day });
@@ -354,28 +464,60 @@ async function translateToPolish(text) {
   return text;
 }
 
-/* ---------- zdjęcia i podpisy ---------- */
-function proxiedImg(url) { try { return 'https://images.weserv.nl/?url=' + encodeURIComponent(new URL(url).href.replace(/^https?:\/\//, '')) + '&w=800&fit=cover&output=webp'; } catch (e) { return ''; } }
+/* ---------- inteligentne ładowanie zdjęć i podpisy ---------- */
 const ph = (cat, small, em) => `<div class="ph${small ? ' ph-s' : ''}" data-c="${esc(catSlug(cat))}" aria-hidden="true">${esc(em || CAT_EMOJI[catSlug(cat)] || '📰')}</div>`;
-function imgTag(src, cat, small, em) {
-  const u = safeUrl(src);
-  if (!u || u === '#') return ph(cat, small, em);
-  return `<img src="${esc(u)}" data-proxy="${esc(proxiedImg(u))}" data-tried="0" data-cat="${esc(cat)}" data-small="${small ? 1 : 0}" data-em="${esc(em || '')}" class="h-full w-full object-cover" loading="lazy" referrerpolicy="no-referrer" decoding="async" alt="" onerror="window.__imgFallback(this)">`;
+
+function buildAlt(item, title, pub) {
+  const t = toReadableTitle(title || getTitle(item.title || item.text).title);
+  const p = pub || formatPublisher(item);
+  if (t && p) return `${t} — zdjęcie / materiał: ${p}`;
+  if (t) return t;
+  if (p) return `Ilustracja do wiadomości z serwisu ${p}`;
+  return 'Ilustracja do wiadomości';
 }
+
+function imgTag(item, cat, small, em, titleForAlt) {
+  const src = imageOf(item);
+  const pexelsBackup = pexelsFallbackOf(item);
+  if (!src) return ph(cat, small, em);
+
+  const alt = buildAlt(item, titleForAlt, formatPublisher(item));
+  return `<img src="${esc(src)}"
+               data-backup="${esc(pexelsBackup)}"
+               data-tried="0"
+               data-cat="${esc(cat)}"
+               data-small="${small ? 1 : 0}"
+               data-em="${esc(em || '')}"
+               class="h-full w-full object-cover"
+               loading="lazy"
+               referrerpolicy="no-referrer"
+               decoding="async"
+               alt="${esc(alt)}"
+               width="${small ? 60 : 640}"
+               height="${small ? 60 : 360}"
+               onerror="window.__imgFallback(this)">`;
+}
+
 window.__imgFallback = function (el) {
-  if (el.dataset.tried === '0' && el.dataset.proxy) { el.dataset.tried = '1'; el.src = el.dataset.proxy; return; }
-  const p = el.parentElement; if (p) p.innerHTML = ph(el.dataset.cat, el.dataset.small === '1', el.dataset.em);
+  const tried = parseInt(el.dataset.tried || '0', 10);
+  const backup = el.dataset.backup;
+  if (tried === 0 && backup && el.src !== backup) {
+    el.dataset.tried = '1';
+    el.src = backup;
+    return;
+  }
+  const p = el.parentElement;
+  if (p) p.innerHTML = ph(el.dataset.cat, el.dataset.small === '1', el.dataset.em);
 };
 
-/* Podpis źródła zdjęcia */
 function creditHtml(x, img) {
   if (!img) return '';
   const low = img.toLowerCase();
   const pub = formatPublisher(x);
 
   if (low.includes('pexels.com')) {
-    const a = x.photographer || x.image_author;
-    if (a) return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne. Foto: <a class="underline" href="${esc(safeUrl(x.photographer_url || 'https://www.pexels.com'))}" target="_blank" rel="noopener">${esc(a)}</a> / Pexels</div>`;
+    const a = x.image_credit || x.photographer || x.image_author;
+    if (a) return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne. Foto: <a class="underline" href="${esc(safeUrl(x.image_credit_url || 'https://www.pexels.com'))}" target="_blank" rel="noopener">${esc(a)}</a> / Pexels</div>`;
     return `<div class="px-3.5 pt-1.5 text-[11px] text-mute">Zdjęcie ilustracyjne · Pexels</div>`;
   }
   if (low.includes('unsplash.com')) {
@@ -395,9 +537,11 @@ function act(type, k, ev) {
   if (type === 'read') { readKeys.has(key) ? readKeys.delete(key) : readKeys.add(key); store.set('swm-read', JSON.stringify([...readKeys])); renderCurrent(); if (!$('search-results').classList.contains('hidden')) search(); }
   else if (type === 'share') shareItem(x);
   else if (type === 'source') shareSource(x);
+  else if (type === 'open') openModal(card(x));
 }
 async function shareItem(item) {
-  const t = getTitle(item.title || item.text), head = ((t.emoji ? t.emoji + ' ' : '') + t.title).trim();
+  const t = getTitle(item.title || item.text);
+  const head = ((t.emoji ? t.emoji + ' ' : '') + toReadableTitle(t.title)).trim();
   const url = location.origin + location.pathname + '#n=' + encodeURIComponent(keyOf(item));
   const text = [head, getSummary(item), getComment(item) ? '💬 ' + getComment(item) : '', '— via Świat w Minutę'].filter(Boolean).join('\n\n');
   if (navigator.share) { try { await navigator.share({ title: head, text, url }); showToast('Udostępniono news'); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
@@ -405,16 +549,25 @@ async function shareItem(item) {
 }
 async function shareSource(item) {
   const url = safeUrl(sourceLink(item)); if (url === '#') return showToast('Brak linku do źródła');
-  const t = getTitle(item.title || item.text), head = ((t.emoji ? t.emoji + ' ' : '') + t.title).trim();
+  const t = getTitle(item.title || item.text);
+  const head = ((t.emoji ? t.emoji + ' ' : '') + toReadableTitle(t.title)).trim();
   if (navigator.share) { try { await navigator.share({ title: head || 'Źródło', text: head, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
   try { await navigator.clipboard.writeText(head + '\n' + url); showToast('Link źródła skopiowany'); } catch (e) { showToast('Nie udało się skopiować'); }
 }
 function openModal(inner) {
-  const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+  const m = document.createElement('div'); m.className = 'modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Podgląd wiadomości');
   m.innerHTML = `<div class="w-full max-w-sm">${inner}<button class="mt-3 w-full rounded-xl bg-slate-950 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950" onclick="this.closest('.modal').remove()">Zamknij</button></div>`;
-  m.addEventListener('click', e => { if (e.target === m) m.remove(); }); document.body.appendChild(m);
+  m.addEventListener('click', e => { if (e.target === m) m.remove(); });
+  document.body.appendChild(m);
+  const closeBtn = m.querySelector('button');
+  if (closeBtn) closeBtn.focus();
 }
-const toggleHelp = () => $('help-panel').classList.toggle('open');
+const toggleHelp = () => {
+  const panel = $('help-panel');
+  const open = panel.classList.toggle('open');
+  const btn = $('help-btn');
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+};
 const goTop = () => scrollTo({ top: 0, behavior: 'smooth' });
 function updateThemeColor() { $('theme-color-meta').setAttribute('content', document.documentElement.classList.contains('dark') ? '#020617' : '#f8fafc'); }
 function toggleDark() { document.documentElement.classList.toggle('dark'); store.set('swm-dark', document.documentElement.classList.contains('dark') ? '1' : '0'); updateThemeColor(); }
@@ -423,36 +576,42 @@ function toggleDark() { document.documentElement.classList.toggle('dark'); store
 function headlineRow(item, title, emoji) {
   const k = keyOf(item); reg.set(k, item);
   const link = safeUrl(sourceLink(item)), read = readKeys.has(k), cat = category(item), pub = formatPublisher(item), e = ek(k);
-  return `<div class="headline-item flex items-center gap-2 px-2.5 py-2.5 border-b last:border-0 ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}">
-    <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="Oznacz jako przeczytane"><span class="check-btn ${read ? 'checked' : ''}">${read ? '✓' : ''}</span></button>
+  const readable = toReadableTitle(title);
+  const timeStr = relativeTime(item);
+  return `<div class="headline-item flex items-center gap-2 px-2.5 py-2.5 border-b last:border-0 ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}" role="listitem">
+    <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="${read ? 'Oznacz jako nieprzeczytane' : 'Oznacz jako przeczytane'}"><span class="check-btn ${read ? 'checked' : ''}" aria-hidden="true">${read ? '✓' : ''}</span></button>
     <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''} class="min-w-0 flex-1 flex items-center gap-3 no-underline">
-      <div class="thumb">${imgTag(imageOf(item), cat, true, emoji)}</div>
+      <div class="thumb">${imgTag(item, cat, true, emoji, readable)}</div>
       <span class="min-w-0">
-        <span class="title block text-[14px] font-semibold leading-snug text-main">${esc(title)}</span>
+        <span class="title block text-[14px] font-semibold leading-snug text-main">${esc(readable)}</span>
         <span class="mt-0.5 block text-[11px] font-bold" style="color:var(--cc)">
-          ${esc(pub)}${cat && cat !== 'Wiadomości' ? ` · <span class="font-semibold opacity-75">${esc(cat)}</span>` : ''}
+          ${esc(pub)}${cat && cat !== 'Wiadomości' ? ` · <span class="font-semibold opacity-75">${esc(cat)}</span>` : ''}${timeStr ? ` · <span class="font-medium opacity-70">${esc(timeStr)}</span>` : ''}
         </span>
       </span>
     </a>
-    <button class="hit rounded-lg text-mute hover:text-amber-500" onclick="act('share','${e}',event)" aria-label="Udostępnij">↗</button></div>`;
+    <button class="hit rounded-lg text-mute hover:text-amber-500" onclick="act('share','${e}',event)" aria-label="Udostępnij: ${esc(readable)}">↗</button></div>`;
 }
 
 function card(item) {
   const k = keyOf(item); reg.set(k, item);
   const t = getTitle(item.title || item.text), cat = category(item), img = imageOf(item), link = safeUrl(sourceLink(item));
-  const sum = getSummary(item), com = getComment(item), pub = formatPublisher(item), date = fmtDay(item._day || dayOf(item.date)), read = readKeys.has(k), e = ek(k);
+  const sum = getSummary(item), com = getComment(item), pub = formatPublisher(item);
+  const readable = toReadableTitle(t.title);
+  const timeStr = relativeTime(item);
+  const date = fmtDay(item._day || dayOf(item.date));
+  const read = readKeys.has(k), e = ek(k);
   const credit = creditHtml(item, img);
   return `<article class="card overflow-hidden rounded-2xl border shadow-sm flex flex-col surface ${read ? 'read' : ''}" style="border-color:var(--border)" data-c="${esc(catSlug(cat))}">
-    <div class="relative aspect-video overflow-hidden" style="background:var(--bg-muted)">${imgTag(img, cat, false, '')}
+    <div class="relative aspect-video overflow-hidden" style="background:var(--bg-muted)">${imgTag(item, cat, false, '', readable)}
       <span class="cchip absolute left-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[11px] font-extrabold uppercase shadow">${esc(cat)}</span></div>${credit}
     <div class="p-3.5 flex flex-col flex-1">
-      <h3 class="text-[15px] font-black leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</h3>
+      <h3 class="text-[15px] font-black leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(readable)}</h3>
       ${sum ? `<p class="mt-2 text-[13px] leading-relaxed text-sec">${esc(sum)}</p>` : ''}
       ${com ? `<div class="cbox mt-2.5 p-2.5 text-[13px]"><div class="lbl mb-0.5 text-[11px] font-extrabold uppercase tracking-wider">Komentarz AI</div><div class="leading-relaxed text-main">${esc(com)}</div></div>` : ''}
       <div class="mt-auto pt-2.5 flex items-center justify-between gap-2 border-t" style="border-color:var(--border);margin-top:12px">
-        <div class="min-w-0 truncate text-[12px] font-semibold text-mute"><b>${esc(pub)}</b>${date ? ' · <span>' + esc(date) + '</span>' : ''}</div>
+        <div class="min-w-0 truncate text-[12px] font-semibold text-mute"><b>${esc(pub)}</b>${timeStr ? ' · <span>' + esc(timeStr) + '</span>' : (date ? ' · <span>' + esc(date) + '</span>' : '')}</div>
         <div class="flex items-center shrink-0">
-          <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="Oznacz jako przeczytane"><span class="check-btn ${read ? 'checked' : ''}">${read ? '✓' : ''}</span></button>
+          <button class="hit" onclick="act('read','${e}',event)" aria-pressed="${read}" aria-label="${read ? 'Oznacz jako nieprzeczytane' : 'Oznacz jako przeczytane'}"><span class="check-btn ${read ? 'checked' : ''}" aria-hidden="true">${read ? '✓' : ''}</span></button>
           <button class="hit text-sec" onclick="act('share','${e}',event)" aria-label="Udostępnij ten news">↗</button>
           ${link !== '#' ? `<a href="${link}" target="_blank" rel="noopener" class="text-[11px] font-bold amber hover:underline px-1">Źródło →</a><button class="hit text-[11px] font-bold text-sec" onclick="act('source','${e}',event)" aria-label="Udostępnij link do źródła">↗</button>` : ''}
         </div>
@@ -463,6 +622,7 @@ function card(item) {
 async function translateHeadline(item) {
   const t = getTitle(item.title_pl || item.title); let title = t.title;
   if (!item.title_pl && isEnglishTitle(title)) title = await translateToPolish(title);
+  title = toReadableTitle(title);
   return { item, title, emoji: (t.emoji && t.emoji !== '•') ? t.emoji : pickEmoji(title, category(item)) };
 }
 async function renderToday() {
@@ -477,26 +637,54 @@ async function renderToday() {
 const cards = (l, empty) => l.length ? l.map(card).join('') : `<div class="col-span-full p-8 text-center text-sm text-sec">${empty}</div>`;
 function renderAll() { const l = uniq(newsItems); $('all-grid').innerHTML = cards(l.slice(0, allShown), 'Brak wiadomości.'); $('all-more').classList.toggle('hidden', allShown >= l.length); }
 function renderFast() { $('breaking').innerHTML = cards(uniq([...fastItems, ...newsItems.slice(0, 5)]), 'Brak pilnych.'); }
+
 const score = x => (getSummary(x) ? 3 : 0) + (getComment(x) ? 2 : 0) + (imageOf(x) ? 1 : 0) + (x.grounded === false ? -2 : 0);
-const DAYS_PL = ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'];
+
 function renderWeek() {
-  const today = todayKey(), f = new Date(); f.setDate(f.getDate() - 6);
+  const today = todayKey(), f = new Date();
+  f.setDate(f.getDate() - 6);
   const start = `${f.getFullYear()}-${String(f.getMonth() + 1).padStart(2, '0')}-${String(f.getDate()).padStart(2, '0')}`;
-  const pool = []; archiveGroups.forEach(g => g.items.forEach(x => { if (x._day >= start && x._day <= today) pool.push(x); })); newsItems.concat(fastItems).forEach(x => pool.push(x));
-  const all = uniq(pool), byDay = {}; all.forEach(x => (byDay[x._day] = byDay[x._day] || []).push(x));
-  const days = Object.keys(byDay).sort().reverse();
+
+  const pool = [];
+  archiveGroups.forEach(g => (g.items || []).forEach(x => {
+    if (x._day >= start && x._day <= today) pool.push(x);
+  }));
+  newsItems.concat(fastItems).forEach(x => pool.push(x));
+
+  const all = uniq(pool);
+  all.sort((a, b) => score(b) - score(a));
+  const top15 = all.slice(0, 15);
+
   const row = x => {
     const k = keyOf(x); reg.set(k, x);
     const t = getTitle(x.title_pl || x.title || x.text), link = safeUrl(sourceLink(x)), pub = formatPublisher(x), c = esc(catSlug(category(x)));
-    const inner = `<span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" style="background:var(--cc)"></span><span class="min-w-0 flex-1"><span class="block text-[14px] font-semibold leading-snug text-main">${t.emoji ? esc(t.emoji) + ' ' : ''}${esc(t.title)}</span><span class="block text-[11px] font-semibold" style="color:var(--cc)">${esc(pub)}</span></span>${link !== '#' ? '<span class="mt-0.5 text-mute" aria-hidden="true">↗</span>' : ''}`;
-    const cls = 'flex items-start gap-2.5 px-3.5 py-2.5 border-b last:border-0 no-underline headline-item';
-    return link !== '#' ? `<a href="${link}" target="_blank" rel="noopener" data-c="${c}" class="${cls}" style="border-color:var(--border)">${inner}</a>` : `<div data-c="${c}" class="${cls}" style="border-color:var(--border)">${inner}</div>`;
+    const readable = toReadableTitle(t.title);
+    const em = t.emoji || pickEmoji(readable, category(x));
+    const timeStr = relativeTime(x);
+
+    return `
+      <div class="headline-item flex items-center gap-2 px-3 py-2.5 border-b last:border-0" style="border-color:var(--border)" data-c="${c}">
+        <div class="thumb">${imgTag(x, category(x), true, em, readable)}</div>
+        <a href="${link}" ${link !== '#' ? 'target="_blank" rel="noopener"' : ''} class="min-w-0 flex-1 flex flex-col no-underline">
+          <span class="block text-[14px] font-semibold leading-snug text-main">${esc(readable)}</span>
+          <span class="mt-0.5 block text-[11px] font-bold" style="color:var(--cc)">
+            ${esc(pub)}${timeStr ? ' · ' + esc(timeStr) : (x._day ? ' · ' + fmtDay(x._day) : '')}
+          </span>
+        </a>
+        ${link !== '#' ? `<a href="${link}" target="_blank" rel="noopener" class="hit text-mute hover:text-amber-500" aria-label="Otwórz źródło">↗</a>` : ''}
+      </div>`;
   };
-  $('week-content').innerHTML = `<p class="mb-3 text-sm text-sec">${fmtDay(start)} – ${fmtDay(today)} · ${all.length} tematów z ${days.length} dni</p>` +
-    (days.length ? days.map(d => { const l = byDay[d].sort((a, b) => score(b) - score(a)).slice(0, 6), dt = new Date(d + 'T12:00:00');
-      return `<section class="mb-5"><h3 class="mb-1.5 text-[13px] font-black uppercase tracking-wide amber">${DAYS_PL[dt.getDay()]} · ${fmtDay(d).slice(0, 5)}</h3><div class="rounded-2xl border overflow-hidden surface" style="border-color:var(--border)">${l.map(row).join('')}</div></section>`; }).join('')
-      : '<div class="p-6 text-center text-sm text-sec">Brak danych z ostatnich 7 dni.</div>');
+
+  $('week-content').innerHTML = `
+    <div class="mb-3 flex items-center justify-between text-xs text-sec">
+      <span>${fmtDay(start)} – ${fmtDay(today)}</span>
+      <span class="font-bold text-main">${top15.length} najważniejszych tematów</span>
+    </div>
+    ${top15.length ? `<div class="rounded-2xl border overflow-hidden surface shadow-sm" style="border-color:var(--border)">${top15.map(row).join('')}</div>`
+      : '<div class="p-6 text-center text-sm text-sec">Brak danych z ostatnich 7 dni.</div>'}
+  `;
 }
+
 function normalizeArchive(data) {
   if (!data || typeof data !== 'object') return [];
   return Object.keys(data).sort().reverse().map(key => {
@@ -505,39 +693,153 @@ function normalizeArchive(data) {
     return { day, label: `${v.date || fmtDay(day)}${kind ? ' · ' + kind : ''}`, items: stamp(v.items, { timestamp: day }) };
   }).filter(Boolean);
 }
+
 function renderArchive() {
-  if (!archiveGroups.length) { $('archive-content').innerHTML = '<div class="rounded-2xl border border-dashed p-8 text-center text-sm text-sec" style="border-color:var(--border)">Brak archiwum.</div>'; $('archive-more').classList.add('hidden'); return; }$('archive-content').innerHTML = archiveGroups.slice(0, archiveShown).map(g => `<section class="mb-7"><div class="mb-2.5 flex items-end justify-between"><h3 class="text-base font-black text-main">${esc(g.label)}</h3><span class="text-[11px] text-sec">${g.items.length} wiadomości</span></div><div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">${g.items.map(card).join('')}</div></section>`).join('');
+  const container = $('archive-content');
+  if (!archiveGroups.length) {
+    container.innerHTML = '<div class="rounded-2xl border border-dashed p-8 text-center text-sm text-sec" style="border-color:var(--border)">Brak wydań w tym okresie.</div>';
+    $('archive-more').classList.add('hidden');
+    return;
+  }
+  const groupsToDisplay = archiveGroups.slice(0, archiveShown);
+
+  container.innerHTML = groupsToDisplay.map(g => {
+    const rows = g.items.map(item => {
+      const t = getTitle(item.title_pl || item.title || item.text);
+      const emoji = t.emoji || pickEmoji(t.title, category(item));
+      return headlineRow(item, toReadableTitle(t.title), emoji);
+    }).join('');
+
+    return `
+      <section class="mb-6">
+        <div class="mb-2 flex items-center justify-between px-1">
+          <h3 class="text-xs font-black uppercase tracking-wider amber">Wydanie: ${esc(g.label)}</h3>
+          <span class="text-[11px] font-semibold text-sec">${g.items.length} tematów</span>
+        </div>
+        <div class="rounded-2xl border overflow-hidden surface shadow-sm" style="border-color:var(--border)">
+          ${rows}
+        </div>
+      </section>
+    `;
+  }).join('');
+
   $('archive-more').classList.toggle('hidden', archiveShown >= archiveGroups.length);
 }
+
+async function onArchiveMonthChange(fileKey) {
+  archiveShown = 3;
+  $('archive-content').innerHTML = '<div class="p-8 text-center text-sm text-sec">Wczytywanie wydania...</div>';
+
+  if (fileKey === 'main') {
+    const a = await loadJson(DATA_FILES.archive, {});
+    const current = new Set(newsItems.concat(fastItems).map(keyOf));
+    archiveGroups = normalizeArchive(a.data).map(g => ({ ...g, items: g.items.filter(x => !current.has(keyOf(x))) })).filter(g => g.items.length);
+    renderArchive();
+    return;
+  }
+
+  if (monthlyArchiveCache.has(fileKey)) {
+    archiveGroups = monthlyArchiveCache.get(fileKey);
+    renderArchive();
+    return;
+  }
+
+  const res = await loadJson(fileKey, {});
+  if (res.ok && res.data) {
+    const parsed = normalizeArchive(res.data);
+    monthlyArchiveCache.set(fileKey, parsed);
+    archiveGroups = parsed;
+  } else {
+    archiveGroups = [];
+  }
+  renderArchive();
+}
+
+async function loadArchiveIndex() {
+  const sel = $('archive-month-select');
+  if (!sel) return;
+  const res = await loadJson('archive_index.json', []);
+  if (res.ok && Array.isArray(res.data) && res.data.length > 0) {
+    let opts = '<option value="main">Bieżący miesiąc</option>';
+    res.data.forEach(m => {
+      opts += `<option value="${esc(m.file)}">${esc(m.label)}</option>`;
+    });
+    sel.innerHTML = opts;
+  }
+}
+
 function renderCurrent() {
   ({ today: renderToday, all: renderAll, fast: renderFast, week: renderWeek, archive: renderArchive })[currentTab]();
   document.querySelectorAll('#bottom-nav .bottom-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === currentTab));
 }
 function switchTab(tab) {
-  currentTab = tab; document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); $('tab-' + tab).classList.add('active');
-  ['today', 'all', 'fast', 'week', 'archive'].forEach(v => $(v + '-view').classList.toggle('hidden', v !== tab));$('search-results').classList.add('hidden');
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  const active = $('tab-' + tab);
+  if (active) {
+    active.classList.add('active');
+    active.setAttribute('aria-pressed', 'true');
+  }
+  ['today', 'all', 'fast', 'week', 'archive'].forEach(v => $(v + '-view').classList.toggle('hidden', v !== tab));
+  $('search-results').classList.add('hidden');
   if (tab === 'all') allShown = 6; if (tab === 'archive') archiveShown = 2;
   renderCurrent(); scrollTo({ top: 0, behavior: 'smooth' });
 }
 function search() {
-  const q = $('search-input').value.trim();$('search-clear').classList.toggle('hidden', !q);
+  const q = $('search-input').value.trim(); $('search-clear').classList.toggle('hidden', !q);
   if (!q) return $('search-results').classList.add('hidden');
   const pool = uniq([...newsItems, ...rawFeedItems, ...fastItems, ...archiveGroups.flatMap(g => g.items)]), words = normalize(q).split(' ').filter(Boolean);
   const hits = pool.filter(x => { const h = normalize([x.title, x.title_pl, getSummary(x), getComment(x), category(x), formatPublisher(x)].join(' ')); return words.every(w => h.includes(w)); });
-  $('search-results').classList.remove('hidden');$('search-results').innerHTML = `<div class="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-sec">Wyniki: ${hits.length}</div><div class="rounded-xl border overflow-hidden surface" style="border-color:var(--border)">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return headlineRow(x, t.title, t.emoji || pickEmoji(t.title, category(x))); }).join('') || '<div class="p-4 text-sm text-sec">Nie znaleziono.</div>'}</div>`;
+  $('search-results').classList.remove('hidden');
+  $('search-results').innerHTML = `<div class="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-sec">Wyniki: ${hits.length}</div><div class="rounded-xl border overflow-hidden surface" style="border-color:var(--border)">${hits.slice(0, 30).map(x => { const t = getTitle(x.title_pl || x.title); return headlineRow(x, toReadableTitle(t.title), t.emoji || pickEmoji(t.title, category(x))); }).join('') || '<div class="p-4 text-sm text-sec">Nie znaleziono.</div>'}</div>`;
 }
-function clearSearch() { $('search-input').value = ''; $('search-results').classList.add('hidden');$('search-clear').classList.add('hidden'); }
+function clearSearch() { $('search-input').value = ''; $('search-results').classList.add('hidden'); $('search-clear').classList.add('hidden'); }
 
 /* ---------- dane ---------- */
 async function loadJson(url, fallback) {
   try { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw new Error(r.status); return { ok: true, data: await r.json() }; }
   catch (e) { console.warn('Nie udało się pobrać', url, e); return { ok: false, data: fallback }; }
 }
+
+/** Pogoda z cache (30 min) — omija rate limit Open-Meteo */
 async function loadWidgets() {
-  try { const d = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current=temperature_2m,weather_code&timezone=Europe%2FWarsaw')).json(); const c = d.current.weather_code;
-    $('weather-temp').textContent = Math.round(d.current.temperature_2m) + '°';$('weather-icon').textContent = c === 0 ? '☀️' : c <= 3 ? '🌤️' : c <= 48 ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '🌨️' : c <= 82 ? '🌦️' : '⛈️'; } catch (e) {}
-  try { const rates = (await (await fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json')).json())[0].rates; const g = c => { const r = rates.find(x => x.code === c); return r ? r.mid.toFixed(2) : '—'; }; $('eur-rate').textContent = g('EUR');$('usd-rate').textContent = g('USD'); } catch (e) {}
+  const CACHE_KEY = 'swm-weather';
+  const CACHE_TTL = 30 * 60 * 1000; // 30 minut
+  try {
+    const cached = JSON.parse(store.get(CACHE_KEY, 'null'));
+    if (cached && cached.ts && (Date.now() - cached.ts < CACHE_TTL) && cached.temp != null) {
+      $('weather-temp').textContent = cached.temp + '°';
+      $('weather-icon').textContent = cached.icon || '🌤️';
+    } else {
+      const d = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current=temperature_2m,weather_code&timezone=Europe%2FWarsaw')).json();
+      const c = d.current.weather_code;
+      const temp = Math.round(d.current.temperature_2m);
+      const icon = c === 0 ? '☀️' : c <= 3 ? '🌤️' : c <= 48 ? '🌫️' : c <= 67 ? '🌧️' : c <= 77 ? '🌨️' : c <= 82 ? '🌦️' : '⛈️';
+      $('weather-temp').textContent = temp + '°';
+      $('weather-icon').textContent = icon;
+      store.set(CACHE_KEY, JSON.stringify({ ts: Date.now(), temp, icon }));
+    }
+  } catch (e) {
+    // fallback z cache nawet jeśli wygasł
+    try {
+      const cached = JSON.parse(store.get(CACHE_KEY, 'null'));
+      if (cached && cached.temp != null) {
+        $('weather-temp').textContent = cached.temp + '°';
+        $('weather-icon').textContent = cached.icon || '🌤️';
+      }
+    } catch (_) {}
+  }
+  try {
+    const rates = (await (await fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json')).json())[0].rates;
+    const g = c => { const r = rates.find(x => x.code === c); return r ? r.mid.toFixed(2) : '—'; };
+    $('eur-rate').textContent = g('EUR');
+    $('usd-rate').textContent = g('USD');
+  } catch (e) {}
 }
+
 async function init() {
   updateThemeColor(); try { readKeys = new Set(JSON.parse(store.get('swm-read', '[]'))); } catch (e) {}
   const [n, raw, f, a] = await Promise.all(Object.values(DATA_FILES).map(u => loadJson(u, {})));
@@ -548,7 +850,7 @@ async function init() {
   const ts = String(n.data && n.data.timestamp || '').match(/(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2})/);
   $('last-update').textContent = ts ? `Wydanie: ${ts[3]}.${ts[2]}, ${ts[4]}:${ts[5]}` : '';
   $('load-error').classList.toggle('hidden', !(dataLoadFailed && !newsItems.length && !rawFeedItems.length));
-  await renderToday(); loadWidgets();
+  await renderToday(); loadWidgets(); loadArchiveIndex();
   const m = location.hash.match(/^#n=(.+)$/);
   if (m) {
     const id = decodeURIComponent(m[1]);
@@ -566,7 +868,10 @@ addEventListener('scroll', () => {
   const h = document.documentElement.scrollHeight - innerHeight; $('scroll-progress').style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
   const b = $('back-top'); b.classList.toggle('hidden', scrollY <= 400); b.classList.toggle('flex', scrollY > 400);
 }, { passive: true });
-addEventListener('keydown', e => { if (e.key === 'Escape') { clearSearch(); document.querySelectorAll('.modal').forEach(m => m.remove()); } if (e.key === '?' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); toggleHelp(); } });
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { clearSearch(); document.querySelectorAll('.modal').forEach(m => m.remove()); }
+  if (e.key === '?' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); toggleHelp(); }
+});
 let deferred = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; $('install-btn').classList.add('show'); });
 addEventListener('appinstalled', () => { deferred = null; $('install-btn').classList.remove('show'); });
